@@ -1,4 +1,4 @@
-# juice-interface
+# utopians-interface
 
 Juicebox frontend application.
 
