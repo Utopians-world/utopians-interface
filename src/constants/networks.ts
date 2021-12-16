@@ -80,6 +80,16 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     faucet: 'https://faucet.matic.network/',
     blockExplorer: 'https://explorer-mainnet.maticvigil.com//',
   },
+  588: {
+    name: NetworkName.test,
+    color: '#2bbdf7',
+    chainId: 588,
+    price: 1,
+    gasPrice: 1000000000,
+    rpcUrl: 'https://stardust.metis.io/?owner=588',
+    faucet: 'https://stardust.metis.io/',
+    blockExplorer: 'https://stardust.metis.io/',
+  },
   80001: {
     name: NetworkName.mumbai,
     color: '#92D9FA',
