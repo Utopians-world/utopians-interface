@@ -1,0 +1,18 @@
+@import '../../styles/common.scss';
+.login-btn{
+  width: 135px;
+  font-size: 14px;
+  color: #030303!important;
+  border:none;
+  border-radius: 4px !important;
+  height: 37px;
+  @include solidBtn;
+}
+.logout-btn{
+  width: 102px;
+  height: 38px;
+  font-size: 14px;
+  color: #fff!important;
+  letter-spacing: 1px;
+  @include hollowBtn;
+}

@@ -1,0 +1,36 @@
+@mixin bigTitle {
+  font-family: GoodTimesW00-Bold, GoodTimesW00;
+  font-weight: 600;
+  line-height: 32px;
+  padding:0 32px;
+  width: fit-content;
+  border-left: 12px solid #A42DEA;
+  border-right: 12px solid #A42DEA;
+  & span{
+    color:#3A1FF5;
+  }
+}
+@mixin titleLine {
+  height: 4px;
+  width: 170px;
+  margin: 10px 0 0 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, #D159F6 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+@mixin hollowBtn {
+  font-family: GoodTimesW00-Bold, GoodTimesW00;
+  border-radius: 3px;
+  border: 3px solid;
+  font-weight: 600!important;
+  clip-path: inset(0 round 3px);
+  border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 3 3;
+}
+
+@mixin solidBtn {
+  font-family: GoodTimesW00-Bold, GoodTimesW00;
+  font-weight: 600!important;
+  border-radius: 3px!important;
+  background: linear-gradient(74deg, #74FFF8 0%, #FFFFFF 100%)!important;
+  box-shadow: 0px 2px 9px 0px rgba(8, 255, 238, 0.54);
+}

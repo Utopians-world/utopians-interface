@@ -15,6 +15,7 @@ namespace SemanticColor {
   export type Status = Success & Warn & Failure
   export type Disabled = { disabled: Property.Color }
   export type Placeholder = { placeholder: Property.Color }
+  export type Metisgreen = { metisgreen: Property.Color }
   export type Over = { over: ActionHighlight & Brand & Status & Disabled }
 }
 
@@ -27,6 +28,7 @@ export interface SemanticColors {
     SemanticColor.ActionHighlight &
     SemanticColor.Disabled &
     SemanticColor.Placeholder &
+    SemanticColor.Metisgreen &
     SemanticColor.Over & { header: Property.Color }
   icon: SemanticColor.Primary &
     SemanticColor.Secondary &

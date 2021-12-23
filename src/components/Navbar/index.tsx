@@ -9,7 +9,7 @@ import { useContext, useState } from 'react'
 import { ThemeOption } from 'constants/theme/theme-option'
 
 import Account from './Account'
-import ThemePicker from './ThemePicker'
+// import ThemePicker from './ThemePicker' hide 2021-12-21 明暗风格切换
 
 export default function Navbar() {
   const [activeKey, setActiveKey] = useState<0 | undefined>()
@@ -24,10 +24,10 @@ export default function Navbar() {
 
     return (
       <a
-        className="hover-opacity"
+        className="hover-nav"
         style={{
           fontWeight: 600,
-          color: colors.text.primary,
+          color: '#ffffff',
         }}
         href={route}
         onClick={onClick}
@@ -60,15 +60,9 @@ export default function Navbar() {
   const menu = () => {
     return (
       <>
+        {menuItem('Home', '/')}
         {menuItem('Projects', '/#/projects')}
-        {menuItem('FAQ', undefined, () => {
-          window.location.hash = '/'
-          setTimeout(() => {
-            document
-              .getElementById('faq')
-              ?.scrollIntoView({ behavior: 'smooth' })
-          }, 0)
-        })}
+        {menuItem('FAQ', '/#/faq')}
         {menuItem('Docs', 'https://docs.juicebox.money')}
         {menuItem('Blog', 'https://blog.juicebox.money')}
         {menuItem('Discord', 'https://discord.gg/6jXrJSyDFf')}
@@ -83,7 +77,10 @@ export default function Navbar() {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: colors.background.l0,
+        height: '80px',
+        zIndex: 999,
+        // opacity: '0.84',
+        background: 'linear-gradient(163deg, #400AFF 0%, #000000 30%)',
       }}
     >
       <Space size="large" style={{ flex: 1 }}>
@@ -93,7 +90,7 @@ export default function Navbar() {
         {menu()}
       </Space>
       <Space size="middle">
-        <ThemePicker />
+        {/* <ThemePicker /> */}
         <div className="hide-mobile">
           <Account />
         </div>
@@ -127,7 +124,7 @@ export default function Navbar() {
               <MenuOutlined style={{ color: colors.icon.primary }} />
             </Space>
           }
-          extra={<ThemePicker />}
+          // extra={<ThemePicker />}
         >
           <Space direction="vertical" size="middle">
             {menu()}

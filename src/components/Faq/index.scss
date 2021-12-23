@@ -1,0 +1,59 @@
+@import '../../styles/common.scss';
+.faqWrapper {
+  width: 100%;
+  max-width: 960px;
+  padding:68px 0 32px;
+  margin: 0 auto;
+  background: transparent;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  .faqTitle {
+    font-size: 26px;
+    color: #1C1C20;
+    margin-bottom: 0;
+    @include bigTitle;
+  }
+  .titleLine {
+    @include titleLine
+  }
+  .ant-collapse{
+    border:none;
+  }
+  .ant-collapse > .ant-collapse-item{
+    border-bottom:2px solid #D3DCEE;
+  }
+  .ant-collapse .ant-collapse-item .ant-collapse-header{
+    font-size: 18px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #1C1C20;
+    line-height: 32px;
+  }
+  .ant-collapse-content > .ant-collapse-content-box p{
+    font-size: 14px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #5F5E61;
+    line-height: 25px;
+  }
+
+  .faqStillCon{
+    text-align: center;
+    h2 {
+      font-size: 22px;
+      font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+      font-weight: 600;
+      color: #2713E1;
+      line-height: 32px;
+    }
+    p{
+      font-size: 17px;
+      font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+      font-weight: 600;
+      color: #9092A7;
+      line-height: 24px;
+    }
+  }
+}

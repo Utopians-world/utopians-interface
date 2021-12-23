@@ -24,12 +24,13 @@ export default function Balance({
       style={{
         verticalAlign: 'middle',
         lineHeight: 1,
+        color: colors.text.metisgreen,
       }}
     >
       <CurrencySymbol currency={0} />
       {formatWad(balance, { decimals: 4 }) ?? '--'}
       {showEthPrice && (
-        <div style={{ color: colors.text.tertiary }}>
+        <div style={{ color: colors.text.metisgreen }}>
           <EthPrice />
         </div>
       )}
