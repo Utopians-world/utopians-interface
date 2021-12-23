@@ -9,6 +9,7 @@ import { readNetwork } from 'constants/networks'
 
 import Navbar from './Navbar'
 import Router from './Router'
+import Footer from './Footer'
 
 function App() {
   const [switchNetworkModalVisible, setSwitchNetworkModalVisible] =
@@ -40,9 +41,10 @@ function App() {
         }}
       >
         <Navbar />
-        <Content>
+        <Content style={{ minHeight: 'auto' }}>
           <Router />
         </Content>
+        <Footer />
       </Layout>
 
       <Modal

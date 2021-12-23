@@ -13,6 +13,7 @@ export const lightColors = {
   ctaHighlight: '#25c4d8',
   ctaHint: '#18b4c722',
   green: 'green',
+  metisgreen: '#00FDFF',
   red: 'tomato',
   yellow: '#d8aa01',
 }
