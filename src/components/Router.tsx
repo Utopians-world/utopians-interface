@@ -7,6 +7,7 @@ import CatchallRedirect from './CatchallRedirect'
 import Create from './Create'
 import Projects from './Projects'
 import Faq from './Faq'
+import ProjectsDetail from './ProjectsDetail'
 
 export default function Router() {
   return (
@@ -19,7 +20,7 @@ export default function Router() {
           <Create />
         </Route>
         <Route path="/projects/:owner">
-          <Projects />
+          <ProjectsDetail />
         </Route>
         <Route path="/projects">
           <Projects />
