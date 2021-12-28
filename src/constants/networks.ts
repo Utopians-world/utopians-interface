@@ -81,7 +81,7 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     blockExplorer: 'https://explorer-mainnet.maticvigil.com//',
   },
   588: {
-    name: NetworkName.test,
+    name: NetworkName.testnet,
     color: '#2bbdf7',
     chainId: 588,
     price: 1,
@@ -109,6 +109,5 @@ export const NETWORKS_BY_NAME = Object.values(NETWORKS).reduce(
   }),
   {} as Record<NetworkName, NetworkInfo>,
 )
-
-export const readNetwork =
-  NETWORKS_BY_NAME[process.env.REACT_APP_INFURA_NETWORK as NetworkName]
+const networkName = process.env.REACT_APP_INFURA_NETWORK
+export const readNetwork = NETWORKS_BY_NAME[networkName as NetworkName]

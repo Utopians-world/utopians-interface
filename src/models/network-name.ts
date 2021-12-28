@@ -7,6 +7,6 @@ export enum NetworkName {
   goerli = 'goerli',
   xdai = 'xdai',
   matic = 'matic',
-  test = 'test',
+  testnet = 'testnet',
   mumbai = 'mumbai',
 }
