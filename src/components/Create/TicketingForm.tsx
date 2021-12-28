@@ -1,8 +1,10 @@
-import { Button, Form, FormInstance, Space } from 'antd'
+import { Button, Form, FormInstance, Space, Divider, Tooltip } from 'antd'
 import { FormItems } from 'components/shared/formItems'
-import { ThemeContext } from 'contexts/themeContext'
+// import { ThemeContext } from 'contexts/themeContext'
 import { TicketMod } from 'models/mods'
-import { useContext, useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
+
+import './index.scss'
 
 export type TicketingFormFields = {
   reserved: number
@@ -19,9 +21,9 @@ export default function TicketingForm({
 }) {
   const [mods, setMods] = useState<TicketMod[]>([])
 
-  const {
-    theme: { colors },
-  } = useContext(ThemeContext)
+  // const {
+  //   theme: { colors },
+  // } = useContext(ThemeContext)
 
   useLayoutEffect(() => {
     setMods(initialMods)
@@ -29,38 +31,61 @@ export default function TicketingForm({
 
   return (
     <Space direction="vertical" size="large">
-      <div style={{ color: colors.text.secondary }}>
+      <div className="stepTopCon">
         <h1>Reserved tokens</h1>
-
-        <p>
-          Tokens are earned by anyone who pays your project, and can be redeemed
-          for overflow if your project has set a funding target.
-        </p>
-        <p>
-          You'll be able to issue ERC-20 tokens once your project contract has
-          been deployed. Until then, your project will use staked tokens,
-          allowing your supporters to still track their balance and redeem for
-          overflow in the meantime.
-        </p>
+        <h2>Reward specific community members with tokens.</h2>
+        <Divider className="stepTopConDivider" orientation="right">
+          Reserve percentage
+        </Divider>
       </div>
 
-      <Form form={form} layout="vertical">
+      <p>
+        Tokens are earned by anyone who pays your project, and can be redeemed
+        for overflow if your project has set a funding target.
+        <Tooltip
+          title={
+            <p>
+              You'll be able to issue ERC-20 tokens once your project contract
+              has been deployed. Until then, your project will use staked
+              tokens, allowing your supporters to still track their balance and
+              redeem for overflow in the meantime.
+            </p>
+          }
+        >
+          <span className="stepTooltip">What is project target ?</span>
+        </Tooltip>
+      </p>
+
+      <Form form={form} layout="vertical" className="stepFormCon">
         <FormItems.ProjectReserved
           value={form.getFieldValue('reserved')}
           onChange={(val?: number) => form.setFieldsValue({ reserved: val })}
         />
+        <Divider className="stepTopConDivider" orientation="right">
+          Allocate
+        </Divider>
+        <p>
+          Allocate reserved tokens is optional. By default, automatically
+          distribute a portion of your project's reserved tokens to other
+          utopians projects or ETH wallets.
+        </p>
         <FormItems.ProjectTicketMods
           name="ticketMods"
           mods={mods}
           onModsChanged={setMods}
-          formItemProps={{
-            label: 'Allocate reserved tokens (optional)',
-            extra:
-              "Automatically distribute a portion of your project's reserved tokens to other Juicebox projects or ETH wallets.",
-          }}
+          // formItemProps={{
+          //   label: 'Allocate reserved tokens (optional)',
+          //   extra:
+          //     "Automatically distribute a portion of your project's reserved tokens to other Juicebox projects or ETH wallets.",
+          // }}
         />
         <Form.Item>
-          <Button htmlType="submit" type="primary" onClick={() => onSave(mods)}>
+          <Button
+            className="stepSaveBtn"
+            htmlType="submit"
+            type="primary"
+            onClick={() => onSave(mods)}
+          >
             Save
           </Button>
         </Form.Item>

@@ -1,3 +1,38 @@
+@mixin centerLayout {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+@mixin betweenLayout {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin aroundLayout {
+  display: flex;
+  justify-content: space-around;
+}
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+}
+@mixin topTitle {
+  font-size: 44px;
+  font-family: GoodTimesW00-Bold, GoodTimesW00;
+  font-weight: 600;
+  line-height: 46px;
+  background: linear-gradient(173deg, #00FF7C 0%, #00DAFF 32%, #A100FF 100%), linear-gradient(195deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@mixin defaultDes {
+  font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 21px;
+}
+
 @mixin bigTitle {
   font-family: GoodTimesW00-Bold, GoodTimesW00;
   font-weight: 600;

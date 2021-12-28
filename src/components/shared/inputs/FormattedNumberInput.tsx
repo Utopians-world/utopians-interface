@@ -63,6 +63,7 @@ export default function FormattedNumberInput({
         alignItems: 'center',
         ...style,
       }}
+      className="stepNumberInput"
     >
       <InputNumber
         className={accessory ? 'antd-no-number-handler' : ''}
@@ -101,7 +102,8 @@ export default function FormattedNumberInput({
       />
       <div
         style={{
-          marginLeft: accessoryWidth * -1 - 5,
+          // marginLeft: accessoryWidth * -1 - 5,
+          marginLeft: accessoryWidth * -1,
           zIndex: 1,
           fontSize: '.8rem',
         }}

@@ -15,6 +15,8 @@ export default function ProjectLogoUri({
     <Form.Item
       name={name}
       label={hideLabel ? undefined : 'Logo'}
+      extra="Support format png .jpg"
+      style={{ flexDirection: 'row' }}
       {...formItemProps}
     >
       <ImageUploader

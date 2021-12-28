@@ -1,0 +1,560 @@
+@import '../../styles/common.scss';
+
+@mixin stepLabel {
+    font-size: 16px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    color: #1C1C20;
+    line-height: 16px;
+}
+@mixin stepExplain {
+    font-size: 13px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #5F5E61;
+    line-height: 18px;
+}
+@mixin stepInput {
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #241515;
+    line-height: 38px;
+}
+@mixin stepTip {
+    font-size: 14px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #3A1FF5;
+    line-height: 20px;
+}
+
+body {
+    background-image: none!important;
+}
+.createTitle {
+    @include bigTitle;
+    border:none;
+    padding: 24px 80px;
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 26px;
+    color: #1C1C20;
+}
+.createTabs{
+    width: 100%;
+    background: #ffffff;
+    margin: 0;
+
+    .createTabPane{
+        @include betweenLayout;
+        align-items: center;
+        padding: 0 34px 0 37px;
+        letter-spacing: -1px;
+
+        .createTabpaneArrow{
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            background-image: url('../../assets/images/create-arrow-default.png');
+        }
+    }
+
+    & .createTabpaneNum{
+        width: 16px;
+        height: 16px;
+        background: #665FAC;
+        margin-right: 9px;
+        display: inline-block;
+        border-radius: 50%;
+        color: #ffffff;
+        line-height: 16px;
+    }
+
+    .ant-tabs-nav{
+        margin: 0;
+        box-shadow: 0px 2px 9px 0px rgba(102, 95, 172, 0.32);
+    }
+    .ant-tabs-nav-list{
+        justify-content: space-around;
+        width: 100%;
+        
+    }
+    .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar{
+        height: 4px;
+        background-color: #3A1FF5;
+    }
+    .ant-tabs-tab {
+        width: 100%;
+        max-width: 240px;
+        height: 77px;
+        margin: 0;
+        background: #FFFFFF;
+        
+        border: 1px solid #C3D0F9;
+        border-top: none;
+        // box-shadow: 0 1px rgba(150, 144, 171, 0.29);
+    }
+    .ant-tabs-tab .ant-tabs-tab-btn {
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        line-height: 21px;
+        color: #9092A7;
+        text-shadow:none;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active {
+        background-color: #dfd6ff;
+        & .ant-tabs-tab-btn{
+            color: #000000;
+        }
+        & .createTabpaneNum{
+            background: #3A1FF5;
+        }
+
+        
+        .createTabpaneArrow{
+            background-image: url('../../assets/images/creat-arrow-right.png');
+        }
+    }
+
+    .createTabWrapper{
+        background:#fff;
+        padding: 40px 80px 90px;
+    }
+}
+
+.stepTopCon {
+    h1, h2 {
+        margin: 0;
+    }
+    h1 {
+        font-size: 26px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #1D1D1D;
+        line-height: 40px;
+    }
+
+    h2 {
+        font-size: 14px;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #9092A7;
+        line-height: 20px;
+    }
+}
+
+.stepTopConDivider {
+    font-size: 14px !important;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600 !important;
+    color: #D3DCEE !important;
+    line-height: 21px;
+}
+.stepFormCon {
+    .ant-form-item-label > label {
+        @include stepLabel;
+    }
+
+    .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+        display: inline-block;
+        margin-left: 4px;
+        color: #FE5164;
+        font-size: 16px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        line-height: 1;
+        content: '*';
+    }
+    .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before, .ant-form-hide-required-mark .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+        display: none;
+    }
+
+    .ant-input {
+        @include stepInput;
+    }
+    .ant-input-number-input {
+        @include stepInput;
+        height: 48px;
+    }
+    .ant-input, .ant-input-affix-wrapper{
+        border: 1px solid #7C85CB;
+    } 
+    .ant-input-affix-wrapper .ant-input:hover, .ant-input-number {
+        border: none;
+        box-shadow: none;
+    }
+    .ant-input:hover {
+        box-shadow: 0px 2px 4px 0px rgba(58, 31, 245, 0.31);
+        border: 1px solid #8372F9;
+    }
+    .ant-form-item-explain, .ant-form-item-extra {
+        @include stepExplain;
+    }
+
+    .stepUpload {
+        width: 120px;
+        height: 38px;
+        background: #D3DCEE;
+        color: #5F5E61;
+        border-radius: 3px;
+        border: 1px solid #7C85CB;
+    }
+
+    .switchFormItem {
+        &Space {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            @include stepLabel;
+        }
+
+        &Switch {
+            width: 44px;
+            height: 25px;
+            border-radius: 13px;
+            &.ant-switch-checked {
+                background: #3A1FF5;
+                .ant-switch-handle{
+                    left: calc(100% - 21px - 2px);
+                }
+            }
+
+            .ant-switch-handle{
+                width: 21px;
+                height: 21px;
+            }
+        }
+
+        &Tip {
+            @include stepTip;
+        }
+    }
+
+    .stepExplain{
+        @include stepExplain;
+    }
+
+    .payoutTotalCon {
+        @include centerLayout;
+        align-items: flex-end;
+        .payoutTotalConTotal{
+            font-size: 22px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            color: #303030;
+            line-height: 34px;
+        }
+        .payoutTotalConTo{
+            font-size: 12px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            color: #FE5164;
+            line-height: 19px;
+        }
+    }
+
+    .stepSelect{
+        border: 1px solid #7C85CB;
+        border-radius: 3px;
+        .ant-select-selector {
+            font-size: 14px;
+            border-radius: 3px;
+            border: 1px solid #7C85CB;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400;
+            color: #000000;
+            height: 48px;
+            padding: 8px 11px;
+        }
+        .ant-select-selector:hover {
+            border: 1px solid #8372F9;
+        }
+        .ant-select-selection-item{
+            font-size: 14px;
+            color: #000000;
+        }
+    }
+}
+
+.stepModalCon{
+    .ant-modal-content .ant-modal-title{
+        height: 20px;
+        font-size: 22px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #1C1C20;
+        line-height: 16px;
+    }
+    .ant-form-item-explain, .ant-form-item-extra {
+        @include stepExplain;
+        font-size: 14px;
+        color: #1C1C20;
+        margin-top: 8px;
+    }
+    .ant-slider {
+        .ant-slider-track {
+            height: 7px;
+            background: #3A1FF5;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+        .ant-slider-rail {
+            height: 7px;
+            background: #9092A7;
+            border-radius: 5px;
+            opacity: 0.4;
+        }
+        .ant-slider-handle {
+            background-color: #fff;
+            border: 2px solid #00DAC5;
+            width: 16px;
+            height: 16px;
+        }
+    }
+    .ant-input-number {
+        border: 1px solid #7C85CB;
+        height: 39px;
+        border-radius: 3px;
+        font-size: 20px;
+        border: 1px solid #7C85CB;
+    }
+    .ant-input-number-input {
+        height: auto;
+    }
+    .ant-input-number-handler-wrap {
+        opacity: 1;
+    }
+    .ant-input-number-handler {
+        border-left: 1px solid #7C85CB;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .ant-input-number-handler-up {
+        background-image: url('../../assets/images/inputNumberUp.png');
+    }
+    .ant-input-number-handler-down {
+        background-image: url('../../assets/images/inputNumberDown.png');
+        border-top: 1px solid #7C85CB;
+    }
+    .ant-input-number-handler-up-inner, .ant-input-number-handler-down-inner {
+        display: none;
+    }
+
+    .ant-modal-footer {
+        padding: 10px 24px;
+    }
+    .ant-modal-footer .ant-btn {
+        font-size: 12px;
+        font-family: GoodTimesW00-Bold, GoodTimesW00;
+        font-weight: 600;
+        color: #2C1BD7;
+        line-height: 24px;
+        border: none;
+        border-radius: 3px;
+    }
+    .ant-modal-footer .ant-btn-primary {
+        color: #FFFFFF;
+        width: 113px;
+        height: 48px;
+        background: #481BE3;
+    }
+}
+
+.stepExtraCon {
+    background: rgba(58, 31, 245, 0.15);
+    padding: 20px 26px;
+    display: flex;
+    border-radius: 13px;
+    font-size: 12px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #241515;
+    line-height: 20px;
+}
+
+.stepPayoutListCon {
+    @include betweenLayout;
+    padding: 14px 16px;
+    background: rgba(253, 254, 255, 0.99);
+    border-radius: 3px;
+    border: 2px solid #D3DCEE;
+
+    .ant-space-item{width: 100%;}
+
+    &Item {
+        @include centerLayout;
+        align-items: flex-start;
+        &Title {
+            font-size: 10px;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400;
+            color: #9092A7;
+        }
+        &Percentage {
+            font-size: 45px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            color: #1D1D1D;
+            line-height: 70px;
+            letter-spacing: -1px;
+        }
+        &Des {
+            font-size: 14px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            color: #5F5E61;
+            line-height: 18px;
+            cursor: pointer;
+        }
+    }
+}
+
+.stepIncSlider {
+    .ant-slider {
+        .ant-slider-track {
+            height: 7px;
+            background: #3A1FF5;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+        .ant-slider-rail {
+            height: 7px;
+            background: #9092A7;
+            border-radius: 5px;
+            opacity: 0.4;
+        }
+        .ant-slider-handle {
+            background-color: #fff;
+            border: 2px solid #00DAC5;
+            width: 16px;
+            height: 16px;
+        }
+    }
+    .ant-slider-disabled {
+        .ant-slider-track {
+            background: #665FAC !important;
+        }
+        .ant-slider-rail {
+            background: #D2D0E6 !important;
+        }
+        .ant-slider-handle {
+            background-color: #fff;
+            border: 2px solid #665FAC !important;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.stepDatePicker {
+    background: #FFFFFF;
+    border-radius: 3px;
+    border: 1px solid #7C85CB;
+    font-size: 16px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #000000;
+    height: 48px;
+}
+
+.stepRulesCon {
+    @include flexCenter;
+    background: rgba(253, 254, 255, 0.99);
+    border-radius: 3px;
+    border: 2px solid #D3DCEE;
+    padding: 16px 28px;
+    justify-content: space-between;
+
+    &Txt {
+        max-width: 390px;
+        font-size: 11px;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #5F5E61;
+        line-height: 14px;
+        h3 {
+            font-size: 16px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: bold;
+            line-height: 18px;
+        }
+
+        .ant-input {
+            @include stepInput;
+            border: 1px solid #7C85CB;
+            padding: 0 11px;
+        }
+        .ant-input:hover {
+            box-shadow: 0px 2px 4px 0px rgba(58, 31, 245, 0.31);
+            border: 1px solid #8372F9;
+        }
+    }
+
+}
+
+
+.stepTooltip {
+    @include stepTip;
+    display: block;
+}
+.stepNumberInput {
+    justify-content:space-between;
+    border: 1px solid #7C85CB;
+    border-radius: 3px;
+}
+
+.stepSaveBtn {
+    @include solidBtn;
+    width: 146px;
+    height: 53px;
+    background: #481BE3 !important;
+    box-shadow: none;
+    font-size: 16px;
+    color: #FFFFFF !important;
+
+    &:hover {
+        border: none;
+        opacity: 0.8;
+        color: #ffffff;
+    }
+}
+
+.stepDeployBtn {
+    @include hollowBtn;
+    width: 236px;
+    height: 53px;
+    color: #2C1BD7 !important;
+    background-color: #ffffff;
+}
+
+.stepAcssessoryBtn {
+    height: 48px;
+    background: #dfd6ff;
+    padding: 0 11px 0 21px;
+    border-radius: 0 2px 2px 0;
+    font-size: 20px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    color: #3F3D3D;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+}
+.stepAddPayout {
+    width: 100%;
+    height: 67px;
+    background: #D3DCEE !important;
+    border-radius: 3px !important;
+    border-color:#665FAC !important;
+    font-size: 16px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600 !important;
+    color: #665FAC !important;
+}

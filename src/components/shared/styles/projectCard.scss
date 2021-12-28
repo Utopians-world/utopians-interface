@@ -1,0 +1,97 @@
+@import '../../../styles/common.scss';
+
+.proCardCon {
+    max-width: 463px;
+    border: 2px solid;
+    border-image: linear-gradient(180deg, rgba(127, 251, 206, 1), rgba(161, 125, 255, 0.78), rgba(103, 44, 255, 1)) 2 2;
+    transition: border-color 120ms ease-out;
+    clip-path: inset(0 round 4px);
+    padding: 31px 29px 43px 19px;
+    @include flexCenter;
+
+  & .proCardConLeft {
+    width: 157px;
+    height: 169px;
+    margin-right: 24px;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+  }
+  & .proCardConRight {
+    flex: 1 1 auto;
+    @include centerLayout;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    & .title {
+        max-height: 46px;
+        font-size: 19px;
+        font-family: GoodTimesW00-Bold, GoodTimesW00;
+        font-weight: 600;
+        color: #232222;
+        line-height: 23px;
+    }
+    & .subTitle {
+        min-height: 43px;
+        font-size: 11px;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #5F5E61;
+        line-height: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    & .archivedTip {
+        width: 71px;
+        height: 20px;
+        background: #5F5E61;
+        border-radius: 5px;
+        font-size: 11px;
+        text-align: center;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #FFFFFF;
+        line-height: 20px;
+    }
+    & .proCardConRightCon {
+        @include centerLayout;
+        width: 100%;
+
+        & .proCardConRightConTop {
+            @include betweenLayout;
+            width: 100%;
+            & .volume {
+                font-size: 19px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: 600;
+                color: #3A1FF5;
+                line-height: 22px;
+            }
+            & .price {
+                width: 111px;
+                height: 27px;
+                font-size: 27px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: 600;
+                color: #241515;
+                line-height: 27px;
+            }
+        }
+
+        & .proCardConRightConBottom {
+            @include betweenLayout;
+            width: 100%;
+            span{
+                width: 62px;
+                height: 14px;
+                font-size: 13px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: 600;
+                color: #9092A7;
+                line-height: 20px;
+            }
+        }
+    }
+  }
+}

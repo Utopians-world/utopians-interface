@@ -13,6 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/Home/index.tsx
 #: src/components/Landing/index.tsx
 msgid "Build a community around a project, fund it, and program its spending. Light enough for a group of friends, powerful enough for a global network of anons."
 msgstr "围绕一个项目建立一个社区，为其提供资金，并对其支出进行规划。既能简单易用让一群知己好友轻松创建属于自己的社区项目，也可以强大到能够支持一个全球匿名网络的运作"
@@ -20,6 +21,10 @@ msgstr "围绕一个项目建立一个社区，为其提供资金，并对其支
 #: src/components/Landing/index.tsx
 msgid "Built for:"
 msgstr "服务的对象:"
+
+#: src/components/Home/index.tsx
+msgid "Community funding Beyond Imagination"
+msgstr ""
 
 #: src/components/Landing/index.tsx
 msgid "Community funding for people and projects"

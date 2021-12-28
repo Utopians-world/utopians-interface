@@ -1,7 +1,10 @@
-import { Button, Form, Space } from 'antd'
+import { Button, Form, Space, Divider } from 'antd'
+import { InfoCircleFilled } from '@ant-design/icons'
 import { FormItems } from 'components/shared/formItems'
 import { ThemeContext } from 'contexts/themeContext'
 import { CSSProperties, useContext, useLayoutEffect, useState } from 'react'
+
+import './index.scss'
 
 export type IncentivesFormFields = {
   discountRate: string
@@ -35,6 +38,7 @@ export default function IncentivesForm({
   const saveButton = (
     <Form.Item>
       <Button
+        className="stepSaveBtn"
         htmlType="submit"
         type="primary"
         onClick={() => {
@@ -50,34 +54,55 @@ export default function IncentivesForm({
 
   const disableTextStyle: CSSProperties = {
     color: colors.text.primary,
-    fontStyle: 'italic',
     fontWeight: 500,
   }
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <h1>Incentives</h1>
+      <div className="stepTopCon">
+        <h1>Incentives</h1>
+        <h2>Adjust incentivizes for paying your project.</h2>
+        <Divider className="stepTopConDivider" />
+      </div>
 
-      <Form layout="vertical">
-        {disableDiscountRate && (
-          <p style={disableTextStyle}>{disableDiscountRate}</p>
-        )}
+      <Form layout="vertical" className="stepFormCon">
+        <div style={{ marginBottom: '20px' }}>
+          The ratio of tokens rewarded per payment amount will decrease by this
+          percentage with each new funding cycle. A higher discount rate will
+          incentivize supporters to pay your project earlier than later.
+        </div>
         <FormItems.ProjectDiscountRate
           name="discountRate"
           value={discountRate?.toString() ?? '0'}
           onChange={(val?: number) => setDiscountRate(val?.toString())}
           disabled={!!disableDiscountRate}
         />
-        {disableBondingCurve && (
-          <p style={{ ...disableTextStyle, marginTop: 60 }}>
-            {disableBondingCurve}
-          </p>
+        {disableDiscountRate && (
+          <div className="stepExtraCon" style={disableTextStyle}>
+            <InfoCircleFilled
+              style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
+            />
+            {disableDiscountRate}
+          </div>
         )}
+        <Divider
+          className="stepTopConDivider"
+          style={{ margin: '40px 0 26px' }}
+        />
+        <div style={{ marginBottom: '20px' }}>
+          This rate determines the amount of overflow that each token can be
+          redeemed for at any given time. On a lower bonding curve, redeeming a
+          token increases the value of each remaining token, creating an
+          incentive to hodl tokens longer than others. A bonding curve of 100%
+          means all tokens will have equal value regardless of when they are
+          redeemed.
+        </div>
         <FormItems.ProjectBondingCurveRate
           name="bondingCurveRate"
           value={bondingCurveRate?.toString() ?? '0'}
           onChange={(val?: number) => setBondingCurveRate(val?.toString())}
           disabled={!!disableBondingCurve}
+          disableBondingCurve={disableBondingCurve}
         />
         {saveButton}
       </Form>

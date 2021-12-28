@@ -1,5 +1,5 @@
 import { CheckCircleFilled } from '@ant-design/icons'
-import { Button, Input, Space } from 'antd'
+import { Button, Input, Space, Divider } from 'antd'
 
 import { NetworkContext } from 'contexts/networkContext'
 import { ThemeContext } from 'contexts/themeContext'
@@ -7,6 +7,8 @@ import { constants, utils } from 'ethers'
 import { useContext, useLayoutEffect, useState } from 'react'
 
 import { ballotStrategies } from 'constants/ballot-strategies'
+
+import './index.scss'
 
 export default function RulesForm({
   initialBallot,
@@ -31,56 +33,60 @@ export default function RulesForm({
   }, [initialBallot])
 
   const {
-    theme: { colors, radii },
+    theme: { colors },
   } = useContext(ThemeContext)
 
   const buildOption = (title: string, content: JSX.Element, index: number) => (
     <div
       key={index}
-      className="clickable-border"
+      className="stepRulesCon"
       style={{
-        display: 'flex',
-        padding: 10,
-        borderRadius: radii.md,
         cursor: 'pointer',
-        ...(index === selectedIndex
-          ? { border: '1px solid ' + colors.stroke.action.primary }
-          : {}),
+        ...(index === selectedIndex ? { border: '2px solid #3A1FF5' } : {}),
       }}
       onClick={() => setSelectedIndex(index)}
     >
-      <div
-        style={{
-          marginRight: 10,
-          minWidth: 20,
-          color: colors.text.action.primary,
-        }}
-      >
-        {index === selectedIndex ? <CheckCircleFilled /> : null}
-      </div>
-      <div>
+      <div className="stepRulesConTxt">
         <h3
           style={{
-            color:
-              index === selectedIndex
-                ? colors.text.action.primary
-                : colors.text.primary,
+            color: index === selectedIndex ? '#241515' : '#5F5E61',
           }}
         >
           {title}
         </h3>
         {content}
       </div>
+      <div
+        style={{
+          minWidth: 20,
+        }}
+      >
+        {index === selectedIndex ? (
+          <CheckCircleFilled style={{ fontSize: '22px', color: '#3A1FF5' }} />
+        ) : (
+          <p
+            style={{
+              margin: 0,
+              width: '22px',
+              height: '22px',
+              border: '2px solid #D3DCEE',
+              borderRadius: '50%',
+            }}
+          ></p>
+        )}
+      </div>
     </div>
   )
 
   return (
     <Space direction="vertical" size="large">
-      <h1>Reconfiguration</h1>
-
-      <p style={{ color: colors.text.secondary }}>
-        Rules for how this project's funding cycles can be reconfigured.
-      </p>
+      <div className="stepTopCon">
+        <h1>Reconfiguration</h1>
+        <h2>
+          Rules for how this project's funding cycles can be reconfigured.
+        </h2>
+        <Divider className="stepTopConDivider" />
+      </div>
 
       <Space direction="vertical">
         {ballotStrategies.map((s, i) =>
@@ -99,7 +105,7 @@ export default function RulesForm({
           'Custom strategy',
           <div>
             <Input
-              style={{ width: 400 }}
+              style={{ width: 380 }}
               value={customStrategyAddress}
               placeholder={constants.AddressZero}
               onChange={e =>
@@ -110,6 +116,7 @@ export default function RulesForm({
               The address of any smart contract deployed on {signerNetwork} that
               implements{' '}
               <a
+                style={{ color: '#3A1FF5' }}
                 href="https://github.com/jbx-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -124,6 +131,7 @@ export default function RulesForm({
       </Space>
 
       <Button
+        className="stepSaveBtn"
         htmlType="submit"
         type="primary"
         disabled={

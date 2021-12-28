@@ -1,10 +1,10 @@
 import { Tooltip } from 'antd'
-import { ThemeContext } from 'contexts/themeContext'
+// import { ThemeContext } from 'contexts/themeContext'
 import { BigNumber } from 'ethers'
 
 import { useProjectMetadata } from 'hooks/ProjectMetadata'
 import { Project } from 'models/subgraph-entities/project'
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { formatDate } from 'utils/formatDate'
 import { formatWad } from 'utils/formatNumber'
 
@@ -12,14 +12,18 @@ import CurrencySymbol from './CurrencySymbol'
 import Loading from './Loading'
 import ProjectLogo from './ProjectLogo'
 
+import './styles/projectCard.scss'
+
 export default function ProjectCard({
   project,
+  selectedtab,
 }: {
   project: Pick<Project, 'handle' | 'uri' | 'totalPaid' | 'createdAt'>
+  selectedtab?: string
 }) {
-  const {
-    theme: { colors, radii },
-  } = useContext(ThemeContext)
+  // const {
+  //   theme: { colors, radii },
+  // } = useContext(ThemeContext)
 
   const { data: metadata } = useProjectMetadata(project.uri)
   // If the total paid is greater than 0, but less than 10 ETH, show two decimal places.
@@ -30,13 +34,13 @@ export default function ProjectCard({
       : 0
   return (
     <div
-      style={{
-        padding: 20,
-        borderRadius: radii.lg,
-        cursor: 'pointer',
-        overflow: 'hidden',
-      }}
-      className="clickable-border"
+      // style={{
+      //   padding: 20,
+      //   borderRadius: radii.md,
+      //   cursor: 'pointer',
+      //   overflow: 'hidden',
+      // }}
+      className="proCardCon"
       key={project?.handle}
       onClick={() => (window.location.hash = '/p/' + project.handle)}
     >
@@ -49,50 +53,39 @@ export default function ProjectCard({
             overflow: 'hidden',
           }}
         >
-          <div style={{ marginRight: 20 }}>
+          <div className="proCardConLeft">
             <ProjectLogo
               uri={metadata.logoUri}
               name={metadata.name}
-              size={80}
+              size={158}
             />
           </div>
 
-          <div style={{ minWidth: 0 }}>
-            <h2
-              style={{
-                color: colors.text.primary,
-                margin: 0,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {metadata.name}
-            </h2>
-
-            <div style={{ color: colors.text.tertiary }}>
-              <span style={{ color: colors.text.primary, fontWeight: 500 }}>
-                <CurrencySymbol currency={0} />
-                {formatWad(project.totalPaid, { decimals })}{' '}
-              </span>
-              since{' '}
-              {!!project.createdAt &&
-                formatDate(project.createdAt * 1000, 'MM-DD-YY')}
-            </div>
+          <div className="proCardConRight">
+            <h3 className="title">{metadata.name}</h3>
 
             {metadata.description && (
               <Tooltip title={metadata.description} placement="bottom">
-                <div
-                  style={{
-                    maxHeight: 20,
-                    color: colors.text.tertiary,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}
-                >
-                  {metadata.description}
-                </div>
+                <h4 className="subTitle">{metadata.description}</h4>
               </Tooltip>
             )}
+            {selectedtab === 'selectedtab' && (
+              <span className="archivedTip">ARCHIVED</span>
+            )}
+            <div className="proCardConRightCon">
+              <div className="proCardConRightConTop">
+                <p className="volume">Volume</p>
+                <span className="price">
+                  <CurrencySymbol currency={0} />
+                  {formatWad(project.totalPaid, { decimals })}{' '}
+                </span>
+              </div>
+              <div className="proCardConRightConBottom">
+                <span className="">Cycle #2</span>
+                {!!project.createdAt &&
+                  formatDate(project.createdAt * 1000, 'MM-DD-YY')}
+              </div>
+            </div>
           </div>
         </div>
       ) : (

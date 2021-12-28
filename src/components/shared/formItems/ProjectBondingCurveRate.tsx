@@ -1,9 +1,9 @@
 import { Form } from 'antd'
-import { ThemeContext } from 'contexts/themeContext'
+import { InfoCircleFilled } from '@ant-design/icons'
+// import { ThemeContext } from 'contexts/themeContext'
 import {
   CSSProperties,
   useCallback,
-  useContext,
   useEffect,
   useLayoutEffect,
   useState,
@@ -19,11 +19,13 @@ export default function ProjectBondingCurveRate({
   formItemProps,
   onChange,
   disabled,
+  disableBondingCurve,
 }: {
   value: string | undefined
   onChange: (val?: number) => void
+  disableBondingCurve?: string
 } & FormItemExt) {
-  const { colors } = useContext(ThemeContext).theme
+  // const { colors } = useContext(ThemeContext).theme
   const [calculator, setCalculator] = useState<any>()
 
   const graphContainerId = 'graph-container'
@@ -86,15 +88,15 @@ export default function ProjectBondingCurveRate({
         latex: `y=${overflow} * (x/${supply}) * (${_value / 100} + (x - x${
           _value / 100
         })/${supply})`,
-        color: colors.text.brand.primary,
+        color: '#7C85CB',
       })
       calculator.setExpression({
         id: baseCurveId,
         latex: `y=x`,
-        color: colors.stroke.secondary,
+        color: '#7C85CB',
       })
     },
-    [calculator, colors.stroke.secondary, colors.text.brand.primary],
+    [calculator],
   )
 
   useEffect(
@@ -109,22 +111,41 @@ export default function ProjectBondingCurveRate({
     position: 'absolute',
   }
 
-  const graphSize = 180
+  const graphSize = 520
+  const graphHeight = 190
   const graphPad = 50
 
   return (
     <Form.Item
+      className="stepIncSlider"
       name={name}
       label={hideLabel ? undefined : 'Bonding curve rate'}
       extra={
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ position: 'relative' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexFlow: 'column wrap',
+          }}
+        >
+          {disableBondingCurve && (
+            <div
+              className="stepExtraCon"
+              style={{ width: '100%', marginBottom: '20px' }}
+            >
+              <InfoCircleFilled
+                style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
+              />
+              {disableBondingCurve}
+            </div>
+          )}
+          <div style={{ width: '100%', position: 'relative' }}>
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: graphSize,
+                height: graphHeight,
                 width: graphSize,
               }}
             >
@@ -132,7 +153,7 @@ export default function ProjectBondingCurveRate({
                 id={graphContainerId}
                 style={{
                   width: graphSize - graphPad,
-                  height: graphSize - graphPad,
+                  height: graphHeight - graphPad,
                 }}
               ></div>
             </div>
@@ -143,9 +164,9 @@ export default function ProjectBondingCurveRate({
                 top: graphPad / 2,
                 left: graphPad / 2,
                 width: graphSize - graphPad,
-                height: graphSize - graphPad,
-                borderLeft: '2px solid ' + colors.stroke.secondary,
-                borderBottom: '2px solid ' + colors.stroke.secondary,
+                height: graphHeight - graphPad,
+                borderLeft: '2px solid #898E92',
+                borderBottom: '2px solid #898E92',
               }}
             ></div>
 
@@ -167,20 +188,11 @@ export default function ProjectBondingCurveRate({
                 bottom: 0,
                 top: 0,
                 left: 0,
-                width: graphSize,
+                width: graphHeight,
               }}
             >
               Token redeem value
             </div>
-          </div>
-
-          <div>
-            This rate determines the amount of overflow that each token can be
-            redeemed for at any given time. On a lower bonding curve, redeeming
-            a token increases the value of each remaining token, creating an
-            incentive to hodl tokens longer than others. A bonding curve of 100%
-            means all tokens will have equal value regardless of when they are
-            redeemed.
           </div>
         </div>
       }

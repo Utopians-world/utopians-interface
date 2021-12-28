@@ -13,6 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/Home/index.tsx
 #: src/components/Landing/index.tsx
 msgid "Build a community around a project, fund it, and program its spending. Light enough for a group of friends, powerful enough for a global network of anons."
 msgstr "Build a community around a project, fund it, and program its spending. Light enough for a group of friends, powerful enough for a global network of anons."
@@ -20,6 +21,10 @@ msgstr "Build a community around a project, fund it, and program its spending. L
 #: src/components/Landing/index.tsx
 msgid "Built for:"
 msgstr "Built for:"
+
+#: src/components/Home/index.tsx
+msgid "Community funding Beyond Imagination"
+msgstr ""
 
 #: src/components/Landing/index.tsx
 msgid "Community funding for people and projects"

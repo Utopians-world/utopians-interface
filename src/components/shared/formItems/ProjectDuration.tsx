@@ -1,4 +1,4 @@
-import { Form, Space, Switch } from 'antd'
+import { Form, Space, Switch, Tooltip } from 'antd'
 import { useEffect, useState } from 'react'
 
 import InputAccessoryButton from '../InputAccessoryButton'
@@ -27,18 +27,34 @@ export default function ProjectDuration({
 
   return (
     <div>
-      <Space direction="vertical">
-        <div>
-          <Space>
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <div className="switchFormItem">
+          <Space className="switchFormItemSpace">
+            <label>Set a funding cycle duration</label>
             <Switch
+              className="switchFormItemSwitch"
               checked={showDurationInput}
               onChange={checked => {
                 setShowDurationInput(checked)
                 onValueChange(checked ? '30' : '0')
               }}
             />
-            <label>Set a funding cycle duration</label>
           </Space>
+          <Tooltip
+            title={
+              <p>
+                This duration determines how long your funding cycles will last.
+                No more than the target amount (if a target has been set) can be
+                distributed by the project in a single funding cycle, and
+                funding reconfigurations won't take effect until the start of
+                the next funding cycle.
+              </p>
+            }
+          >
+            <span className="switchFormItemTip">
+              What is project duration ?
+            </span>
+          </Tooltip>
         </div>
 
         <Form.Item
@@ -56,7 +72,7 @@ export default function ProjectDuration({
             min={1}
             accessory={
               <InputAccessoryButton
-                content={isRecurring ? 'recurring' : 'one-time'}
+                content={isRecurring ? 'recurring' : 'onetime'}
                 withArrow={true}
                 onClick={onToggleRecurring}
               />
