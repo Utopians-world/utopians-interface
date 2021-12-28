@@ -3,10 +3,11 @@
   margin-top: -80px;
   z-index: -1;
   & .firstSection {
-    background: url('./../../assets/images/home-pic.png') no-repeat top center;
-    background-size: cover;
+    background: linear-gradient(192deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
+      linear-gradient(179deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
+      linear-gradient(162deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%);
     padding-top: 210px;
-    margin-top: 0!important;
+    padding-bottom: 194px;
   }
   & .firstSectionLeft {
     // background: linear-gradient(153deg, rgba(15, 0, 255, 0) 0%, rgba(73, 6, 255, 0.79) 27%, rgba(61, 136, 231, 0.93) 77%, #38FFDD 100%);
@@ -46,16 +47,18 @@
     font-weight: 600;
     color: #3A1FF5;
     line-height: 28px;
+    margin-bottom: 64px;
     text-align: center;
   }
   & .sectionWrapper{
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    background-color: #ffffff;
 
     & .secondDes{
       max-width: 980px;
-      margin: 28px 0 95px;
+      margin: 28px 0 195px;
       font-size: 20px;
       font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
       font-weight: 600;
@@ -95,12 +98,14 @@
     & .HowroksBg {
       background: url('../../assets/images/howork-pic.png') no-repeat top center;
       padding-bottom: 80px;
+      width: 100%;
     }
     & .HoworksCon{
       display: flex;
       flex-flow: column wrap;
       max-width: 286px;
       width: 100%;
+      float:left;
       text-align: right;
       
       h3 {
@@ -111,6 +116,7 @@
         line-height: 26px;
         text-shadow: 0px 5px 6px #C4BAE1;
         margin-bottom: 20px;
+        word-break:break-all;
       }
       p {
         font-size: 16px;
@@ -119,10 +125,10 @@
         color: #3B3636;
         line-height: 22px;
       }
-      .HoworksConTop, .HoworksConBottom{
-        margin-top: 116px;
+      .HoworksConTop, .HoworksConBottom {
       }
       .HoworksConBottom{
+        margin-top: 116px;
         h3 {
           color: #00DAC5;
           text-shadow: 0px 5px 6px #9EFFF1;
