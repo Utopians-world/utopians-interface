@@ -23,7 +23,7 @@
 
 .indexBackground {
     position: absolute;
-    width: 100%;
+    width: 95%;
     height: 300px;
     z-index: 0;
     background-image: url('../../assets/images/home-pic.png');
@@ -71,13 +71,16 @@ h1, h2, h3, h4, h5{
 .ant-space {
     gap: 10px!important;
 }
+.ant-modal-footer{
+    height: 80px!important;
+}
 .ant-btn {
     color: #2C1BD7!important;
-    border: none;
+    border: none!important;
     font-weight: bold!important;
-    height: 35px;
-    line-height: 5px;
-    font-size: 12px;
+    height: 35px!important;
+    line-height: 5px!important;
+    font-size: 12px!important;
 }
 .ant-btn-primary {
     background: #481BE3!important;
