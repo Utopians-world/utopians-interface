@@ -94,7 +94,7 @@ export default function PayoutModsList({
   if (!fundingCycle) return null
 
   return (
-    <div>
+    <div className="payoutWrapper">
       {mods?.length
         ? [...mods]
             .sort((a, b) => (a.percent < b.percent ? 1 : -1))

@@ -17,6 +17,11 @@ import CellIcon from 'assets/images/cell-icon.png'
 import ChartIcon from 'assets/images/chart-icon.png'
 import DnaIcon from 'assets/images/dna-icon.png'
 
+import Rectangles from 'assets/images/Rectangles.png'
+import Rectangles1 from 'assets/images/Rectangles1.png'
+import Rectangles2 from 'assets/images/Rectangles2.png'
+import Rectangles3 from 'assets/images/Rectangles3.png'
+
 import './index.scss'
 import ProjectsGrid from '../shared/ProjectsGrid'
 
@@ -65,10 +70,8 @@ export default function Home() {
   // ]
 
   const section: CSSProperties = {
-    paddingLeft: 40,
-    paddingRight: 40,
-    marginTop: 80,
-    marginBottom: 90,
+    padding: '80px 40px',
+    backgroundColor: '#ffffff',
   }
 
   const wrapper: CSSProperties = {
@@ -90,9 +93,14 @@ export default function Home() {
   )
   return (
     <div className="homeWrapper">
-      <section style={section} className="firstSection">
-        <div style={wrapper}>
-          <Row gutter={30} align="middle">
+      <section className="firstSection">
+        <div
+          style={{
+            ...wrapper,
+            padding: '0 80px',
+          }}
+        >
+          <Row align="middle" justify="space-around">
             <Col
               xs={24}
               md={12}
@@ -164,7 +172,16 @@ export default function Home() {
           {smallDes(
             'We support people from different application scenarios and  groups to quick create their own project for funding',
           )}
-          <Row gutter={44} justify="space-between" style={{ width: '100%' }}>
+          <Row
+            gutter={44}
+            justify="space-between"
+            style={{ width: '100%', position: 'relative' }}
+          >
+            <img
+              style={{ position: 'absolute', right: '-30px', top: '20px' }}
+              src={Rectangles}
+              alt=""
+            />
             <Col xs={24} md={6}>
               {fourthCol(
                 'Individuals',
@@ -205,9 +222,20 @@ export default function Home() {
         <div
           style={{
             ...wrapper,
+            position: 'relative',
           }}
           className="sectionWrapper"
         >
+          <img
+            style={{ position: 'absolute', left: '17px', top: '0px' }}
+            src={Rectangles1}
+            alt=""
+          />
+          <img
+            style={{ position: 'absolute', left: '90px', top: '103px' }}
+            src={Rectangles2}
+            alt=""
+          />
           {smallHeader(
             <>
               how <span>utopians</span> works?
@@ -218,8 +246,8 @@ export default function Home() {
           {smallDes(
             'In Utopians, projects are built and maintained by motivated punks getting paid transparently, and funded by a community of users and patrons who are rewarded as the projects they support succeed. The future will be led by creators, and owned by communities.',
           )}
-          <Row gutter={708} className="HowroksBg">
-            <Col xs={24} md={12}>
+          <Row justify="space-between" className="HowroksBg">
+            <Col span={6}>
               <div className="HoworksCon">
                 <div className="HoworksConTop">
                   <h3>Programmable spending</h3>
@@ -235,8 +263,11 @@ export default function Home() {
                 </div>
               </div>
             </Col>
-            <Col xs={24} md={12}>
-              <div className="HoworksCon" style={{ textAlign: 'left' }}>
+            <Col span={6}>
+              <div
+                className="HoworksCon"
+                style={{ textAlign: 'left', float: 'right' }}
+              >
                 <div className="HoworksConTop">
                   <h3>Redistributable surplus</h3>
                   <p>
@@ -261,7 +292,6 @@ export default function Home() {
       <section
         style={{
           ...section,
-          marginTop: 80,
           paddingTop: 20,
           paddingBottom: 60,
         }}
@@ -269,10 +299,22 @@ export default function Home() {
         <div
           style={{
             ...wrapper,
+            paddingBottom: 0,
+            marginTop: 80,
+            background: 'linear-gradient(180deg, #FFFFFF 0%, #D5DAFF 100%)',
           }}
         >
           <Row gutter={60}>
-            <Col xs={24} md={24} style={{ marginBottom: 100 }}>
+            <Col
+              xs={24}
+              md={24}
+              style={{ marginBottom: 100, position: 'relative' }}
+            >
+              <img
+                style={{ position: 'absolute', right: '80px' }}
+                src={Rectangles3}
+                alt=""
+              />
               {smallHeader('Projects in utopains world', 'projectTitle')}
               <div style={{ margin: '20px auto 0', maxWidth: '980px' }}>
                 {previewProjects ? (

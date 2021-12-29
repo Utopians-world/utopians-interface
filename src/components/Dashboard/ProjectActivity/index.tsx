@@ -73,9 +73,17 @@ export default function ProjectActivity() {
         style={{
           textTransform: 'uppercase',
           fontSize: '0.8rem',
+          borderBottom: '2px solid transparent',
           fontWeight: selected ? 600 : 400,
           color: selected ? colors.text.secondary : colors.text.tertiary,
           cursor: 'pointer',
+          ...(selected
+            ? {
+                borderImageSource:
+                  'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
+                borderImageSlice: 1,
+              }
+            : { borderColor: 'transparent' }),
         }}
         onClick={() => {
           setTabOption(tab)
@@ -87,7 +95,7 @@ export default function ProjectActivity() {
   }
 
   const tabs = (
-    <div style={{ marginBottom: 20, maxWidth: '100%', overflow: 'auto' }}>
+    <div style={{ maxWidth: '100%', overflow: 'auto' }}>
       <Space size="middle">
         {tab('pay')}
         {tab('redeem')}
@@ -104,6 +112,9 @@ export default function ProjectActivity() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'baseline',
+          padding: '0 20px',
+          borderBottom: '2px solid #dfe7ff',
+          marginBottom: '20px',
         }}
       >
         <SectionHeader text="Activity" />

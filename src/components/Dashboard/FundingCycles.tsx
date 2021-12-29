@@ -40,12 +40,24 @@ export default function FundingCycles({
 
   const tab = (option: TabOption) => (
     <div
+      className="fundingWrapperTab"
       style={{
         textTransform: 'uppercase',
         cursor: 'pointer',
+        borderBottom: '2px solid transparent',
         ...(option === selectedTab
-          ? { color: colors.text.secondary, fontWeight: 600 }
-          : { color: colors.text.tertiary, fontWeight: 500 }),
+          ? {
+              color: colors.text.secondary,
+              fontWeight: 600,
+              borderImageSource:
+                'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
+              borderImageSlice: 1,
+            }
+          : {
+              color: colors.text.tertiary,
+              fontWeight: 500,
+              borderColor: 'transparent',
+            }),
         ...(option === hoverTab ? { color: colors.text.secondary } : {}),
       }}
       onClick={() => setSelectedTab(option)}
@@ -79,12 +91,15 @@ export default function FundingCycles({
   if (!projectId) return null
 
   return (
-    <div>
+    <div className="fundingWrapper">
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
+          padding: '0 20px',
           justifyContent: 'space-between',
+          borderBottom: '2px solid #dfe7ff',
+          marginBottom: '12px',
         }}
       >
         <SectionHeader
@@ -104,7 +119,8 @@ export default function FundingCycles({
 
       {canReconfigure && (
         <Button
-          style={{ marginTop: 20 }}
+          className="defaultBtn"
+          style={{ marginTop: 20, marginLeft: 20 }}
           onClick={() => setReconfigureModalVisible(true)}
           size="small"
           disabled={isPreviewMode}

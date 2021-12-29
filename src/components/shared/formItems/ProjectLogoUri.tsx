@@ -14,7 +14,11 @@ export default function ProjectLogoUri({
   return (
     <Form.Item
       name={name}
-      label={hideLabel ? undefined : 'Logo'}
+      label={
+        hideLabel ? undefined : (
+          <span style={{ marginRight: '20px' }}>Project Logo</span>
+        )
+      }
       extra="Support format png .jpg"
       style={{ flexDirection: 'row' }}
       {...formItemProps}

@@ -34,8 +34,8 @@ const ActivityTabContent: React.FC<Props> = ({
       <div
         style={{
           color: colors.text.secondary,
-          paddingTop: 20,
-          borderTop: '1px solid ' + colors.stroke.tertiary,
+          padding: '20px 20px 0',
+          // borderTop: '1px solid ' + colors.stroke.tertiary,
         }}
       >
         No activity yet

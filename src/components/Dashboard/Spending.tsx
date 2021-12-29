@@ -5,7 +5,7 @@ import Balance from 'components/Navbar/Balance'
 import CurrencySymbol from 'components/shared/CurrencySymbol'
 import TooltipLabel from 'components/shared/TooltipLabel'
 import { ProjectContext } from 'contexts/projectContext'
-import { ThemeContext } from 'contexts/themeContext'
+// import { ThemeContext } from 'contexts/themeContext'
 import { CurrencyOption } from 'models/currency-option'
 import { PayoutMod } from 'models/mods'
 import { CSSProperties, useContext, useState } from 'react'
@@ -19,9 +19,9 @@ export default function Spending({
 }: {
   payoutMods: PayoutMod[] | undefined
 }) {
-  const {
-    theme: { colors },
-  } = useContext(ThemeContext)
+  // const {
+  //   theme: { colors },
+  // } = useContext(ThemeContext)
 
   const { balanceInCurrency, projectId, owner, currentFC, isPreviewMode } =
     useContext(ProjectContext)
@@ -37,10 +37,12 @@ export default function Spending({
     : balanceInCurrency
 
   const smallHeaderStyle: CSSProperties = {
-    fontSize: '.7rem',
+    fontSize: '15px',
     fontWeight: 500,
     cursor: 'default',
-    color: colors.text.secondary,
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#2713E1',
+    lineHeight: '24px',
   }
 
   return (
@@ -67,14 +69,18 @@ export default function Spending({
                 {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
               </span>
               <TooltipLabel
-                style={smallHeaderStyle}
-                label="AVAILABLE"
+                label={
+                  <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
+                    AVAILABLE
+                  </h4>
+                }
                 tip={`The funds available to withdraw for this funding cycle after the ${fromPerbicent(
                   currentFC.fee,
                 )}% JBX fee is subtracted. This number won't roll over to the next funding cycle, so funds should be withdrawn before it ends.`}
               />
             </div>
             <Button
+              className="defaultBtn"
               type="ghost"
               size="small"
               onClick={() => setWithdrawModalVisible(true)}
@@ -83,7 +89,7 @@ export default function Spending({
               Distribute
             </Button>
           </div>
-          <div style={{ ...smallHeaderStyle, color: colors.text.tertiary }}>
+          <div style={{ ...smallHeaderStyle, color: '#3F3D3D' }}>
             <div>
               <CurrencySymbol
                 currency={currentFC.currency.toNumber() as CurrencyOption}
@@ -109,7 +115,11 @@ export default function Spending({
         {currentFC.target.gt(0) && (
           <div>
             <TooltipLabel
-              label={<h4 style={{ display: 'inline-block' }}>Distribution</h4>}
+              label={
+                <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
+                  Distribution
+                </h4>
+              }
               tip="Available funds are distributed according to any payouts below."
             />
             <PayoutModsList

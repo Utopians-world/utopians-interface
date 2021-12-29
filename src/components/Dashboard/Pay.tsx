@@ -79,6 +79,7 @@ export default function Pay() {
     } else {
       return (
         <Button
+          className="defaultSolidBtn"
           style={{ width: '100%' }}
           type="primary"
           disabled={currentFC.configured.eq(0) || isArchived}
@@ -105,6 +106,7 @@ export default function Pay() {
         style={{
           display: 'flex',
           width: '100%',
+          padding: '0 20px',
         }}
       >
         <div style={{ flex: 1, marginRight: 10 }}>

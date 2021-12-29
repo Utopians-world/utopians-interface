@@ -75,6 +75,7 @@ export default function BalancesModal({
         >
           {hasEditPermission ? (
             <Button
+              style={{ color: '#3A1FF5' }}
               type="text"
               size="small"
               icon={<SettingOutlined />}
@@ -85,7 +86,9 @@ export default function BalancesModal({
           ) : (
             <div></div>
           )}
-          <Button onClick={onCancel}>Done</Button>
+          <Button className="defaultBtn" onClick={onCancel}>
+            Done
+          </Button>
         </div>
       }
     >

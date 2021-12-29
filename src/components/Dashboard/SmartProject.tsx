@@ -16,6 +16,8 @@ import ProjectActivity from './ProjectActivity'
 import ProjectHeader from './ProjectHeader'
 import Rewards from './Rewards'
 
+import './index.scss'
+
 export default function Project({
   style,
   showCurrentDetail,
@@ -67,8 +69,9 @@ export default function Project({
   if (!projectId) return null
 
   return (
-    <div style={style}>
+    <div style={style} className="projectWrapper">
       <ProjectHeader />
+
       <Row gutter={gutter} align="bottom">
         <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
           <Paid />
@@ -83,6 +86,7 @@ export default function Project({
           </Space>
         </Col>
       </Row>
+
       <Row gutter={gutter} style={{ paddingBottom: gutter }}>
         <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
           {projectId.gt(0) && (

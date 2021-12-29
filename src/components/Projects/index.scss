@@ -31,6 +31,7 @@
     background-color: #F6F8FF;
     width: 100%;
     max-width: 1440px;
+    min-height: 400px;
 
     & .secondSelectCon{
       @include betweenLayout;

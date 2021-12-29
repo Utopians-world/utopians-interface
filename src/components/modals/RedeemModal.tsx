@@ -185,7 +185,7 @@ export default function RedeemModal({
         <p>
           Tokens can be redeemed for a portion of this project's ETH overflow,
           according to the bonding curve rate of the current funding cycle.{' '}
-          <span style={{ fontWeight: 500, color: colors.text.warn }}>
+          <span style={{ fontWeight: 500, color: '#3A1FF5' }}>
             Tokens are burned when they are redeemed.
           </span>
         </p>
