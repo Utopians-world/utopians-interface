@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import FundingCyclePreview from './FundingCyclePreview'
 import ReservedTokens from '../Dashboard/ReservedTokens'
 import Spending from '../Dashboard/Spending'
+import SectionHeader from '../Dashboard/SectionHeader'
 
 export default function CurrentFundingCycle({
   showCurrentDetail,
@@ -29,9 +30,21 @@ export default function CurrentFundingCycle({
           showDetail={showCurrentDetail}
         />
       </CardSection>
+      <SectionHeader
+        text="Distribution"
+        style={{
+          margin: '20px 0 6px 20px',
+        }}
+      />
       <CardSection>
         <Spending payoutMods={currentPayoutMods} />
       </CardSection>
+      <SectionHeader
+        text="Reserved JBX"
+        style={{
+          margin: '20px 0 6px 20px',
+        }}
+      />
       <CardSection>
         <ReservedTokens
           fundingCycle={currentFC}

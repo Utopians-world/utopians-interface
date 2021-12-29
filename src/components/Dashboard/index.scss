@@ -1,0 +1,165 @@
+@import '../../styles/common.scss';
+
+.projectWrapper {
+    padding: 44px 0;
+    .ant-input-number {
+        border:none;
+    }
+}
+.stepNumberInput {
+    .ant-input-number {
+        border:none;
+    }
+}
+
+.projectHeaderWrapper {
+    padding: 0 20px;
+    .proHeaderTitle {
+        font-size: 19px;
+        font-family: GoodTimesW00-Bold, GoodTimesW00;
+        font-weight: 600;
+        line-height: 23px;
+        margin-bottom: 24px;
+    }
+    .proHeaderDes {
+        font-size: 11px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        line-height: 11px;
+        color: #1D1D1D;
+    }
+    .proHeaderLink {
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        color: #3A1FF5;
+    }
+}
+
+.fundingWrapper {
+
+    &Tab {
+        padding: 0 10px 8px;
+        font-size: 11px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: bold;
+        color: #303030;
+        line-height: 17px;
+    }
+}
+
+.cardWrapper {
+    padding: 0 20px;
+    h2 {
+        font-size: 15px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #1D1D1D;
+        line-height: 15px;
+    }
+
+    .previewDetailCycle {
+        font-size: 15px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #2713E1;
+        line-height: 24px;
+        text-shadow: 0px 0px 4px rgba(150, 144, 171, 0.29);
+    }
+    .ant-descriptions-item-label {
+        font-size: 13px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #3F3D3D;
+        line-height: 20px;
+    }
+    .ant-descriptions-item-content {
+        font-size: 13px;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #3F3D3D;
+        line-height: 19px;
+    }
+}
+
+.fundovervieWrapper {
+    padding: 0 20px;
+    .fundoverviewCon {
+        width: 100%;
+        padding: 16px 20px;
+        background: rgba(211, 220, 238, 0.3);
+        border-radius: 2px;
+
+
+        .fundoverviewConTop {
+            display: flex;
+            justify-content: flex-start;
+            border-bottom: 1px solid #C3D0F9;
+            padding-bottom: 16px;
+        }
+
+        .fundoverviewConTopCon {
+            display: flex;
+            flex-flow: column wrap;
+            width: 28%;
+        }
+
+        .fundAmount {
+            font-size: 19px;
+            font-family: GoodTimesRg-Regular, GoodTimesRg;
+            font-weight: 400;
+            color: #3A1FF5;
+            line-height: 23px;
+            text-shadow: 0px 4px 5px #C4BAE1;
+        }
+    }
+}
+
+.rewardWrapper {
+    padding: 0 20px;
+}
+
+.payoutWrapper {
+    width: 100%;
+    height: 42px;
+    padding: 10px 23px;
+    border-radius: 3px;
+    background: #F6F7FF;
+}
+
+.defaultBtn {
+    @include hollowBtn;
+    font-size: 10px;
+    padding: 0 16px;
+    color: #2C1BD7 !important;
+    height: 35px;
+    opacity: 0.51;
+}
+
+.defaultSolidBtn {
+    @include solidBtn;
+    background: #481BE3 !important;
+    font-size: 10px;
+    padding: 0 16px;
+    color: #ffffff !important;
+    height: 50px;
+    border:none;
+    box-shadow: none;
+}
+
+
+.ant-modal-footer {
+    padding: 10px 24px;
+}
+.ant-modal-footer .ant-btn {
+    font-size: 12px;
+    font-family: GoodTimesW00-Bold, GoodTimesW00;
+    font-weight: 600;
+    color: #2C1BD7;
+    line-height: 24px;
+    border: none;
+    border-radius: 3px;
+}
+.ant-modal-footer .ant-btn-primary {
+    color: #FFFFFF;
+    height: 48px;
+    background: #481BE3 !important;
+}

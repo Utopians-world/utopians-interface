@@ -7,7 +7,7 @@ export const lightColors = {
   dark3: '#00000044',
   grape: '#574c67',
   grapeHint: '#574c6748',
-  juiceOrange: '#f5a312',
+  juiceOrange: '#1D1D1D',
   juiceLight: '#FFECBB',
   cta: '#18b4c7',
   ctaHighlight: '#25c4d8',

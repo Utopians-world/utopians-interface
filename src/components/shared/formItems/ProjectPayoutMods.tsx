@@ -144,7 +144,7 @@ export default function ProjectPayoutMods({
                     <div className="stepPayoutListConItemPercentage">
                       <Space size="large">
                         <span>{fromPermyriad(mod.percent)}%</span>
-                        {parseWad(target).lt(constants.MaxUint256) && (
+                        {/* {parseWad(target).lt(constants.MaxUint256) && (
                           <span>
                             <CurrencySymbol currency={currency} />
                             {formatWad(
@@ -154,7 +154,7 @@ export default function ProjectPayoutMods({
                               { decimals: 4, padEnd: true },
                             )}
                           </span>
-                        )}
+                        )} */}
                       </Space>
                     </div>
                   </div>
@@ -165,7 +165,7 @@ export default function ProjectPayoutMods({
                   {mod.projectId?.gt(0) ? (
                     <div>
                       <small className="stepPayoutListConItemTitle">
-                        Beneficiary:
+                        Beneficiary
                       </small>
                       <div className="stepPayoutListConItemDes">
                         <FormattedAddress address={mod.beneficiary} />
@@ -173,10 +173,27 @@ export default function ProjectPayoutMods({
                     </div>
                   ) : null}
 
+                  {parseWad(target).lt(constants.MaxUint256) && (
+                    <div>
+                      <small className="stepPayoutListConItemTitle">
+                        Target
+                      </small>
+                      <div className="stepPayoutListConItemDes">
+                        <CurrencySymbol currency={currency} />
+                        {formatWad(
+                          amountSubFee(parseWad(target), fee)
+                            ?.mul(mod.percent)
+                            .div(10000),
+                          { decimals: 4, padEnd: true },
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   {mod.projectId?.gt(0) ? (
                     <div>
                       <small className="stepPayoutListConItemTitle">
-                        Project:
+                        Project
                       </small>
                       <div className="stepPayoutListConItemDes">
                         <ProjectHandle link projectId={mod.projectId} />
@@ -185,7 +202,7 @@ export default function ProjectPayoutMods({
                   ) : (
                     <div>
                       <small className="stepPayoutListConItemTitle">
-                        Address:
+                        Address
                       </small>
                       <div className="stepPayoutListConItemDes">
                         <FormattedAddress address={mod.beneficiary} />

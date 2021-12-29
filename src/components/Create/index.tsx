@@ -3,7 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { Button, Col, Drawer, DrawerProps, Row, Space, Tabs } from 'antd'
 import { useForm } from 'antd/lib/form/Form'
 import Modal from 'antd/lib/modal/Modal'
-import Project from 'components/Dashboard/Project'
+import Project from 'components/Dashboard/SmartProject'
 import { NetworkContext } from 'contexts/networkContext'
 import { ProjectContext, ProjectContextType } from 'contexts/projectContext'
 import { ThemeContext } from 'contexts/themeContext'
@@ -451,7 +451,11 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">1</span>Appearance
                 </div>
-                <span className="createTabpaneArrow"></span>
+                {viewedSteps.includes(1) ? (
+                  <span className="createTabpaneArrow"></span>
+                ) : (
+                  <CaretRightFilled />
+                )}
               </div>
             }
             key="1"
@@ -480,9 +484,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>
@@ -495,7 +499,12 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">2</span>Funding
                 </div>
-                <span className="createTabpaneArrow"></span>
+
+                {viewedSteps.includes(2) ? (
+                  <span className="createTabpaneArrow"></span>
+                ) : (
+                  <CaretRightFilled />
+                )}
               </div>
             }
             key="2"
@@ -528,9 +537,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>
@@ -543,7 +552,12 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">3</span>Distribution
                 </div>
-                <span className="createTabpaneArrow"></span>
+
+                {viewedSteps.includes(3) ? (
+                  <span className="createTabpaneArrow"></span>
+                ) : (
+                  <CaretRightFilled />
+                )}
               </div>
             }
             key="3"
@@ -575,9 +589,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>
@@ -590,7 +604,12 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">4</span>Reserved Tokens
                 </div>
-                <span className="createTabpaneArrow"></span>
+
+                {viewedSteps.includes(4) ? (
+                  <span className="createTabpaneArrow"></span>
+                ) : (
+                  <CaretRightFilled />
+                )}
               </div>
             }
             key="4"
@@ -621,9 +640,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>
@@ -636,7 +655,12 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">5</span>Reconfiguration
                 </div>
-                <span className="createTabpaneArrow"></span>
+
+                {viewedSteps.includes(5) ? (
+                  <span className="createTabpaneArrow"></span>
+                ) : (
+                  <CaretRightFilled />
+                )}
               </div>
             }
             key="5"
@@ -665,9 +689,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>
@@ -729,9 +753,9 @@ export default function Create() {
                 </Button>
               </Col>
               <Col xs={24} md={14}>
-                <h3>Preview:</h3>
+                <h3 className="smartPreviewTitle">Smart preview</h3>
 
-                <div>
+                <div className="smartPreviewWrapper">
                   <Project showCurrentDetail column />
                 </div>
               </Col>

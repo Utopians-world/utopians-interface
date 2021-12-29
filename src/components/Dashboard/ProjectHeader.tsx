@@ -27,7 +27,7 @@ export default function ProjectHeader() {
     theme: { colors },
   } = useContext(ThemeContext)
 
-  const headerHeight = 120
+  const headerHeight = 140
 
   const hasEditPermission = useHasPermission([
     OperatorPermission.SetHandle,
@@ -54,7 +54,7 @@ export default function ProjectHeader() {
   if (!projectId) return null
 
   return (
-    <div>
+    <div className="projectHeaderWrapper">
       <div
         style={{
           display: 'flex',
@@ -63,7 +63,7 @@ export default function ProjectHeader() {
           alignItems: 'flex-start',
         }}
       >
-        <div style={{ marginRight: 20, height: '100%' }}>
+        <div style={{ marginRight: 36, height: '100%' }}>
           <ProjectLogo
             uri={metadata?.logoUri}
             name={metadata?.name}
@@ -82,13 +82,9 @@ export default function ProjectHeader() {
           >
             <h1
               style={{
-                fontSize: '2.4rem',
-                lineHeight: '2.8rem',
-                margin: 0,
-                color: metadata?.name
-                  ? colors.text.primary
-                  : colors.text.placeholder,
+                color: metadata?.name ? '#1D1D1D' : colors.text.placeholder,
               }}
+              className="proHeaderTitle"
             >
               {metadata?.name || 'Untitled project'}
             </h1>
@@ -101,6 +97,7 @@ export default function ProjectHeader() {
                 }}
               >
                 <span
+                  className="proHeaderDes"
                   style={{
                     color: colors.text.tertiary,
                     paddingRight: 10,
@@ -151,6 +148,7 @@ export default function ProjectHeader() {
             )}
             {handle && (
               <span
+                className="proHeaderDes"
                 style={{
                   color: colors.text.secondary,
                   marginRight: spacing,
@@ -162,6 +160,7 @@ export default function ProjectHeader() {
             )}
             {metadata?.infoUri && (
               <a
+                className="proHeaderLink"
                 style={{ fontWeight: 500, marginRight: spacing }}
                 href={linkUrl(metadata.infoUri)}
                 target="_blank"
@@ -172,6 +171,7 @@ export default function ProjectHeader() {
             )}
             {metadata?.twitter && (
               <a
+                className="proHeaderLink"
                 style={{
                   fontWeight: 500,
                   marginRight: spacing,
@@ -189,6 +189,7 @@ export default function ProjectHeader() {
             )}
             {metadata?.discord && (
               <a
+                className="proHeaderLink"
                 style={{
                   fontWeight: 500,
                   display: 'flex',

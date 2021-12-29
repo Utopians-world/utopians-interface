@@ -22,6 +22,7 @@ import {
 import { bigNumbersDiff } from 'utils/bigNumbersDiff'
 import { formatPercent, formatWad } from 'utils/formatNumber'
 import { decodeFCMetadata } from 'utils/fundingCycle'
+import { shadowCard } from 'constants/styles/shadowCard'
 
 import IssueTickets from './IssueTickets'
 import SectionHeader from './SectionHeader'
@@ -41,9 +42,10 @@ export default function Rewards({
   const { projectId, tokenAddress, tokenSymbol, isPreviewMode, currentFC } =
     useContext(ProjectContext)
 
-  const {
-    theme: { colors },
-  } = useContext(ThemeContext)
+  // const {
+  //   theme: { colors },
+  // } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   const [redeemModalVisible, setRedeemModalVisible] = useState<boolean>(false)
 
@@ -131,10 +133,15 @@ export default function Rewards({
 
   const labelStyle: CSSProperties = {
     width: 128,
+    fontSize: '13px',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    fontWeight: 600,
+    color: '#3F3D3D',
+    lineHeight: '20px',
   }
 
   return (
-    <div>
+    <div className="rewardWrapper">
       <Space direction="vertical" size="large">
         <Statistic
           title={
@@ -146,7 +153,14 @@ export default function Rewards({
             />
           }
           valueRender={() => (
-            <Descriptions layout="horizontal" column={1}>
+            <Descriptions
+              layout="horizontal"
+              column={1}
+              style={{
+                ...shadowCard(theme),
+                padding: 15,
+              }}
+            >
               {ticketsIssued && (
                 <Descriptions.Item
                   label="Address"
@@ -172,6 +186,7 @@ export default function Rewards({
                   >
                     {formatWad(totalSupply, { decimals: 0 })}
                     <Button
+                      className="defaultBtn"
                       size="small"
                       onClick={() => setParticipantsModalVisible(true)}
                       disabled={isPreviewMode}
@@ -217,7 +232,7 @@ export default function Rewards({
                           cursor: 'default',
                           fontSize: '0.8rem',
                           fontWeight: 500,
-                          color: colors.text.tertiary,
+                          color: theme.colors.text.tertiary,
                         }}
                       >
                         {share || 0}% of supply
@@ -225,6 +240,7 @@ export default function Rewards({
                     </div>
 
                     <Button
+                      className="defaultBtn"
                       size="small"
                       onClick={() => setManageTokensModalVisible(true)}
                     >
@@ -250,10 +266,18 @@ export default function Rewards({
         centered
       >
         <Space direction="vertical" style={{ width: '100%' }}>
-          <Button onClick={() => setRedeemModalVisible(true)} block>
+          <Button
+            className="defaultBtn"
+            onClick={() => setRedeemModalVisible(true)}
+            block
+          >
             Return my ETH
           </Button>
-          <Button onClick={() => setUnstakeModalVisible(true)} block>
+          <Button
+            className="defaultBtn"
+            onClick={() => setUnstakeModalVisible(true)}
+            block
+          >
             Claim {tokenSymbol || 'tokens'} as ERC20
           </Button>
         </Space>

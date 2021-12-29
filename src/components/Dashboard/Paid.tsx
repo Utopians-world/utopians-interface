@@ -22,6 +22,7 @@ import { hasFundingTarget } from 'utils/fundingCycle'
 import { readNetwork } from 'constants/networks'
 
 import BalancesModal from '../modals/BalancesModal'
+import SectionHeader from '../Dashboard/SectionHeader'
 
 export default function Paid() {
   const [balancesModalVisible, setBalancesModalVisible] = useState<boolean>()
@@ -83,22 +84,33 @@ export default function Paid() {
   )
 
   const primaryTextStyle: CSSProperties = {
-    fontWeight: 500,
-    fontSize: '1.1rem',
+    fontWeight: 600,
+    fontSize: '1rem',
     lineHeight: 1,
+    fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
+    color: '#717171',
   }
 
   const secondaryTextStyle: CSSProperties = {
     textTransform: 'uppercase',
-    color: colors.text.tertiary,
-    fontSize: '0.8rem',
-    fontWeight: 500,
+    fontSize: '13px',
+    fontWeight: 600,
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#3F3D3D',
+    lineHeight: '20px',
+  }
+  const linkTextStyle: CSSProperties = {
+    fontSize: '11px',
+    fontWeight: 400,
+    fontFamily: 'TeXGyreAdventor-Regular, TeXGyreAdventor',
+    color: '#6B75FF',
+    lineHeight: '18px',
   }
 
   if (!currentFC) return null
 
-  const spacing =
-    hasFundingTarget(currentFC) && currentFC.target.gt(0) ? 15 : 10
+  // const spacing =
+  //   hasFundingTarget(currentFC) && currentFC.target.gt(0) ? 15 : 10
 
   const formatCurrencyAmount = (amt: BigNumber | undefined) =>
     amt ? (
@@ -133,220 +145,209 @@ export default function Paid() {
     readNetwork.name === NetworkName.mainnet && projectId?.eq(36)
 
   return (
-    <div>
-      <div
+    <div className="fundovervieWrapper">
+      <SectionHeader
+        text="Fund Overview"
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          marginBottom: spacing,
+          margin: '14px 0 6px',
         }}
-      >
-        <span style={secondaryTextStyle}>
-          <TooltipLabel
-            label="Volume"
-            tip="The total amount received by this project through Juicebox since it was created."
-          />
-        </span>
-        <span style={primaryTextStyle}>
-          {isConstitutionDAO && (
+      />
+      <div className="fundoverviewCon">
+        <div className="fundoverviewConTop">
+          <div className="fundoverviewConTopCon">
             <span style={secondaryTextStyle}>
-              <CurrencySymbol currency={1} />
-              {formatWad(converter.wadToCurrency(earned, 1, 0), {
-                decimals: 2,
-                padEnd: true,
-              })}{' '}
+              <TooltipLabel
+                label="Volume"
+                tip="The total amount received by this project through Juicebox since it was created."
+              />
             </span>
-          )}
-          <span
-            style={{
-              color: isConstitutionDAO
-                ? colors.text.brand.primary
-                : colors.text.primary,
-            }}
-          >
-            <CurrencySymbol currency={0} />
-            {earned?.lt(parseWad('1')) && earned.gt(0)
-              ? '<1'
-              : formatWad(earned, { decimals: 0 })}
-          </span>
-        </span>
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          flexWrap: 'nowrap',
-        }}
-      >
-        <div style={secondaryTextStyle}>
-          <TooltipLabel
-            label="In Juicebox"
-            tip="The balance of this project in the Juicebox contract."
-          />
-        </div>
-
-        <div
-          style={{
-            ...primaryTextStyle,
-            color: isConstitutionDAO
-              ? colors.text.primary
-              : colors.text.brand.primary,
-            marginLeft: 10,
-          }}
-        >
-          {currentFC.currency.eq(1) ? (
-            <span style={secondaryTextStyle}>
-              <CurrencySymbol currency={0} />
-              {formatWad(balance, { decimals: 2, padEnd: true })}{' '}
+            <span style={primaryTextStyle}>
+              {isConstitutionDAO && (
+                <span style={secondaryTextStyle}>
+                  <CurrencySymbol currency={1} />
+                  {formatWad(converter.wadToCurrency(earned, 1, 0), {
+                    decimals: 2,
+                    padEnd: true,
+                  })}{' '}
+                </span>
+              )}
+              <span
+                style={{
+                  color: isConstitutionDAO
+                    ? colors.text.brand.primary
+                    : colors.text.primary,
+                }}
+              >
+                <CurrencySymbol currency={0} />
+                {earned?.lt(parseWad('1')) && earned.gt(0)
+                  ? '<1'
+                  : formatWad(earned, { decimals: 0 })}
+              </span>
             </span>
-          ) : (
-            ''
-          )}
-          {formatCurrencyAmount(balanceInCurrency)}
-        </div>
-      </div>
+          </div>
 
-      {hasFundingTarget(currentFC) &&
-        (currentFC.target.gt(0) ? (
           <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'baseline',
-            }}
+            className="fundoverviewConTopCon"
+            style={{ paddingLeft: 20, borderLeft: '1px solid #C3D0F9' }}
           >
             <div style={secondaryTextStyle}>
               <TooltipLabel
-                label="Distributed"
-                tip="The amount that has been distributed from the Juicebox balance in this funding cycle, out of the current funding target. No more than the funding target can be distributed in a single funding cycle—any remaining ETH in Juicebox is overflow, until the next cycle begins."
+                label="In Juicebox"
+                tip="The balance of this project in the Juicebox contract."
               />
             </div>
 
             <div
               style={{
-                ...secondaryTextStyle,
-                color: colors.text.primary,
+                ...primaryTextStyle,
+                color: '#717171',
               }}
             >
-              {formatCurrencyAmount(currentFC.tapped)} /{' '}
-              {formatCurrencyAmount(currentFC.target)}
+              {currentFC.currency.eq(1) ? (
+                <span style={secondaryTextStyle}>
+                  <CurrencySymbol currency={0} />
+                  {formatWad(balance, { decimals: 2, padEnd: true })}{' '}
+                </span>
+              ) : (
+                ''
+              )}
+              {formatCurrencyAmount(balanceInCurrency)}
             </div>
           </div>
-        ) : (
+
+          <div
+            className="fundoverviewConTopCon"
+            style={{ paddingLeft: 20, borderLeft: '1px solid #C3D0F9' }}
+          >
+            <span style={secondaryTextStyle}>
+              <TooltipLabel
+                label="In wallet"
+                tip={
+                  <div>
+                    <p>
+                      The balance of the wallet that owns this Juicebox project.
+                    </p>
+                    <span style={{ userSelect: 'all' }}>{owner}</span>{' '}
+                    <EtherscanLink value={owner} type="address" />
+                  </div>
+                }
+              />
+            </span>
+            <span>
+              <span style={secondaryTextStyle}>
+                <ProjectTokenBalance
+                  style={{ display: 'inline-block' }}
+                  wallet={owner}
+                  projectId={BigNumber.from('0x01')}
+                  hideHandle
+                />{' '}
+                +{' '}
+              </span>
+              <span style={primaryTextStyle}>
+                <CurrencySymbol currency={0} />
+                {formatWad(ownerBalance, { decimals: 2, padEnd: true })}
+              </span>
+            </span>
+          </div>
+
           <div
             style={{
-              ...secondaryTextStyle,
               textAlign: 'right',
             }}
           >
-            <TooltipLabel
-              tip="The target for this funding cycle is 0, meaning all funds in Juicebox are currently considered overflow. Overflow can be redeemed by token holders, but not distributed."
-              label="100% overflow"
-            />
+            <span
+              style={{ ...linkTextStyle, cursor: 'pointer' }}
+              onClick={() => setBalancesModalVisible(true)}
+            >
+              All assets <RightCircleOutlined />
+            </span>
           </div>
-        ))}
+        </div>
 
-      {hasFundingTarget(currentFC) &&
-        currentFC.target.gt(0) &&
-        (totalOverflow?.gt(0) ? (
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Progress
-              style={{
-                width: (1 - percentOverflow) * 100 + '%',
-                minWidth: 10,
-              }}
-              percent={100}
-              showInfo={false}
-              strokeColor={colors.text.brand.primary}
-            />
+        {hasFundingTarget(currentFC) &&
+          (currentFC.target.gt(0) ? (
             <div
               style={{
-                minWidth: 4,
-                height: 15,
-                borderRadius: 2,
-                background: colors.text.primary,
-                marginLeft: 5,
-                marginRight: 5,
-                marginTop: 3,
+                display: 'flex',
+                justifyContent: 'space-between',
+                flexFlow: 'column wrap',
+                alignItems: 'baseline',
+                marginTop: '20px',
               }}
-            ></div>
-            <Progress
-              style={{
-                width: percentOverflow * 100 + '%',
-                minWidth: 10,
-              }}
-              percent={100}
-              showInfo={false}
-              strokeColor={colors.text.brand.primary}
-            />
-          </div>
-        ) : (
-          <Progress
-            percent={percentPaid ? Math.max(percentPaid, 1) : 0}
-            showInfo={false}
-            strokeColor={colors.text.brand.primary}
-          />
-        ))}
-
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          marginTop: spacing,
-        }}
-      >
-        <span style={secondaryTextStyle}>
-          <TooltipLabel
-            label="In wallet"
-            tip={
-              <div>
-                <p>
-                  The balance of the wallet that owns this Juicebox project.
-                </p>
-                <span style={{ userSelect: 'all' }}>{owner}</span>{' '}
-                <EtherscanLink value={owner} type="address" />
+            >
+              <div style={secondaryTextStyle}>
+                <TooltipLabel
+                  label="Distributed"
+                  tip="The amount that has been distributed from the Juicebox balance in this funding cycle, out of the current funding target. No more than the funding target can be distributed in a single funding cycle—any remaining ETH in Juicebox is overflow, until the next cycle begins."
+                />
               </div>
-            }
-          />
-        </span>
-        <span>
-          <span style={secondaryTextStyle}>
-            <ProjectTokenBalance
-              style={{ display: 'inline-block' }}
-              wallet={owner}
-              projectId={BigNumber.from('0x01')}
-              hideHandle
-            />{' '}
-            +{' '}
-          </span>
-          <span style={primaryTextStyle}>
-            <CurrencySymbol currency={0} />
-            {formatWad(ownerBalance, { decimals: 2, padEnd: true })}
-          </span>
-        </span>
-      </div>
 
-      <div
-        style={{
-          textAlign: 'right',
-        }}
-      >
-        <span
-          style={{ ...secondaryTextStyle, cursor: 'pointer' }}
-          onClick={() => setBalancesModalVisible(true)}
-        >
-          All assets <RightCircleOutlined />
-        </span>
-      </div>
+              <div className="fundAmount">
+                {formatCurrencyAmount(currentFC.tapped)} /{' '}
+                {formatCurrencyAmount(currentFC.target)}
+              </div>
+            </div>
+          ) : (
+            <div
+              style={{
+                ...secondaryTextStyle,
+                textAlign: 'right',
+              }}
+            >
+              <TooltipLabel
+                tip="The target for this funding cycle is 0, meaning all funds in Juicebox are currently considered overflow. Overflow can be redeemed by token holders, but not distributed."
+                label="100% overflow"
+              />
+            </div>
+          ))}
 
-      <BalancesModal
-        visible={balancesModalVisible}
-        onCancel={() => setBalancesModalVisible(false)}
-      />
+        {hasFundingTarget(currentFC) &&
+          currentFC.target.gt(0) &&
+          (totalOverflow?.gt(0) ? (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Progress
+                style={{
+                  width: (1 - percentOverflow) * 100 + '%',
+                  minWidth: 10,
+                }}
+                percent={100}
+                showInfo={false}
+                strokeColor={'#665FAC'}
+              />
+              <div
+                style={{
+                  minWidth: 4,
+                  height: 15,
+                  borderRadius: 2,
+                  background: colors.text.primary,
+                  marginLeft: 5,
+                  marginRight: 5,
+                  marginTop: 3,
+                }}
+              ></div>
+              <Progress
+                style={{
+                  width: percentOverflow * 100 + '%',
+                  minWidth: 10,
+                }}
+                percent={100}
+                showInfo={false}
+                strokeColor={'#665FAC'}
+              />
+            </div>
+          ) : (
+            <Progress
+              percent={percentPaid ? Math.max(percentPaid, 1) : 0}
+              showInfo={false}
+              strokeColor={'#665FAC'}
+            />
+          ))}
+
+        <BalancesModal
+          visible={balancesModalVisible}
+          onCancel={() => setBalancesModalVisible(false)}
+        />
+      </div>
     </div>
   )
 }

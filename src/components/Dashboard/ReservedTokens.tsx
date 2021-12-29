@@ -9,7 +9,7 @@ import { ContractName } from 'models/contract-name'
 import { FundingCycle } from 'models/funding-cycle'
 import { TicketMod } from 'models/mods'
 import { NetworkName } from 'models/network-name'
-import { useContext, useMemo, useState } from 'react'
+import { CSSProperties, useContext, useMemo, useState } from 'react'
 import { bigNumbersDiff } from 'utils/bigNumbersDiff'
 import { formatWad, fromPerbicent } from 'utils/formatNumber'
 import { decodeFCMetadata } from 'utils/fundingCycle'
@@ -34,6 +34,15 @@ export default function ReservedTokens({
   const { projectId, tokenSymbol, isPreviewMode } = useContext(ProjectContext)
 
   const metadata = decodeFCMetadata(fundingCycle?.metadata)
+
+  const smallHeaderStyle: CSSProperties = {
+    fontSize: '15px',
+    fontWeight: 500,
+    cursor: 'default',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#2713E1',
+    lineHeight: '24px',
+  }
 
   const reservedTickets = useContractReader<BigNumber>({
     contract: ContractName.TerminalV1,
@@ -92,7 +101,7 @@ export default function ReservedTokens({
       <div>
         <TooltipLabel
           label={
-            <h4 style={{ display: 'inline-block' }}>
+            <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
               Reserved {tokenSymbol ?? 'tokens'} (
               {fromPerbicent(metadata?.reservedRate)}%)
             </h4>
@@ -123,6 +132,7 @@ export default function ReservedTokens({
             {tokenSymbol ?? 'tokens'}
           </span>
           <Button
+            className="defaultBtn"
             style={{ marginLeft: 10 }}
             size="small"
             onClick={() => setModalIsVisible(true)}

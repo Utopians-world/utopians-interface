@@ -23,6 +23,7 @@ export function CardSection({
       style={{
         marginBottom: noShadow ? 0 : 10,
       }}
+      className="cardWrapper"
     >
       {header && (
         <h2
@@ -39,7 +40,7 @@ export function CardSection({
           ...shadowCard(theme),
           overflow: 'hidden',
           ...style,
-          ...(padded ? { padding: 20 } : {}),
+          ...(padded ? { padding: 15 } : {}),
         }}
       >
         {children}

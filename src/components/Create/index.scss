@@ -122,6 +122,22 @@
     .createTabWrapper{
         background:#fff;
         padding: 40px 80px 90px;
+        
+        .smartPreviewTitle {
+            font-size: 22px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            color: #1D1D1D;
+            line-height: 34px;
+        }
+
+        .smartPreviewWrapper {
+            width: 100%;
+            background: rgba(253, 254, 255, 0.99);
+            box-shadow: 0px 2px 9px 0px #D3DCEE;
+            border-radius: 2px;
+            border: 2px solid #D3DCEE;
+        }
     }
 }
 
@@ -497,6 +513,47 @@
 
 }
 
+.congratulationWrapper{
+    width:100%;
+    background-color: #fff;
+    max-width: 1440px;
+    padding: 69px 0 322px;
+    margin: 0 auto;
+    @include centerLayout;
+    h2 {
+        height: 35px;
+        font-size: 32px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        color: #1C1C20;
+        font-weight: 600;
+        line-height: 35px;
+        letter-spacing: 1px;
+        span {
+            color: #3A1FF5;
+        }
+    }
+
+    p {
+        font-size: 20px;
+        max-width: 632px;
+        padding-top: 290px;
+        margin-bottom: 48px;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #5F5E61;
+        line-height: 26px;
+        background: url('../../assets/images/success.png') no-repeat center 26px;
+    }
+
+    .goToMyPro {
+        @include hollowBtn;
+        background: #fff;
+        color: #2C1BD7;
+        width: 236px;
+        height: 52px;
+    }
+}
+
 
 .stepTooltip {
     @include stepTip;
@@ -529,7 +586,7 @@
     width: 236px;
     height: 53px;
     color: #2C1BD7 !important;
-    background-color: #ffffff;
+    background-color: #ffffff!important;
 }
 
 .stepAcssessoryBtn {

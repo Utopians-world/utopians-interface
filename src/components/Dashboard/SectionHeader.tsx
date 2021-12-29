@@ -14,15 +14,15 @@ export default function SectionHeader({
   tip?: string
   style?: CSSProperties
 }) {
-  const {
-    forThemeOption,
-    theme: { colors },
-  } = useContext(ThemeContext)
+  const { forThemeOption } = useContext(ThemeContext)
 
   if (text === undefined) return null
 
   const _style: CSSProperties = {
-    color: colors.text.header,
+    fontSize: '15px',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#1D1D1D',
+    lineHeight: '15px',
     fontWeight:
       forThemeOption &&
       forThemeOption({
