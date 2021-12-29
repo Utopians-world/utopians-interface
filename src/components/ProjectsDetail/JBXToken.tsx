@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Space } from 'antd'
 
-import TipInfo from '../icons/TipInfo'
-import useContractReader from '../../hooks/ContractReader'
 import { BigNumber } from '@ethersproject/bignumber'
+
+import useContractReader from '../../hooks/ContractReader'
+
 import { ContractName } from '../../models/contract-name'
 import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
 import { ProjectContext } from '../../contexts/projectContext'
@@ -13,6 +14,7 @@ import DetailEdit from '../icons/DetailEdit'
 import DetailIncentivesModal from '../modals/DetailIncentivesModal'
 import DetailIssueModal from '../modals/DetailIssueModal'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+import TooltipLabel from '../shared/TooltipLabel'
 
 export default function JBXToken() {
   const { projectId, currentFC } = useContext(ProjectContext)
@@ -47,15 +49,26 @@ export default function JBXToken() {
       }}
     >
       <Space>
-        <h2>Token</h2>
-        <div style={{ paddingBottom: '2px' }}>
-          <TipInfo size={15} />
-          <span
-            className="editIcon"
-            onClick={() => setDetailIssueVisible(true)}
-          >
-            <DetailEdit />
-          </span>
+        <TooltipLabel
+          label={
+            <div
+              style={{
+                display: 'inline-block',
+                fontSize: '20px',
+                marginRight: '10px',
+                fontWeight: 'bold',
+              }}
+            >
+              Token
+            </div>
+          }
+          tip="Tokens are distributed to anyone who pays this
+              project. If the project has set a funding target, tokens
+              can be redeemed for a portion of the project's
+              overflow whether or not they have been claimed yet."
+        />
+        <div className="editIcon" onClick={() => setDetailIssueVisible(true)}>
+          <DetailEdit />
         </div>
       </Space>
       <div
@@ -65,6 +78,7 @@ export default function JBXToken() {
           border: '1px solid #D3DCEE',
           borderRadius: '5px',
           padding: '15px 37px',
+          marginTop: '10px',
         }}
       >
         <div

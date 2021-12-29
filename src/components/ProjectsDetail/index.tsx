@@ -43,6 +43,7 @@ export default function ProjectsDetail() {
         <YourBalance />
         <Activity />
       </Col>
+      <div className="indexBackground"> </div>
     </Row>
   )
 }

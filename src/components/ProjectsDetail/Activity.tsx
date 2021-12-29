@@ -1,7 +1,7 @@
 import React from 'react'
-import { Space } from 'antd'
+// import { Space } from 'antd'
 
-import LinkIcon from '../icons/LinkIcon'
+// import LinkIcon from '../icons/LinkIcon'
 
 export default function Activity() {
   return (
@@ -23,446 +23,62 @@ export default function Activity() {
       >
         Activity
       </h3>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
-      <div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              width: '40%',
-              fontSize: '12px',
-              color: '#2713E1',
-              fontWeight: 'bold',
-            }}
-          >
-            Paid
-          </div>
-          <div
-            style={{
-              width: '60%',
-              textAlign: 'right',
-              color: '#9092A7',
-              fontSize: '12px',
-            }}
-          >
-            2 days ago
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>
-            590,494
-          </div>
-          <Space>
-            <div
-              style={{
-                width: '60%',
-                textAlign: 'right',
-                color: '#5F5E61',
-                lineHeight: '35px',
-                fontSize: '12px',
-              }}
-            >
-              0x9329582…..f3434242
-            </div>
-            <div>
-              <LinkIcon />
-            </div>
-          </Space>
-        </div>
-      </div>
+      <div style={{ padding: '20px' }}>No activity yet</div>
+      {/*<div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>*/}
+      {/*  <div*/}
+      {/*    style={{*/}
+      {/*      display: 'flex',*/}
+      {/*      justifyContent: 'center',*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <div*/}
+      {/*      style={{*/}
+      {/*        width: '40%',*/}
+      {/*        fontSize: '12px',*/}
+      {/*        color: '#2713E1',*/}
+      {/*        fontWeight: 'bold',*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      Paid*/}
+      {/*    </div>*/}
+      {/*    <div*/}
+      {/*      style={{*/}
+      {/*        width: '60%',*/}
+      {/*        textAlign: 'right',*/}
+      {/*        color: '#9092A7',*/}
+      {/*        fontSize: '12px',*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      2 days ago*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*  <div*/}
+      {/*    style={{*/}
+      {/*      display: 'flex',*/}
+      {/*      justifyContent: 'center',*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <div style={{ width: '40%', fontSize: '18px', color: '#5F5E61' }}>*/}
+      {/*      590,494*/}
+      {/*    </div>*/}
+      {/*    <Space>*/}
+      {/*      <div*/}
+      {/*        style={{*/}
+      {/*          width: '60%',*/}
+      {/*          textAlign: 'right',*/}
+      {/*          color: '#5F5E61',*/}
+      {/*          lineHeight: '35px',*/}
+      {/*          fontSize: '12px',*/}
+      {/*        }}*/}
+      {/*      >*/}
+      {/*        0x9329582…..f3434242*/}
+      {/*      </div>*/}
+      {/*      <div>*/}
+      {/*        <LinkIcon />*/}
+      {/*      </div>*/}
+      {/*    </Space>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   )
 }

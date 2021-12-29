@@ -1,5 +1,6 @@
 import { CSSProperties, useCallback, useLayoutEffect, useState } from 'react'
 import { Modal, Space } from 'antd'
+
 import ModalTab from '../ProjectsDetail/ModalTab'
 // import NumberSlider from "../shared/inputs/NumberSlider";
 import NumberSlider from '../shared/inputs/NumberSlider'

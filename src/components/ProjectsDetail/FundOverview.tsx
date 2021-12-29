@@ -1,15 +1,19 @@
 import React, { CSSProperties, useContext, useState } from 'react'
 import { Col, Row, Slider, Space, Tooltip } from 'antd'
 
-import TipInfo from '../icons/TipInfo'
+import { BigNumber } from '@ethersproject/bignumber'
+
 import { ProjectContext } from '../../contexts/projectContext'
 import { formatWad, fromWad, parseWad } from '../../utils/formatNumber'
-import { BigNumber } from '@ethersproject/bignumber'
+
 import CurrencySymbol from '../shared/CurrencySymbol'
 import { useCurrencyConverter } from '../../hooks/CurrencyConverter'
 import { useEthBalanceQuery } from '../../hooks/EthBalance'
 import DetailEdit from '../icons/DetailEdit'
 import DetailEditFundingModal from '../modals/DetailEditFundingModal'
+import TooltipLabel from '../shared/TooltipLabel'
+import ProjectTokenBalance from '../shared/ProjectTokenBalance'
+import MetisLogo from '../icons/MetisLogo'
 
 export default function FundOverview() {
   const { projectId, currentFC, balanceInCurrency, balance, owner, earned } =
@@ -94,13 +98,26 @@ export default function FundOverview() {
               borderRight: '1.5px solid #C3D0F9',
             }}
           >
-            <Space>
-              <h4>Volume</h4>
-              <div style={{ paddingBottom: '2px' }}>
-                <TipInfo size={15} />
-              </div>
+            <Space style={{ fontSize: '12px' }}>
+              <TooltipLabel
+                label={
+                  <div
+                    style={{
+                      fontWeight: 'bold',
+                      marginBottom: '5px',
+                      display: 'inline-block',
+                      marginRight: '10px',
+                      fontSize: '15px',
+                    }}
+                  >
+                    <span>Volume</span>
+                  </div>
+                }
+                tip="The total amount received by this project through Juicebox since it was created."
+              />
             </Space>
             <h2 style={NumberTotal}>
+              <MetisLogo />
               {earned?.lt(parseWad('1')) && earned.gt(0)
                 ? '<1'
                 : formatWad(earned, { decimals: 0 })}
@@ -118,6 +135,7 @@ export default function FundOverview() {
               {formatWad(balance, { decimals: 2, padEnd: true })}
             </h2>
             <h4 style={{ color: '#9092A7' }}>
+              <MetisLogo size={12} />
               {formatCurrencyAmount(balanceInCurrency)}
             </h4>
           </div>
@@ -139,7 +157,13 @@ export default function FundOverview() {
                   lineHeight: '20px',
                 }}
               >
-                {formatWad(owner, { decimals: 0 })}
+                <MetisLogo />
+                <ProjectTokenBalance
+                  style={{ display: 'inline-block' }}
+                  wallet={owner}
+                  projectId={BigNumber.from('0x01')}
+                  hideHandle
+                />
               </h2>
               <div
                 style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
@@ -157,11 +181,25 @@ export default function FundOverview() {
             paddingTop: '20px',
           }}
         >
-          <Space>
-            <h4>Distributed</h4>
-            <div style={{ paddingBottom: '2px' }}>
-              <TipInfo size={15} />
-            </div>
+          <Space style={{ fontSize: '12px' }}>
+            <TooltipLabel
+              label={
+                <div
+                  style={{
+                    fontWeight: 'bold',
+                    marginBottom: '5px',
+                    display: 'inline-block',
+                    marginRight: '10px',
+                    fontSize: '15px',
+                  }}
+                >
+                  <span>Distributed</span>
+                </div>
+              }
+              tip="The amount that has been distributed from the Juicebox balance in this funding cycle,
+                 out of the current funding target. No more than the funding target can be distributed in
+                  a single funding cycle—any remaining ETH in Juicebox is overflow, until the next cycle begins."
+            />
           </Space>
           <h2
             style={{
@@ -172,8 +210,8 @@ export default function FundOverview() {
               lineHeight: '20px',
             }}
           >
-            {' '}
-            {formatCurrencyAmount(currentFC.tapped)} /{' '}
+            {' $'}
+            {formatCurrencyAmount(currentFC.tapped)} /{' $'}
             {formatCurrencyAmount(currentFC.target)}
           </h2>
           <Row style={{ margin: '5px 0' }}>

@@ -1,11 +1,15 @@
 import React, { useContext, useMemo, useState } from 'react'
 import { Button, Tooltip } from 'antd'
+
+import { parseEther } from 'ethers/lib/utils'
+
+import { BigNumber } from '@ethersproject/bignumber'
+
 import { CurrencyOption } from '../../models/currency-option'
 import { ProjectContext } from '../../contexts/projectContext'
 import { useCurrencyConverter } from '../../hooks/CurrencyConverter'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
-import { parseEther } from 'ethers/lib/utils'
-import { BigNumber } from '@ethersproject/bignumber'
+
 import { formatWad } from '../../utils/formatNumber'
 import { weightedRate } from '../../utils/math'
 import { readNetwork } from '../../constants/networks'

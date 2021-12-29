@@ -1,8 +1,10 @@
 import { CSSProperties, useState } from 'react'
 import { Modal, Space, Switch, Input, Select, Divider } from 'antd'
+
+import { constants } from 'ethers'
+
 import ModalTab from '../ProjectsDetail/ModalTab'
 import { fromWad } from '../../utils/formatNumber'
-import { constants } from 'ethers'
 // import {FormItems} from "../shared/formItems";
 // import {UserContext} from "../../contexts/userContext";
 

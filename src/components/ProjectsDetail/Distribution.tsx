@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { Col, Row, Space } from 'antd'
 
-import TipInfo from '../icons/TipInfo'
 import { ProjectContext } from '../../contexts/projectContext'
 import { formatWad } from '../../utils/formatNumber'
 import { hasFundingTarget } from '../../utils/fundingCycle'
 import DetailBalance from './DetailBalance'
 import DetailEdit from '../icons/DetailEdit'
 import DetailEditPayoutModal from '../modals/DetailEditPayoutModal'
+import TooltipLabel from '../shared/TooltipLabel'
 
 export default function Distribution() {
   const { balanceInCurrency, owner, currentFC, currentPayoutMods } =
@@ -51,19 +51,26 @@ export default function Distribution() {
         >
           <Col span={6}>
             <Space>
-              <div
-                style={{
-                  color: '#2713E1',
-                  fontWeight: 'bold',
-                  fontSize: '18px',
-                  marginBottom: '5px',
-                }}
-              >
-                Available
-              </div>
-              <div>
-                <TipInfo size={15} />
-              </div>
+              <TooltipLabel
+                label={
+                  <div
+                    style={{
+                      color: '#2713E1',
+                      fontWeight: 'bold',
+                      fontSize: '18px',
+                      marginBottom: '5px',
+                      display: 'inline-block',
+                      marginRight: '10px',
+                    }}
+                  >
+                    Available
+                  </div>
+                }
+                tip="The funds available to withdraw for this funding
+                    cycle after the 5% UTO fee is subtracted. This number
+                    won't roll over to the next funding cycle, so funds
+                    should be withdrawn before it ends."
+              />
             </Space>
             <div style={{ fontWeight: 'bold' }}>Withdraw</div>
             <div style={{ fontWeight: 'bold' }}>Owner balance</div>
@@ -99,14 +106,23 @@ export default function Distribution() {
         </Row>
         <div>
           <Space style={{ padding: '15px 20px' }}>
-            <div
-              style={{ color: '#2713E1', fontWeight: 'bold', fontSize: '18px' }}
-            >
-              Distribute to
-            </div>
-            <div style={{ marginTop: '6px' }}>
-              <TipInfo size={15} />
-            </div>
+            <TooltipLabel
+              label={
+                <div
+                  style={{
+                    color: '#2713E1',
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                    marginBottom: '5px',
+                    display: 'inline-block',
+                    marginRight: '10px',
+                  }}
+                >
+                  Distribute to
+                </div>
+              }
+              tip="Available funds are distributed according to any payouts below."
+            />
           </Space>
           <div
             style={{

@@ -18,7 +18,23 @@
 }
 .ant-layout-content{
     background: #F6F8FF;
+    position: relative;
 }
+
+.indexBackground {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    z-index: 0;
+    background-image: url('../../assets/images/home-pic.png');
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+    transform: scale(1.1);
+    background-size: 100%;
+}
+
 .ant-modal-header {
     background: #ffffff;
     font-size: 18px;
@@ -129,18 +145,10 @@ input::-webkit-input-placeholder {
 
 .ant-input-number{
     border: none;
-}
-.ant-input-number .ant-input-number-focused{
-    border: none;
-    box-shadow: none;
-}
-.ant-input-number:focus{
-    border: none;
-    box-shadow: none;
-}
-.ant-input-number:hover{
-    border: none;
-    box-shadow: none;
+    width: 100%;
+    height: 48px;
+    padding: 7px 3px;
+
 }
 .ant-progress-success-bg, .ant-progress-bg{
     background: #00DAC5;
@@ -161,6 +169,9 @@ input::-webkit-input-placeholder {
 }
 .ant-collapse-item{
     border: none;
+}
+.ant-col{
+    z-index: 2;
 }
 .ModalForm{
     .ant-form-item-label > label {
@@ -197,8 +208,9 @@ input::-webkit-input-placeholder {
         border: 2px solid #bdc1e4;
         padding: 0 15px;
     }
+
     .ant-input-affix-wrapper .ant-input:hover, .ant-input-number {
-        border: none;
+        border-color: #ffffff!important;
         box-shadow: none;
     }
     .ant-input:hover {
@@ -281,4 +293,5 @@ input::-webkit-input-placeholder {
 .editIcon{
     margin-left: 10px;
     cursor: pointer;
+    padding-top: 6px;
 }

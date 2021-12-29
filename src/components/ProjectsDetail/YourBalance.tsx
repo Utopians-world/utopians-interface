@@ -1,11 +1,14 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { Button, Modal, Space } from 'antd'
+
+import { BigNumber } from '@ethersproject/bignumber'
+
 import RedeemModal from '../modals/RedeemModal'
 import ConfirmUnstakeTokensModal from '../modals/ConfirmUnstakeTokensModal'
 import ParticipantsModal from '../modals/ParticipantsModal'
 import { ProjectContext } from '../../contexts/projectContext'
 import useContractReader, { ContractUpdateOn } from '../../hooks/ContractReader'
-import { BigNumber } from '@ethersproject/bignumber'
+
 import { ContractName } from '../../models/contract-name'
 import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
 import { NetworkContext } from '../../contexts/networkContext'

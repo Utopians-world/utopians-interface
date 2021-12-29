@@ -1,7 +1,9 @@
 import { CSSProperties, useState } from 'react'
 import { Divider, Modal, Space } from 'antd'
-import ModalTab from '../ProjectsDetail/ModalTab'
+
 import { useForm } from 'antd/lib/form/Form'
+
+import ModalTab from '../ProjectsDetail/ModalTab'
 import { TicketingFormFields } from '../Create/TicketingForm'
 import NumberSlider from '../shared/inputs/NumberSlider'
 import { FormItems } from '../shared/formItems'

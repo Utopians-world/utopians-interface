@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Row, Col, Space } from 'antd'
 
-import TipInfo from '../icons/TipInfo'
 import FundingCycleDetail from './FundingCycleDetail'
 import DetailEdit from '../icons/DetailEdit'
 import DetailEditRuleModal from '../modals/DetailEditRuleModal'
+import TooltipLabel from '../shared/TooltipLabel'
+import FundingCycleUpcoming from './FundingCycleUpcoming'
+import FundingCycleHistory from './FundingCycleHistory'
 // import {ProjectContext} from "../../contexts/projectContext";
 
 type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
@@ -36,16 +38,15 @@ export default function FundingCycle() {
           height: '2px',
           ...(option === selectedTab
             ? {
-                backgroud:
+                background:
                   'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
               }
             : {
-                backgroud:
-                  'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
+                background: '#ffffff',
               }),
           ...(option === hoverTab
             ? {
-                backgroud:
+                background:
                   'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
               }
             : {}),
@@ -63,10 +64,10 @@ export default function FundingCycle() {
       tabContent = <FundingCycleDetail showCurrentDetail={true} />
       break
     case 'UPCOMING':
-      tabContent = <FundingCycleDetail />
+      tabContent = <FundingCycleUpcoming />
       break
     case 'HISTORY':
-      tabContent = <FundingCycleDetail />
+      tabContent = <FundingCycleHistory />
       break
   }
 
@@ -79,16 +80,34 @@ export default function FundingCycle() {
     >
       <Row gutter={16} style={{ borderBottom: '2px solid #DFE7FF' }}>
         <Col className="gutter-row" span={9}>
-          <Space style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            <div>Funding cycle</div>
-            <div style={{ marginLeft: '10px', paddingTop: '2px' }}>
-              <TipInfo />
-              <span
-                className="editIcon"
-                onClick={() => setDetailEditRuleVisible(true)}
-              >
-                <DetailEdit />
-              </span>
+          <Space
+            style={{
+              fontWeight: 'bold',
+              fontSize: '15px',
+              marginRight: '10px',
+            }}
+          >
+            <TooltipLabel
+              label={
+                <div
+                  style={{
+                    display: 'inline-block',
+                    fontSize: '20px',
+                    marginRight: '10px',
+                  }}
+                >
+                  Funding cycle
+                </div>
+              }
+              tip="A project's lifetime is defined in funding cycles.
+                    If a funding target is set, the project can withdraw no
+                    more than the target for the duration of the cycle."
+            />
+            <div
+              className="editIcon"
+              onClick={() => setDetailEditRuleVisible(true)}
+            >
+              <DetailEdit />
             </div>
           </Space>
         </Col>

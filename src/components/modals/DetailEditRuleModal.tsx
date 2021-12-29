@@ -1,8 +1,10 @@
 import { CSSProperties, useState } from 'react'
 import { Modal, Space, Input } from 'antd'
-import ModalTab from '../ProjectsDetail/ModalTab'
+
 import { CheckCircleFilled } from '@ant-design/icons'
 import { constants } from 'ethers'
+
+import ModalTab from '../ProjectsDetail/ModalTab'
 // import {FundingCycle} from "../../models/funding-cycle";
 
 export default function DetailEditRuleModal({

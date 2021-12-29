@@ -1,12 +1,16 @@
-import { Collapse, Row, Col, Space, Progress } from 'antd'
+import { Collapse, Row, Col, Space } from 'antd'
 
 import React, { CSSProperties, useContext } from 'react'
 
-import Shape from '../icons/Shape'
-import { ProjectContext } from '../../contexts/projectContext'
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
-import FundingCycleDetailInfo from './FundingCycleDetailInfo'
+
 import { CaretRightOutlined } from '@ant-design/icons'
+
+import { ProjectContext } from '../../contexts/projectContext'
+
+import FundingCycleInfo from './FundingCycleInfo'
+
+import { FundingCycleTime } from './FundingCycleTime'
 
 export default function FundingCycleDetail({
   showCurrentDetail,
@@ -21,14 +25,9 @@ export default function FundingCycleDetail({
     top: '-2px',
     width: '100%',
   }
-  const TimeStyle: CSSProperties = {
-    color: '#2713E1',
-    fontWeight: 'bold',
-    fontSize: '17px',
-    marginLeft: '3px',
-    marginRight: '10px',
-  }
+
   if (!currentFC) return null
+
   return (
     <Collapse
       style={{
@@ -68,50 +67,11 @@ export default function FundingCycleDetail({
                 </div>
               </Space>
             </Col>
-            <Col className="gutter-row" span={15}>
-              <Space>
-                <div style={{ paddingTop: '5px' }}>
-                  <Shape />
-                </div>
-                <div>
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      color: '#303030',
-                    }}
-                  >
-                    05
-                  </span>
-                  <span style={TimeStyle}>h</span>
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      color: '#303030',
-                    }}
-                  >
-                    59
-                  </span>
-                  <span style={TimeStyle}>m</span>
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      color: '#303030',
-                    }}
-                  >
-                    05
-                  </span>
-                  <span style={TimeStyle}>s</span>
-                </div>
-              </Space>
-              <Progress percent={50} showInfo={false} />
-            </Col>
+            <FundingCycleTime currentFC={currentFC} />
           </Row>
         }
       >
-        <FundingCycleDetailInfo fundingCycle={currentFC} />
+        <FundingCycleInfo fundingCycle={currentFC} />
       </CollapsePanel>
     </Collapse>
   )
