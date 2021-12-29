@@ -5,4 +5,5 @@ export type FormItemExt = {
   hideLabel?: boolean
   formItemProps?: Partial<Omit<FormItemProps, 'name'>>
   disabled?: boolean
+  defaultValue?: string
 }

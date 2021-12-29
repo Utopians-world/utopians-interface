@@ -1,5 +1,5 @@
 import { CloseCircleFilled } from '@ant-design/icons'
-import { FileImageOutlined } from '@ant-design/icons'
+import { UploadOutlined } from '@ant-design/icons'
 import { Button, Col, message, Row, Space, Upload } from 'antd'
 import { ThemeContext } from 'contexts/themeContext'
 import { useContext, useLayoutEffect, useState } from 'react'
@@ -85,8 +85,12 @@ export default function ImageUploader({
                 })
               }
             >
-              <Button loading={loadingUpload} type="text">
-                <FileImageOutlined /> {text ?? null}
+              <Button
+                loading={loadingUpload}
+                type="text"
+                className="stepUpload"
+              >
+                <UploadOutlined /> {text ?? null}
               </Button>
             </Upload>
           )}

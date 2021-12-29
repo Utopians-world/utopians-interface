@@ -13,6 +13,7 @@ interface ProjectHandleProps {
   onChange?: (value: ProjectHandleInputValue) => void
   suffix?: React.ReactNode
   initialValue?: ProjectHandleInitialValue
+  defaultValue?: string
 }
 
 /**
@@ -29,6 +30,7 @@ export function ProjectHandleInput({
   onChange,
   suffix,
   initialValue,
+  defaultValue,
 }: ProjectHandleProps) {
   const { contracts } = useContext(UserContext)
   const [inputContents, setInputContents] = useState<string>()
@@ -78,6 +80,7 @@ export function ProjectHandleInput({
       type="string"
       autoComplete="off"
       spellCheck={false}
+      defaultValue={defaultValue}
     />
   )
 }

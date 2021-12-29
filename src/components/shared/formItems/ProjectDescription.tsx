@@ -10,6 +10,7 @@ export default function ProjectDescription({
   hideLabel,
   formItemProps,
   onChange,
+  defaultValue,
 }: { onChange?: (val?: string) => void } & FormItemExt) {
   return (
     <Form.Item
@@ -22,6 +23,7 @@ export default function ProjectDescription({
         placeholder={`Max ${MAX_DESCRIPTION_LENGTH} characters`}
         maxLength={MAX_DESCRIPTION_LENGTH}
         onChange={onChange ? e => onChange(e.target.value) : undefined}
+        defaultValue={defaultValue}
       />
     </Form.Item>
   )

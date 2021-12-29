@@ -1,31 +1,29 @@
-import { CSSProperties, useState } from 'react'
-import { Modal, Space, Col, Row, Input, Divider } from 'antd'
+import { useState, CSSProperties } from 'react'
+import { Modal, Space, Col, Row, Divider, FormInstance } from 'antd'
+
 import ModalTab from '../ProjectsDetail/ModalTab'
+import { normalizeHandle } from '../../utils/formatHandle'
+import { FormItems } from '../shared/formItems'
+import { ProjectFormFields } from '../Create/ProjectForm'
+import { ProjectMetadataV3 } from '../../models/project-metadata'
 
 export default function DetailSettingpopupModal({
+  form,
   visible,
+  handle,
+  metadata,
   onSuccess,
   onCancel,
 }: {
+  form: FormInstance<ProjectFormFields>
+  metadata?: ProjectMetadataV3
+  handle?: string
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
 }) {
   const [loading] = useState<boolean>()
-  const InputStyle: CSSProperties = {
-    width: '95%',
-    height: '42px',
-    borderRadius: '5px',
-    border: '2px solid #bdc1e4',
-    padding: '0 15px',
-  }
-  const TextAreaStyle: CSSProperties = {
-    width: '95%',
-    height: '100px',
-    borderRadius: '5px',
-    border: '2px solid #bdc1e4',
-    padding: '5px 15px',
-  }
+  console.log(metadata)
   const DividerStyle: CSSProperties = {
     color: '#D3DCEE',
     margin: 0,
@@ -33,7 +31,8 @@ export default function DetailSettingpopupModal({
     borderTopColor: '#D3DCEE',
     paddingRight: '15px',
   }
-  const { TextArea } = Input
+  // const { TextArea } = Input
+  if (!metadata) return null
   return (
     <Modal
       title={'Edit Appearance'}
@@ -50,6 +49,7 @@ export default function DetailSettingpopupModal({
         direction="vertical"
         size="large"
         style={{ width: '100%', paddingTop: 0, gap: '10px' }}
+        className="ModalForm"
       >
         <ModalTab
           textFirst={'Changes will be applied to the'}
@@ -57,52 +57,64 @@ export default function DetailSettingpopupModal({
           textLast={'funding cycle.'}
         />
         <Row gutter={16}>
-          <Col span={12}>
+          <Col span={12} style={{ height: '100px' }}>
             <Divider orientation="right" style={DividerStyle}>
               Basic information
             </Divider>
-            <p>
-              Project name
-              <span style={{ color: '#FE5164', marginLeft: '3px' }}>*</span>
-            </p>
-            <Input style={InputStyle} placeholder="Project name" />
+            <FormItems.ProjectName
+              name="name"
+              formItemProps={{
+                rules: [{ required: true }],
+              }}
+              defaultValue={metadata.name}
+              onChange={name => {
+                const val = name ? normalizeHandle(name) : ''
+                form.setFieldsValue({ handle: val })
+              }}
+            />
           </Col>
-          <Col span={12}>
+          <Col span={12} style={{ height: '100px' }}>
             <Divider orientation="right" style={DividerStyle}>
               Project Social
             </Divider>
-            <p>Project Website</p>
-            <Input style={InputStyle} placeholder="http://" />
+            <FormItems.ProjectLink
+              name="infoUri"
+              defaultValue={metadata.infoUri}
+            />
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={12} style={{ height: '100px' }}>
+            <FormItems.ProjectHandleFormItem
+              name="handle"
+              defaultValue={handle}
+              initialValue={form.getFieldValue('handle')}
+              requireState="notExist"
+              formItemProps={{
+                dependencies: ['name'],
+              }}
+              required
+            />
+          </Col>
+          <Col span={12} style={{ height: '100px' }}>
+            <FormItems.ProjectTwitter
+              name="twitter"
+              defaultValue={metadata.twitter}
+            />
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <p>
-              Unique handle
-              <span style={{ color: '#FE5164', marginLeft: '3px' }}>*</span>
-            </p>
-            <Input style={InputStyle} prefix="@" placeholder="Unique handle" />
-          </Col>
-          <Col span={12}>
-            <p>Twitter</p>
-            <Input style={InputStyle} prefix="@" placeholder="Unique handle" />
-          </Col>
-        </Row>
-        <Row gutter={16}>
-          <Col span={12}>
-            <p>Project description</p>
-            <TextArea
-              rows={4}
-              style={TextAreaStyle}
-              placeholder="Utopians dao"
+            <FormItems.ProjectDescription
+              name="description"
+              defaultValue={metadata.description}
             />
           </Col>
           <Col span={12}>
-            <p>Discord</p>
-            <Input style={InputStyle} placeholder="http:// discord.gg/ XXX" />
-            <div style={{ fontSize: '12px', color: '#5F5E61', width: '95%' }}>
-              An invite link to your project's Discord server.
-            </div>
+            <FormItems.ProjectDiscord
+              name="discord"
+              defaultValue={metadata.discord}
+            />
             <Divider
               orientation="right"
               style={{
@@ -119,16 +131,16 @@ export default function DetailSettingpopupModal({
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <p>Pay disclosure </p>
-            <TextArea rows={4} style={TextAreaStyle} />
+            <FormItems.ProjectPayDisclosure
+              name="payDisclosure"
+              defaultValue={metadata.payDisclosure}
+            />
           </Col>
           <Col span={12}>
-            <p>Pay button text</p>
-            <Input style={InputStyle} placeholder="http:// discord.gg/ XXX" />
-            <div style={{ fontSize: '12px', color: '#5F5E61', width: '95%' }}>
-              Text displayed on your project's "pay" button. Leave this blank to
-              use the default.
-            </div>
+            <FormItems.ProjectPayButton
+              name="payButton"
+              defaultValue={metadata.payButton}
+            />
           </Col>
         </Row>
       </Space>

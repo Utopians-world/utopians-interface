@@ -1,9 +1,29 @@
-import React from 'react'
-import { Space } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Col, Row, Space } from 'antd'
 
 import TipInfo from '../icons/TipInfo'
+import { ProjectContext } from '../../contexts/projectContext'
+import { formatWad } from '../../utils/formatNumber'
+import { hasFundingTarget } from '../../utils/fundingCycle'
+import DetailBalance from './DetailBalance'
+import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
+import DetailEdit from '../icons/DetailEdit'
 
 export default function Reserved() {
+  const { balanceInCurrency, owner, currentFC, currentPayoutMods } =
+    useContext(ProjectContext)
+  const [DetailEditReservesVisible, setDetailEditReservesVisible] =
+    useState<boolean>(false)
+
+  if (!currentFC) return null
+
+  const untapped = currentFC.target.sub(currentFC.tapped)
+
+  console.log(currentPayoutMods)
+
+  const withdrawable = balanceInCurrency?.gt(untapped)
+    ? untapped
+    : balanceInCurrency
   return (
     <div
       style={{
@@ -11,7 +31,15 @@ export default function Reserved() {
         marginTop: '20px',
       }}
     >
-      <h2>Reserved JBX (35%)</h2>
+      <h2>
+        Reserved JBX (35%)
+        <span
+          className="editIcon"
+          onClick={() => setDetailEditReservesVisible(true)}
+        >
+          <DetailEdit />
+        </span>
+      </h2>
       <div
         style={{
           border: '1px solid #D3DCEE',
@@ -19,20 +47,14 @@ export default function Reserved() {
           padding: '15px 15px',
         }}
       >
-        <div
+        <Row
           style={{
-            display: 'flex',
-            justifyContent: 'center',
             borderBottom: '1px dashed #665FAC',
             padding: '0 20px',
             paddingBottom: '20px',
           }}
         >
-          <div
-            style={{
-              width: '25%',
-            }}
-          >
+          <Col span={6}>
             <Space>
               <div
                 style={{
@@ -50,12 +72,8 @@ export default function Reserved() {
             </Space>
             <div style={{ fontWeight: 'bold' }}>Withdraw</div>
             <div style={{ fontWeight: 'bold' }}>Owner balance</div>
-          </div>
-          <div
-            style={{
-              width: '45%',
-            }}
-          >
+          </Col>
+          <Col span={10}>
             <div
               style={{
                 fontWeight: 'bold',
@@ -63,19 +81,27 @@ export default function Reserved() {
                 marginBottom: '5px',
               }}
             >
-              $590,494
+              {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
             </div>
-            <div>$ 555454545/4545345</div>
-            <div>22,398,439 </div>
-          </div>
-          <div
-            style={{
-              width: '30%',
-            }}
-          >
-            <div className={'button-spec'}>DISTRIBUTE</div>
-          </div>
-        </div>
+            <div>
+              {formatWad(currentFC.tapped, { decimals: 4 }) || '0'}
+              {hasFundingTarget(currentFC) && (
+                <span>/{formatWad(currentFC.target, { decimals: 4 })} </span>
+              )}{' '}
+            </div>
+            <div>
+              <DetailBalance address={owner} />
+            </div>
+          </Col>
+          <Col span={8}>
+            <div
+              className={'button-spec'}
+              onClick={() => setDetailEditReservesVisible(true)}
+            >
+              DISTRIBUTE
+            </div>
+          </Col>
+        </Row>
         <div>
           <Space style={{ padding: '15px 20px' }}>
             <div
@@ -133,6 +159,12 @@ export default function Reserved() {
           </div>
         </div>
       </div>
+      <DetailEditReservedTokensModal
+        visible={DetailEditReservesVisible}
+        onSuccess={() => setDetailEditReservesVisible(false)}
+        onCancel={() => setDetailEditReservesVisible(false)}
+        // fundingCycle={currentFC}
+      />
     </div>
   )
 }

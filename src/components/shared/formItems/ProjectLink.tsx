@@ -6,6 +6,7 @@ export default function ProjectLink({
   name,
   hideLabel,
   formItemProps,
+  defaultValue,
 }: FormItemExt) {
   return (
     <Form.Item
@@ -18,6 +19,7 @@ export default function ProjectLink({
         placeholder="https://your-project.com"
         type="string"
         autoComplete="off"
+        defaultValue={defaultValue}
       />
     </Form.Item>
   )

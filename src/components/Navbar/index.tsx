@@ -78,6 +78,7 @@ export default function Navbar() {
         justifyContent: 'space-between',
         alignItems: 'center',
         height: '80px',
+        lineHeight: '80px',
         zIndex: 999,
         // opacity: '0.84',
         background: 'linear-gradient(163deg, #400AFF 0%, #000000 30%)',

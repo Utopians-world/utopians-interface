@@ -88,7 +88,6 @@ export default function Home() {
       <p>{text}</p>
     </div>
   )
-
   return (
     <div className="homeWrapper">
       <section style={section} className="firstSection">
@@ -259,7 +258,6 @@ export default function Home() {
           </Row>
         </div>
       </section>
-
       <section
         style={{
           ...section,
@@ -276,7 +274,7 @@ export default function Home() {
           <Row gutter={60}>
             <Col xs={24} md={24} style={{ marginBottom: 100 }}>
               {smallHeader('Projects in utopains world', 'projectTitle')}
-              <div style={{ marginTop: 20 }}>
+              <div style={{ margin: '20px auto 0', maxWidth: '980px' }}>
                 {previewProjects ? (
                   <ProjectsGrid projects={previewProjects} list />
                 ) : (

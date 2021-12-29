@@ -1,9 +1,44 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Space } from 'antd'
 
 import TipInfo from '../icons/TipInfo'
+import useContractReader from '../../hooks/ContractReader'
+import { BigNumber } from '@ethersproject/bignumber'
+import { ContractName } from '../../models/contract-name'
+import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
+import { ProjectContext } from '../../contexts/projectContext'
+import { decodeFCMetadata, hasFundingTarget } from '../../utils/fundingCycle'
+import { formatWad } from '../../utils/formatNumber'
+import DetailEdit from '../icons/DetailEdit'
+import DetailIncentivesModal from '../modals/DetailIncentivesModal'
+import DetailIssueModal from '../modals/DetailIssueModal'
+import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 
 export default function JBXToken() {
+  const { projectId, currentFC } = useContext(ProjectContext)
+  const [DetailIssueVisible, setDetailIssueVisible] = useState<boolean>(false)
+  const [DetailIncentiveVisible, setDetailIncentiveVisible] =
+    useState<boolean>(false)
+
+  const metadata = decodeFCMetadata(currentFC?.metadata)
+  const editingFC = useEditingFundingCycleSelector()
+  const reservedTicketBalance = useContractReader<BigNumber>({
+    contract: ContractName.TerminalV1,
+    functionName: 'reservedTicketBalanceOf',
+    args:
+      projectId && metadata?.reservedRate
+        ? [projectId, metadata.reservedRate]
+        : null,
+    valueDidChange: bigNumbersDiff,
+  })
+
+  const totalSupply = useContractReader<BigNumber>({
+    contract: ContractName.TicketBooth,
+    functionName: 'totalSupplyOf',
+    args: projectId ? [projectId?.toHexString()] : null,
+    valueDidChange: bigNumbersDiff,
+  })?.add(reservedTicketBalance ? reservedTicketBalance : BigNumber.from(0))
+
   return (
     <div
       style={{
@@ -12,9 +47,15 @@ export default function JBXToken() {
       }}
     >
       <Space>
-        <h2>JBX Token</h2>
+        <h2>Token</h2>
         <div style={{ paddingBottom: '2px' }}>
           <TipInfo size={15} />
+          <span
+            className="editIcon"
+            onClick={() => setDetailIssueVisible(true)}
+          >
+            <DetailEdit />
+          </span>
         </div>
       </Space>
       <div
@@ -41,7 +82,7 @@ export default function JBXToken() {
         >
           <div>0x9329582…..f3434242</div>
           <div>
-            22,398,439
+            {formatWad(totalSupply, { decimals: 0 })}
             <span style={{ fontWeight: 'bold' }}> JBX</span>
           </div>
         </div>
@@ -50,9 +91,35 @@ export default function JBXToken() {
             width: '30%',
           }}
         >
-          <div className={'button-spec'}>SHOW HOLDER</div>
+          <div
+            className={'button-spec'}
+            onClick={() => setDetailIncentiveVisible(true)}
+          >
+            SHOW HOLDER
+          </div>
         </div>
       </div>
+      <DetailIncentivesModal
+        // form={projectForm}
+        disableDiscountRate={
+          editingFC.duration.eq(0)
+            ? 'Discount rate disabled while funding cycle duration is 0.'
+            : undefined
+        }
+        disableBondingCurve={
+          !hasFundingTarget(editingFC)
+            ? 'Bonding curve disabled while no funding target is set.'
+            : undefined
+        }
+        visible={DetailIssueVisible}
+        onSuccess={() => setDetailIssueVisible(false)}
+        onCancel={() => setDetailIssueVisible(false)}
+      />
+      <DetailIssueModal
+        visible={DetailIncentiveVisible}
+        onSuccess={() => setDetailIncentiveVisible(false)}
+        onCancel={() => setDetailIncentiveVisible(false)}
+      />
     </div>
   )
 }

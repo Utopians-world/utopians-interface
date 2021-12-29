@@ -1,9 +1,52 @@
-import React, { CSSProperties } from 'react'
-import { Col, Row, Slider, Space } from 'antd'
+import React, { CSSProperties, useContext, useState } from 'react'
+import { Col, Row, Slider, Space, Tooltip } from 'antd'
 
 import TipInfo from '../icons/TipInfo'
+import { ProjectContext } from '../../contexts/projectContext'
+import { formatWad, fromWad, parseWad } from '../../utils/formatNumber'
+import { BigNumber } from '@ethersproject/bignumber'
+import CurrencySymbol from '../shared/CurrencySymbol'
+import { useCurrencyConverter } from '../../hooks/CurrencyConverter'
+import { useEthBalanceQuery } from '../../hooks/EthBalance'
+import DetailEdit from '../icons/DetailEdit'
+import DetailEditFundingModal from '../modals/DetailEditFundingModal'
 
 export default function FundOverview() {
+  const { projectId, currentFC, balanceInCurrency, balance, owner, earned } =
+    useContext(ProjectContext)
+  const [DetailEditFundingVisible, setDetailEditFundingVisible] =
+    useState<boolean>(false)
+  const converter = useCurrencyConverter()
+
+  const { data: ownerBalance } = useEthBalanceQuery(owner)
+
+  if (!currentFC) return null
+
+  const formatCurrencyAmount = (amt: BigNumber | undefined) =>
+    amt ? (
+      <>
+        {currentFC.currency.eq(1) ? (
+          <span>
+            <Tooltip
+              title={
+                <span>
+                  <CurrencySymbol currency={0} />
+                  {formatWad(converter.usdToWei(fromWad(amt)), {
+                    decimals: 2,
+                    padEnd: true,
+                  })}
+                </span>
+              }
+            >
+              {formatWad(amt, { decimals: 2, padEnd: true })}
+            </Tooltip>
+          </span>
+        ) : (
+          <span>{formatWad(amt, { decimals: 2, padEnd: true })}</span>
+        )}
+      </>
+    ) : null
+
   const NumberTotal: CSSProperties = {
     color: '#00DAC5',
     textShadow: '0px 5px 6px #9EFFF1',
@@ -11,6 +54,7 @@ export default function FundOverview() {
     margin: 0,
     lineHeight: '20px',
   }
+  if (!projectId) return null
   const inputValue = 1
   function onChange() {}
   return (
@@ -20,7 +64,15 @@ export default function FundOverview() {
         marginTop: '20px',
       }}
     >
-      <h2>Fund Overview</h2>
+      <h2>
+        Fund Overview
+        <span
+          className="editIcon"
+          onClick={() => setDetailEditFundingVisible(true)}
+        >
+          <DetailEdit />
+        </span>
+      </h2>
       <div
         style={{
           background: '#edf1f9',
@@ -48,7 +100,11 @@ export default function FundOverview() {
                 <TipInfo size={15} />
               </div>
             </Space>
-            <h2 style={NumberTotal}>1998,45</h2>
+            <h2 style={NumberTotal}>
+              {earned?.lt(parseWad('1')) && earned.gt(0)
+                ? '<1'
+                : formatWad(earned, { decimals: 0 })}
+            </h2>
           </div>
           <div
             style={{
@@ -58,8 +114,12 @@ export default function FundOverview() {
             }}
           >
             <h4>In Utopians</h4>
-            <h2 style={NumberTotal}>1998,45</h2>
-            <h4 style={{ color: '#9092A7' }}>3,456</h4>
+            <h2 style={NumberTotal}>
+              {formatWad(balance, { decimals: 2, padEnd: true })}
+            </h2>
+            <h4 style={{ color: '#9092A7' }}>
+              {formatCurrencyAmount(balanceInCurrency)}
+            </h4>
           </div>
           <div style={{ width: '40%', paddingLeft: '30px' }}>
             <div style={{ height: '29px' }}>
@@ -79,12 +139,12 @@ export default function FundOverview() {
                   lineHeight: '20px',
                 }}
               >
-                1998,45
+                {formatWad(owner, { decimals: 0 })}
               </h2>
               <div
                 style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
               >
-                + 0 JBX
+                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} JBX
               </div>
             </div>
           </div>
@@ -113,7 +173,8 @@ export default function FundOverview() {
             }}
           >
             {' '}
-            $199,450 / $199,450
+            {formatCurrencyAmount(currentFC.tapped)} /{' '}
+            {formatCurrencyAmount(currentFC.target)}
           </h2>
           <Row style={{ margin: '5px 0' }}>
             <Col span={18}>
@@ -127,6 +188,12 @@ export default function FundOverview() {
           </Row>
         </div>
       </div>
+      <DetailEditFundingModal
+        visible={DetailEditFundingVisible}
+        onSuccess={() => setDetailEditFundingVisible(false)}
+        onCancel={() => setDetailEditFundingVisible(false)}
+        // fundingCycle={currentFC}
+      />
     </div>
   )
 }

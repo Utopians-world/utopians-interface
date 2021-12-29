@@ -6,6 +6,7 @@ export default function ProjectTwitter({
   name,
   hideLabel,
   formItemProps,
+  defaultValue,
 }: FormItemExt) {
   return (
     <Form.Item
@@ -19,6 +20,7 @@ export default function ProjectTwitter({
         placeholder="juiceboxETH"
         type="string"
         autoComplete="off"
+        defaultValue={defaultValue}
       />
     </Form.Item>
   )

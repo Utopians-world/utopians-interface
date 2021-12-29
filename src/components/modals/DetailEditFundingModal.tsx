@@ -1,6 +1,10 @@
 import { CSSProperties, useState } from 'react'
 import { Modal, Space, Switch, Input, Select, Divider } from 'antd'
 import ModalTab from '../ProjectsDetail/ModalTab'
+import { fromWad } from '../../utils/formatNumber'
+import { constants } from 'ethers'
+// import {FormItems} from "../shared/formItems";
+// import {UserContext} from "../../contexts/userContext";
 
 export default function DetailEditFundingModal({
   visible,
@@ -18,6 +22,11 @@ export default function DetailEditFundingModal({
     justifyContent: 'left',
   }
   const { Option } = Select
+  const [target, setTarget] = useState<string>('0')
+  const [showFundingFields, setShowFundingFields] = useState<boolean>()
+  const [showFundingDuration, setShowFundingDuration] = useState<boolean>()
+  const maxIntStr = fromWad(constants.MaxUint256)
+  // const { adminFeePercent } = useContext(UserContext)
 
   const selectAfter = (
     <Select defaultValue="ETH" className="select-after">
@@ -79,40 +88,69 @@ export default function DetailEditFundingModal({
             </p>
           </div>
           <div style={{ width: '20%', textAlign: 'right', paddingTop: '10px' }}>
-            <Switch />
+            <Switch
+              className="switchFormItemSwitch"
+              checked={showFundingFields}
+              onChange={checked => {
+                setTarget(checked ? '10000' : maxIntStr || '0')
+                setShowFundingFields(checked)
+              }}
+            />
           </div>
         </div>
         <div>
-          <div>
-            <p
-              style={{
-                width: '50%',
-                float: 'left',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                height: '30px',
-                lineHeight: '30px',
-              }}
-            >
-              Funding target{' '}
+          {showFundingFields && (
+            <div>
+              <p
+                style={{
+                  width: '50%',
+                  float: 'left',
+                  fontWeight: 'bold',
+                  fontSize: '14px',
+                  height: '30px',
+                  lineHeight: '30px',
+                }}
+              >
+                Funding target{' '}
+              </p>
+              <p
+                style={{
+                  width: '50%',
+                  float: 'left',
+                  textAlign: 'right',
+                  fontWeight: 'bold',
+                  fontSize: '19px',
+                }}
+              >
+                $0 after 0% JBX
+              </p>
+            </div>
+          )}
+          {target === maxIntStr && (
+            <p className="stepExplain">
+              No target: All funds can be distributed by the project, and the
+              project will have no overflow. (This is the same as setting the
+              target to infinity.)
             </p>
-            <p
-              style={{
-                width: '50%',
-                float: 'left',
-                textAlign: 'right',
-                fontWeight: 'bold',
-                fontSize: '19px',
-              }}
-            >
-              $0 after 0% JBX
-            </p>
-          </div>
-          <Input bordered={false} addonAfter={selectAfter} />
-          <p style={{ color: '#5F5E61' }}>
-            If target is 0: No funds can be distributed by the project, and the
-            project's entire balance will be considered overflow.
-          </p>
+          )}
+
+          {showFundingFields && (
+            <div>
+              <Input bordered={false} addonAfter={selectAfter} />
+              <p style={{ color: '#5F5E61' }}>
+                If target is 0: No funds can be distributed by the project, and
+                the project's entire balance will be considered overflow.
+              </p>
+            </div>
+          )}
+
+          {/*{showFundingFields && (*/}
+          {/*  <p className="stepExplain">*/}
+          {/*    If target is 0: No funds can be distributed by the project, and the*/}
+          {/*    project's entire balance will be considered overflow.*/}
+          {/*  </p>*/}
+          {/*)}*/}
+
           <Divider orientation="right" style={DividerStyle}>
             Duration
           </Divider>
@@ -129,28 +167,42 @@ export default function DetailEditFundingModal({
             </p>
           </div>
           <div style={{ width: '20%', textAlign: 'right', paddingTop: '10px' }}>
-            <Switch />
+            <Switch
+              className="switchFormItemSwitch"
+              checked={showFundingDuration}
+              onChange={checked => {
+                setShowFundingDuration(checked)
+              }}
+            />
           </div>
         </div>
-        <div>
-          <p
-            style={{
-              fontWeight: 'bold',
-              fontSize: '14px',
-              height: '30px',
-              lineHeight: '30px',
-            }}
-          >
-            Funding period
-          </p>
-          <div className={'long-input'}>
-            <Input bordered={false} addonAfter={periodAfter} />
+        {showFundingDuration && (
+          <div>
+            <p
+              style={{
+                fontWeight: 'bold',
+                fontSize: '14px',
+                height: '30px',
+                lineHeight: '30px',
+              }}
+            >
+              Funding period
+            </p>
+            <div className={'long-input'}>
+              <Input bordered={false} addonAfter={periodAfter} />
+            </div>
+            <p style={{ color: '#5F5E61' }}>
+              If target is 0: No funds can be distributed by the project, and
+              the project's entire balance will be considered overflow.
+            </p>
           </div>
+        )}
+        {!showFundingDuration && (
           <p style={{ color: '#5F5E61' }}>
             If target is 0: No funds can be distributed by the project, and the
             project's entire balance will be considered overflow.
           </p>
-        </div>
+        )}
       </Space>
     </Modal>
   )

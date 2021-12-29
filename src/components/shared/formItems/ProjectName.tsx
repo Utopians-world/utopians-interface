@@ -7,6 +7,7 @@ export default function ProjectName({
   hideLabel,
   formItemProps,
   onChange,
+  defaultValue,
 }: { onChange?: (val?: string) => void } & FormItemExt) {
   return (
     <Form.Item
@@ -19,6 +20,7 @@ export default function ProjectName({
         type="string"
         autoComplete="off"
         onChange={onChange ? e => onChange(e.target.value) : undefined}
+        defaultValue={defaultValue}
       />
     </Form.Item>
   )

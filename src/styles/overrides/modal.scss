@@ -1,8 +1,23 @@
+@mixin stepLabel {
+    font-size: 14px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    color: #1C1C20;
+    line-height: 14px;
+    width: 100%;
+}
+@mixin stepExplain {
+    font-size: 13px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #5F5E61;
+    line-height: 18px;
+}
 .ant-modal-content {
   background: #ffffff;
 }
 .ant-layout-content{
-    background: #ffffff;
+    background: #F6F8FF;
 }
 .ant-modal-header {
     background: #ffffff;
@@ -17,12 +32,7 @@
     padding-top: 0;
     padding-bottom: 0
 }
-.ant-col-12 p {
-    margin-bottom: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: "TeXGyreAdventor-Bold";
-}
+
 div, button, a {
     font-family: "TeXGyreAdventor-Bold";
 }
@@ -112,6 +122,11 @@ input::-webkit-input-placeholder {
     border: 2px solid #bdc1e4;
     padding: 0 15px;
 }
+.stepNumberInput .ant-input-number-input{
+    border: none;
+    background: none;
+}
+
 .ant-input-number{
     border: none;
 }
@@ -142,5 +157,128 @@ input::-webkit-input-placeholder {
     color: #2C1BD7;
     font-weight: bold;
     float: right;
+    cursor: pointer;
+}
+.ant-collapse-item{
+    border: none;
+}
+.ModalForm{
+    .ant-form-item-label > label {
+        @include stepLabel;
+    }
+
+    .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+        display: inline-block;
+        margin-left: 4px;
+        color: #FE5164;
+        font-size: 14px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        line-height: 1;
+        content: '*';
+    }
+    .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before, .ant-form-hide-required-mark .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+        display: none;
+    }
+    .ant-form-item-label{
+        width: 100%;
+    }
+
+    .ant-input {
+        width: 95%;
+        height: 42px;
+        border-radius: 5px;
+        border: 2px solid #bdc1e4;
+        padding: 0 15px;
+    }
+    .ant-input-number-input {
+        width: 95%;
+        height: 42px;
+        border-radius: 5px;
+        border: 2px solid #bdc1e4;
+        padding: 0 15px;
+    }
+    .ant-input-affix-wrapper .ant-input:hover, .ant-input-number {
+        border: none;
+        box-shadow: none;
+    }
+    .ant-input:hover {
+        box-shadow: 0px 2px 4px 0px rgba(58, 31, 245, 0.31);
+        border: 1px solid #8372F9;
+    }
+    .ant-input-affix-wrapper{
+        width: 95%;
+        height: 42px;
+        border-radius: 5px;
+        border: 2px solid #bdc1e4;
+        padding: 0 15px;
+    }
+    .ant-input-affix-wrapper input{
+        height: 37px;
+        padding-left: 3px;
+    }
+    .ant-col-12{
+        height: 140px;
+    }
+    .ant-form-item-extra{
+        font-size: 12px;
+        font-weight: bold;
+    }
+    #description{
+        height: 100px;
+        padding: 10px 20px;
+    }
+    #payDisclosure{
+        height: 100px;
+        padding: 10px 20px;
+    }
+}
+
+.editRule{
+    border: 2px solid #bdc1e4;
+    width: 95%;
+    height: 140px;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: left;
+    background: #fdfeff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.payoutModel .stepAddPayout{
+    border: 1px dashed rgb(102, 95, 172);
+}
+.ReservedModal{
+    .ant-slider{
+        margin-bottom: 20px;
+    }
+    .ant-slider-step{
+        background: #00acbf;
+    }
+    .stepAddPayout{
+        border: 1px dashed rgb(102, 95, 172);
+        margin: 20px 0 5px 0;
+    }
+}
+.IncentivesModalLeft {
+    .ant-slider{
+        margin-bottom: 70px;
+    }
+    .ant-slider-step{
+        background: #e3e3e3;
+    }
+}
+.IncentivesModalRight {
+    .ant-slider{
+        margin-bottom: 28px;
+    }
+    .ant-slider-step{
+        background: #e3e3e3;
+    }
+}
+
+.editIcon{
+    margin-left: 10px;
     cursor: pointer;
 }

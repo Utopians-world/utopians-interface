@@ -1,5 +1,5 @@
 import { Button, Select, Space, Tooltip } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
+import { InfoCircleFilled, CaretDownOutlined } from '@ant-design/icons'
 import Loading from 'components/shared/Loading'
 import ProjectsGrid from 'components/shared/ProjectsGrid'
 
@@ -8,7 +8,8 @@ import { useInfiniteProjectsQuery } from 'hooks/Projects'
 import { ProjectState } from 'models/project-visibility'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 
-import { layouts } from 'constants/styles/layouts'
+// import { layouts } from 'constants/styles/layouts'
+import './index.scss'
 
 type OrderByOption = 'createdAt' | 'totalPaid'
 
@@ -66,19 +67,20 @@ export default function Projects() {
       style={{
         textTransform: 'uppercase',
         cursor: 'pointer',
-        borderBottom: '2px solid transparent',
-        paddingBottom: 6,
+        borderBottom: '5px solid transparent',
         ...(tab === selectedTab
           ? {
-              color: colors.text.primary,
-              fontWeight: 500,
-              borderColor: colors.text.primary,
+              color: '#303030',
+              borderImageSource:
+                'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
+              borderImageSlice: 1,
             }
           : {
-              color: colors.text.secondary,
+              color: '#5F5E61',
               borderColor: 'transparent',
             }),
       }}
+      className="proTab"
       onClick={() => setSelectedTab(tab)}
     >
       {tab}
@@ -86,86 +88,107 @@ export default function Projects() {
   )
 
   return (
-    <div style={{ ...layouts.maxWidth }}>
-      <h1>Projects on Juicebox</h1>
-      <p style={{ marginBottom: 40, maxWidth: 800 }}>
-        <InfoCircleOutlined /> The Juicebox protocol is open to anyone, and
-        project configurations can vary widely. There are risks associated with
-        interacting with all projects on the protocol. Projects built on the
-        protocol are not endorsed or vetted by JuiceboxDAO, so you should do
-        your own research and understand the risks before committing your funds.
-      </p>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          flexWrap: 'wrap',
-          marginBottom: 40,
-        }}
-      >
-        <div style={{ height: 40 }}>
-          <Space direction="horizontal" size="large">
-            {tab('active')}
-            {tab('archived')}
-          </Space>
+    <div className="proWrapper">
+      <div className="firstWrapper">
+        <div
+          style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}
+        >
+          <h1 className="firstTitle">project in UTOPIANS</h1>
+          <p style={{ maxWidth: 900 }} className="firstDes">
+            he utopians protocol is open to anyone, and project configurations
+            can vary widely. There are risks associated with interacting with
+            all projects on the protocol. Projects built on the protocol are not
+            endorsed or vetted by utopians DAO, so you should do your own
+            research and understand the risks before committing your funds.
+          </p>
         </div>
-
-        <div>
-          <Space direction="horizontal">
-            <Select
-              value={orderBy}
-              onChange={setOrderBy}
-              style={{ width: 120 }}
-            >
-              <Select.Option value="totalPaid">Volume</Select.Option>
-              <Select.Option value="createdAt">Created</Select.Option>
-            </Select>
-            <a href="/#/create" style={{ marginLeft: 10 }}>
-              <Button>New project</Button>
-            </a>
-          </Space>
+        <div className="firstWrapperBottom">
+          <a href="/#/create">
+            <Button className="createProBtn">+ BULD PROJECT</Button>
+          </a>
         </div>
       </div>
+      <div className="secondWrapper">
+        <div className="secondSelectCon">
+          <div style={{ borderBottom: '3px solid #DFE7FF' }}>
+            <Space direction="horizontal" size={37}>
+              {tab('active')}
+              {tab('archived')}
+            </Space>
+          </div>
 
-      {selectedTab === 'archived' && (
-        <p style={{ marginBottom: 40, maxWidth: 800 }}>
-          <InfoCircleOutlined /> Archived projects have not been modified or
-          deleted on the blockchain, and can still be interacted with directly
-          through the Juicebox contracts.{' '}
-          <Tooltip title="If you have a project you'd like to archive, let the Juicebox team know in Discord.">
-            <span
-              style={{
-                color: colors.text.action.primary,
-                fontWeight: 500,
-                cursor: 'default',
-              }}
-            >
-              How do I archive a project?
-            </span>
-          </Tooltip>
-        </p>
-      )}
-
-      {concatenatedPages && <ProjectsGrid projects={concatenatedPages} />}
-      {(isLoading || isFetchingNextPage) && <Loading />}
-
-      {/* Place a div below the grid that we can connect to an intersection observer */}
-      <div ref={loadMoreContainerRef} />
-
-      {hasNextPage && !isFetchingNextPage && (
-        <div
-          role="button"
-          style={{
-            textAlign: 'center',
-            color: colors.text.secondary,
-            cursor: 'pointer',
-          }}
-          onClick={() => fetchNextPage()}
-        >
-          Load more
+          <div>
+            <Space direction="horizontal">
+              <Select
+                value={orderBy}
+                onChange={setOrderBy}
+                style={{
+                  width: 211,
+                  border: '1px solid #7C85CB',
+                  borderRadius: '4px',
+                }}
+                suffixIcon={<CaretDownOutlined style={{ color: '#2713E1' }} />}
+              >
+                <Select.Option value="totalPaid">Volume</Select.Option>
+                <Select.Option value="createdAt">Created</Select.Option>
+              </Select>
+            </Space>
+          </div>
         </div>
-      )}
+
+        {selectedTab === 'archived' && (
+          <p className="archivedNote">
+            <InfoCircleFilled
+              style={{
+                color: 'rgba(1, 1, 1, 0.64)',
+                fontSize: '27px',
+                marginRight: '32px',
+              }}
+            />
+            <span>
+              Archived projects have not been modified or deleted on the
+              blockchain, and can still be interacted with directly through the
+              Juicebox contracts.{' '}
+              <Tooltip title="If you have a project you'd like to archive, let the Juicebox team know in Discord.">
+                <span
+                  style={{
+                    color: colors.text.action.primary,
+                    fontWeight: 500,
+                    cursor: 'default',
+                  }}
+                >
+                  How do I archive a project?
+                </span>
+              </Tooltip>
+            </span>
+          </p>
+        )}
+
+        {concatenatedPages && (
+          <ProjectsGrid
+            projects={concatenatedPages}
+            selectedtab={selectedTab}
+          />
+        )}
+        {(isLoading || isFetchingNextPage) && <Loading />}
+
+        {/* Place a div below the grid that we can connect to an intersection observer */}
+        <div ref={loadMoreContainerRef} />
+
+        {hasNextPage && !isFetchingNextPage && (
+          <div
+            role="button"
+            style={{
+              textAlign: 'center',
+              color: colors.text.secondary,
+              cursor: 'pointer',
+            }}
+            onClick={() => fetchNextPage()}
+          >
+            Load more
+          </div>
+        )}
+      </div>
     </div>
   )
 }

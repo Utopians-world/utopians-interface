@@ -1,0 +1,74 @@
+@import '../../styles/common.scss';
+.proWrapper {
+  width: 100%;
+  @include centerLayout;
+
+  & .firstWrapper {
+    padding:50px 0 0 0;
+    width: 100%;
+    height: 376px;
+    display: flex;
+    flex-flow: column wrap;
+    background: linear-gradient(233deg, rgba(60, 48, 255, 0.68) 0%, rgba(0, 4, 255, 0.68) 42%, rgba(0, 255, 243, 0.68) 100%),linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+  }
+  & .firstWrapperBottom {
+    flex: 1 1 auto;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(246, 248, 255, 0) 0%, #F6F8FF 86%, #F6F8FF 100%);
+  }
+  
+  & .firstTitle {
+    @include topTitle;
+  }
+
+  & .firstDes {
+    margin: 14px auto 22px;
+    @include defaultDes;
+  }
+
+  & .secondWrapper {
+    @include centerLayout;
+    background-color: #F6F8FF;
+    width: 100%;
+    max-width: 1440px;
+
+    & .secondSelectCon{
+      @include betweenLayout;
+      width: 100%;
+      max-width: 980px;
+      & .proTab {
+        font-size: 22px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: #303030;
+        min-width: 170px;
+        text-align: center;
+        line-height: 34px;
+      }
+    }
+
+    & .archivedNote {
+      margin-top: 24px;
+      padding: 20px 120px 20px 44px;
+      max-width: 980px;
+      background: rgba(58, 31, 245, 0.096);
+      border-radius: 13px;
+      @include flexCenter;
+
+      & span {
+        font-size: 12px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: 600;
+        color: rgba(36, 21, 21, 0.64);
+        line-height: 20px;
+      }
+    }
+  }
+
+  & .createProBtn {
+    width: 243px;
+    height: 53px;
+    color: #030303;
+    @include solidBtn;
+  }
+}

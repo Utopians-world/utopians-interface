@@ -1,7 +1,9 @@
-import { Button, Form, FormInstance, Space } from 'antd'
+import { Button, Form, FormInstance, Space, Divider } from 'antd'
 import { FormItems } from 'components/shared/formItems'
 import { normalizeHandle } from 'utils/formatHandle'
 import { cidFromUrl, unpinIpfsFileByCid } from 'utils/ipfs'
+
+import './index.scss'
 
 export type ProjectFormFields = {
   name: string
@@ -24,9 +26,15 @@ export default function ProjectForm({
 }) {
   return (
     <Space direction="vertical" size="large">
-      <h1>Appearance</h1>
+      <div className="stepTopCon">
+        <h1>Appearance</h1>
+        <h2>Project name, handle, links, and other details.</h2>
+        <Divider className="stepTopConDivider" orientation="right">
+          Basic information
+        </Divider>
+      </div>
 
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" className="stepFormCon">
         <FormItems.ProjectName
           name="name"
           formItemProps={{
@@ -48,10 +56,6 @@ export default function ProjectForm({
           required
         />
         <FormItems.ProjectDescription name="description" />
-        <FormItems.ProjectLink name="infoUri" />
-        <FormItems.ProjectTwitter name="twitter" />
-        <FormItems.ProjectDiscord name="discord" />
-        <FormItems.ProjectPayButton name="payButton" />
         <FormItems.ProjectPayDisclosure name="payDisclosure" />
         <FormItems.ProjectLogoUri
           name="logoUri"
@@ -63,10 +67,23 @@ export default function ProjectForm({
             if (prevUrl) unpinIpfsFileByCid(cidFromUrl(prevUrl))
           }}
         />
+        <Divider className="stepTopConDivider" orientation="right">
+          Project Social
+        </Divider>
+
+        <FormItems.ProjectLink name="infoUri" />
+        <FormItems.ProjectTwitter name="twitter" />
+        <FormItems.ProjectDiscord name="discord" />
+        <Divider className="stepTopConDivider" orientation="right">
+          Custom
+        </Divider>
+
+        <FormItems.ProjectPayButton name="payButton" />
         <Form.Item>
           <Button
             htmlType="submit"
             type="primary"
+            className="stepSaveBtn"
             onClick={async () => {
               await form.validateFields()
               onSave()

@@ -1,4 +1,8 @@
-import { CloseCircleOutlined, LockOutlined } from '@ant-design/icons'
+import {
+  CloseCircleOutlined,
+  LockOutlined,
+  PlusOutlined,
+} from '@ant-design/icons'
 import { Button, Col, DatePicker, Form, Modal, Row, Space } from 'antd'
 import { useForm } from 'antd/lib/form/Form'
 import { ThemeContext } from 'contexts/themeContext'
@@ -15,6 +19,8 @@ import { FormItems } from '.'
 import FormattedAddress from '../FormattedAddress'
 import NumberSlider from '../inputs/NumberSlider'
 import { FormItemExt } from './formItemExt'
+
+import DateIcon from '../../../assets/images/date-icon.png'
 
 export default function ProjectTicketMods({
   name,
@@ -36,32 +42,18 @@ export default function ProjectTicketMods({
   const { owner } = useContext(ProjectContext)
 
   const {
-    theme: { colors, radii },
+    theme: { colors },
   } = useContext(ThemeContext)
-
-  const gutter = 10
 
   const modInput = useCallback(
     (mod: TicketMod, index: number, locked?: boolean) => {
       if (!mods) return
 
       return (
-        <div
-          style={{
-            display: 'flex',
-            padding: 10,
-            border:
-              '1px solid ' +
-              (locked ? colors.stroke.disabled : colors.stroke.tertiary),
-            borderRadius: radii.md,
-          }}
-          key={mod.beneficiary ?? '' + index}
-        >
+        <div className="stepPayoutListCon" key={mod.beneficiary ?? '' + index}>
           <Space
-            direction="vertical"
             style={{
               width: '100%',
-              color: colors.text.primary,
               cursor: locked ? 'default' : 'pointer',
             }}
             onClick={() => {
@@ -79,7 +71,65 @@ export default function ProjectTicketMods({
               setEditingModIndex(index)
             }}
           >
-            <Row gutter={gutter} style={{ width: '100%' }} align="middle">
+            <Row justify="space-between">
+              <Col span="9">
+                <div
+                  className="stepPayoutListConItem"
+                  style={{ alignItems: 'center' }}
+                >
+                  <div>
+                    <small className="stepPayoutListConItemTitle">
+                      Percentage:
+                    </small>
+                    <div className="stepPayoutListConItemPercentage">
+                      {fromPermyriad(mod.percent)}%
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col flex="auto">
+                <div className="stepPayoutListConItem">
+                  <div>
+                    <small className="stepPayoutListConItemTitle">
+                      Address:
+                    </small>
+                    <div className="stepPayoutListConItemDes">
+                      <FormattedAddress address={mod.beneficiary} />
+                    </div>
+                  </div>
+
+                  {mod.lockedUntil ? (
+                    <div>
+                      <small className="stepPayoutListConItemTitle">
+                        Locked date
+                      </small>
+                      <div className="stepPayoutListConItemDes">
+                        {formatDate(mod.lockedUntil * 1000, 'MM-DD-yyyy')}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </Col>
+              <Col span="2" style={{ display: 'flex', alignItems: 'center' }}>
+                {locked ? (
+                  <LockOutlined style={{ color: colors.icon.disabled }} />
+                ) : (
+                  <Button
+                    type="text"
+                    onClick={e => {
+                      onModsChanged([
+                        ...mods.slice(0, index),
+                        ...mods.slice(index + 1),
+                      ])
+                      e.stopPropagation()
+                    }}
+                    icon={<CloseCircleOutlined style={{ color: '#7C85CB' }} />}
+                  />
+                )}
+              </Col>
+            </Row>
+
+            {/* <Row gutter={gutter} style={{ width: '100%' }} align="middle">
               <Col span={5}>
                 <label>Address</label>{' '}
               </Col>
@@ -96,9 +146,9 @@ export default function ProjectTicketMods({
                   </span>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
 
-            <Row gutter={gutter} style={{ width: '100%' }} align="middle">
+            {/* <Row gutter={gutter} style={{ width: '100%' }} align="middle">
               <Col span={5}>
                 <label>Percentage</label>
               </Col>
@@ -122,9 +172,9 @@ export default function ProjectTicketMods({
                   </span>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
 
-            {mod.lockedUntil ? (
+            {/* {mod.lockedUntil ? (
               <Row gutter={gutter} style={{ width: '100%' }} align="middle">
                 <Col span={5}>
                   <label>Locked</label>
@@ -133,10 +183,10 @@ export default function ProjectTicketMods({
                   until {formatDate(mod.lockedUntil * 1000, 'MM-DD-yyyy')}
                 </Col>
               </Row>
-            ) : null}
+            ) : null} */}
           </Space>
 
-          {locked ? (
+          {/* {locked ? (
             <LockOutlined style={{ color: colors.icon.disabled }} />
           ) : (
             <Button
@@ -150,20 +200,11 @@ export default function ProjectTicketMods({
               }}
               icon={<CloseCircleOutlined />}
             />
-          )}
+          )} */}
         </div>
       )
     },
-    [
-      mods,
-      colors.stroke.disabled,
-      colors.stroke.tertiary,
-      colors.text.primary,
-      colors.icon.disabled,
-      radii.md,
-      form,
-      onModsChanged,
-    ],
+    [mods, colors.icon.disabled, form, onModsChanged],
   )
 
   if (!mods) return null
@@ -206,7 +247,8 @@ export default function ProjectTicketMods({
 
   return (
     <Form.Item
-      name={name}
+      className="stepFormCon"
+      // name={name}
       {...formItemProps}
       rules={[
         {
@@ -220,42 +262,10 @@ export default function ProjectTicketMods({
       ]}
     >
       <Space direction="vertical" style={{ width: '100%' }} size="large">
-        {lockedMods ? (
-          <Space style={{ width: '100%' }} direction="vertical" size="small">
-            {lockedMods.map((v, i) => modInput(v, i, true))}
-          </Space>
-        ) : null}
-        <Space style={{ width: '100%' }} direction="vertical" size="small">
-          {mods.map((v, i) => modInput(v, i))}
-        </Space>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            color: colors.text.secondary,
-          }}
-        >
-          <div style={{ textAlign: 'right' }}>
-            <span
-              style={{
-                color: total > 100 ? colors.text.warn : colors.text.secondary,
-              }}
-            >
-              Total:{' '}
-              {total
-                .toString()
-                .split('.')
-                .map((x, i) => (i > 0 ? x[0] : x))
-                .join('.')}
-              %
-            </span>
-          </div>
-          <div>
-            {100 - total}% to <FormattedAddress address={owner} />
-          </div>
-        </div>
         <Button
           type="dashed"
+          className="stepAddPayout"
+          icon={<PlusOutlined />}
           onClick={() => {
             setEditingModIndex(mods.length)
             form.resetFields()
@@ -264,13 +274,41 @@ export default function ProjectTicketMods({
         >
           Add token receiver
         </Button>
+
+        {lockedMods ? (
+          <Space style={{ width: '100%' }} direction="vertical" size="small">
+            {lockedMods.map((v, i) => modInput(v, i, true))}
+          </Space>
+        ) : null}
+        <Space style={{ width: '100%' }} direction="vertical" size="small">
+          {mods.map((v, i) => modInput(v, i))}
+        </Space>
+
+        <div className="payoutTotalCon">
+          <div className="payoutTotalConTotal">
+            Total payout:
+            {total
+              .toString()
+              .split('.')
+              .map((x, i) => (i > 0 ? x[0] : x))
+              .join('.')}
+            %
+          </div>
+          {total !== 0 && (
+            <div className="payoutTotalConTo">
+              Remaining {100 - total}% percentage without reserved payout{' '}
+              <FormattedAddress address={owner} />
+            </div>
+          )}
+        </div>
       </Space>
 
       <Modal
+        className="stepModalCon"
         title="Add token receiver"
         visible={editingModIndex !== undefined}
         onOk={setReceiver}
-        okText="Add token receiver"
+        okText="Add"
         onCancel={() => {
           form.resetFields()
           setEditingModIndex(undefined)
@@ -278,6 +316,7 @@ export default function ProjectTicketMods({
         destroyOnClose
       >
         <Form
+          className="stepFormCon"
           form={form}
           layout="vertical"
           onKeyDown={e => {
@@ -322,7 +361,10 @@ export default function ProjectTicketMods({
             label="Lock until"
             extra="If locked, this can't be edited or removed until the lock expires or the funding cycle is reconfigured."
           >
-            <DatePicker />
+            <DatePicker
+              className="stepDatePicker"
+              suffixIcon={<img src={DateIcon} alt="dateIcon" />}
+            />
           </Form.Item>
         </Form>
       </Modal>

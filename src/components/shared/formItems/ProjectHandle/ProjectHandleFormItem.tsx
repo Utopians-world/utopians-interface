@@ -19,7 +19,7 @@ import { FormItemExt } from '../formItemExt'
 /**
  * Custom Form.Item component for project handles.
  */
-export default function ProjectHandleFormItem({
+export default function initialValueProjectHandleFormItem({
   name,
   hideLabel,
   formItemProps,
@@ -28,12 +28,14 @@ export default function ProjectHandleFormItem({
   required,
   returnValue,
   initialValue,
+  defaultValue,
 }: {
   onValueChange?: (val: string) => void
   requireState?: 'exists' | 'notExist'
   required?: boolean
   returnValue?: 'id' | 'handle'
   initialValue?: ProjectHandleInitialValue
+  defaultValue?: string
 } & FormItemExt) {
   const {
     theme: { colors },
@@ -154,6 +156,7 @@ export default function ProjectHandleFormItem({
         onChange={onChange}
         initialValue={initialValue}
         suffix={suffix}
+        defaultValue={defaultValue}
       />
     </Form.Item>
   )
