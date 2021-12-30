@@ -137,37 +137,39 @@ const QAs: {
 
 export default function Faq() {
   return (
-    <div className="faqWrapper">
-      <h2 className="faqTitle">
-        Frequently <span>asked</span> questions
-        <p className="titleLine"></p>
-      </h2>
-      <div style={{ width: '100%', margin: '72px 0 96px' }}>
-        <Collapse
-          defaultActiveKey={QAs.length ? 0 : undefined}
-          accordion
-          expandIconPosition="right"
-          expandIcon={({ isActive }) => (
-            <CaretDownOutlined
-              style={{ color: '#2713E1' }}
-              rotate={isActive ? 180 : 0}
-            />
-          )}
-        >
-          {QAs.map((qa, i) => (
-            <CollapsePanel header={qa.q} key={i}>
-              {qa.a && qa.a.map((p, j) => <p key={j}>{p}</p>)}
-              {qa.img && <img src={qa.img.src} alt={qa.img.alt} />}
-            </CollapsePanel>
-          ))}
-        </Collapse>
-      </div>
-      <div className="faqStillCon">
-        <h2>Still have a question?</h2>
-        <p>
-          If you couldn‘t find what you were looking for in our FAQ. you can
-          always contact us on discord. We will answer to you shortly!
-        </p>
+    <div style={{ background: '#fbf9f6', width: '100%' }}>
+      <div className="faqWrapper">
+        <h2 className="faqTitle">
+          Frequently <span>asked</span> questions
+          <p className="titleLine"></p>
+        </h2>
+        <div style={{ width: '100%', margin: '72px 0 96px' }}>
+          <Collapse
+            defaultActiveKey={QAs.length ? 0 : undefined}
+            accordion
+            expandIconPosition="right"
+            expandIcon={({ isActive }) => (
+              <CaretDownOutlined
+                style={{ color: '#2713E1' }}
+                rotate={isActive ? 180 : 0}
+              />
+            )}
+          >
+            {QAs.map((qa, i) => (
+              <CollapsePanel header={qa.q} key={i}>
+                {qa.a && qa.a.map((p, j) => <p key={j}>{p}</p>)}
+                {qa.img && <img src={qa.img.src} alt={qa.img.alt} />}
+              </CollapsePanel>
+            ))}
+          </Collapse>
+        </div>
+        <div className="faqStillCon">
+          <h2>Still have a question?</h2>
+          <p>
+            If you couldn‘t find what you were looking for in our FAQ. you can
+            always contact us on discord. We will answer to you shortly!
+          </p>
+        </div>
       </div>
     </div>
   )

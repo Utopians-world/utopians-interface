@@ -52,6 +52,7 @@ export default function ProjectCard({
             alignItems: 'center',
             whiteSpace: 'pre',
             overflow: 'hidden',
+            width: '100%',
           }}
         >
           <div className="proCardConLeft">
