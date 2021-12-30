@@ -84,6 +84,7 @@ export default function FundUs() {
           type="primary"
           disabled={currentFC.configured.eq(0) || isArchived}
           onClick={weiPayAmt ? pay : undefined}
+          className="payButton"
         >
           {payButtonText}
         </Button>
@@ -112,7 +113,7 @@ export default function FundUs() {
         }}
       >
         <h3 style={{ color: '#1D1D1D' }}>Fund us</h3>
-        <div>
+        <div className="fundUsStyle">
           <FormattedNumberInput
             placeholder="0"
             disabled={currentFC.configured.eq(0)}

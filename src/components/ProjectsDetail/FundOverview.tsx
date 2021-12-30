@@ -61,8 +61,14 @@ export default function FundOverview() {
     margin: 0,
     lineHeight: '20px',
   }
+
+  const procces = Math.floor(
+    (Number(formatWad(currentFC.tapped, { decimals: 2, padEnd: true })) /
+      Number(formatWad(currentFC.target, { decimals: 2, padEnd: true }))) *
+      100,
+  )
   if (!projectId) return null
-  const inputValue = 1
+  // const inputValue = 1
   function onChange() {}
   return (
     <div
@@ -219,12 +225,7 @@ export default function FundOverview() {
           </h2>
           <Row style={{ margin: '5px 0' }}>
             <Col span={18}>
-              <Slider
-                min={1}
-                max={20}
-                onChange={onChange}
-                value={inputValue === 1 ? inputValue : 0}
-              />
+              <Slider min={1} max={100} onChange={onChange} value={procces} />
             </Col>
           </Row>
         </div>
