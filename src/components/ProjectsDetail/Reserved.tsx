@@ -7,12 +7,14 @@ import { hasFundingTarget } from '../../utils/fundingCycle'
 import DetailBalance from './DetailBalance'
 import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
 import DetailEdit from '../icons/DetailEdit'
+import DistributeTokensModal from '../modals/DistributeTokensModal'
 
 export default function Reserved() {
   const { balanceInCurrency, owner, currentFC, currentPayoutMods } =
     useContext(ProjectContext)
   const [DetailEditReservesVisible, setDetailEditReservesVisible] =
     useState<boolean>(false)
+  const [modalIsVisible, setModalIsVisible] = useState<boolean>()
 
   if (!currentFC) return null
 
@@ -92,7 +94,7 @@ export default function Reserved() {
           <Col span={8}>
             <div
               className={'button-spec'}
-              onClick={() => setDetailEditReservesVisible(true)}
+              onClick={() => setModalIsVisible(true)}
             >
               DISTRIBUTE
             </div>
@@ -157,6 +159,11 @@ export default function Reserved() {
         onSuccess={() => setDetailEditReservesVisible(false)}
         onCancel={() => setDetailEditReservesVisible(false)}
         // fundingCycle={currentFC}
+      />
+      <DistributeTokensModal
+        visible={modalIsVisible}
+        onCancel={() => setModalIsVisible(false)}
+        onConfirmed={() => setModalIsVisible(false)}
       />
     </div>
   )

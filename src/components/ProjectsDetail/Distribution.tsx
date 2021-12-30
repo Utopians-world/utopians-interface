@@ -8,10 +8,12 @@ import DetailBalance from './DetailBalance'
 import DetailEdit from '../icons/DetailEdit'
 import DetailEditPayoutModal from '../modals/DetailEditPayoutModal'
 import TooltipLabel from '../shared/TooltipLabel'
+import WithdrawModal from '../modals/WithdrawModal'
 
 export default function Distribution() {
   const { balanceInCurrency, owner, currentFC, currentPayoutMods } =
     useContext(ProjectContext)
+  const [withdrawModalVisible, setWithdrawModalVisible] = useState<boolean>()
   const [DetailPayoutVisible, setDetailPayoutVisible] = useState<boolean>(false)
   if (!currentFC) return null
 
@@ -98,7 +100,7 @@ export default function Distribution() {
           <Col span={8}>
             <div
               className={'button-spec'}
-              onClick={() => setDetailPayoutVisible(true)}
+              onClick={() => setWithdrawModalVisible(true)}
             >
               DISTRIBUTE
             </div>
@@ -175,6 +177,11 @@ export default function Distribution() {
         onSuccess={() => setDetailPayoutVisible(false)}
         onCancel={() => setDetailPayoutVisible(false)}
         // fundingCycle={currentFC}
+      />
+      <WithdrawModal
+        visible={withdrawModalVisible}
+        onCancel={() => setWithdrawModalVisible(false)}
+        onConfirmed={() => setWithdrawModalVisible(false)}
       />
     </div>
   )

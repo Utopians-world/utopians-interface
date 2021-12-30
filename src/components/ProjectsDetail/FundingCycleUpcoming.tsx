@@ -1,8 +1,11 @@
 import React, { CSSProperties, useContext } from 'react'
-import { ProjectContext } from '../../contexts/projectContext'
+
 import { Col, Collapse, Progress, Row, Space } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
+
+import { ProjectContext } from '../../contexts/projectContext'
+
 import FundingCycleInfo from './FundingCycleInfo'
 import Shape from '../icons/Shape'
 import { hasFundingTarget } from '../../utils/fundingCycle'
