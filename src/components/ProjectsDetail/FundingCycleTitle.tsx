@@ -73,7 +73,7 @@ export default function FundingCycleTitle() {
 
   switch (selectedTab) {
     case 'INPROGRESS':
-      tabContent = <FundingCycleDetail showCurrentDetail={true} />
+      tabContent = <FundingCycleDetail showCurrentDetail={false} />
       break
     case 'UPCOMING':
       tabContent = <FundingCycleUpcoming />

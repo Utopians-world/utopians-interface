@@ -29,7 +29,7 @@ export default function Distribution() {
         marginTop: '20px',
       }}
     >
-      <h2>
+      <h2 style={{ fontWeight: 'bold' }}>
         Distribution
         <span className="editIcon" onClick={() => setDetailPayoutVisible(true)}>
           <DetailEdit />

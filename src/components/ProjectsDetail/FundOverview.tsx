@@ -77,7 +77,7 @@ export default function FundOverview() {
         marginTop: '20px',
       }}
     >
-      <h2>
+      <h2 style={{ fontWeight: 'bold' }}>
         Fund Overview
         <span
           className="editIcon"

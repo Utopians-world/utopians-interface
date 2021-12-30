@@ -14,6 +14,7 @@ import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
 import { NetworkContext } from '../../contexts/networkContext'
 import { useErc20Contract } from '../../hooks/Erc20Contract'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
+import { formatWad } from '../../utils/formatNumber'
 
 export default function YourBalance() {
   const [manageTokensModalVisible, setManageTokensModalVisible] =
@@ -29,6 +30,15 @@ export default function YourBalance() {
     () => setParticipantsModalVisible(false),
     [],
   )
+
+  const stakedTokenBalance = useContractReader<BigNumber>({
+    contract: ContractName.TicketBooth,
+    functionName: 'stakedBalanceOf',
+    args:
+      userAddress && projectId ? [userAddress, projectId.toHexString()] : null,
+    valueDidChange: bigNumbersDiff,
+  })
+
   const ticketContract = useErc20Contract(tokenAddress)
   const totalOverflow = useContractReader<BigNumber>({
     contract: ContractName.TerminalV1,
@@ -151,7 +161,7 @@ export default function YourBalance() {
           <div
             style={{ height: '40px', lineHeight: '40px', fontWeight: 'bold' }}
           >
-            222,222324 upt
+            {formatWad(stakedTokenBalance, { decimals: 0 })} upt
           </div>
           <div style={{ fontWeight: 'bold' }}>0 Claimable</div>
           <div style={{ fontSize: 12, color: '#9092A7' }}>0% of supply</div>

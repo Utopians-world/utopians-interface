@@ -30,7 +30,7 @@ export default function Reserved() {
         marginTop: '20px',
       }}
     >
-      <h2>
+      <h2 style={{ fontWeight: 'bold' }}>
         Reserved JBX (35%)
         <span
           className="editIcon"
