@@ -22,6 +22,7 @@ import {
 import { bigNumbersDiff } from 'utils/bigNumbersDiff'
 import { formatPercent, formatWad } from 'utils/formatNumber'
 import { decodeFCMetadata } from 'utils/fundingCycle'
+
 import { shadowCard } from 'constants/styles/shadowCard'
 
 import IssueTickets from './IssueTickets'
