@@ -80,6 +80,10 @@
 .projectModal{
     background: #ffffff;
     padding: 0;
+    border-radius: 5px;
+    .ant-modal-body{
+        padding-top: 0;
+    }
     .ant-modal-content {
       background: #ffffff;
     }
@@ -309,4 +313,16 @@
     margin-left: 10px;
     cursor: pointer;
     padding-top: 6px;
+}
+.fundingSet{
+    .stepNumberInput{
+        height: 46px;
+        border: 2px solid #b4bae1;
+    }
+    .stepAcssessoryBtn{
+        height: 42px;
+    }
+    .ant-input-number-input{
+        height: 41px;
+    }
 }

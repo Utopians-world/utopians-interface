@@ -1,4 +1,5 @@
 import React from 'react'
+import { PaymentActivity } from '../Dashboard/ProjectActivity/PaymentActivity'
 // import { Space } from 'antd'
 
 // import LinkIcon from '../icons/LinkIcon'
@@ -23,7 +24,11 @@ export default function Activity() {
       >
         Activity
       </h3>
-      <div style={{ padding: '20px' }}>No activity yet</div>
+      <div style={{ padding: '0 15px' }}>
+        <PaymentActivity pageSize={50} />
+      </div>
+
+      {/*<div style={{ padding: '20px' }}>No activity yet</div>*/}
       {/*<div style={{ padding: '10px 15px', borderBottom: '1px solid #D3DCEE' }}>*/}
       {/*  <div*/}
       {/*    style={{*/}

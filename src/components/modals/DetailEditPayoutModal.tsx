@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { Modal, Space } from 'antd'
+import { Form, Modal, Space, Tooltip } from 'antd'
 
 import ModalTab from '../ProjectsDetail/ModalTab'
-import { fromWad } from '../../utils/formatNumber'
 import { FormItems } from '../shared/formItems'
 import { PayoutMod } from '../../models/mods'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { CurrencyOption } from '../../models/currency-option'
+import { fromWad } from '../../utils/formatNumber'
 
 export default function DetailEditPayoutModal({
   visible,
@@ -20,6 +20,7 @@ export default function DetailEditPayoutModal({
   const [mods, setMods] = useState<PayoutMod[]>([])
   const [loading] = useState<boolean>()
   const editingFC = useEditingFundingCycleSelector()
+
   // const DivStrategyStyle: CSSProperties = {
   //   border: '2px solid #bdc1e4',
   //   width: '100%',
@@ -58,98 +59,31 @@ export default function DetailEditPayoutModal({
             Payouts are optional. By default, all unallocated revenue will be
             withdrawable to the project owner's wallet.
           </p>
-          <p style={{ marginBottom: '5px', color: '#3A1FF5' }}>
-            What is project target ?
-          </p>
+          <Tooltip
+            title={
+              <p>
+                Payouts let you commit portions of every withdrawal to other
+                Ethereum wallets or Juicebox projects. Use this to pay
+                contributors, charities, other projects you depend on, or anyone
+                else. Payouts will be distributed automatically whenever a
+                withdrawal is made from your project.
+              </p>
+            }
+          >
+            <p style={{ marginBottom: '5px', color: '#3A1FF5' }}>
+              What is project target ?
+            </p>
+          </Tooltip>
         </div>
-        <FormItems.ProjectPayoutMods
-          mods={mods}
-          target={fromWad(editingFC.target)}
-          currency={editingFC.currency.toNumber() as CurrencyOption}
-          onModsChanged={setMods}
-          fee={editingFC.fee}
-        />
-        {/*<div*/}
-        {/*  style={{*/}
-        {/*    background: '#D3DCEE',*/}
-        {/*    border: '1px dashed #665FAC',*/}
-        {/*    height: '60px',*/}
-        {/*    lineHeight: '60px',*/}
-        {/*    textAlign: 'center',*/}
-        {/*    borderRadius: '3px',*/}
-        {/*    color: '#665FAC',*/}
-        {/*    fontWeight: 'bold',*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  Add a payout*/}
-        {/*</div>*/}
-        {/*<div style={DivStrategyStyle}>*/}
-        {/*  <div style={{ width: '30%', fontSize: '12px', padding: '10px 20px' }}>*/}
-        {/*    <p*/}
-        {/*      style={{*/}
-        {/*        color: '#9092A7',*/}
-        {/*        paddingLeft: '20px',*/}
-        {/*        marginBottom: '10px',*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      Percentage*/}
-        {/*    </p>*/}
-        {/*    <p*/}
-        {/*      style={{*/}
-        {/*        fontSize: '40px',*/}
-        {/*        fontWeight: 'bold',*/}
-        {/*        marginBottom: '15px',*/}
-        {/*        lineHeight: '30px',*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      27%*/}
-        {/*    </p>*/}
-        {/*    <p style={{ color: '#7C85CB', fontWeight: 'bold' }}>$ 399.6033</p>*/}
-        {/*  </div>*/}
-        {/*  <div style={{ width: '50%', padding: '10px 20px' }}>*/}
-        {/*    <p style={{ color: '#9092A7' }}>Address</p>*/}
-        {/*    <p*/}
-        {/*      style={{*/}
-        {/*        color: '#5F5E61',*/}
-        {/*        fontSize: '12px',*/}
-        {/*        fontWeight: 'bold',*/}
-        {/*        lineHeight: '13px',*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      0X0003034304930493049304930493403493049343049304{' '}*/}
-        {/*    </p>*/}
-        {/*    <p style={{ color: '#9092A7', marginTop: '20px', marginBottom: 0 }}>*/}
-        {/*      Locked date*/}
-        {/*    </p>*/}
-        {/*    <p*/}
-        {/*      style={{*/}
-        {/*        color: '#5F5E61',*/}
-        {/*        fontSize: '12px',*/}
-        {/*        fontWeight: 'bold',*/}
-        {/*        lineHeight: '13px',*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      12-09-2021{' '}*/}
-        {/*    </p>*/}
-        {/*  </div>*/}
-        {/*  <div*/}
-        {/*    style={{ width: '20%', textAlign: 'center', lineHeight: '120px' }}*/}
-        {/*  >*/}
-        {/*    <Garbage />*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div>*/}
-        {/*  <p*/}
-        {/*    style={{ textAlign: 'right', fontWeight: 'bold', fontSize: '22px' }}*/}
-        {/*  >*/}
-        {/*    TOTAL PAYOUT: 27%*/}
-        {/*  </p>*/}
-        {/*  <p*/}
-        {/*    style={{ textAlign: 'right', color: '#FE5164', fontWeight: 'bold' }}*/}
-        {/*  >*/}
-        {/*    Remaining 73% percentage without reserved payout{' '}*/}
-        {/*  </p>*/}
-        {/*</div>*/}
+        <Form layout="vertical" className="stepFormCon">
+          <FormItems.ProjectPayoutMods
+            mods={mods}
+            target={fromWad(editingFC.target)}
+            currency={editingFC.currency.toNumber() as CurrencyOption}
+            onModsChanged={setMods}
+            fee={editingFC.fee}
+          />
+        </Form>
       </Space>
     </Modal>
   )

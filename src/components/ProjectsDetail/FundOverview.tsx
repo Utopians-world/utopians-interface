@@ -14,12 +14,15 @@ import DetailEditFundingModal from '../modals/DetailEditFundingModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import ProjectTokenBalance from '../shared/ProjectTokenBalance'
 import MetisLogo from '../icons/MetisLogo'
+import { CurrencyOption } from '../../models/currency-option'
+import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 
 export default function FundOverview() {
   const { projectId, currentFC, balanceInCurrency, balance, owner, earned } =
     useContext(ProjectContext)
   const [DetailEditFundingVisible, setDetailEditFundingVisible] =
     useState<boolean>(false)
+  const editingFC = useEditingFundingCycleSelector()
   const converter = useCurrencyConverter()
 
   const { data: ownerBalance } = useEthBalanceQuery(owner)
@@ -168,7 +171,7 @@ export default function FundOverview() {
               <div
                 style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
               >
-                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} JBX
+                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} UPT
               </div>
             </div>
           </div>
@@ -227,6 +230,9 @@ export default function FundOverview() {
         </div>
       </div>
       <DetailEditFundingModal
+        initialCurrency={editingFC.currency.toNumber() as CurrencyOption}
+        initialTarget={fromWad(editingFC.target)}
+        initialDuration={editingFC.duration.toString()}
         visible={DetailEditFundingVisible}
         onSuccess={() => setDetailEditFundingVisible(false)}
         onCancel={() => setDetailEditFundingVisible(false)}

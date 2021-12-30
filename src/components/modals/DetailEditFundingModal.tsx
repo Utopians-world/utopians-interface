@@ -1,10 +1,16 @@
-import { CSSProperties, useState } from 'react'
-import { Modal, Space, Switch, Input, Select, Divider } from 'antd'
-
+import { useContext, useLayoutEffect, useState } from 'react'
+import { Modal, Space, Switch, Divider, Tooltip, Form } from 'antd'
 import { constants } from 'ethers'
 
-import ModalTab from '../ProjectsDetail/ModalTab'
 import { fromWad } from '../../utils/formatNumber'
+import { CurrencyOption } from '../../models/currency-option'
+import { UserContext } from '../../contexts/userContext'
+import { hasFundingTarget, isRecurring } from '../../utils/fundingCycle'
+import { editingProjectActions } from '../../redux/slices/editingProject'
+import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+import { useAppDispatch } from '../../hooks/AppDispatch'
+import { FormItems } from '../shared/formItems'
+import ModalTab from '../ProjectsDetail/ModalTab'
 // import {FormItems} from "../shared/formItems";
 // import {UserContext} from "../../contexts/userContext";
 
@@ -12,50 +18,42 @@ export default function DetailEditFundingModal({
   visible,
   onSuccess,
   onCancel,
+  initialCurrency,
+  initialTarget,
+  initialDuration,
 }: {
+  initialCurrency: CurrencyOption
+  initialTarget: string
+  initialDuration: string
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
 }) {
   const [loading] = useState<boolean>()
-  const DivStrategyStyle: CSSProperties = {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'left',
-  }
-  const { Option } = Select
+  const [currency, setCurrency] = useState<CurrencyOption>(0)
   const [target, setTarget] = useState<string>('0')
+  const [duration, setDuration] = useState<string>('0')
   const [showFundingFields, setShowFundingFields] = useState<boolean>()
-  const [showFundingDuration, setShowFundingDuration] = useState<boolean>()
+  const editingFC = useEditingFundingCycleSelector()
+  // TODO budgetForm should not depend on dispatch
+  const dispatch = useAppDispatch()
+  const { adminFeePercent } = useContext(UserContext)
+
+  useLayoutEffect(() => {
+    setCurrency(initialCurrency)
+    setTarget(initialTarget)
+    setDuration(initialDuration)
+    setShowFundingFields(hasFundingTarget(editingFC))
+  }, [editingFC, initialCurrency, initialDuration, initialTarget])
+
   const maxIntStr = fromWad(constants.MaxUint256)
-  // const { adminFeePercent } = useContext(UserContext)
 
-  const selectAfter = (
-    <Select defaultValue="ETH" className="select-after">
-      <Option value="ETH">ETH</Option>
-      <Option value="TEST">TEST</Option>
-      <Option value="TEST">TEST</Option>
-      <Option value="TEST">TEST</Option>
-    </Select>
-  )
-
-  const periodAfter = (
-    <Select defaultValue="one - time" className="select-after">
-      <Option value="onetime">one - time</Option>
-      <Option value="TEST">TEST</Option>
-      <Option value="TEST">TEST</Option>
-      <Option value="TEST">TEST</Option>
-    </Select>
-  )
-
-  const DividerStyle: CSSProperties = {
-    color: '#D3DCEE',
-    margin: 0,
-    fontSize: '12px',
-    borderTopColor: '#D3DCEE',
-    paddingRight: '15px',
-    marginTop: '10px',
-  }
+  useLayoutEffect(() => {
+    setCurrency(initialCurrency)
+    setTarget(initialTarget)
+    setDuration(initialDuration)
+    setShowFundingFields(hasFundingTarget(editingFC))
+  }, [editingFC, initialCurrency, initialDuration, initialTarget])
 
   return (
     <Modal
@@ -63,72 +61,62 @@ export default function DetailEditFundingModal({
       visible={visible}
       onCancel={onCancel}
       confirmLoading={loading}
-      width={600}
+      width={530}
       centered={true}
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
       className="projectModal"
     >
+      <ModalTab
+        textFirst={'Changes will be applied to the'}
+        textSecond={' upcoming '}
+        textLast={'funding cycle.'}
+      />
       <Space
         direction="vertical"
         size="large"
-        style={{ width: '100%', paddingTop: 0, gap: '20px' }}
+        style={{ width: '100%', marginTop: '20px' }}
+        className="fundingSet"
       >
-        <ModalTab
-          textFirst={'Changes will be applied to the'}
-          textSecond={' upcoming '}
-          textLast={'funding cycle.'}
-        />
-        <div style={DivStrategyStyle}>
-          <div style={{ width: '80%' }}>
-            <p style={{ fontWeight: 'bold', fontSize: '14px' }}>
-              Set a funding target{' '}
-            </p>
-            <p
-              style={{ color: '#3A1FF5', fontWeight: 'bold', fontSize: '14px' }}
+        <Form layout="vertical" className="stepFormCon">
+          <Form.Item className="switchFormItem">
+            <Space className="switchFormItemSpace">
+              <label>Set a funding target</label>
+              <Switch
+                className="switchFormItemSwitch"
+                checked={showFundingFields}
+                onChange={checked => {
+                  setTarget(checked ? '10000' : maxIntStr || '0')
+                  setCurrency(1)
+                  setShowFundingFields(checked)
+                }}
+              />
+            </Space>
+
+            <Tooltip
+              title={
+                <>
+                  <p>
+                    No more than the target can be distributed from the project
+                    in a single funding cycle. Whenever a new funding cycle
+                    starts, any overflow automatically goes towards that cycle's
+                    target amount, acting as a project's runway.
+                  </p>
+                  <p>
+                    A funding target allows you to redistribute surplus revenue
+                    to your community. When a project's balance is greater than
+                    its funding target, the overflow (surplus funds) can by
+                    redeemed by the community by burning their project tokens.
+                  </p>
+                </>
+              }
             >
-              What is project target ?
-            </p>
-          </div>
-          <div style={{ width: '20%', textAlign: 'right', paddingTop: '10px' }}>
-            <Switch
-              className="switchFormItemSwitch"
-              checked={showFundingFields}
-              onChange={checked => {
-                setTarget(checked ? '10000' : maxIntStr || '0')
-                setShowFundingFields(checked)
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          {showFundingFields && (
-            <div>
-              <p
-                style={{
-                  width: '50%',
-                  float: 'left',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                  height: '30px',
-                  lineHeight: '30px',
-                }}
-              >
-                Funding target{' '}
-              </p>
-              <p
-                style={{
-                  width: '50%',
-                  float: 'left',
-                  textAlign: 'right',
-                  fontWeight: 'bold',
-                  fontSize: '19px',
-                }}
-              >
-                $0 after 0% JBX
-              </p>
-            </div>
-          )}
+              <span className="switchFormItemTip">
+                What is project target ?
+              </span>
+            </Tooltip>
+          </Form.Item>
+
           {target === maxIntStr && (
             <p className="stepExplain">
               No target: All funds can be distributed by the project, and the
@@ -138,74 +126,55 @@ export default function DetailEditFundingModal({
           )}
 
           {showFundingFields && (
-            <div>
-              <Input bordered={false} addonAfter={selectAfter} />
-              <p style={{ color: '#5F5E61' }}>
-                If target is 0: No funds can be distributed by the project, and
-                the project's entire balance will be considered overflow.
-              </p>
-            </div>
+            <FormItems.ProjectTarget
+              formItemProps={{
+                rules: [{ required: true }],
+                extra: null,
+              }}
+              value={target.toString()}
+              onValueChange={val => setTarget(val || '0')}
+              currency={currency}
+              onCurrencyChange={setCurrency}
+              fee={adminFeePercent}
+            />
           )}
 
-          {/*{showFundingFields && (*/}
-          {/*  <p className="stepExplain">*/}
-          {/*    If target is 0: No funds can be distributed by the project, and the*/}
-          {/*    project's entire balance will be considered overflow.*/}
-          {/*  </p>*/}
-          {/*)}*/}
-
-          <Divider orientation="right" style={DividerStyle}>
-            Duration
-          </Divider>
-        </div>
-        <div style={DivStrategyStyle}>
-          <div style={{ width: '80%' }}>
-            <p style={{ fontWeight: 'bold', fontSize: '14px' }}>
-              Set a funding cycle duration
-            </p>
-            <p
-              style={{ color: '#3A1FF5', fontWeight: 'bold', fontSize: '14px' }}
-            >
-              What is project duration
-            </p>
-          </div>
-          <div style={{ width: '20%', textAlign: 'right', paddingTop: '10px' }}>
-            <Switch
-              className="switchFormItemSwitch"
-              checked={showFundingDuration}
-              onChange={checked => {
-                setShowFundingDuration(checked)
-              }}
-            />
-          </div>
-        </div>
-        {showFundingDuration && (
-          <div>
-            <p
-              style={{
-                fontWeight: 'bold',
-                fontSize: '14px',
-                height: '30px',
-                lineHeight: '30px',
-              }}
-            >
-              Funding period
-            </p>
-            <div className={'long-input'}>
-              <Input bordered={false} addonAfter={periodAfter} />
-            </div>
-            <p style={{ color: '#5F5E61' }}>
+          {showFundingFields && (
+            <p className="stepExplain">
               If target is 0: No funds can be distributed by the project, and
               the project's entire balance will be considered overflow.
             </p>
-          </div>
-        )}
-        {!showFundingDuration && (
-          <p style={{ color: '#5F5E61' }}>
-            If target is 0: No funds can be distributed by the project, and the
-            project's entire balance will be considered overflow.
-          </p>
-        )}
+          )}
+
+          <Divider
+            style={{ margin: '40px 0 26px' }}
+            className="stepTopConDivider"
+            orientation="right"
+          >
+            Duration
+          </Divider>
+
+          <FormItems.ProjectDuration
+            value={duration}
+            isRecurring={isRecurring(editingFC)}
+            onToggleRecurring={() =>
+              dispatch(
+                editingProjectActions.setIsRecurring(!isRecurring(editingFC)),
+              )
+            }
+            onValueChange={val => setDuration(val ?? '0')}
+            formItemProps={{
+              rules: [{ required: true }],
+            }}
+          />
+
+          {duration === '0' && (
+            <p className="stepExplain">
+              Duration not set: Funding can be reconfigured at any time, which
+              will start a new funding cycle.
+            </p>
+          )}
+        </Form>
       </Space>
     </Modal>
   )

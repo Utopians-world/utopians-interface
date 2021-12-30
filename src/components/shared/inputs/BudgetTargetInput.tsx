@@ -39,6 +39,26 @@ export default function BudgetTargetInput({
 
   return (
     <div>
+      <div>
+        {fee?.gt(0) && (
+          <div
+            style={{
+              color: colors.text.primary,
+              marginBottom: 10,
+              textAlign: 'right',
+              fontWeight: 'bold',
+              fontSize: '16px',
+            }}
+          >
+            <span style={{ fontWeight: 500 }}>
+              <CurrencySymbol currency={currency} />
+              {formatWad(amountSubFee(parseWad(value), fee), { decimals: 4 })}
+            </span>{' '}
+            after {fromPerbicent(fee?.toString())}% upt fee
+          </div>
+        )}
+      </div>
+
       <FormattedNumberInput
         value={value}
         placeholder={placeholder}
@@ -64,15 +84,6 @@ export default function BudgetTargetInput({
         }
         onChange={value => onValueChange(value?.toString())}
       />
-      {fee?.gt(0) && (
-        <div style={{ color: colors.text.primary, marginBottom: 10 }}>
-          <span style={{ fontWeight: 500 }}>
-            <CurrencySymbol currency={currency} />
-            {formatWad(amountSubFee(parseWad(value), fee), { decimals: 4 })}
-          </span>{' '}
-          after {fromPerbicent(fee?.toString())}% JBX fee
-        </div>
-      )}
     </div>
   )
 }

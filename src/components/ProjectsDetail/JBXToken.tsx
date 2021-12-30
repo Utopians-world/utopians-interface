@@ -97,7 +97,7 @@ export default function JBXToken() {
           <div>0x9329582…..f3434242</div>
           <div>
             {formatWad(totalSupply, { decimals: 0 })}
-            <span style={{ fontWeight: 'bold' }}> JBX</span>
+            <span style={{ fontWeight: 'bold' }}> UPT</span>
           </div>
         </div>
         <div

@@ -1,4 +1,3 @@
-import CurrencySymbol from 'components/shared/CurrencySymbol'
 import EtherscanLink from 'components/shared/EtherscanLink'
 import FormattedAddress from 'components/shared/FormattedAddress'
 import { ProjectContext } from 'contexts/projectContext'
@@ -12,6 +11,7 @@ import RichNote from './RichNote'
 import { contentLineHeight, smallHeaderStyle } from './styles'
 import { useInfiniteSubgraphQuery } from '../../../hooks/SubgraphQuery'
 import ActivityTabContent from './ActivityTabContent'
+import MetisLogo from '../../icons/MetisLogo'
 
 // Maps a project id to an internal map of payment event overrides.
 let payEventOverrides = new Map<string, Map<string, string>>([
@@ -88,8 +88,8 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
             <div
               key={e.id}
               style={{
-                marginBottom: 20,
-                paddingBottom: 20,
+                marginTop: 10,
+                paddingBottom: 10,
                 borderBottom: '1px solid ' + colors.stroke.tertiary,
               }}
             >
@@ -101,14 +101,22 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
                 }}
               >
                 <div>
-                  <div style={smallHeaderStyle(colors)}>Paid</div>
+                  <div
+                    style={{
+                      color: '#2713E1',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Paid
+                  </div>
                   <div
                     style={{
                       lineHeight: contentLineHeight,
                       fontSize: '1rem',
                     }}
                   >
-                    <CurrencySymbol currency={0} />
+                    <MetisLogo size={12} />
                     {formatWad(e.amount, { decimals: 4 })}
                   </div>
                 </div>
@@ -117,7 +125,6 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
                   {e.timestamp && (
                     <div style={smallHeaderStyle(colors)}>
                       {formatHistoricalDate(e.timestamp * 1000)}{' '}
-                      <EtherscanLink value={e.txHash} type="tx" />
                     </div>
                   )}
                   <div
@@ -127,6 +134,7 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
                     }}
                   >
                     <FormattedAddress address={e.beneficiary} />
+                    <EtherscanLink value={e.txHash} type="tx" />
                   </div>
                 </div>
               </div>

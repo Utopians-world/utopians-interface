@@ -26,7 +26,7 @@ export default function ModalTab({
       <div style={{ position: 'absolute', top: '9px' }}>
         <ExclamatoryMark />
       </div>
-      <p style={{ marginLeft: '15px' }}>
+      <p style={{ marginLeft: '15px', fontSize: '12px' }}>
         {textFirst}
         <span style={{ color: '#FE5164' }}>{textSecond}</span>
         {textLast}

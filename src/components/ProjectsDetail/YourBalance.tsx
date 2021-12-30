@@ -151,7 +151,7 @@ export default function YourBalance() {
           <div
             style={{ height: '40px', lineHeight: '40px', fontWeight: 'bold' }}
           >
-            222,222324 JBX
+            222,222324 upt
           </div>
           <div style={{ fontWeight: 'bold' }}>0 Claimable</div>
           <div style={{ fontSize: 12, color: '#9092A7' }}>0% of supply</div>

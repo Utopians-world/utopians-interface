@@ -1,11 +1,14 @@
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, useContext, useLayoutEffect, useState } from 'react'
 import { Modal, Space, Input } from 'antd'
 
 import { CheckCircleFilled } from '@ant-design/icons'
 import { constants } from 'ethers'
 
 import ModalTab from '../ProjectsDetail/ModalTab'
-// import {FundingCycle} from "../../models/funding-cycle";
+import { NetworkContext } from '../../contexts/networkContext'
+import { ballotStrategies } from '../../constants/ballot-strategies'
+import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+// import {FundingCycleTitle} from "../../models/funding-cycle";
 
 export default function DetailEditRuleModal({
   visible,
@@ -16,11 +19,25 @@ export default function DetailEditRuleModal({
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
-  // fundingCycle?: FundingCycle | undefined
+  // fundingCycle?: FundingCycleTitle | undefined
 }) {
+  const editingFC = useEditingFundingCycleSelector()
+  const initialBallot = editingFC.ballot
+  const { signerNetwork } = useContext(NetworkContext)
   const [selectedIndex, setSelectedIndex] = useState<number>()
-  const [loading] = useState<boolean>()
   const [customStrategyAddress, setCustomStrategyAddress] = useState<string>()
+  const [loading] = useState<boolean>()
+
+  useLayoutEffect(() => {
+    const index = ballotStrategies.findIndex(
+      s => s.address.toLowerCase() === initialBallot.toLowerCase(),
+    )
+    if (index > -1) setSelectedIndex(index)
+    else {
+      setSelectedIndex(ballotStrategies.length)
+      setCustomStrategyAddress(initialBallot)
+    }
+  }, [initialBallot])
   const InputStyle: CSSProperties = {
     width: '95%',
     height: '42px',
@@ -194,7 +211,7 @@ export default function DetailEditRuleModal({
               />
             </div>
             <div>
-              The address of any smart contract deployed on main-net{' '}
+              The address of any smart contract deployed on {signerNetwork}
               <a
                 style={{ color: '#3A1FF5' }}
                 href="https://github.com/jbx-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"

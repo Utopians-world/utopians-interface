@@ -25,6 +25,7 @@ export default function EtherscanLink({
       href={`https://${subdomain}etherscan.io/${type}/${value}`}
       target="_blank"
       rel="noopener noreferrer"
+      style={{ color: '#00DAC5', marginLeft: '5px' }}
     >
       <LinkOutlined />
     </a>

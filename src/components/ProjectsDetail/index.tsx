@@ -9,7 +9,7 @@ import FundUs from './FundUs'
 import YourBalance from './YourBalance'
 import Activity from './Activity'
 import '../../styles/overrides/modal.scss'
-import FundingCycle from './FundingCycle'
+import FundingCycleTitle from './FundingCycleTitle'
 import ProjectTitle from './ProjectTitle'
 
 export default function ProjectsDetail() {
@@ -34,7 +34,7 @@ export default function ProjectsDetail() {
     <Row gutter={20} style={MainLayout} className="mainLayout">
       <Col span={17} style={LeftLayout}>
         <ProjectTitle />
-        <FundingCycle />
+        <FundingCycleTitle />
         <FundOverview />
         <JBXToken />
         <Distribution />

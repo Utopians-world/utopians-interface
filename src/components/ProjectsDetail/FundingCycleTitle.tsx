@@ -11,7 +11,7 @@ import FundingCycleHistory from './FundingCycleHistory'
 
 type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
 
-export default function FundingCycle() {
+export default function FundingCycleTitle() {
   const [selectedTab, setSelectedTab] = useState<TabOption>('INPROGRESS')
   const [hoverTab, setHoverTab] = useState<TabOption>()
   const [DetailEditRuleVisible, setDetailEditRuleVisible] =
