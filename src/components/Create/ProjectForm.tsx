@@ -20,9 +20,13 @@ export type ProjectFormFields = {
 export default function ProjectForm({
   form,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   form: FormInstance<ProjectFormFields>
   onSave: VoidFunction
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   return (
     <Space direction="vertical" size="large">
@@ -79,7 +83,20 @@ export default function ProjectForm({
         </Divider>
 
         <FormItems.ProjectPayButton name="payButton" />
-        <Form.Item>
+        <Form.Item className="stepSaveDeployBtnsCon">
+          {onDeployBtn && (
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="stepDeployBtn"
+              onClick={() => {
+                onDeployBtn()
+              }}
+              disabled={isDisable}
+            >
+              deploy Project
+            </Button>
+          )}
           <Button
             htmlType="submit"
             type="primary"

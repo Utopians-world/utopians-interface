@@ -3,10 +3,10 @@ import { CSSProperties } from 'react'
 
 const currencies: Record<
   CurrencyOption,
-  { name: 'ETH' | 'USD'; symbol: 'Ξ' | '$'; style?: CSSProperties }
+  { name: 'METIS' | 'USD'; symbol: 'Ξ' | '$'; style?: CSSProperties }
 > = {
   '0': {
-    name: 'ETH',
+    name: 'METIS',
     symbol: 'Ξ',
     style: {
       fontFamily: 'sans-serif',

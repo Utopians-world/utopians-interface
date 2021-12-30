@@ -14,10 +14,14 @@ export default function TicketingForm({
   form,
   initialMods,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   form: FormInstance<TicketingFormFields>
   initialMods: TicketMod[]
   onSave: (mods: TicketMod[]) => void
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   const [mods, setMods] = useState<TicketMod[]>([])
 
@@ -79,7 +83,20 @@ export default function TicketingForm({
           //     "Automatically distribute a portion of your project's reserved tokens to other Juicebox projects or ETH wallets.",
           // }}
         />
-        <Form.Item>
+        <Form.Item className="stepSaveDeployBtnsCon">
+          {onDeployBtn && (
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="stepDeployBtn"
+              onClick={() => {
+                onDeployBtn()
+              }}
+              disabled={isDisable}
+            >
+              deploy Project
+            </Button>
+          )}
           <Button
             className="stepSaveBtn"
             htmlType="submit"

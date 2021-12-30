@@ -13,9 +13,13 @@ import './index.scss'
 export default function RulesForm({
   initialBallot,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   initialBallot: string
   onSave: (ballot: string) => void
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   const { signerNetwork } = useContext(NetworkContext)
   const [selectedIndex, setSelectedIndex] = useState<number>()
@@ -129,27 +133,42 @@ export default function RulesForm({
           ballotStrategies.length,
         )}
       </Space>
-
-      <Button
-        className="stepSaveBtn"
-        htmlType="submit"
-        type="primary"
-        disabled={
-          selectedIndex === undefined ||
-          (selectedIndex === ballotStrategies.length &&
-            (!customStrategyAddress || !utils.isAddress(customStrategyAddress)))
-        }
-        onClick={() => {
-          onSave(
-            selectedIndex !== undefined &&
-              selectedIndex < ballotStrategies.length
-              ? ballotStrategies[selectedIndex].address
-              : customStrategyAddress ?? constants.AddressZero,
-          )
-        }}
-      >
-        Save
-      </Button>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        {onDeployBtn && (
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="stepDeployBtn"
+            onClick={() => {
+              onDeployBtn()
+            }}
+            disabled={isDisable}
+          >
+            deploy Project
+          </Button>
+        )}
+        <Button
+          className="stepSaveBtn"
+          htmlType="submit"
+          type="primary"
+          disabled={
+            selectedIndex === undefined ||
+            (selectedIndex === ballotStrategies.length &&
+              (!customStrategyAddress ||
+                !utils.isAddress(customStrategyAddress)))
+          }
+          onClick={() => {
+            onSave(
+              selectedIndex !== undefined &&
+                selectedIndex < ballotStrategies.length
+                ? ballotStrategies[selectedIndex].address
+                : customStrategyAddress ?? constants.AddressZero,
+            )
+          }}
+        >
+          Save
+        </Button>
+      </div>
     </Space>
   )
 }

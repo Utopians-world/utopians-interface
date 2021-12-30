@@ -524,6 +524,9 @@ export default function Create() {
               onProjectFormSaved()
               setProjectFormModalVisible(false)
             }}
+            onDeployBtn={() => {
+              setDeployProjectModalVisible(true)
+            }}
           />
         </Drawer>
 

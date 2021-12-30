@@ -16,7 +16,7 @@ export default function ProjectName({
       {...formItemProps}
     >
       <Input
-        placeholder="Peach's Juicebox Stand"
+        placeholder="Peach's Utopians Stand"
         type="string"
         autoComplete="off"
         onChange={onChange ? e => onChange(e.target.value) : undefined}

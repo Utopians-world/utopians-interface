@@ -57,6 +57,13 @@
             width: 16px;
             background-image: url('../../assets/images/create-arrow-default.png');
         }
+
+        .createTabpaneRight{
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            background-image: url('../../assets/images/creat-save-check.png');
+        }
     }
 
     & .createTabpaneNum{
@@ -551,6 +558,7 @@
         color: #2C1BD7;
         width: 236px;
         height: 52px;
+        cursor: pointer;
     }
 }
 
@@ -565,6 +573,13 @@
     border-radius: 3px;
 }
 
+.stepSaveDeployBtnsCon {
+    .ant-form-item-control-input-content {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
 .stepSaveBtn {
     @include solidBtn;
     width: 146px;
@@ -573,6 +588,7 @@
     box-shadow: none;
     font-size: 16px;
     color: #FFFFFF !important;
+    margin-left: 19px;
 
     &:hover {
         border: none;
