@@ -13,161 +13,181 @@
     color: #5F5E61;
     line-height: 18px;
 }
-.ant-modal-content {
-  background: #ffffff;
-}
-.ant-layout-content{
-    background: #F6F8FF;
-    position: relative;
+
+.mainLayout{
+    .ant-layout-content{
+        background: #F6F8FF!important;
+        position: relative;
+    }
+
+    .indexBackground {
+        position: absolute;
+        width: 95%;
+        height: 300px;
+        z-index: 0;
+        background-image: url('../../assets/images/home-pic.png');
+        background-repeat: no-repeat;
+        top: 0;
+        left: 0;
+        filter: blur(5px);
+        transform: scale(1.1);
+        background-size: 100%;
+    }
+
+    .ant-modal-header {
+        background: #ffffff;
+        font-size: 18px;
+      }
+
+    .ant-modal-title {
+      color: #1D1D1D!important;
+      font-weight: bold;
+    }
+    .ant-modal-body{
+        padding-top: 0;
+        padding-bottom: 0
+    }
+    .button-spec{
+        width: 120px;
+        height: 35px;
+        border-radius: 3px;
+        border: 3px solid;
+        border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 3 3;;
+        font-size: 12px;
+        text-align: center;
+        line-height: 30px;
+        color: #2C1BD7;
+        font-weight: bold;
+        float: right;
+        cursor: pointer;
+    }
 }
 
-.indexBackground {
-    position: absolute;
-    width: 95%;
-    height: 300px;
-    z-index: 0;
-    background-image: url('../../assets/images/home-pic.png');
-    background-repeat: no-repeat;
-    top: 0;
-    left: 0;
-    filter: blur(5px);
-    transform: scale(1.1);
-    background-size: 100%;
-}
 
-.ant-modal-header {
+
+//div, button, a {
+//    font-family: "TeXGyreAdventor-Bold";
+//}
+//p {
+//    font-family: "TeXGyreAdventor-Regular";
+//    font-size: 12px;
+//    margin: 0;
+//}
+//h1, h2, h3, h4, h5{
+//    color: #1D1D1D;
+//}
+
+.projectModal{
     background: #ffffff;
-    font-size: 18px;
-  }
+    padding: 0;
+    .ant-modal-content {
+      background: #ffffff;
+    }
+    p {
+        margin-bottom: 0;
+    }
+    .stepAddPayout{
+        border: 1px dashed rgb(102, 95, 172);
+    }
+    .ant-input-wrapper .ant-input{
+        height: 42px;
+        border-radius: 5px;
+        border-top: 2px solid #bdc1e4;
+        border-left: 2px solid #bdc1e4;
+        border-bottom: 2px solid #bdc1e4;
+        padding: 0 15px;
+    }
+    .ant-space {
+        gap: 10px!important;
+    }
+    .ant-modal-footer{
+        height: 80px!important;
+    }
+    .ant-modal-footer{
+        .ant-btn {
+            color: #2C1BD7!important;
+            border: none!important;
+            font-weight: bold!important;
+            height: 35px!important;
+            line-height: 5px!important;
+            font-size: 12px!important;
+        }
+        .ant-btn-primary {
+            background: #481BE3!important;
+            color: #ffffff!important;
+            border-radius: 5px!important;
+        }
+    }
 
-.ant-modal-title {
-  color: #1D1D1D!important;
-  font-weight: bold;
-}
-.ant-modal-body{
-    padding-top: 0;
-    padding-bottom: 0
+    .ant-modal-footer{
+        padding: 20px 16px;
+    }
+    .ant-switch {
+        background: #b7b7b7;
+        width: 20px;
+    }
+    .ant-switch.ant-switch-checked{
+        background: #3A1FF5;
+    }
+    input::-webkit-input-placeholder {
+        color: #D3DCEE!important;
+    }
+    .ant-input-group-addon{
+        border: 2px solid #bdc1e4;
+        background: #d6cffe;
+        border-radius: 5px;
+    }
+    .ant-select-selector{
+        border: none!important;
+    }
+    .ant-select{
+        width: 100px;
+    }
+    .ant-select-selection-item{
+        font-size: 18px;
+        font-weight: bold;
+        color: #3F3D3D!important;
+    }
+    .ant-select-open{
+        border: none!important;
+    }
+    .long-input .ant-select{
+        width: 150px;
+    }
+    .ant-slider-step{
+        background: #CCCDD6;
+        width: 5px;
+        border-radius: 2px;
+    }
+    .ant-slider .ant-slider-rail{
+        background: #CCCDD6;
+    }
+    .ant-slider .ant-slider-handle{
+        background: #ffffff;
+    }
+    .ant-input-number-input{
+        width: 100%;
+        height: 35px;
+        border-radius: 3px;
+        border: 2px solid #bdc1e4;
+        padding: 0 15px;
+    }
+    .stepNumberInput .ant-input-number-input{
+        border: none;
+        background: none;
+    }
+
+    .ant-progress-success-bg, .ant-progress-bg{
+        background: #00DAC5;
+    }
+    .ant-collapse-item{
+        border: none;
+    }
+    .ant-col{
+        z-index: 2;
+    }
 }
 
-div, button, a {
-    font-family: "TeXGyreAdventor-Bold";
-}
-p {
-    font-family: "TeXGyreAdventor-Regular";
-    font-size: 12px;
-    margin: 0;
-}
-h1, h2, h3, h4, h5{
-    color: #1D1D1D;
-}
-.ant-input-wrapper .ant-input{
-    height: 42px;
-    border-radius: 5px;
-    border-top: 2px solid #bdc1e4;
-    border-left: 2px solid #bdc1e4;
-    border-bottom: 2px solid #bdc1e4;
-    padding: 0 15px;
-}
-.ant-space {
-    gap: 10px!important;
-}
-.ant-modal-footer{
-    height: 80px!important;
-}
-.ant-btn {
-    color: #2C1BD7!important;
-    border: none!important;
-    font-weight: bold!important;
-    height: 35px!important;
-    line-height: 5px!important;
-    font-size: 12px!important;
-}
-.ant-btn-primary {
-    background: #481BE3!important;
-    color: #ffffff!important;
-    border-radius: 5px!important;
-}
-.ant-modal-footer{
-    padding: 20px 16px;
-}
-.ant-switch {
-    background: #b7b7b7;
-    width: 20px;
-}
-.ant-switch.ant-switch-checked{
-    background: #3A1FF5;
-}
-input::-webkit-input-placeholder {
-    color: #D3DCEE!important;
-}
-.ant-input-group-addon{
-    border: 2px solid #bdc1e4;
-    background: #d6cffe;
-    border-radius: 5px;
-}
-.ant-select-selector{
-    border: none!important;
-}
-.ant-select{
-    width: 100px;
-}
-.ant-select-selection-item{
-    font-size: 18px;
-    font-weight: bold;
-    color: #3F3D3D!important;
-}
-.ant-select-open{
-    border: none!important;
-}
-.long-input .ant-select{
-    width: 150px;
-}
-.ant-slider-step{
-    background: #CCCDD6;
-    width: 5px;
-    border-radius: 2px;
-}
-.ant-slider .ant-slider-rail{
-    background: #CCCDD6;
-}
-.ant-slider .ant-slider-handle{
-    background: #ffffff;
-}
-.ant-input-number-input{
-    width: 100%;
-    height: 35px;
-    border-radius: 3px;
-    border: 2px solid #bdc1e4;
-    padding: 0 15px;
-}
-.stepNumberInput .ant-input-number-input{
-    border: none;
-    background: none;
-}
-
-.ant-progress-success-bg, .ant-progress-bg{
-    background: #00DAC5;
-}
-.button-spec{
-    width: 120px;
-    height: 35px;
-    border-radius: 3px;
-    border: 3px solid;
-    border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 3 3;;
-    font-size: 12px;
-    text-align: center;
-    line-height: 30px;
-    color: #2C1BD7;
-    font-weight: bold;
-    float: right;
-    cursor: pointer;
-}
-.ant-collapse-item{
-    border: none;
-}
-.ant-col{
-    z-index: 2;
-}
 .ModalForm{
     .ant-form-item-label > label {
         @include stepLabel;

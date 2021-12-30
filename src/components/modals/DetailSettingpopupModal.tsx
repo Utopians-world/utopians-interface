@@ -44,6 +44,7 @@ export default function DetailSettingpopupModal({
       bodyStyle={{ background: '#ffffff' }}
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
+      className="projectModal"
     >
       <Space
         direction="vertical"

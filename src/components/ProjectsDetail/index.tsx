@@ -18,6 +18,7 @@ export default function ProjectsDetail() {
     width: '100%',
     margin: '40px auto',
     paddingLeft: '20px',
+    zIndex: 2,
   }
   const LeftLayout: CSSProperties = {
     minHeight: '1000px',
@@ -26,10 +27,11 @@ export default function ProjectsDetail() {
     padding: '20px',
     borderRadius: '3px',
     border: '1px solid #D3DCEE',
+    zIndex: 2,
   }
 
   return (
-    <Row gutter={20} style={MainLayout}>
+    <Row gutter={20} style={MainLayout} className="mainLayout">
       <Col span={17} style={LeftLayout}>
         <ProjectTitle />
         <FundingCycle />
@@ -38,7 +40,7 @@ export default function ProjectsDetail() {
         <Distribution />
         <Reserved />
       </Col>
-      <Col span={6}>
+      <Col span={6} style={{ zIndex: 2 }}>
         <FundUs />
         <YourBalance />
         <Activity />

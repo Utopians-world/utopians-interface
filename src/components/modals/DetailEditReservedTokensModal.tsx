@@ -54,6 +54,7 @@ export default function DetailEditReservedTokensModal({
       centered={true}
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
+      className="projectModal"
     >
       <Space
         direction="vertical"

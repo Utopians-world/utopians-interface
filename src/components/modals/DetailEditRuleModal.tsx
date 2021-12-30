@@ -46,6 +46,7 @@ export default function DetailEditRuleModal({
       centered={true}
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
+      className="projectModal"
     >
       <Space
         direction="vertical"
@@ -72,7 +73,7 @@ export default function DetailEditRuleModal({
               once the current cycle ends. A project with no strategy may be
               vulnerable to being rug-pulled by its owner.
             </p>
-            <div style={{ marginTop: '15px' }}>
+            <div>
               Contract Address 0X0003034304930493049304930493403493049343049304
             </div>
           </div>
@@ -110,7 +111,7 @@ export default function DetailEditRuleModal({
               A reconfiguration to an upcoming funding cycle must be submitted
               at least 7 days before it starts.
             </p>
-            <div style={{ marginTop: '35px' }}>
+            <div>
               Contract Address 0X0003034304930493049304930493403493049343049304
             </div>
           </div>
@@ -148,7 +149,7 @@ export default function DetailEditRuleModal({
               A reconfiguration to an upcoming funding cycle must be submitted
               at least 3 days before it starts.
             </p>
-            <div style={{ marginTop: '35px' }}>
+            <div>
               Contract Address 0X0003034304930493049304930493403493049343049304
             </div>
           </div>

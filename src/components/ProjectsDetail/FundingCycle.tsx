@@ -26,6 +26,18 @@ export default function FundingCycle() {
           lineHeight: '31px',
           textAlign: 'center',
           cursor: 'pointer',
+          ...(option === selectedTab
+            ? {
+                color: '#303030',
+              }
+            : {
+                color: '#5F5E61',
+              }),
+          ...(option === hoverTab
+            ? {
+                color: '#303030',
+              }
+            : {}),
         }}
         onClick={() => setSelectedTab(option)}
         onMouseEnter={() => setHoverTab(option)}

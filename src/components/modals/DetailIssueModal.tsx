@@ -29,6 +29,7 @@ export default function DetailIssueModal({
       centered={true}
       cancelText={'CANCEL'}
       okText={'ISSUE TOKEN'}
+      className="projectModal"
     >
       <Space
         direction="vertical"
