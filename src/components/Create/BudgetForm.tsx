@@ -18,11 +18,15 @@ export default function BudgetForm({
   initialTarget,
   initialDuration,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   initialCurrency: CurrencyOption
   initialTarget: string
   initialDuration: string
   onSave: (currency: CurrencyOption, target: string, duration: string) => void
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   // const {
   //   theme: { colors },
@@ -151,10 +155,22 @@ export default function BudgetForm({
           </p>
         )}
 
-        <Form.Item>
+        <Form.Item className="stepSaveDeployBtnsCon" style={{ marginTop: 20 }}>
+          {onDeployBtn && (
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="stepDeployBtn"
+              onClick={() => {
+                onDeployBtn()
+              }}
+              disabled={isDisable}
+            >
+              deploy Project
+            </Button>
+          )}
           <Button
             className="stepSaveBtn"
-            style={{ marginTop: 20 }}
             htmlType="submit"
             type="primary"
             onClick={() => onSave(currency, target, duration)}

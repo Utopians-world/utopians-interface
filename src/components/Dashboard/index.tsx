@@ -235,7 +235,7 @@ export default function Dashboard() {
     if (metadata?.name) {
       document.title = metadata.name
     } else {
-      document.title = 'Juicebox'
+      document.title = 'Utopians'
     }
   }, [metadata])
 

@@ -63,10 +63,10 @@ export default function Navbar() {
         {menuItem('Home', '/')}
         {menuItem('Projects', '/#/projects')}
         {menuItem('FAQ', '/#/faq')}
-        {menuItem('Docs', 'https://docs.juicebox.money')}
+        {/* {menuItem('Docs', 'https://docs.juicebox.money')}
         {menuItem('Blog', 'https://blog.juicebox.money')}
         {menuItem('Discord', 'https://discord.gg/6jXrJSyDFf')}
-        {menuItem('Workspace', 'https://juicebox.notion.site')}
+        {menuItem('Workspace', 'https://juicebox.notion.site')} */}
       </>
     )
   }

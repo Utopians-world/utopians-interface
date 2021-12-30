@@ -17,12 +17,16 @@ export default function IncentivesForm({
   disableBondingCurve,
   disableDiscountRate,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   initialDiscountRate: string
   initialBondingCurveRate: string
   disableBondingCurve?: string
   disableDiscountRate?: string
   onSave: (discountRate: string, bondingCurveRate: string) => void
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   const [discountRate, setDiscountRate] = useState<string>()
   const [bondingCurveRate, setBondingCurveRate] = useState<string>()
@@ -36,7 +40,20 @@ export default function IncentivesForm({
   }, [initialBondingCurveRate, initialDiscountRate])
 
   const saveButton = (
-    <Form.Item>
+    <Form.Item className="stepSaveDeployBtnsCon">
+      {onDeployBtn && (
+        <Button
+          htmlType="submit"
+          type="primary"
+          className="stepDeployBtn"
+          onClick={() => {
+            onDeployBtn()
+          }}
+          disabled={isDisable}
+        >
+          deploy Project
+        </Button>
+      )}
       <Button
         className="stepSaveBtn"
         htmlType="submit"

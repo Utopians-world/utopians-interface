@@ -192,7 +192,7 @@ export default function Paid() {
           >
             <div style={secondaryTextStyle}>
               <TooltipLabel
-                label="In Juicebox"
+                label="In Utopians"
                 tip="The balance of this project in the Juicebox contract."
               />
             </div>
@@ -272,7 +272,8 @@ export default function Paid() {
                 justifyContent: 'space-between',
                 flexFlow: 'column wrap',
                 alignItems: 'baseline',
-                marginTop: '20px',
+                paddingTop: '20px',
+                borderTop: '1px solid #C3D0F9',
               }}
             >
               <div style={secondaryTextStyle}>

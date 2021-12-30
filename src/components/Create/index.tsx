@@ -1,12 +1,12 @@
-import { CaretRightFilled, CheckCircleFilled } from '@ant-design/icons'
+// import { CaretRightFilled, CheckCircleFilled } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Button, Col, Drawer, DrawerProps, Row, Space, Tabs } from 'antd'
+import { Col, Row, Tabs } from 'antd'
 import { useForm } from 'antd/lib/form/Form'
 import Modal from 'antd/lib/modal/Modal'
 import Project from 'components/Dashboard/SmartProject'
 import { NetworkContext } from 'contexts/networkContext'
 import { ProjectContext, ProjectContextType } from 'contexts/projectContext'
-import { ThemeContext } from 'contexts/themeContext'
+// import { ThemeContext } from 'contexts/themeContext'
 import { UserContext } from 'contexts/userContext'
 import { constants, utils } from 'ethers'
 import { useAppDispatch } from 'hooks/AppDispatch'
@@ -52,9 +52,10 @@ export default function Create() {
   const { TabPane } = Tabs
   const { transactor, contracts, adminFeePercent } = useContext(UserContext)
   const { signerNetwork, userAddress } = useContext(NetworkContext)
-  const { colors, radii } = useContext(ThemeContext).theme
-  const [currentStep, setCurrentStep] = useState<number>()
-  const [viewedSteps, setViewedSteps] = useState<number[]>([])
+  // const { colors, radii } = useContext(ThemeContext).theme
+  // const [currentStep, setCurrentStep] = useState<number>()
+  // const [viewedSteps, setViewedSteps] = useState<number[]>([])
+  const [tabKey, settabKey] = useState('1')
   const [payModsModalVisible, setPayModsFormModalVisible] =
     useState<boolean>(false)
   const [budgetFormModalVisible, setBudgetFormModalVisible] =
@@ -256,7 +257,7 @@ export default function Create() {
             name: logoNameForHandle(editingProjectInfo.handle),
           })
 
-          window.location.hash = '/p/' + editingProjectInfo.handle
+          window.location.hash = '/congratulation/' + editingProjectInfo.handle
         },
       },
     )
@@ -271,128 +272,128 @@ export default function Create() {
     userAddress,
   ])
 
-  const viewedCurrentStep = useCallback(() => {
-    if (currentStep !== undefined && !viewedSteps.includes(currentStep)) {
-      setViewedSteps([...viewedSteps, currentStep])
-    }
-    setCurrentStep(undefined)
-  }, [currentStep, viewedSteps])
+  // const viewedCurrentStep = useCallback(() => {
+  //   if (currentStep !== undefined && !viewedSteps.includes(currentStep)) {
+  //     setViewedSteps([...viewedSteps, currentStep])
+  //   }
+  //   setCurrentStep(undefined)
+  // }, [currentStep, viewedSteps])
 
-  const drawerStyle: Partial<DrawerProps> = useMemo(
-    () => ({
-      placement: 'right',
-      width: Math.min(640, window.innerWidth * 0.9),
-    }),
-    [],
-  )
+  // const drawerStyle: Partial<DrawerProps> = useMemo(
+  //   () => ({
+  //     placement: 'right',
+  //     width: Math.min(640, window.innerWidth * 0.9),
+  //   }),
+  //   [],
+  // )
 
-  const buildSteps = useCallback(
-    (
-      steps: {
-        title: string
-        description?: string
-        callback: VoidFunction
-      }[],
-    ) => (
-      <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        {steps.map((step, i) => {
-          const active = currentStep === i
-          const viewed = viewedSteps.includes(i)
+  // const buildSteps = useCallback(
+  //   (
+  //     steps: {
+  //       title: string
+  //       description?: string
+  //       callback: VoidFunction
+  //     }[],
+  //   ) => (
+  //     <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+  //       {steps.map((step, i) => {
+  //         const active = currentStep === i
+  //         const viewed = viewedSteps.includes(i)
 
-          return (
-            <div
-              key={step.title}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                cursor: 'pointer',
-                padding: 15,
-                borderRadius: radii.sm,
-                fontWeight: viewed ? 500 : 600,
-                color: viewed
-                  ? colors.text.primary
-                  : colors.text.action.primary,
-                border: viewed
-                  ? '1px solid ' + colors.stroke.secondary
-                  : '1px solid' + colors.stroke.action.primary,
-                borderLeftWidth: active ? 10 : 1,
-              }}
-              onClick={() => {
-                if (currentStep !== undefined) return
-                setCurrentStep(i)
-                step.callback()
-              }}
-            >
-              <div
-                style={{
-                  marginRight: 15,
-                }}
-              >
-                {i + 1}
-              </div>
-              <div
-                style={{
-                  marginRight: 10,
-                  flex: 1,
-                }}
-              >
-                <div>{step.title}</div>
-                <div
-                  style={{
-                    color: colors.text.secondary,
-                    fontWeight: 400,
-                    fontSize: '0.75rem',
-                  }}
-                >
-                  {step.description}
-                </div>
-              </div>
-              <div
-                style={{
-                  alignSelf: 'center',
-                  color: viewed
-                    ? colors.text.secondary
-                    : colors.text.action.primary,
-                }}
-              >
-                {viewed ? <CheckCircleFilled /> : <CaretRightFilled />}
-              </div>
-            </div>
-          )
-        })}
+  //         return (
+  //           <div
+  //             key={step.title}
+  //             style={{
+  //               display: 'flex',
+  //               justifyContent: 'space-between',
+  //               cursor: 'pointer',
+  //               padding: 15,
+  //               borderRadius: radii.sm,
+  //               fontWeight: viewed ? 500 : 600,
+  //               color: viewed
+  //                 ? colors.text.primary
+  //                 : colors.text.action.primary,
+  //               border: viewed
+  //                 ? '1px solid ' + colors.stroke.secondary
+  //                 : '1px solid' + colors.stroke.action.primary,
+  //               borderLeftWidth: active ? 10 : 1,
+  //             }}
+  //             onClick={() => {
+  //               if (currentStep !== undefined) return
+  //               setCurrentStep(i)
+  //               step.callback()
+  //             }}
+  //           >
+  //             <div
+  //               style={{
+  //                 marginRight: 15,
+  //               }}
+  //             >
+  //               {i + 1}
+  //             </div>
+  //             <div
+  //               style={{
+  //                 marginRight: 10,
+  //                 flex: 1,
+  //               }}
+  //             >
+  //               <div>{step.title}</div>
+  //               <div
+  //                 style={{
+  //                   color: colors.text.secondary,
+  //                   fontWeight: 400,
+  //                   fontSize: '0.75rem',
+  //                 }}
+  //               >
+  //                 {step.description}
+  //               </div>
+  //             </div>
+  //             <div
+  //               style={{
+  //                 alignSelf: 'center',
+  //                 color: viewed
+  //                   ? colors.text.secondary
+  //                   : colors.text.action.primary,
+  //               }}
+  //             >
+  //               {viewed ? <CheckCircleFilled /> : <CaretRightFilled />}
+  //             </div>
+  //           </div>
+  //         )
+  //       })}
 
-        <p style={{ fontWeight: 500 }}>
-          The JBX protocol is unaudited, and projects built on it may be
-          vulnerable to bugs or exploits. Be smart!
-        </p>
+  //       <p style={{ fontWeight: 500 }}>
+  //         The JBX protocol is unaudited, and projects built on it may be
+  //         vulnerable to bugs or exploits. Be smart!
+  //       </p>
 
-        <Button
-          onClick={() => setDeployProjectModalVisible(true)}
-          type="primary"
-          block
-          disabled={
-            !editingProjectInfo?.metadata.name || !editingProjectInfo.handle
-          }
-        >
-          Review & Deploy
-        </Button>
-      </Space>
-    ),
-    [
-      editingProjectInfo.metadata.name,
-      editingProjectInfo.handle,
-      currentStep,
-      viewedSteps,
-      radii.sm,
-      colors.text.primary,
-      colors.text.action.primary,
-      colors.text.secondary,
-      colors.stroke.secondary,
-      colors.stroke.action.primary,
-    ],
-  )
+  //       <Button
+  //         onClick={() => setDeployProjectModalVisible(true)}
+  //         type="primary"
+  //         block
+  //         disabled={
+  //           !editingProjectInfo?.metadata.name || !editingProjectInfo.handle
+  //         }
+  //       >
+  //         Review & Deploy
+  //       </Button>
+  //     </Space>
+  //   ),
+  //   [
+  //     editingProjectInfo.metadata.name,
+  //     editingProjectInfo.handle,
+  //     currentStep,
+  //     viewedSteps,
+  //     radii.sm,
+  //     colors.text.primary,
+  //     colors.text.action.primary,
+  //     colors.text.secondary,
+  //     colors.stroke.secondary,
+  //     colors.stroke.action.primary,
+  //   ],
+  // )
 
-  const spacing = 40
+  // const spacing = 40
 
   const fundingCycle: FundingCycle = useMemo(
     () => ({
@@ -444,17 +445,25 @@ export default function Create() {
         <h1 className="createTitle">
           CREATE A <span>NEW</span> PROJECT
         </h1>
-        <Tabs centered defaultActiveKey="1" className="createTabs">
+        <Tabs
+          centered
+          defaultActiveKey="1"
+          className="createTabs"
+          activeKey={tabKey}
+          onTabClick={params => {
+            settabKey(params)
+          }}
+        >
           <TabPane
             tab={
               <div className="createTabPane">
                 <div>
                   <span className="createTabpaneNum">1</span>Appearance
                 </div>
-                {viewedSteps.includes(1) ? (
-                  <span className="createTabpaneArrow"></span>
+                {projectFormModalVisible ? (
+                  <span className="createTabpaneRight"></span>
                 ) : (
-                  <CaretRightFilled />
+                  <span className="createTabpaneArrow"></span>
                 )}
               </div>
             }
@@ -466,22 +475,18 @@ export default function Create() {
                   form={projectForm}
                   onSave={async () => {
                     await projectForm.validateFields()
-                    viewedCurrentStep()
+                    setProjectFormModalVisible(true)
+                    settabKey('2')
                     onProjectFormSaved()
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -500,10 +505,10 @@ export default function Create() {
                   <span className="createTabpaneNum">2</span>Funding
                 </div>
 
-                {viewedSteps.includes(2) ? (
-                  <span className="createTabpaneArrow"></span>
+                {budgetFormModalVisible ? (
+                  <span className="createTabpaneRight"></span>
                 ) : (
-                  <CaretRightFilled />
+                  <span className="createTabpaneArrow"></span>
                 )}
               </div>
             }
@@ -518,23 +523,18 @@ export default function Create() {
                   initialTarget={fromWad(editingFC.target)}
                   initialDuration={editingFC?.duration.toString()}
                   onSave={async (currency, target, duration) => {
-                    viewedCurrentStep()
                     onBudgetFormSaved(currency, target, duration)
-                    setBudgetFormModalVisible(false)
+                    setBudgetFormModalVisible(true)
+                    settabKey('3')
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -553,10 +553,10 @@ export default function Create() {
                   <span className="createTabpaneNum">3</span>Distribution
                 </div>
 
-                {viewedSteps.includes(3) ? (
-                  <span className="createTabpaneArrow"></span>
+                {payModsModalVisible ? (
+                  <span className="createTabpaneRight"></span>
                 ) : (
-                  <CaretRightFilled />
+                  <span className="createTabpaneArrow"></span>
                 )}
               </div>
             }
@@ -570,23 +570,18 @@ export default function Create() {
                   target={editingFC.target}
                   fee={editingFC.fee}
                   onSave={async mods => {
-                    viewedCurrentStep()
                     onPayModsFormSaved(mods)
-                    setPayModsFormModalVisible(false)
+                    setPayModsFormModalVisible(true)
+                    settabKey('4')
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -605,10 +600,10 @@ export default function Create() {
                   <span className="createTabpaneNum">4</span>Reserved Tokens
                 </div>
 
-                {viewedSteps.includes(4) ? (
-                  <span className="createTabpaneArrow"></span>
+                {ticketingFormModalVisible ? (
+                  <span className="createTabpaneRight"></span>
                 ) : (
-                  <CaretRightFilled />
+                  <span className="createTabpaneArrow"></span>
                 )}
               </div>
             }
@@ -620,24 +615,19 @@ export default function Create() {
                   form={ticketingForm}
                   initialMods={editingTicketMods}
                   onSave={async mods => {
-                    viewedCurrentStep()
                     await ticketingForm.validateFields()
                     onTicketingFormSaved(mods)
-                    setTicketingFormModalVisible(false)
+                    setTicketingFormModalVisible(true)
+                    settabKey('5')
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -656,10 +646,10 @@ export default function Create() {
                   <span className="createTabpaneNum">5</span>Reconfiguration
                 </div>
 
-                {viewedSteps.includes(5) ? (
-                  <span className="createTabpaneArrow"></span>
+                {rulesFormModalVisible ? (
+                  <span className="createTabpaneRight"></span>
                 ) : (
-                  <CaretRightFilled />
+                  <span className="createTabpaneArrow"></span>
                 )}
               </div>
             }
@@ -670,23 +660,18 @@ export default function Create() {
                 <RulesForm
                   initialBallot={editingFC.ballot}
                   onSave={(ballot: string) => {
-                    viewedCurrentStep()
                     onRulesFormSaved(ballot)
-                    setRulesFormModalVisible(false)
+                    setRulesFormModalVisible(true)
+                    settabKey('6')
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -704,6 +689,11 @@ export default function Create() {
                 <div>
                   <span className="createTabpaneNum">6</span>Incentives
                 </div>
+                {incentivesFormModalVisible ? (
+                  <span className="createTabpaneRight"></span>
+                ) : (
+                  <span className="createTabpaneArrow"></span>
+                )}
               </div>
             }
             key="6"
@@ -733,24 +723,18 @@ export default function Create() {
                     discountRate: string,
                     bondingCurveRate: string,
                   ) => {
-                    viewedCurrentStep()
                     await ticketingForm.validateFields()
                     onIncentivesFormSaved(discountRate, bondingCurveRate)
-                    setIncentivesFormModalVisible(false)
+                    setIncentivesFormModalVisible(true)
                   }}
-                />
-                <Button
-                  className="stepDeployBtn"
-                  onClick={() => setDeployProjectModalVisible(true)}
-                  type="primary"
-                  block
-                  disabled={
+                  onDeployBtn={() => {
+                    setDeployProjectModalVisible(true)
+                  }}
+                  isDisable={
                     !editingProjectInfo?.metadata.name ||
                     !editingProjectInfo.handle
                   }
-                >
-                  Deploy project
-                </Button>
+                />
               </Col>
               <Col xs={24} md={14}>
                 <h3 className="smartPreviewTitle">Smart preview</h3>
@@ -778,7 +762,7 @@ export default function Create() {
       </Modal> */}
       </Row>
       <Row style={{ marginTop: 40, display: 'none' }}>
-        <Col
+        {/* <Col
           xs={24}
           md={10}
           style={{
@@ -823,9 +807,9 @@ export default function Create() {
               callback: () => setIncentivesFormModalVisible(true),
             },
           ])}
-        </Col>
+        </Col> */}
 
-        <Col xs={24} md={14}>
+        {/* <Col xs={24} md={14}>
           <h3
             style={{
               marginTop: 5,
@@ -847,9 +831,9 @@ export default function Create() {
           >
             <Project showCurrentDetail column />
           </div>
-        </Col>
+        </Col> */}
 
-        <Drawer
+        {/* <Drawer
           {...drawerStyle}
           visible={projectFormModalVisible}
           onClose={() => {
@@ -983,7 +967,7 @@ export default function Create() {
               setIncentivesFormModalVisible(false)
             }}
           />
-        </Drawer>
+        </Drawer> */}
 
         <Modal
           visible={deployProjectModalVisible}

@@ -15,12 +15,16 @@ export default function PayModsForm({
   target,
   fee,
   onSave,
+  onDeployBtn,
+  isDisable,
 }: {
   initialMods: PayoutMod[]
   currency: CurrencyOption
   target: BigNumber
   fee: BigNumber | undefined
   onSave: (mods: PayoutMod[]) => void
+  onDeployBtn?: VoidFunction
+  isDisable?: boolean
 }) {
   // State objects avoid antd form input dependency rerendering issues
   const [mods, setMods] = useState<PayoutMod[]>([])
@@ -47,7 +51,7 @@ export default function PayModsForm({
           title={
             <p>
               Payouts let you commit portions of every withdrawal to other
-              Ethereum wallets or Juicebox projects. Use this to pay
+              Ethereum wallets or Utopians projects. Use this to pay
               contributors, charities, other projects you depend on, or anyone
               else. Payouts will be distributed automatically whenever a
               withdrawal is made from your project.
@@ -66,10 +70,22 @@ export default function PayModsForm({
           onModsChanged={setMods}
           fee={fee}
         />
-        <Form.Item>
+        <Form.Item className="stepSaveDeployBtnsCon" style={{ marginTop: 20 }}>
+          {onDeployBtn && (
+            <Button
+              htmlType="submit"
+              type="primary"
+              className="stepDeployBtn"
+              onClick={() => {
+                onDeployBtn()
+              }}
+              disabled={isDisable}
+            >
+              deploy Project
+            </Button>
+          )}
           <Button
             className="stepSaveBtn"
-            style={{ marginTop: 20 }}
             htmlType="submit"
             type="primary"
             onClick={() => onSave(mods)}
