@@ -129,7 +129,7 @@ export default function BalancesModal({
           okText="Save tracked assets"
         >
           <p style={{ marginBottom: 40 }}>
-            Display ERC20 tokens and other Juicebox project tokens that are in
+            Display ERC20 tokens and other Utopians project tokens that are in
             this project's owner's wallet.
           </p>
           <FormItems.TokenRefs

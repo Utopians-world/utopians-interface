@@ -1,4 +1,4 @@
-import { Tooltip } from 'antd'
+import { Progress, Tooltip } from 'antd'
 // import { ThemeContext } from 'contexts/themeContext'
 import { BigNumber } from 'ethers'
 
@@ -6,7 +6,7 @@ import { useProjectMetadata } from 'hooks/ProjectMetadata'
 import { Project } from 'models/subgraph-entities/project'
 // import { useContext } from 'react'
 import { formatDate } from 'utils/formatDate'
-import { formatWad } from 'utils/formatNumber'
+import { formatWad, fracDiv } from 'utils/formatNumber'
 
 import CurrencySymbol from './CurrencySymbol'
 import Loading from './Loading'
@@ -18,7 +18,15 @@ export default function ProjectCard({
   project,
   selectedtab,
 }: {
-  project: Pick<Project, 'handle' | 'uri' | 'totalPaid' | 'createdAt'>
+  project: Pick<
+    Project,
+    | 'handle'
+    | 'uri'
+    | 'totalPaid'
+    | 'createdAt'
+    | 'currentBalance'
+    | 'totalRedeemed'
+  >
   selectedtab?: string
 }) {
   // const {
@@ -33,6 +41,16 @@ export default function ProjectCard({
     project.totalPaid.lt(BigNumber.from('10000000000000000000'))
       ? 2
       : 0
+  const tmpBalance = project.currentBalance?.gt(0)
+    ? formatWad(project.currentBalance, { decimals })
+    : 0
+  const tmpPaid = project.totalPaid?.gt(0)
+    ? formatWad(project.totalPaid, { decimals })
+    : 1
+
+  const progressData =
+    fracDiv((tmpBalance ?? 0)?.toString(), (tmpPaid ?? 1)?.toString()) * 100
+
   return (
     <div
       // style={{
@@ -82,10 +100,18 @@ export default function ProjectCard({
                   {formatWad(project.totalPaid, { decimals })}{' '}
                 </span>
               </div>
-              <div className="proCardConRightConBottom">
-                <span className="">Cycle #2</span>
+              <div className="proCardConRightConTop">
+                since&nbsp;
                 {!!project.createdAt &&
                   formatDate(project.createdAt * 1000, 'MM-DD-YY')}
+              </div>
+              <div className="proCardConRightConBottom">
+                <span className="">Cycle</span>
+                <Progress
+                  percent={progressData ? Math.max(progressData, 1) : 0}
+                  showInfo={false}
+                  strokeColor={'#00DAC5'}
+                />
               </div>
             </div>
           </div>

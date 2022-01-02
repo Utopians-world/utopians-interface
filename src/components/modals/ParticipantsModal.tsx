@@ -171,7 +171,7 @@ export default function ParticipantsModal({
             link.setAttribute('href', encodedUri)
             link.setAttribute(
               'download',
-              'juicebox_project-' + projectId + '_holders.csv',
+              'Utopians_project-' + projectId + '_holders.csv',
             )
             document.body.appendChild(link)
 
@@ -321,15 +321,15 @@ export default function ParticipantsModal({
         {erc20IsUntracked && (
           <p>
             <b>Notice:</b> {tokenSymbol} ERC20 tokens have not been indexed by
-            Juicebox, meaning that the balances reflected below will be
+            Utopians, meaning that the balances reflected below will be
             inaccurate for users who have unstaked and transferred their tokens.
             This will be solved with the release of{' '}
             <a
-              href="https://app.gitbook.com/@jbx/s/juicebox/"
+              href="https://app.gitbook.com/@jbx/s/Utopians/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Juicebox V2
+              Utopians V2
             </a>
             . If this is a big issue for your project, let us know in the{' '}
             <a

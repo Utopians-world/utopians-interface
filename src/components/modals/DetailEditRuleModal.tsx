@@ -214,7 +214,7 @@ export default function DetailEditRuleModal({
               The address of any smart contract deployed on {signerNetwork}
               <a
                 style={{ color: '#3A1FF5' }}
-                href="https://github.com/jbx-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
+                href="https://github.com/upt-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
                 target="_blank"
                 rel="noopener noreferrer"
               >

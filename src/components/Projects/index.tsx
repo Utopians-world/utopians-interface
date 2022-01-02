@@ -148,8 +148,8 @@ export default function Projects() {
             <span>
               Archived projects have not been modified or deleted on the
               blockchain, and can still be interacted with directly through the
-              Juicebox contracts.{' '}
-              <Tooltip title="If you have a project you'd like to archive, let the Juicebox team know in Discord.">
+              Utopians contracts.{' '}
+              <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Discord.">
                 <span
                   style={{
                     color: colors.text.action.primary,

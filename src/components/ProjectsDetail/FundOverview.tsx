@@ -122,7 +122,7 @@ export default function FundOverview() {
                     <span>Volume</span>
                   </div>
                 }
-                tip="The total amount received by this project through Juicebox since it was created."
+                tip="The total amount received by this project through Utopians since it was created."
               />
             </Space>
             <h2 style={NumberTotal}>
@@ -205,9 +205,9 @@ export default function FundOverview() {
                   <span>Distributed</span>
                 </div>
               }
-              tip="The amount that has been distributed from the Juicebox balance in this funding cycle,
+              tip="The amount that has been distributed from the Utopians balance in this funding cycle,
                  out of the current funding target. No more than the funding target can be distributed in
-                  a single funding cycle—any remaining ETH in Juicebox is overflow, until the next cycle begins."
+                  a single funding cycle—any remaining ETH in Utopians is overflow, until the next cycle begins."
             />
           </Space>
           <h2

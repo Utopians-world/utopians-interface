@@ -55,6 +55,16 @@
     flex-flow: column wrap;
     align-items: center;
     background-color: #ffffff;
+    @media screen and (max-width: 1380px) {
+      .worksSectionIconTwo {
+        display:none;
+      }
+    }
+    @media screen and (max-width: 1280px) {
+      .worksSectionIconOne, .worksSectionIconTwo {
+        display:none;
+      }
+    }
 
     & .secondDes{
       max-width: 980px;
@@ -72,9 +82,17 @@
       align-items: center;
       min-height:510px;
       max-width: 287px;
-      padding: 20px 36px;
+      padding: 20px 0;
       box-shadow: 0px 2px 20px 0px rgba(0, 162, 251, 0.25);
       border-radius: 15px;
+      @media screen and (max-width: 1080px) {
+        min-height: 558px;
+      }
+      @media screen and (max-width: 992px) {
+        font-size: 16px;
+        margin: 0 auto 20px;
+        min-height: 450px;
+      }
       
       h3 {
         font-size: 25px;
@@ -84,6 +102,9 @@
         line-height: 25px;
         text-shadow: 0px 1px 6px #9EFFF1;
         margin: 36px 0 18px;
+        @media screen and (max-width: 1080px) {
+          font-size: 20px;
+        }
       }
       p {
         font-size: 16px;
@@ -91,7 +112,11 @@
         font-weight: 400;
         color: #282828;
         line-height: 24px;
+        padding: 0 20px;
         text-align: center;
+        @media screen and (max-width: 1080px) {
+          padding: 0 16px;
+        }
       }
     }
 

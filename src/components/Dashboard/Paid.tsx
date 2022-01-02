@@ -158,7 +158,7 @@ export default function Paid() {
             <span style={secondaryTextStyle}>
               <TooltipLabel
                 label="Volume"
-                tip="The total amount received by this project through Juicebox since it was created."
+                tip="The total amount received by this project through Utopians since it was created."
               />
             </span>
             <span style={primaryTextStyle}>
@@ -193,7 +193,7 @@ export default function Paid() {
             <div style={secondaryTextStyle}>
               <TooltipLabel
                 label="In Utopians"
-                tip="The balance of this project in the Juicebox contract."
+                tip="The balance of this project in the Utopians contract."
               />
             </div>
 
@@ -225,7 +225,7 @@ export default function Paid() {
                 tip={
                   <div>
                     <p>
-                      The balance of the wallet that owns this Juicebox project.
+                      The balance of the wallet that owns this Utopians project.
                     </p>
                     <span style={{ userSelect: 'all' }}>{owner}</span>{' '}
                     <EtherscanLink value={owner} type="address" />
@@ -279,7 +279,7 @@ export default function Paid() {
               <div style={secondaryTextStyle}>
                 <TooltipLabel
                   label="Distributed"
-                  tip="The amount that has been distributed from the Juicebox balance in this funding cycle, out of the current funding target. No more than the funding target can be distributed in a single funding cycle—any remaining ETH in Juicebox is overflow, until the next cycle begins."
+                  tip="The amount that has been distributed from the Utopians balance in this funding cycle, out of the current funding target. No more than the funding target can be distributed in a single funding cycle—any remaining ETH in Utopians is overflow, until the next cycle begins."
                 />
               </div>
 
@@ -296,7 +296,7 @@ export default function Paid() {
               }}
             >
               <TooltipLabel
-                tip="The target for this funding cycle is 0, meaning all funds in Juicebox are currently considered overflow. Overflow can be redeemed by token holders, but not distributed."
+                tip="The target for this funding cycle is 0, meaning all funds in Utopians are currently considered overflow. Overflow can be redeemed by token holders, but not distributed."
                 label="100% overflow"
               />
             </div>

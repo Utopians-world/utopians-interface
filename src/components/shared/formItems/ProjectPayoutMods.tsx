@@ -497,7 +497,7 @@ export default function ProjectPayoutMods({
               }
             >
               <Select.Option value="address">Wallet address</Select.Option>
-              <Select.Option value="project">Juicebox project</Select.Option>
+              <Select.Option value="project">Utopian project</Select.Option>
             </Select>
           </Form.Item>
 
@@ -561,9 +561,13 @@ export default function ProjectPayoutMods({
               }
             />
           ) : null}
-          <Form.Item label="Percent" rules={[{ required: true }]}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <span style={{ flex: 1, marginRight: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ flex: 1, marginRight: 10 }}>
+              <Form.Item
+                label="Percent"
+                name="Percent"
+                rules={[{ required: true, message: 'Percent is required' }]}
+              >
                 <NumberSlider
                   onChange={percent => {
                     form.setFieldsValue({ percent })
@@ -573,21 +577,21 @@ export default function ProjectPayoutMods({
                   defaultValue={form.getFieldValue('percent') || 0}
                   suffix="%"
                 />
-              </span>
+              </Form.Item>
+            </span>
 
-              {parseWad(target).lt(constants.MaxUint256) && (
-                <span style={{ color: colors.text.primary }}>
-                  <CurrencySymbol currency={currency} />
-                  {formatWad(
-                    amountSubFee(parseWad(target), fee)
-                      ?.mul(Math.floor((editingPercent ?? 0) * 100))
-                      .div(10000),
-                    { decimals: 4, padEnd: true },
-                  )}
-                </span>
-              )}
-            </div>
-          </Form.Item>
+            {parseWad(target).lt(constants.MaxUint256) && (
+              <span style={{ color: colors.text.primary }}>
+                <CurrencySymbol currency={currency} />
+                {formatWad(
+                  amountSubFee(parseWad(target), fee)
+                    ?.mul(Math.floor((editingPercent ?? 0) * 100))
+                    .div(10000),
+                  { decimals: 4, padEnd: true },
+                )}
+              </span>
+            )}
+          </div>
           <Form.Item
             name="lockedUntil"
             label="Lock until"

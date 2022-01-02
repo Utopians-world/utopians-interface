@@ -17,7 +17,7 @@ export default function ProjectTwitter({
     >
       <Input
         prefix="@"
-        placeholder="juiceboxETH"
+        placeholder="UtopiansMETIS"
         type="string"
         autoComplete="off"
         defaultValue={defaultValue}

@@ -13,56 +13,56 @@ const QAs: {
   }
 }[] = [
   {
-    q: 'Who funds Juicebox projects?',
+    q: 'Who funds Utopians projects?',
     a: [
       `Users fund your project by paying to use your app or service, or as a patron or investor by making a payment directly to your project's smart contract (like on this app).`,
-      `For users paying through your app, you should route those funds through the Juicebox smart contracts so they receive Tokens in return.`,
+      `For users paying through your app, you should route those funds through the Utopians smart contracts so they receive Tokens in return.`,
     ],
   },
   {
-    q: `What does Juicebox cost?`,
+    q: `What is the cost of Utopians ?`,
     a: [
-      `Juicebox is an open protocol on Ethereum that is funded using Juicebox itself. You can check out the contractualized budget specs at https://juicebox.money/#/p/juicebox.`,
-      `5% of all money made by projects is sent to help pay for the maintenance and development of Juicebox itself. In exchange, projects get Juicebox tokens ($JBX), which will be worth more as the ecosystem grows over time.`,
+      `Utopians currently takes a 5% cut of every project withdrawal for development  of Utopia projects.  You will get Utopia tokens ($UTP) in return. As the ecosystem continues to grow, the value of Utopia tokens may continue to appreciate and benefit all holders.`,
+      `Utopia is an open protocol on Metis Andromeda, you can check out the fund details at https://utopians.world/#/p/utopians. `,
     ],
   },
   {
-    q: `What is overflow?`,
+    q: `What is the project overflow?`,
     a: [
-      `If you know how much your project needs to earn over some period of time to be sustainable, you can set a funding target with that amount. If your project earns more than that, the surplus funds are locked in an overflow pool. Anyone holding your project's tokens can claim a portion of the overflow pool in exchange for burning their tokens.`,
+      `In a funding cycle, you can set a funding target, and any surplus funds over that amount will be locked in the overflow pool.`,
+      `Anyone who has your project tokens can redeem them from the overflow pool and burn their tokens in exchange for their claim portion.`,
     ],
   },
   {
-    q: 'What are community tokens?',
+    q: 'What are project tokens？',
     a: [
-      `Each project has its own tokens which can either be staked or withdrawn as ERC-20s. Everyone who funds a project gets a newly minted supply of tokens in return. `,
+      `All projects mint tokens in return for funding, which can be redeemed from projects' overflow. They can either be staked or withdrawn as ERC-20s.`,
     ],
   },
   {
-    q: `Why should I want to own a project's tokens?`,
+    q: `What are project tokens for?`,
     a: [
-      `Tokens can be redeemed for a portion of a project's overflow, letting you benefit from its success. After all, you helped it get there.`,
+      `You can get tokens by funding projects, or making some contribution to the project. In the future, if the project is successful, you can benefit from its success.`,
     ],
   },
   {
     q: `What's a discount rate?`,
     a: [
-      `Projects can be created with an optional discount rate to incentivize funding it earlier than later. The amount of tokens rewarded per amount paid to your project will decrease by the discount rate with each new funding cycle. A higher discount rate will incentivize supporters to pay your project earlier than later.`,
+      `The discount rate is to encourage others to fund your project as early as possible, and the amount of tokens received decreases the further you get into the funding cycle.`,
     ],
   },
   {
     q: `What's a bonding curve?`,
     a: [
       `A bonding curve rewards people who wait longer to redeem your tokens for overflow.`,
-      `For example: with a bonding curve of 70%, redeeming 10% of the token supply at any given time will claim around 7% of the total overflow.`,
+      `For example, with a bonding curve of 70%, redeeming 10% of the token supply at any given time will claim around 7% of the total overflow.`,
       `The rest is left to share between token hodlers.`,
     ],
   },
   {
-    q: 'Does a project benefit from its own overflow?',
+    q: 'How does the project benefit from its own overflow？',
     a: [
-      `A project can choose to reserve a percentage of tokens for itself. Instead of being distributed to paying users, this percentage of tokens is instead minted for the project.`,
-      `Holding these tokens entitles a project to a portion of its own overflow.`,
+      `Projects can choose to keep a percentage of tokens for themselves rather than minting them for payers. So, projects can benefit from their own overflow.`,
     ],
   },
   {
@@ -74,64 +74,46 @@ const QAs: {
     ],
   },
   {
-    q: 'Can I delete a project?',
+    q: 'Can I remove my project?',
     a: [
-      `It isn't possible to remove a project's data from the blockchain, but we can hide it in the app if you'd like to prevent people from seeing or interacting with it—just let us know in Discord. Keep in mind people will still be able to use your project by interacting directly with the contract.`,
+      `We can't remove your project from blockchain, but you can contact us on Discord so your project won't be visible on Utopians. But people can still use your project directly with contract.`,
     ],
   },
   {
-    q: 'Why Ethereum?',
+    q: 'Why Metis Andromeda？',
     a: [
-      `A mechanism like Juicebox where upfront financial commitments should be honored over time is only guaranteed within an ecosystem like Ethereum.`,
-      `Ethereum provides a public environment where internet apps like Juicebox can run permissionlessly, trustlessly, and unstoppably.`,
-      `This means that anyone can see the code that they're using, anyone can use the code without asking for permission, and no one can mess with the code or take it down.`,
-      `People using Juicebox are interacting with each other through public infrastructure—not a private, profit-seeking corporate service that brokers the exchange.`,
-      `Juicebox was built to allow people and projects to get paid for creating public art and infrastructure, as much as or more than they would working towards corporate ends. No more shady business.`,
+      `Due to the frequent congestion of the Ethereum network and the extremely high handling fees, many large-scale applications cannot be implemented on the Ethereum network.`,
+      `So Layer1 is absolutely reliable and credible to ensure security and decentralization; it can achieve global consensus and act as an "encrypted court" to arbitrate through rules designed by smart contracts, and transfer trust to Layer2 in the form of economic incentives. Since Metis Andromeda Layer 2 pursues the ultimate performance and lower cost, it is much better suited to meet the needs of various business scenarios.`,
     ],
   },
   {
     q: "What's going on under the hood?",
     a: [
-      `This website (juicebox.money) connects to the Juicebox protocol's smart contracts, deployed on the Ethereum network. (note: anyone else can make a website that also connects to these same smart contracts. For now, don't trust any site other than this one to access the Juicebox protocol.)`,
-      `Creating a Juicebox project mints you an NFT (ERC-721) representing ownership over it. Whoever owns this NFT can configure the rules of the game and how payouts are distributed.`,
+      `This website (utopians.world) connects to the Utopians protocol's smart contracts, deployed on the Andromeda  network. (note: anyone else can make a website that also connects to these same smart contracts. For now, don't trust any site other than this one to access the Utopians protocol.)`,
+      `Creating a Utopians project mints you an NFT (ERC-721) representing ownership over it. Whoever owns this NFT can configure the rules of the game and how payouts are distributed.`,
       `The project's tokens that are minted and distributed as a result of a received payment are ERC-20's. The distribution schedule is proportional to payments recieved, weighted by the project's discount rate over time.`,
     ],
   },
   {
-    q: 'How decentralized is Juicebox?',
+    q: 'How decentralized is Utopians?',
     a: [
-      `Juicebox is a governance-minimal protocol, meaning there are only a few levers that can be tuned, none of which impose changes for users without their consent. The Juicebox governance smart contract can adjust these levers.`,
-      `At the start, power over the governance smart contract is held by Juicebox's founding contributors. The intent is to soon transfer the power to a community of token holders.`,
+      `Utopians is a governance-minimal protocol. There are only a few levers that can be tuned, none of which impose changes for users without their consent. The Utopians governance smart contract can adjust these levers.`,
+      `At the start, power over the governance smart contract is held by Utopians's founding contributors. The intent is to soon transfer the power to a community of token holders.`,
     ],
   },
   {
-    q: 'What are the risks?',
+    q: 'What are the risks？',
     a: [
-      `Juicebox is experimental software. Although the founding contributors have done their part to shape the smart contracts for public use and have run the code through tons of tests, there still may be bugs.`,
-      `Due to their public nature, any exploits to the contracts may have irreversable consequences, including loss of funds. Please use Juicebox with caution.`,
+      `Utopians has just started, although we have done our best to shape these public smart contracts and have undergone a lot of testing. However, because it is a public project, the use of these contracts may cause losses, including loss of funds. Please use it with caution.`,
     ],
   },
   {
-    q: 'How have the contracts been tested?',
+    q: 'How have the contracts been tested？',
     a: [
+      `Like traditional software, smart contract testing can also be divided into functional testing, non-functional testing, security testing, and regression testing, which can effectively avoid losses caused by contracts.`,
       `There are unit tests written for every condition of every function in the contracts, and integration tests for every workflow that the protocol supports.`,
       `There was also a script written for iteratively running the integration tests using a random input generator, prioritizing edge cases. The code has successfully passed over 1 millions test cases through this stress-testing script.`,
-      `The code could always use more eyes and more critique to further the community's confidence. Join our Discord and peek the code on Github to work with us.`,
     ],
-  },
-  {
-    q: 'Will it work on L2s?',
-    a: [
-      `That's the plan, but the core Juicebox contracts will first be deployed to Ethereum Mainnet.`,
-      `The founding contributors will then be working on L2 payment terminals for Juicebox projects.`,
-    ],
-  },
-  {
-    q: `Do I have to make my project open source to use Juicebox as its business model?`,
-    img: {
-      src: '/assets/cooler_if_you_did.png',
-      alt: "It'd be a lot cooler if you did",
-    },
   },
 ]
 

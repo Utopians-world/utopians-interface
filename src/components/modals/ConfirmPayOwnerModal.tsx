@@ -29,13 +29,8 @@ export default function ConfirmPayOwnerModal({
   const [form] = useForm<{ note: string }>()
   const { contracts, transactor } = useContext(UserContext)
   const { userAddress } = useContext(NetworkContext)
-  const {
-    tokenSymbol,
-    tokenAddress,
-    currentFC,
-    projectId,
-    metadata,
-  } = useContext(ProjectContext)
+  const { tokenSymbol, tokenAddress, currentFC, projectId, metadata } =
+    useContext(ProjectContext)
 
   const converter = useCurrencyConverter()
 
@@ -151,7 +146,7 @@ export default function ConfirmPayOwnerModal({
                 />
                 <label htmlFor="preferUnstaked">
                   Check this to mint {tokenSymbol} ERC20 to your wallet. Leave
-                  unchecked to have your token balance tracked by Juicebox,
+                  unchecked to have your token balance tracked by Utopians,
                   saving gas on this transaction. You can always claim your
                   ERC20 tokens later.
                 </label>

@@ -37,9 +37,8 @@ export function useTransactor({
 }: {
   gasPrice?: BigNumber
 }): Transactor | undefined {
-  const { signingProvider: provider, onSelectWallet } = useContext(
-    NetworkContext,
-  )
+  const { signingProvider: provider, onSelectWallet } =
+    useContext(NetworkContext)
 
   const { isDarkMode } = useContext(ThemeContext)
 
@@ -86,10 +85,12 @@ export function useTransactor({
       if (network.name && network.chainId > 1) {
         etherscanNetwork = network.name + '.'
       }
-
       let etherscanTxUrl = 'https://' + etherscanNetwork + 'etherscan.io/tx/'
       if (network.chainId === 100) {
         etherscanTxUrl = 'https://blockscout.com/poa/xdai/tx/'
+      }
+      if (network.chainId === 588) {
+        etherscanTxUrl = 'https://stardust-explorer.metis.io/tx/'
       }
 
       const tx: Deferrable<TransactionRequest> =
@@ -142,7 +143,7 @@ export function useTransactor({
           }))
         } else {
           console.log('LOCAL TX SENT', result.hash)
-          if (result.confirmations) {
+          if (result.confirmations === 0) {
             options?.onConfirmed && options.onConfirmed(result, signer)
           } else {
             options?.onCancelled && options.onCancelled(result, signer)

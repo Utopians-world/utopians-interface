@@ -182,7 +182,7 @@ export default function Home() {
               src={Rectangles}
               alt=""
             />
-            <Col xs={24} md={6}>
+            <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'Individuals',
                 'We are the longest running smart contract blockchain in existence. Blockchains store value. You want your blockchain to last.',
@@ -190,7 +190,7 @@ export default function Home() {
                 'atom',
               )}
             </Col>
-            <Col xs={24} md={6}>
+            <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'DAOS',
                 'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
@@ -198,7 +198,7 @@ export default function Home() {
                 'cell',
               )}
             </Col>
-            <Col xs={24} md={6}>
+            <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'SCIENCE',
                 'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
@@ -206,7 +206,7 @@ export default function Home() {
                 'dna',
               )}
             </Col>
-            <Col xs={24} md={6}>
+            <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'business',
                 'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
@@ -227,11 +227,13 @@ export default function Home() {
           className="sectionWrapper"
         >
           <img
+            className="worksSectionIconOne"
             style={{ position: 'absolute', left: '17px', top: '0px' }}
             src={Rectangles1}
             alt=""
           />
           <img
+            className="worksSectionIconTwo"
             style={{ position: 'absolute', left: '90px', top: '103px' }}
             src={Rectangles2}
             alt=""
@@ -293,13 +295,12 @@ export default function Home() {
         style={{
           ...section,
           paddingTop: 20,
-          paddingBottom: 60,
+          paddingBottom: 0,
         }}
       >
         <div
           style={{
             ...wrapper,
-            paddingBottom: 0,
             marginTop: 80,
             background: 'linear-gradient(180deg, #FFFFFF 0%, #D5DAFF 100%)',
           }}

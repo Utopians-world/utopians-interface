@@ -327,7 +327,7 @@ export default function ReconfigureFCModal({
                           {formatWad(
                             amountSubFee(editingFC.target, adminFeePercent),
                           )}{' '}
-                          after JBX fee
+                          after UPT fee
                         </span>
                       ) : (
                         <span>0% fee</span>

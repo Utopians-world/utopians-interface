@@ -40,7 +40,7 @@ export default function CurrentFundingCycle({
         <Spending payoutMods={currentPayoutMods} />
       </CardSection>
       <SectionHeader
-        text="Reserved JBX"
+        text="Reserved UPT"
         style={{
           margin: '20px 0 6px 20px',
         }}

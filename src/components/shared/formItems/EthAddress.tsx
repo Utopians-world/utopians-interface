@@ -76,9 +76,9 @@ export default function EthAddress({
   }, [defaultValue])
 
   return (
-    <Form.Item {...formItemProps}>
+    <Form.Item {...formItemProps} name={name}>
       <Input
-        placeholder={'juicebox.eth / ' + constants.AddressZero}
+        placeholder={'utopians.metis / ' + constants.AddressZero}
         type="string"
         autoComplete="off"
         onChange={e => onInputChange(e.target.value)}

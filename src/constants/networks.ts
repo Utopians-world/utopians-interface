@@ -88,7 +88,7 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     gasPrice: 1000000000,
     rpcUrl: 'https://stardust.metis.io/?owner=588',
     faucet: 'https://stardust.metis.io/',
-    blockExplorer: 'https://stardust.metis.io/',
+    blockExplorer: 'https://stardust-explorer.metis.io/',
   },
   80001: {
     name: NetworkName.mumbai,

@@ -33,7 +33,7 @@ export default function Reserved() {
       }}
     >
       <h2 style={{ fontWeight: 'bold' }}>
-        Reserved JBX (35%)
+        Reserved UPT (35%)
         <span
           className="editIcon"
           onClick={() => setDetailEditReservesVisible(true)}

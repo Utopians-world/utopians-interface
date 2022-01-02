@@ -18,13 +18,13 @@ export const ballotStrategies: Strategy[] = [
     name: '7-day delay',
     description:
       'A reconfiguration to an upcoming funding cycle must be submitted at least 7 days before it starts.',
-    address: '0xEf7480b6E7CEd228fFB0854fe49A428F562a8982',
+    address: '0x01bE2c1d3b5833DAdc6b21834C76657DeEE8cDfE',
   },
   {
     name: '3-day delay',
     description:
       'A reconfiguration to an upcoming funding cycle must be submitted at least 3 days before it starts.',
-    address: '0x6d6da471703647Fd8b84FFB1A29e037686dBd8b2',
+    address: '0x509058f8B9A49D399B64554b21E7018c3641a0cC',
   },
 ]
 

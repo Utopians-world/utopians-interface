@@ -74,7 +74,7 @@ export default function ConfirmStakeTokensModal({
       <p>
         <Trans>
           Remove {tokenSymbol ?? ''} ERC20 tokens from your wallet and lock them
-          in the Juicebox protocol.
+          in the Utopians protocol.
         </Trans>
       </p>
       <p>

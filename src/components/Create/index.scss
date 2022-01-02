@@ -212,7 +212,7 @@
         box-shadow: 0px 2px 4px 0px rgba(58, 31, 245, 0.31);
         border: 1px solid #8372F9;
     }
-    .ant-form-item-explain, .ant-form-item-extra {
+    .ant-form-item-extra {
         @include stepExplain;
     }
 
@@ -313,7 +313,7 @@
         color: #1C1C20;
         line-height: 16px;
     }
-    .ant-form-item-explain, .ant-form-item-extra {
+    .ant-form-item-extra {
         @include stepExplain;
         font-size: 14px;
         color: #1C1C20;

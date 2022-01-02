@@ -80,7 +80,7 @@ export default function TicketingForm({
           // formItemProps={{
           //   label: 'Allocate reserved tokens (optional)',
           //   extra:
-          //     "Automatically distribute a portion of your project's reserved tokens to other Juicebox projects or ETH wallets.",
+          //     "Automatically distribute a portion of your project's reserved tokens to other Utopians projects or METIS wallets.",
           // }}
         />
         <Form.Item className="stepSaveDeployBtnsCon">

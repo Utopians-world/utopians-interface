@@ -25,10 +25,10 @@ export default function PayWarningModal({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Juicebox contracts
+          Utopians contracts
         </a>{' '}
         are unaudited, and may be vulnerable to bugs or hacks. All funds moved
-        through Juicebox could be lost or stolen. JuiceboxDAO is not liable for
+        through Utopians could be lost or stolen. UtopiansDAO is not liable for
         any losses by projects or their supporters.
       </p>
     </Modal>

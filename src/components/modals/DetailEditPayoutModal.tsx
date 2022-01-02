@@ -63,7 +63,7 @@ export default function DetailEditPayoutModal({
             title={
               <p>
                 Payouts let you commit portions of every withdrawal to other
-                Ethereum wallets or Juicebox projects. Use this to pay
+                Ethereum wallets or Utopians projects. Use this to pay
                 contributors, charities, other projects you depend on, or anyone
                 else. Payouts will be distributed automatically whenever a
                 withdrawal is made from your project.

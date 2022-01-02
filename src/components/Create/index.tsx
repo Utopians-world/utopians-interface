@@ -746,23 +746,23 @@ export default function Create() {
             </Row>
           </TabPane>
         </Tabs>
-        {/* <Modal
-        visible={deployProjectModalVisible}
-        okText={
-          signerNetwork
-            ? 'Deploy project on ' + signerNetwork
-            : 'Deploy project'
-        }
-        onOk={deployProject}
-        confirmLoading={loadingCreate}
-        width={600}
-        onCancel={() => setDeployProjectModalVisible(false)}
-      >
-        <ConfirmDeployProject />
-      </Modal> */}
+        <Modal
+          visible={deployProjectModalVisible}
+          okText={
+            signerNetwork
+              ? 'Deploy project on ' + signerNetwork
+              : 'Deploy project'
+          }
+          onOk={deployProject}
+          confirmLoading={loadingCreate}
+          width={600}
+          onCancel={() => setDeployProjectModalVisible(false)}
+        >
+          <ConfirmDeployProject />
+        </Modal>
       </Row>
-      <Row style={{ marginTop: 40, display: 'none' }}>
-        {/* <Col
+      {/* <Row style={{ marginTop: 40, display: 'none' }}> */}
+      {/* <Col
           xs={24}
           md={10}
           style={{
@@ -809,7 +809,7 @@ export default function Create() {
           ])}
         </Col> */}
 
-        {/* <Col xs={24} md={14}>
+      {/* <Col xs={24} md={14}>
           <h3
             style={{
               marginTop: 5,
@@ -833,7 +833,7 @@ export default function Create() {
           </div>
         </Col> */}
 
-        {/* <Drawer
+      {/* <Drawer
           {...drawerStyle}
           visible={projectFormModalVisible}
           onClose={() => {
@@ -969,7 +969,7 @@ export default function Create() {
           />
         </Drawer> */}
 
-        <Modal
+      {/* <Modal
           visible={deployProjectModalVisible}
           okText={
             signerNetwork
@@ -983,7 +983,7 @@ export default function Create() {
         >
           <ConfirmDeployProject />
         </Modal>
-      </Row>
+      </Row> */}
     </ProjectContext.Provider>
   )
 }

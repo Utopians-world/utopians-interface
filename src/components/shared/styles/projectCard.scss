@@ -81,15 +81,16 @@
 
         & .proCardConRightConBottom {
             @include betweenLayout;
+            align-items: center;
             width: 100%;
             span{
                 width: 62px;
-                height: 14px;
                 font-size: 13px;
                 font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
                 font-weight: 600;
                 color: #9092A7;
                 line-height: 20px;
+                margin-right: 5px;
             }
         }
     }

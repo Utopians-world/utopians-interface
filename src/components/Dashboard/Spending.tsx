@@ -76,7 +76,7 @@ export default function Spending({
                 }
                 tip={`The funds available to withdraw for this funding cycle after the ${fromPerbicent(
                   currentFC.fee,
-                )}% JBX fee is subtracted. This number won't roll over to the next funding cycle, so funds should be withdrawn before it ends.`}
+                )}% UPT fee is subtracted. This number won't roll over to the next funding cycle, so funds should be withdrawn before it ends.`}
               />
             </div>
             <Button
