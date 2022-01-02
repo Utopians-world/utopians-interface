@@ -76,7 +76,7 @@ const QAs: {
   {
     q: 'Can I remove my project?',
     a: [
-      `We can't remove your project from blockchain, but you can contact us on Discord so your project won't be visible on Utopians. But people can still use your project directly with contract.`,
+      `We can't remove your project from blockchain, but you can contact us on Telegram so your project won't be visible on Utopians. But people can still use your project directly with contract.`,
     ],
   },
   {
@@ -149,7 +149,7 @@ export default function Faq() {
           <h2>Still have a question?</h2>
           <p>
             If you couldn‘t find what you were looking for in our FAQ. you can
-            always contact us on discord. We will answer to you shortly!
+            always contact us on Telegram. We will answer to you shortly!
           </p>
         </div>
       </div>
