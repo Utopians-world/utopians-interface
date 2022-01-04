@@ -1,5 +1,4 @@
 import { Select, Space } from 'antd'
-import CurrencySymbol from 'components/shared/CurrencySymbol'
 
 import { ProjectContext } from 'contexts/projectContext'
 import { ThemeContext } from 'contexts/themeContext'
@@ -7,7 +6,7 @@ import EthDater from 'ethereum-block-by-date'
 import { parseProjectJson, Project } from 'models/subgraph-entities/project'
 import { parseTapEventJson } from 'models/subgraph-entities/tap-event'
 import moment from 'moment'
-import {
+import React, {
   CSSProperties,
   SVGProps,
   useContext,
@@ -30,6 +29,7 @@ import { querySubgraph } from 'utils/graph'
 import { readProvider } from 'constants/readProvider'
 
 import SectionHeader from './SectionHeader'
+import MetisLogo from '../icons/MetisLogo'
 
 const now = moment.now() - 5 * 60 * 1000 // 5 min ago
 
@@ -59,7 +59,7 @@ export default function BalanceTimeline({ height }: { height: number }) {
 
   const dateStringForBlockTime = (timestamp: number) =>
     duration
-      ? moment(timestamp * 1000).format(duration > 1 ? 'M/DD' : 'h:mma')
+      ? moment(timestamp * 1000).format(duration > 1 ? 'YYYY/DD/M' : 'h:mma')
       : undefined
 
   useEffect(() => {
@@ -331,12 +331,14 @@ export default function BalanceTimeline({ height }: { height: number }) {
       <div
         style={{
           textTransform: 'uppercase',
-          fontSize: '0.8rem',
-          fontWeight: selected ? 600 : 400,
+          fontSize: '12px',
           color: selected ? colors.text.secondary : colors.text.tertiary,
           cursor: 'pointer',
+          background: selected ? '#d9d5fe' : '#ffffff',
+          fontWeight: 600,
         }}
         onClick={() => setShowGraph(tab)}
+        className={text === 'Volume' ? 'leftChartsText' : 'rightChartsText'}
       >
         {text}
       </div>
@@ -348,7 +350,7 @@ export default function BalanceTimeline({ height }: { height: number }) {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'right',
           alignItems: 'baseline',
         }}
       >
@@ -356,7 +358,7 @@ export default function BalanceTimeline({ height }: { height: number }) {
           <SectionHeader text={header} />
         ) : (
           <div>
-            <Space size="large">
+            <Space size="large" style={{ gap: 0, marginRight: '20px' }}>
               {tab('volume')}
               {tab('balance')}
             </Space>
@@ -420,11 +422,12 @@ export default function BalanceTimeline({ height }: { height: number }) {
             <Line
               dot={false}
               connectNulls
-              stroke={colors.text.brand.primary}
+              stroke="#745ffe"
               strokeWidth={2}
               type="monotone"
               dataKey="value"
               animationDuration={0}
+              fill="red"
             />
             <YAxis
               axisLine={false}
@@ -474,27 +477,28 @@ export default function BalanceTimeline({ height }: { height: number }) {
                   <div
                     style={{
                       padding: 10,
-                      background: colors.background.l0,
-                      border: '1px solid ' + colors.stroke.tertiary,
+                      background: '#373b3e',
+                      borderRadius: '4px',
+                      color: '#ffffff',
                     }}
                   >
                     <div
                       style={{
                         fontSize: '0.7rem',
-                        color: colors.text.tertiary,
+                        color: '#ffffff',
                       }}
                     >
                       {dateStringForBlockTime(payload[0].payload.timestamp)}
                     </div>
                     {payload[0].payload.tapped ? (
                       <div>
-                        -<CurrencySymbol currency={0} />
+                        -<MetisLogo size={12} />
                         {payload[0].payload.tapped}
                         <div
                           style={{
                             fontSize: '0.7rem',
                             fontWeight: 500,
-                            color: colors.text.secondary,
+                            color: '#ffffff',
                           }}
                         >
                           withdraw
@@ -502,7 +506,7 @@ export default function BalanceTimeline({ height }: { height: number }) {
                       </div>
                     ) : (
                       <div>
-                        <CurrencySymbol currency={0} />
+                        <MetisLogo size={12} />
                         {payload[0].payload.value}
                       </div>
                     )}

@@ -2,6 +2,8 @@ import { useContext, useLayoutEffect, useState } from 'react'
 import { Modal, Space, Switch, Divider, Tooltip, Form } from 'antd'
 import { constants } from 'ethers'
 
+import { BigNumber } from '@ethersproject/bignumber'
+
 import { fromWad } from '../../utils/formatNumber'
 import { CurrencyOption } from '../../models/currency-option'
 import { UserContext } from '../../contexts/userContext'
@@ -11,6 +13,7 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { FormItems } from '../shared/formItems'
 import ModalTab from '../ProjectsDetail/ModalTab'
+
 // import {FormItems} from "../shared/formItems";
 // import {UserContext} from "../../contexts/userContext";
 
@@ -21,6 +24,7 @@ export default function DetailEditFundingModal({
   initialCurrency,
   initialTarget,
   initialDuration,
+  projectId,
 }: {
   initialCurrency: CurrencyOption
   initialTarget: string
@@ -28,8 +32,8 @@ export default function DetailEditFundingModal({
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
+  projectId: BigNumber
 }) {
-  const [loading] = useState<boolean>()
   const [currency, setCurrency] = useState<CurrencyOption>(0)
   const [target, setTarget] = useState<string>('0')
   const [duration, setDuration] = useState<string>('0')
@@ -39,21 +43,52 @@ export default function DetailEditFundingModal({
   const dispatch = useAppDispatch()
   const { adminFeePercent } = useContext(UserContext)
 
+  const onBudgetFormSaved = (
+    currency: CurrencyOption,
+    target: string,
+    duration: string,
+  ) => {
+    dispatch(editingProjectActions.setTarget(target))
+    dispatch(editingProjectActions.setDuration(duration))
+    dispatch(editingProjectActions.setCurrency(currency))
+    console.log(target)
+    console.log(duration)
+    console.log(currency)
+  }
+  const { transactor, contracts } = useContext(UserContext)
+  const [loading, setLoading] = useState<boolean>()
+
   useLayoutEffect(() => {
     setCurrency(initialCurrency)
     setTarget(initialTarget)
     setDuration(initialDuration)
     setShowFundingFields(hasFundingTarget(editingFC))
   }, [editingFC, initialCurrency, initialDuration, initialTarget])
+
+  async function updateFunding() {
+    if (!transactor || !contracts?.TerminalV1 || !projectId) return
+
+    setLoading(true)
+
+    const properties: { duration: string; currency: string; target: string } = {
+      target: editingFC.target.toHexString(),
+      currency: editingFC.currency.toHexString(),
+      duration: editingFC.duration.toHexString(),
+    }
+
+    transactor(
+      contracts.TerminalV1,
+      'configure',
+      [projectId.toHexString(), properties],
+      {
+        onDone: () => {
+          setLoading(false)
+        },
+      },
+    )
+  }
 
   const maxIntStr = fromWad(constants.MaxUint256)
-
-  useLayoutEffect(() => {
-    setCurrency(initialCurrency)
-    setTarget(initialTarget)
-    setDuration(initialDuration)
-    setShowFundingFields(hasFundingTarget(editingFC))
-  }, [editingFC, initialCurrency, initialDuration, initialTarget])
 
   return (
     <Modal
@@ -66,6 +101,10 @@ export default function DetailEditFundingModal({
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
       className="projectModal"
+      onOk={() => {
+        onBudgetFormSaved(currency, target, duration)
+        updateFunding()
+      }}
     >
       <ModalTab
         textFirst={'Changes will be applied to the'}
@@ -133,7 +172,7 @@ export default function DetailEditFundingModal({
               }}
               value={target.toString()}
               onValueChange={val => setTarget(val || '0')}
-              currency={currency}
+              currency={0}
               onCurrencyChange={setCurrency}
               fee={adminFeePercent}
             />

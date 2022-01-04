@@ -240,6 +240,7 @@ export default function FundOverview() {
         initialTarget={fromWad(editingFC.target)}
         initialDuration={editingFC.duration.toString()}
         visible={DetailEditFundingVisible}
+        projectId={projectId}
         onSuccess={() => setDetailEditFundingVisible(false)}
         onCancel={() => setDetailEditFundingVisible(false)}
         // fundingCycle={currentFC}

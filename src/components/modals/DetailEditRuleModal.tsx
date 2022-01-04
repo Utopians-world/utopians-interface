@@ -4,21 +4,30 @@ import { Modal, Space, Input } from 'antd'
 import { CheckCircleFilled } from '@ant-design/icons'
 import { constants } from 'ethers'
 
+import { BigNumber } from '@ethersproject/bignumber'
+
 import ModalTab from '../ProjectsDetail/ModalTab'
 import { NetworkContext } from '../../contexts/networkContext'
 import { ballotStrategies } from '../../constants/ballot-strategies'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+import { UserContext } from '../../contexts/userContext'
+import { useAppDispatch } from '../../hooks/AppDispatch'
+import { editingProjectActions } from '../../redux/slices/editingProject'
+
 // import {FundingCycleTitle} from "../../models/funding-cycle";
 
 export default function DetailEditRuleModal({
   visible,
   onSuccess,
   onCancel,
+  projectId,
 }: // fundingCycle
 {
   visible?: boolean
   onSuccess?: VoidFunction
-  onCancel?: VoidFunction
+  onCancel: VoidFunction
+  projectId?: BigNumber
+
   // fundingCycle?: FundingCycleTitle | undefined
 }) {
   const editingFC = useEditingFundingCycleSelector()
@@ -26,7 +35,34 @@ export default function DetailEditRuleModal({
   const { signerNetwork } = useContext(NetworkContext)
   const [selectedIndex, setSelectedIndex] = useState<number>()
   const [customStrategyAddress, setCustomStrategyAddress] = useState<string>()
-  const [loading] = useState<boolean>()
+
+  const { transactor, contracts } = useContext(UserContext)
+  const [loading, setLoading] = useState<boolean>()
+  const dispatch = useAppDispatch()
+  const onRulesFormSaved = (ballot: string) => {
+    dispatch(editingProjectActions.setBallot(ballot))
+  }
+
+  async function updateRule() {
+    if (!transactor || !contracts?.TerminalV1 || !projectId) return
+
+    setLoading(true)
+
+    const properties: { ballot: string } = {
+      ballot: editingFC.ballot,
+    }
+
+    transactor(
+      contracts.TerminalV1,
+      'configure',
+      [projectId.toHexString(), properties],
+      {
+        onDone: () => {
+          setLoading(false)
+        },
+      },
+    )
+  }
 
   useLayoutEffect(() => {
     const index = ballotStrategies.findIndex(
@@ -63,6 +99,14 @@ export default function DetailEditRuleModal({
       centered={true}
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
+      onOk={() => {
+        onRulesFormSaved(
+          selectedIndex !== undefined && selectedIndex < ballotStrategies.length
+            ? ballotStrategies[selectedIndex].address
+            : customStrategyAddress ?? constants.AddressZero,
+        )
+        updateRule()
+      }}
       className="projectModal"
     >
       <Space

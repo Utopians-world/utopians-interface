@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Row, Col, Space } from 'antd'
 
 import FundingCycleDetail from './FundingCycleDetail'
@@ -7,6 +7,7 @@ import DetailEditRuleModal from '../modals/DetailEditRuleModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import FundingCycleUpcoming from './FundingCycleUpcoming'
 import FundingCycleHistory from './FundingCycleHistory'
+import { ProjectContext } from '../../contexts/projectContext'
 // import {ProjectContext} from "../../contexts/projectContext";
 
 type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
@@ -14,9 +15,10 @@ type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
 export default function FundingCycleTitle() {
   const [selectedTab, setSelectedTab] = useState<TabOption>('INPROGRESS')
   const [hoverTab, setHoverTab] = useState<TabOption>()
+
   const [DetailEditRuleVisible, setDetailEditRuleVisible] =
     useState<boolean>(false)
-  // const {currentFC} = useContext(ProjectContext)
+  const { projectId, currentFC } = useContext(ProjectContext)
   const tab = (option: TabOption) => (
     <Col className="gutter-row" span={5}>
       <div
@@ -79,7 +81,12 @@ export default function FundingCycleTitle() {
       tabContent = <FundingCycleUpcoming />
       break
     case 'HISTORY':
-      tabContent = <FundingCycleHistory />
+      tabContent = (
+        <FundingCycleHistory
+          startId={currentFC?.basedOn}
+          showHistoryDetail={false}
+        />
+      )
       break
   }
 
@@ -132,6 +139,7 @@ export default function FundingCycleTitle() {
         visible={DetailEditRuleVisible}
         onSuccess={() => setDetailEditRuleVisible(false)}
         onCancel={() => setDetailEditRuleVisible(false)}
+        projectId={projectId}
         // fundingCycle={currentFC}
       />
     </div>

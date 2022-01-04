@@ -1,18 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { Col, Row, Space, Tooltip } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
 import { LockOutlined } from '@ant-design/icons'
 
+import { useForm } from 'antd/lib/form/Form'
+import { constants } from 'ethers'
+
 import { ProjectContext } from '../../contexts/projectContext'
-import { formatWad, fromPermyriad } from '../../utils/formatNumber'
-import { hasFundingTarget } from '../../utils/fundingCycle'
+import {
+  formatWad,
+  fromPerbicent,
+  fromPermyriad,
+} from '../../utils/formatNumber'
+import { decodeFCMetadata, hasFundingTarget } from '../../utils/fundingCycle'
 import DetailBalance from './DetailBalance'
 import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
 import DetailEdit from '../icons/DetailEdit'
 import DistributeTokensModal from '../modals/DistributeTokensModal'
-import { PayoutMod } from '../../models/mods'
+import { PayoutMod, TicketMod } from '../../models/mods'
 
 import ProjectHandle from '../shared/ProjectHandle'
 import TooltipLabel from '../shared/TooltipLabel'
@@ -21,17 +28,55 @@ import FormattedAddress from '../shared/FormattedAddress'
 import { formatDate } from '../../utils/formatDate'
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
-export default function Reserved({ total }: { total?: BigNumber }) {
+import { TicketingFormFields } from '../Create/TicketingForm'
+import { FundingCycle } from '../../models/funding-cycle'
+import { editingProjectActions } from '../../redux/slices/editingProject'
+import { useAppDispatch } from '../../hooks/AppDispatch'
+
+import { UserContext } from '../../contexts/userContext'
+
+export default function Reserved({
+  total,
+  ticketMods,
+  fundingCycle,
+}: {
+  total?: BigNumber
+  ticketMods: TicketMod[] | undefined
+  fundingCycle: FundingCycle | undefined
+}) {
   const {
     balanceInCurrency,
     owner,
     currentFC,
     tokenSymbol,
     currentTicketMods,
+    projectId,
   } = useContext(ProjectContext)
   const [DetailEditReservesVisible, setDetailEditReservesVisible] =
     useState<boolean>(false)
   const [modalIsVisible, setModalIsVisible] = useState<boolean>()
+  const [editingTicketMods, setEditingTicketMods] = useState<TicketMod[]>([])
+  const [ticketingForm] = useForm<TicketingFormFields>()
+  const dispatch = useAppDispatch()
+  const metadata = decodeFCMetadata(fundingCycle?.metadata)
+
+  useLayoutEffect(() => {
+    if (!ticketMods || !fundingCycle) return
+    const metadata = decodeFCMetadata(fundingCycle.metadata)
+    if (!metadata) return
+    setEditingTicketMods(ticketMods)
+    ticketingForm.setFieldsValue({
+      reserved: parseFloat(fromPerbicent(metadata.reservedRate)),
+    })
+  }, [fundingCycle, ticketMods, ticketingForm])
+
+  const onTicketingFormSaved = (mods: TicketMod[]) => {
+    const fields = ticketingForm.getFieldsValue(true)
+    dispatch(editingProjectActions.setReserved(fields.reserved))
+    setEditingTicketMods(mods)
+  }
+  const { transactor, contracts } = useContext(UserContext)
+  const [loading, setLoading] = useState<boolean>()
 
   if (!currentFC) return null
 
@@ -47,6 +92,33 @@ export default function Reserved({ total }: { total?: BigNumber }) {
   const withdrawable = balanceInCurrency?.gt(untapped)
     ? untapped
     : balanceInCurrency
+
+  async function updateReserved() {
+    if (!transactor || !contracts?.TerminalV1 || !fundingCycle || !projectId)
+      return
+
+    setLoading(true)
+    transactor(
+      contracts.TerminalV1,
+      'configure',
+      [
+        projectId.toHexString(),
+        editingTicketMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          allocator: constants.AddressZero,
+        })),
+      ],
+      {
+        onDone: () => {
+          setLoading(false)
+        },
+      },
+    )
+  }
+
   return (
     <div
       style={{
@@ -55,7 +127,7 @@ export default function Reserved({ total }: { total?: BigNumber }) {
       }}
     >
       <h2 style={{ fontWeight: 'bold' }}>
-        Reserved UPT (35%)
+        Reserved UPT ({fromPerbicent(metadata?.reservedRate)}%)
         <span
           className="editIcon"
           onClick={() => setDetailEditReservesVisible(true)}
@@ -324,9 +396,18 @@ export default function Reserved({ total }: { total?: BigNumber }) {
         </div>
       </div>
       <DetailEditReservedTokensModal
+        form={ticketingForm}
         visible={DetailEditReservesVisible}
         onSuccess={() => setDetailEditReservesVisible(false)}
         onCancel={() => setDetailEditReservesVisible(false)}
+        onSave={async mods => {
+          await ticketingForm.validateFields()
+          onTicketingFormSaved(mods)
+          updateReserved()
+        }}
+        initialMods={editingTicketMods}
+        confirm={loading}
+
         // fundingCycle={currentFC}
       />
       <DistributeTokensModal

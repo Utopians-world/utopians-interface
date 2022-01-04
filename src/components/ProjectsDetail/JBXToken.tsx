@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { Space } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
+
+import { useForm } from 'antd/lib/form/Form'
 
 import useContractReader from '../../hooks/ContractReader'
 
@@ -9,21 +11,39 @@ import { ContractName } from '../../models/contract-name'
 import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
 import { ProjectContext } from '../../contexts/projectContext'
 import { decodeFCMetadata, hasFundingTarget } from '../../utils/fundingCycle'
-import { formatWad } from '../../utils/formatNumber'
+import {
+  formatWad,
+  fromPerbicent,
+  fromPermille,
+} from '../../utils/formatNumber'
 import DetailEdit from '../icons/DetailEdit'
 import DetailIncentivesModal from '../modals/DetailIncentivesModal'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import TooltipLabel from '../shared/TooltipLabel'
 import ParticipantsModal from '../modals/ParticipantsModal'
+import { editingProjectActions } from '../../redux/slices/editingProject'
+import { useAppDispatch } from '../../hooks/AppDispatch'
+import { serializeFundingCycle } from '../../utils/serializers'
 
-export default function JBXToken() {
+import { TicketingFormFields } from '../Create/TicketingForm'
+import { FCMetadata, FundingCycle } from '../../models/funding-cycle'
+import { UserContext } from '../../contexts/userContext'
+
+export default function JBXToken({
+  fundingCycle,
+}: {
+  fundingCycle: FundingCycle | undefined
+}) {
   const { projectId, currentFC } = useContext(ProjectContext)
+  const { transactor, contracts } = useContext(UserContext)
   const [DetailIssueVisible, setDetailIssueVisible] = useState<boolean>(false)
   const [DetailIncentiveVisible, setDetailIncentiveVisible] =
     useState<boolean>(false)
 
   const metadata = decodeFCMetadata(currentFC?.metadata)
   const editingFC = useEditingFundingCycleSelector()
+  const dispatch = useAppDispatch()
+  const [ticketingForm] = useForm<TicketingFormFields>()
   const reservedTicketBalance = useContractReader<BigNumber>({
     contract: ContractName.TerminalV1,
     functionName: 'reservedTicketBalanceOf',
@@ -34,12 +54,68 @@ export default function JBXToken() {
     valueDidChange: bigNumbersDiff,
   })
 
+  const onIncentivesFormSaved = (
+    discountRate: string,
+    bondingCurveRate: string,
+  ) => {
+    dispatch(editingProjectActions.setDiscountRate(discountRate))
+    dispatch(editingProjectActions.setBondingCurveRate(bondingCurveRate))
+  }
+  const [loading, setLoading] = useState<boolean>()
+
   const totalSupply = useContractReader<BigNumber>({
     contract: ContractName.TicketBooth,
     functionName: 'totalSupplyOf',
     args: projectId ? [projectId?.toHexString()] : null,
     valueDidChange: bigNumbersDiff,
   })?.add(reservedTicketBalance ? reservedTicketBalance : BigNumber.from(0))
+
+  useLayoutEffect(() => {
+    if (!fundingCycle) return
+    const metadata = decodeFCMetadata(fundingCycle.metadata)
+    if (!metadata) return
+    dispatch(
+      editingProjectActions.setFundingCycle(
+        serializeFundingCycle({
+          ...fundingCycle,
+          reserved: BigNumber.from(metadata.reservedRate),
+          bondingCurveRate: BigNumber.from(metadata.bondingCurveRate),
+        }),
+      ),
+    )
+    ticketingForm.setFieldsValue({
+      reserved: parseFloat(fromPerbicent(metadata.reservedRate)),
+    })
+  }, [dispatch, fundingCycle, ticketingForm])
+
+  async function updateToken() {
+    if (!transactor || !contracts?.TerminalV1 || !fundingCycle || !projectId)
+      return
+
+    setLoading(true)
+
+    const properties: { discountRate: string; cycleLimit: string } = {
+      discountRate: editingFC.discountRate.toHexString(),
+      cycleLimit: BigNumber.from(0).toHexString(),
+    }
+
+    const metadata: Omit<FCMetadata, 'version'> = {
+      reservedRate: editingFC.reserved.toNumber(),
+      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+    }
+
+    transactor(
+      contracts.TerminalV1,
+      'configure',
+      [projectId.toHexString(), properties, metadata],
+      {
+        onDone: () => {
+          setLoading(false)
+        },
+      },
+    )
+  }
 
   return (
     <div
@@ -114,30 +190,27 @@ export default function JBXToken() {
         </div>
       </div>
       <DetailIncentivesModal
-        // form={projectForm}
-        disableDiscountRate={
-          editingFC.duration.eq(0)
-            ? 'Discount rate disabled while funding cycle duration is 0.'
-            : undefined
-        }
         disableBondingCurve={
           !hasFundingTarget(editingFC)
             ? 'Bonding curve disabled while no funding target is set.'
             : undefined
         }
+        initialDiscountRate={fromPermille(editingFC.discountRate)}
+        initialBondingCurveRate={fromPerbicent(editingFC.bondingCurveRate)}
         visible={DetailIssueVisible}
         onSuccess={() => setDetailIssueVisible(false)}
         onCancel={() => setDetailIssueVisible(false)}
+        onSave={async (discountRate: string, bondingCurveRate: string) => {
+          onIncentivesFormSaved(discountRate, bondingCurveRate)
+          await ticketingForm.validateFields()
+          await updateToken()
+        }}
+        confirm={loading}
       />
       <ParticipantsModal
         visible={DetailIncentiveVisible}
         onCancel={() => setDetailIncentiveVisible(false)}
       />
-      {/*<DetailIssueModal*/}
-      {/*  visible={DetailIncentiveVisible}*/}
-      {/*  onSuccess={() => setDetailIncentiveVisible(false)}*/}
-      {/*  onCancel={() => setDetailIncentiveVisible(false)}*/}
-      {/*/>*/}
     </div>
   )
 }

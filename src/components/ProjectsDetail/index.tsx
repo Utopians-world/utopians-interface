@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useContext } from 'react'
 import { Row, Col } from 'antd'
 
 import FundOverview from './FundOverview'
@@ -11,6 +11,8 @@ import Activity from './Activity'
 import '../../styles/overrides/modal.scss'
 import FundingCycleTitle from './FundingCycleTitle'
 import ProjectTitle from './ProjectTitle'
+import { ProjectContext } from '../../contexts/projectContext'
+import BalanceTimeline from '../Dashboard/BalanceTimeline'
 
 export default function ProjectsDetail() {
   const MainLayout: CSSProperties = {
@@ -30,15 +32,38 @@ export default function ProjectsDetail() {
     zIndex: 2,
   }
 
+  const {
+    queuedFC,
+    queuedPayoutMods,
+    currentPayoutMods,
+    queuedTicketMods,
+    currentTicketMods,
+    currentFC,
+  } = useContext(ProjectContext)
+
   return (
     <Row gutter={20} style={MainLayout} className="mainLayout">
       <Col span={17} style={LeftLayout}>
         <ProjectTitle />
         <FundingCycleTitle />
         <FundOverview />
-        <JBXToken />
-        <Distribution />
-        <Reserved />
+        <div style={{ marginTop: '20px' }} className="chartsStyle">
+          <BalanceTimeline height={240} />
+        </div>
+        <JBXToken
+          fundingCycle={queuedFC?.number.gt(0) ? queuedFC : currentFC}
+        />
+        <Distribution
+          payoutMods={
+            queuedFC?.number.gt(0) ? queuedPayoutMods : currentPayoutMods
+          }
+        />
+        <Reserved
+          ticketMods={
+            queuedFC?.number.gt(0) ? queuedTicketMods : currentTicketMods
+          }
+          fundingCycle={queuedFC?.number.gt(0) ? queuedFC : currentFC}
+        />
       </Col>
       <Col span={6} style={{ zIndex: 2 }}>
         <FundUs />

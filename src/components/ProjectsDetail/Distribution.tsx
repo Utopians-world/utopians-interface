@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { Col, Row, Space, Tooltip } from 'antd'
 
 import { constants } from 'ethers'
@@ -27,11 +27,21 @@ import FormattedAddress from '../shared/FormattedAddress'
 
 import { formatDate } from '../../utils/formatDate'
 
-export default function Distribution() {
+export default function Distribution({
+  payoutMods,
+}: {
+  payoutMods: PayoutMod[] | undefined
+}) {
   const { balanceInCurrency, owner, currentFC, projectId, currentPayoutMods } =
     useContext(ProjectContext)
   const [withdrawModalVisible, setWithdrawModalVisible] = useState<boolean>()
   const [DetailPayoutVisible, setDetailPayoutVisible] = useState<boolean>(false)
+  const [editingPayoutMods, setEditingPayoutMods] = useState<PayoutMod[]>([])
+  useLayoutEffect(() => {
+    if (!payoutMods) return
+    setEditingPayoutMods(payoutMods)
+  }, [payoutMods])
+
   if (!currentFC) return null
 
   const untapped = currentFC.target.sub(currentFC.tapped)
@@ -44,9 +54,6 @@ export default function Distribution() {
   )
   const ownerPercent = 10000 - (modsTotal ?? 0)
   const lastMod = { beneficiary: owner, percent: ownerPercent }
-
-  console.log(currentPayoutMods)
-  console.log(1123344)
 
   const withdrawable = balanceInCurrency?.gt(untapped)
     ? untapped
@@ -369,9 +376,11 @@ export default function Distribution() {
         </div>
       </div>
       <DetailEditPayoutModal
+        initialMods={editingPayoutMods}
         visible={DetailPayoutVisible}
         onSuccess={() => setDetailPayoutVisible(false)}
         onCancel={() => setDetailPayoutVisible(false)}
+        projectId={projectId}
         // fundingCycle={currentFC}
       />
       <WithdrawModal

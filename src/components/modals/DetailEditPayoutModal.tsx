@@ -1,5 +1,9 @@
-import { useState } from 'react'
+import { useContext, useLayoutEffect, useState } from 'react'
 import { Form, Modal, Space, Tooltip } from 'antd'
+
+import { BigNumber } from '@ethersproject/bignumber'
+
+import { constants } from 'ethers'
 
 import ModalTab from '../ProjectsDetail/ModalTab'
 import { FormItems } from '../shared/formItems'
@@ -8,29 +12,59 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { CurrencyOption } from '../../models/currency-option'
 import { fromWad } from '../../utils/formatNumber'
 
+import { UserContext } from '../../contexts/userContext'
+
 export default function DetailEditPayoutModal({
   visible,
   onSuccess,
   onCancel,
+  initialMods,
+  projectId,
 }: {
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
+  initialMods: PayoutMod[]
+  projectId?: BigNumber
 }) {
   const [mods, setMods] = useState<PayoutMod[]>([])
-  const [loading] = useState<boolean>()
   const editingFC = useEditingFundingCycleSelector()
+  const { transactor, contracts } = useContext(UserContext)
+  const [loading, setLoading] = useState<boolean>()
+  const [editingPayoutMods, setEditingPayoutMods] = useState<PayoutMod[]>([])
+  const onPayModsFormSaved = (mods: PayoutMod[]) => setEditingPayoutMods(mods)
 
-  // const DivStrategyStyle: CSSProperties = {
-  //   border: '2px solid #bdc1e4',
-  //   width: '100%',
-  //   height: '120px',
-  //   borderRadius: '4px',
-  //   margin: '0 auto',
-  //   display: 'flex',
-  //   justifyContent: 'left',
-  //   background: '#fdfeff',
-  // }
+  useLayoutEffect(() => {
+    setMods(initialMods)
+  }, [initialMods])
+
+  async function updatePayout() {
+    if (!transactor || !contracts?.TerminalV1 || !projectId) return
+
+    setLoading(true)
+
+    transactor(
+      contracts.TerminalV1,
+      'configure',
+      [
+        projectId.toHexString(),
+        editingPayoutMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          projectId: m.projectId || BigNumber.from(0).toHexString(),
+          allocator: constants.AddressZero,
+        })),
+      ],
+      {
+        onDone: () => {
+          setLoading(false)
+        },
+      },
+    )
+  }
+
   return (
     <Modal
       title={'Edit payout'}
@@ -42,6 +76,10 @@ export default function DetailEditPayoutModal({
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
       className="projectModal"
+      onOk={() => {
+        onPayModsFormSaved(mods)
+        updatePayout()
+      }}
     >
       <Space
         direction="vertical"

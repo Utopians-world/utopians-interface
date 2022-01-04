@@ -148,6 +148,7 @@ export default function ProjectTitle() {
       <DetailSettingpopupModal
         form={projectForm}
         metadata={metadata}
+        projectId={projectId}
         handle={handle}
         visible={DetailSettingModalVisible}
         onSuccess={() => setDetailSettingModalVisible(false)}
