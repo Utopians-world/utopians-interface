@@ -90,7 +90,8 @@ export function useTransactor({
         etherscanTxUrl = 'https://blockscout.com/poa/xdai/tx/'
       }
       if (network.chainId === 588) {
-        etherscanTxUrl = 'https://stardust-explorer.metis.io/tx/'
+        etherscanTxUrl =
+          'https://stardust-explorer.metis.io/api?module=transaction&action=gettxinfo&txhash='
       }
 
       const tx: Deferrable<TransactionRequest> =
