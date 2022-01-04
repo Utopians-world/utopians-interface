@@ -1,4 +1,17 @@
 @import '../../styles/common.scss';
+.logoTitle {
+  font-size: 15px;
+  font-family: marinfordaf;
+  color: #ffffff;
+  line-height: 15px;
+  letter-spacing: 1px;
+  margin-left: 8px;
+
+  overflow-wrap: break-word;
+  white-space: nowrap;
+  text-align: center;
+
+}
 .hover-nav {
   font-family: GoodTimesW00-Bold, GoodTimesW00;
 }

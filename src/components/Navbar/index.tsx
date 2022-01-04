@@ -87,6 +87,7 @@ export default function Navbar() {
       <Space size="large" style={{ flex: 1 }}>
         <a href="/" style={{ display: 'inline-block' }}>
           {logo()}
+          <span className="logoTitle">UTOPIANS</span>
         </a>
         {menu()}
       </Space>
