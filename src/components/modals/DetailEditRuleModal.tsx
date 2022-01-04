@@ -129,7 +129,7 @@ export default function DetailEditRuleModal({
               at least 7 days before it starts.
             </p>
             <div>
-              Contract Address 0X0003034304930493049304930493403493049343049304
+              Contract Address 0x01bE2c1d3b5833DAdc6b21834C76657DeEE8cDfE
             </div>
           </div>
           <div style={SecondDivStyle}>
@@ -167,7 +167,7 @@ export default function DetailEditRuleModal({
               at least 3 days before it starts.
             </p>
             <div>
-              Contract Address 0X0003034304930493049304930493403493049343049304
+              Contract Address 0x509058f8B9A49D399B64554b21E7018c3641a0cC
             </div>
           </div>
           <div style={SecondDivStyle}>

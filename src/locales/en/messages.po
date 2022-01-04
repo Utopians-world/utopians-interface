@@ -55,8 +55,12 @@ msgid "Public goods and services"
 msgstr "Public goods and services"
 
 #: src/components/modals/ConfirmStakeTokensModal.tsx
-msgid "Remove {0} ERC20 tokens from your wallet and lock them in the Juicebox protocol."
-msgstr "Remove {0} ERC20 tokens from your wallet and lock them in the Juicebox protocol."
+#~ msgid "Remove {0} ERC20 tokens from your wallet and lock them in the Juicebox protocol."
+#~ msgstr "Remove {0} ERC20 tokens from your wallet and lock them in the Juicebox protocol."
+
+#: src/components/modals/ConfirmStakeTokensModal.tsx
+msgid "Remove {0} ERC20 tokens from your wallet and lock them in the Utopians protocol."
+msgstr ""
 
 #: src/components/modals/DistributeTokensModal.tsx
 msgid "{0, plural, one {# token} other {# tokens}}"

@@ -12,9 +12,9 @@ import { decodeFCMetadata, hasFundingTarget } from '../../utils/fundingCycle'
 import { formatWad } from '../../utils/formatNumber'
 import DetailEdit from '../icons/DetailEdit'
 import DetailIncentivesModal from '../modals/DetailIncentivesModal'
-import DetailIssueModal from '../modals/DetailIssueModal'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import TooltipLabel from '../shared/TooltipLabel'
+import ParticipantsModal from '../modals/ParticipantsModal'
 
 export default function JBXToken() {
   const { projectId, currentFC } = useContext(ProjectContext)
@@ -129,11 +129,15 @@ export default function JBXToken() {
         onSuccess={() => setDetailIssueVisible(false)}
         onCancel={() => setDetailIssueVisible(false)}
       />
-      <DetailIssueModal
+      <ParticipantsModal
         visible={DetailIncentiveVisible}
-        onSuccess={() => setDetailIncentiveVisible(false)}
         onCancel={() => setDetailIncentiveVisible(false)}
       />
+      {/*<DetailIssueModal*/}
+      {/*  visible={DetailIncentiveVisible}*/}
+      {/*  onSuccess={() => setDetailIncentiveVisible(false)}*/}
+      {/*  onCancel={() => setDetailIncentiveVisible(false)}*/}
+      {/*/>*/}
     </div>
   )
 }

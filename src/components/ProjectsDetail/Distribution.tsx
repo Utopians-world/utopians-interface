@@ -1,17 +1,34 @@
 import React, { useContext, useState } from 'react'
-import { Col, Row, Space } from 'antd'
+import { Col, Row, Space, Tooltip } from 'antd'
+
+import { constants } from 'ethers'
+
+import { BigNumber } from '@ethersproject/bignumber'
+
+import { LockOutlined } from '@ant-design/icons'
 
 import { ProjectContext } from '../../contexts/projectContext'
-import { formatWad } from '../../utils/formatNumber'
+import { formatWad, fromPermyriad } from '../../utils/formatNumber'
 import { hasFundingTarget } from '../../utils/fundingCycle'
 import DetailBalance from './DetailBalance'
 import DetailEdit from '../icons/DetailEdit'
 import DetailEditPayoutModal from '../modals/DetailEditPayoutModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import WithdrawModal from '../modals/WithdrawModal'
+import OwnerIcon from '../../assets/images/Owner-1.png'
+
+import CurrencySymbol from '../shared/CurrencySymbol'
+import { CurrencyOption } from '../../models/currency-option'
+import { amountSubFee } from '../../utils/math'
+import { PayoutMod } from '../../models/mods'
+
+import ProjectHandle from '../shared/ProjectHandle'
+import FormattedAddress from '../shared/FormattedAddress'
+
+import { formatDate } from '../../utils/formatDate'
 
 export default function Distribution() {
-  const { balanceInCurrency, owner, currentFC, currentPayoutMods } =
+  const { balanceInCurrency, owner, currentFC, projectId, currentPayoutMods } =
     useContext(ProjectContext)
   const [withdrawModalVisible, setWithdrawModalVisible] = useState<boolean>()
   const [DetailPayoutVisible, setDetailPayoutVisible] = useState<boolean>(false)
@@ -19,7 +36,17 @@ export default function Distribution() {
 
   const untapped = currentFC.target.sub(currentFC.tapped)
 
+  const baseTotal = projectId ?? amountSubFee(currentFC?.target, currentFC.fee)
+
+  const modsTotal = currentPayoutMods?.reduce(
+    (acc, curr) => acc + curr.percent,
+    0,
+  )
+  const ownerPercent = 10000 - (modsTotal ?? 0)
+  const lastMod = { beneficiary: owner, percent: ownerPercent }
+
   console.log(currentPayoutMods)
+  console.log(1123344)
 
   const withdrawable = balanceInCurrency?.gt(untapped)
     ? untapped
@@ -126,50 +153,219 @@ export default function Distribution() {
               tip="Available funds are distributed according to any payouts below."
             />
           </Space>
-          <div
-            style={{
-              padding: '0 20px',
-              background: '#F6F7FF',
-              height: '30px',
-              lineHeight: '30px',
-            }}
-          >
-            <div style={{ float: 'left', width: '50%' }}>peri.eth</div>
-            <div style={{ float: 'right', width: '50%', textAlign: 'right' }}>
-              18.2%（$ 0）
+          {/*<PayoutModsList*/}
+          {/*    mods={currentPayoutMods}*/}
+          {/*    fundingCycle={currentFC}*/}
+          {/*    projectId={projectId}*/}
+          {/*    fee={currentFC.fee}*/}
+          {/*  />*/}
+          {currentPayoutMods?.length
+            ? [...currentPayoutMods]
+                .sort((a, b) => (a.percent < b.percent ? 1 : -1))
+                .map((mod, i) => (
+                  <div
+                    style={{
+                      padding: '0 20px',
+                      height: '30px',
+                      lineHeight: '30px',
+                      ...(i % 2 === 0
+                        ? {
+                            background: '#F6F7FF',
+                          }
+                        : {
+                            background: '#ffffff',
+                          }),
+                    }}
+                  >
+                    <div style={{ float: 'left', width: '50%' }}>
+                      <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                        {(mod as PayoutMod).projectId &&
+                        BigNumber.from((mod as PayoutMod).projectId).gt(0) ? (
+                          <div>
+                            <div style={{ fontWeight: 500 }}>
+                              {(mod as PayoutMod).projectId ? (
+                                <ProjectHandle
+                                  link
+                                  projectId={
+                                    (mod as PayoutMod).projectId as BigNumber
+                                  }
+                                />
+                              ) : (
+                                '--'
+                              )}
+                              :
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '.8rem',
+                                marginLeft: 10,
+                              }}
+                            >
+                              <TooltipLabel
+                                label={'Tokens:'}
+                                tip={`This address will receive any tokens minted when the recipient project gets paid.`}
+                              />{' '}
+                              <FormattedAddress address={mod.beneficiary} />{' '}
+                              {owner === mod.beneficiary && (
+                                <Tooltip title="Project owner">
+                                  <img
+                                    src={OwnerIcon}
+                                    alt=""
+                                    style={{ width: '15px' }}
+                                  />
+                                </Tooltip>
+                              )}
+                            </div>
+                          </div>
+                        ) : (
+                          <div style={{ fontWeight: 500 }}>
+                            <FormattedAddress address={mod.beneficiary} />
+                            {owner === mod.beneficiary && (
+                              <span style={{ marginLeft: 5 }}>
+                                <Tooltip title="Project owner">
+                                  <img
+                                    src={OwnerIcon}
+                                    alt=""
+                                    style={{ width: '15px' }}
+                                  />
+                                </Tooltip>
+                              </span>
+                            )}
+                            :
+                          </div>
+                        )}
+                      </div>
+                      {mod.lockedUntil ? (
+                        <div style={{ fontSize: '.8rem' }}>
+                          <LockOutlined /> until{' '}
+                          {mod.lockedUntil
+                            ? formatDate(mod.lockedUntil * 1000, 'MM-DD-yyyy')
+                            : null}
+                        </div>
+                      ) : null}{' '}
+                    </div>
+                    <div
+                      style={{
+                        float: 'right',
+                        width: '50%',
+                        textAlign: 'right',
+                      }}
+                    >
+                      {fromPermyriad(mod.percent)}%
+                      {!currentFC.target.eq(constants.MaxUint256) && (
+                        <>
+                          {' '}
+                          (
+                          <CurrencySymbol
+                            currency={
+                              currentFC.currency.toNumber() as CurrencyOption
+                            }
+                          />
+                          {formatWad(baseTotal?.mul(mod.percent).div(10000), {
+                            decimals: currentFC.currency.eq(0) ? 4 : 0,
+                            padEnd: true,
+                          })}
+                          )
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ))
+            : null}
+          {ownerPercent > 0 && (
+            <div
+              style={{
+                padding: '0 20px',
+                height: '30px',
+                lineHeight: '30px',
+                ...(currentPayoutMods?.length &&
+                currentPayoutMods?.length % 2 === 0
+                  ? {
+                      background: '#F6F7FF',
+                    }
+                  : {
+                      background: '#ffffff',
+                    }),
+              }}
+            >
+              <div style={{ float: 'left', width: '50%' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                  {(lastMod as PayoutMod).projectId &&
+                  BigNumber.from((lastMod as PayoutMod).projectId).gt(0) ? (
+                    <div>
+                      <div style={{ fontWeight: 500 }}>
+                        {(lastMod as PayoutMod).projectId ? (
+                          <ProjectHandle
+                            link
+                            projectId={
+                              (lastMod as PayoutMod).projectId as BigNumber
+                            }
+                          />
+                        ) : (
+                          '--'
+                        )}
+                        :
+                      </div>
+                      <div
+                        style={{
+                          fontSize: '.8rem',
+                          marginLeft: 10,
+                        }}
+                      >
+                        <TooltipLabel
+                          label={'Tokens:'}
+                          tip={`This address will receive any tokens minted when the recipient project gets paid.`}
+                        />{' '}
+                        <FormattedAddress address={lastMod.beneficiary} />{' '}
+                        {owner === lastMod.beneficiary && (
+                          <Tooltip title="Project owner">
+                            <img
+                              src={OwnerIcon}
+                              alt=""
+                              style={{ width: '15px' }}
+                            />
+                          </Tooltip>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ fontWeight: 500 }}>
+                      <FormattedAddress address={lastMod.beneficiary} />
+                      {owner === lastMod.beneficiary && (
+                        <span style={{ marginLeft: 5 }}>
+                          <Tooltip title="Project owner">
+                            <img
+                              src={OwnerIcon}
+                              alt=""
+                              style={{ width: '15px' }}
+                            />
+                          </Tooltip>
+                        </span>
+                      )}
+                      :
+                    </div>
+                  )}
+                </div>{' '}
+              </div>
+              <div style={{ float: 'right', width: '50%', textAlign: 'right' }}>
+                {fromPermyriad(ownerPercent)}%
+                {!currentFC.target.eq(constants.MaxUint256) && (
+                  <>
+                    {' '}
+                    (
+                    <CurrencySymbol
+                      currency={currentFC.currency.toNumber() as CurrencyOption}
+                    />
+                    {formatWad(baseTotal?.mul(ownerPercent).div(10000), {
+                      decimals: currentFC.currency.eq(0) ? 4 : 0,
+                      padEnd: true,
+                    })}
+                    )
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-          <div
-            style={{ padding: '0 20px', height: '30px', lineHeight: '30px' }}
-          >
-            <div style={{ float: 'left', width: '50%' }}>
-              peri.eth.dfjekjeeefjkwjf.com
-            </div>
-            <div style={{ float: 'right', width: '50%', textAlign: 'right' }}>
-              18.2%（$ 0）
-            </div>
-          </div>
-          <div
-            style={{
-              padding: '0 20px',
-              background: '#F6F7FF',
-              height: '30px',
-              lineHeight: '30px',
-            }}
-          >
-            <div style={{ float: 'left', width: '50%' }}>@ peri.eth</div>
-            <div style={{ float: 'right', width: '50%', textAlign: 'right' }}>
-              18.2%（$ 0）
-            </div>
-          </div>
-          <div
-            style={{ padding: '0 20px', height: '30px', lineHeight: '30px' }}
-          >
-            <div style={{ float: 'left', width: '50%' }}>peri.eth</div>
-            <div style={{ float: 'right', width: '50%', textAlign: 'right' }}>
-              18.2%（$ 0）
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <DetailEditPayoutModal

@@ -16,12 +16,14 @@ import ProjectTokenBalance from '../shared/ProjectTokenBalance'
 import MetisLogo from '../icons/MetisLogo'
 import { CurrencyOption } from '../../models/currency-option'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+import BalancesModal from '../modals/BalancesModal'
 
 export default function FundOverview() {
   const { projectId, currentFC, balanceInCurrency, balance, owner, earned } =
     useContext(ProjectContext)
   const [DetailEditFundingVisible, setDetailEditFundingVisible] =
     useState<boolean>(false)
+  const [balancesModalVisible, setBalancesModalVisible] = useState<boolean>()
   const editingFC = useEditingFundingCycleSelector()
   const converter = useCurrencyConverter()
 
@@ -151,7 +153,10 @@ export default function FundOverview() {
           <div style={{ width: '40%', paddingLeft: '30px' }}>
             <div style={{ height: '29px' }}>
               <h4 style={{ float: 'left' }}>In wallet</h4>
-              <div style={{ color: '#3A1FF5', float: 'right' }}>
+              <div
+                style={{ color: '#3A1FF5', float: 'right', cursor: 'pointer' }}
+                onClick={() => setBalancesModalVisible(true)}
+              >
                 All Asset &gt;
               </div>
             </div>
@@ -238,6 +243,10 @@ export default function FundOverview() {
         onSuccess={() => setDetailEditFundingVisible(false)}
         onCancel={() => setDetailEditFundingVisible(false)}
         // fundingCycle={currentFC}
+      />
+      <BalancesModal
+        visible={balancesModalVisible}
+        onCancel={() => setBalancesModalVisible(false)}
       />
     </div>
   )
