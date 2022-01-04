@@ -113,7 +113,7 @@ export default function BudgetForm({
             }}
             value={target.toString()}
             onValueChange={val => setTarget(val || '0')}
-            currency={currency}
+            currency={0}
             onCurrencyChange={setCurrency}
             fee={adminFeePercent}
           />

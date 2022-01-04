@@ -118,9 +118,9 @@ export default function Pay() {
             min={0}
             accessory={
               <InputAccessoryButton
-                withArrow={true}
+                // withArrow={true}
                 content={currencyName(payIn)}
-                onClick={() => setPayIn(payIn === 0 ? 1 : 0)}
+                onClick={() => setPayIn(0)}
               />
             }
           />
