@@ -127,7 +127,7 @@ export default function Reserved({
       }}
     >
       <h2 style={{ fontWeight: 'bold' }}>
-        Reserved UPT ({fromPerbicent(metadata?.reservedRate)}%)
+        Reserved UTO ({fromPerbicent(metadata?.reservedRate)}%)
         <span
           className="editIcon"
           onClick={() => setDetailEditReservesVisible(true)}

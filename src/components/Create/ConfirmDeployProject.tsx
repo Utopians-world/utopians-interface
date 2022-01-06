@@ -80,7 +80,7 @@ export default function ConfirmDeployProject() {
                       }
                     />
                     {formatWad(amountSubFee(editingFC.target, adminFeePercent))}{' '}
-                    after UPT fee)
+                    after UTO fee)
                   </span>
                 )}
               </span>

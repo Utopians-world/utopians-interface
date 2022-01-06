@@ -124,18 +124,20 @@ export default function Home() {
                     lineHeight: 1.5,
                     fontWeight: 600,
                   }}
-                  href="https://ethereum.org/en/what-is-ethereum/"
+                  href="https://www.metis.io/metis-to-launch-andromeda/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Power by trusted smart contrasts on Ethereum
+                  Power by trusted smart contracts on Andromeda
                 </a>
                 {bigHeader(t`Community funding Beyond Imagination`)}
                 <div className="firstNote">
                   <Trans>
-                    Build a community around a project, fund it, and program its
-                    spending. Light enough for a group of friends, powerful
-                    enough for a global network of anons.
+                    Don't let your dreams disappear. Build a Utopians that
+                    provides a forum to meet like-minded people, get funding,
+                    and program its spending.
+                    <br />
+                    It's simple to use and extremely powerful.
                   </Trans>
                 </div>
 
@@ -143,7 +145,7 @@ export default function Home() {
                   <div style={{ display: 'inline-block' }}>
                     <a href="/#/create">
                       <Button className="createProjectBtn">
-                        + BULD PROJECT
+                        + build project
                       </Button>
                     </a>
                   </div>
@@ -165,7 +167,7 @@ export default function Home() {
         >
           {smallHeader(
             <>
-              community <span>project</span> for?
+              A better <span>solution</span> for?
             </>,
             'secondTitle',
           )}
@@ -185,31 +187,31 @@ export default function Home() {
             <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'Individuals',
-                'We are the longest running smart contract blockchain in existence. Blockchains store value. You want your blockchain to last.',
+                'Crypto developers and Indie artists',
                 AtomIcon,
                 'atom',
               )}
             </Col>
             <Col xs={24} md={12} lg={6}>
               {fourthCol(
-                'DAOS',
-                'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
+                'Buyers',
+                'Raise funds for collections, art, or other goods and services',
                 CellIcon,
                 'cell',
               )}
             </Col>
             <Col xs={24} md={12} lg={6}>
               {fourthCol(
-                'SCIENCE',
-                'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
+                'DACs',
+                'Any DAC that needs to get funding',
                 DnaIcon,
                 'dna',
               )}
             </Col>
             <Col xs={24} md={12} lg={6}>
               {fourthCol(
-                'business',
-                'We have a strong and principled community. Many of our members have stuck around since the beginning. We look beyond the hype and keep to the principles that keep blockchains functioning.',
+                'Projects',
+                'Crowdfund investments to build your open-source projects or philanthropic services',
                 ChartIcon,
                 'chart',
               )}
@@ -240,13 +242,13 @@ export default function Home() {
           />
           {smallHeader(
             <>
-              how <span>utopians</span> works?
+              How <span>Utopians</span> works?
             </>,
             'secondTitle',
           )}
 
           {smallDes(
-            'In Utopians, projects are built and maintained by motivated punks getting paid transparently, and funded by a community of users and patrons who are rewarded as the projects they support succeed. The future will be led by creators, and owned by communities.',
+            'In a Utopia, people can create DACs according to their own ideas and visions, owners or contributors can receive their pay transparently, and investors can share in the profits of the project.',
           )}
           <Row justify="space-between" className="HowroksBg">
             <Col span={6}>
@@ -260,8 +262,13 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="HoworksConBottom">
-                  <h3>Eliminate Cross- chain Hassles</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                  <h3>ERC20 community tokens</h3>
+                  <p>
+                    When someone pays your project either as a patron or a user
+                    of your app, they earn a proportional amount of your
+                    project's token. When you win, your token holders win, so
+                    they'll want you to win even more.
+                  </p>
                 </div>
               </div>
             </Col>
@@ -279,7 +286,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="HoworksConBottom">
-                  <h3>Transparency&accountability</h3>
+                  <h3>Transparency & accountability</h3>
                   <p>
                     Changes to your project's funding require a community
                     approval period to take effect. Your supporters don't have
@@ -340,7 +347,7 @@ export default function Home() {
                   OR
                 </p>
                 <a href="/#/create">
-                  <Button className="createProjectBtn">+ BULD PROJECT</Button>
+                  <Button className="createProjectBtn">+ build project</Button>
                 </a>
               </div>
             </Col>

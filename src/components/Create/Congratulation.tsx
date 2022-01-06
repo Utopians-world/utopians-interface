@@ -9,15 +9,12 @@ const Congratulation = () => {
       <h2>
         <span>Congratulation</span>!
       </h2>
-      <p>
-        You have own your project in Utopians world. Let operate your project on
-        Powered public smart contracts!
-      </p>
+      <p>Your project in Utopians is ready!</p>
       <button
         onClick={() => (window.location.hash = '/p/' + handle)}
         className="goToMyPro"
       >
-        VIew my project
+        View my project
       </button>
     </div>
   )

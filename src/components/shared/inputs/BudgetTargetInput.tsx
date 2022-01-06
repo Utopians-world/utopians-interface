@@ -54,7 +54,7 @@ export default function BudgetTargetInput({
               <CurrencySymbol currency={currency} />
               {formatWad(amountSubFee(parseWad(value), fee), { decimals: 4 })}
             </span>{' '}
-            after {fromPerbicent(fee?.toString())}% upt fee
+            after {fromPerbicent(fee?.toString())}% uto fee
           </div>
         )}
       </div>

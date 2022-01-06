@@ -182,7 +182,7 @@ export default function FundOverview() {
               <div
                 style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
               >
-                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} UPT
+                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} UTO
               </div>
             </div>
           </div>

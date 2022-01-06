@@ -161,7 +161,7 @@ export default function YourBalance() {
           <div
             style={{ height: '40px', lineHeight: '40px', fontWeight: 'bold' }}
           >
-            {formatWad(stakedTokenBalance, { decimals: 0 })} upt
+            {formatWad(stakedTokenBalance, { decimals: 0 })} uto
           </div>
           <div style={{ fontWeight: 'bold' }}>0 Claimable</div>
           <div style={{ fontSize: 12, color: '#9092A7' }}>0% of supply</div>
