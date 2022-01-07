@@ -11,7 +11,6 @@ import { UserContext } from 'contexts/userContext'
 import { useCurrencyConverter } from 'hooks/CurrencyConverter'
 import { CurrencyOption } from 'models/currency-option'
 import { useContext, useEffect, useState } from 'react'
-import { currencyName } from 'utils/currency'
 import { formatWad, fromPerbicent, fromWad, parseWad } from 'utils/formatNumber'
 import { amountSubFee, feeForAmount } from 'utils/math'
 
@@ -158,11 +157,6 @@ export default function WithdrawModal({
                   alignItems: 'center',
                 }}
               >
-                <span style={{ marginRight: 8 }}>
-                  {currencyName(
-                    currentFC.currency.toNumber() as CurrencyOption,
-                  )}
-                </span>
                 <InputAccessoryButton
                   content="MAX"
                   onClick={() => setTapAmount(fromWad(withdrawable))}

@@ -14,8 +14,7 @@ import {
   fromPerbicent,
   fromPermyriad,
 } from '../../utils/formatNumber'
-import { decodeFCMetadata, hasFundingTarget } from '../../utils/fundingCycle'
-import DetailBalance from './DetailBalance'
+import { decodeFCMetadata } from '../../utils/fundingCycle'
 import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
 import DetailEdit from '../icons/DetailEdit'
 import DistributeTokensModal from '../modals/DistributeTokensModal'
@@ -127,7 +126,7 @@ export default function Reserved({
       }}
     >
       <h2 style={{ fontWeight: 'bold' }}>
-        Reserved UTO ({fromPerbicent(metadata?.reservedRate)}%)
+        Reserved tokens ({fromPerbicent(metadata?.reservedRate)}%)
         <span
           className="editIcon"
           onClick={() => setDetailEditReservesVisible(true)}
@@ -162,8 +161,6 @@ export default function Reserved({
                 Available
               </div>
             </Space>
-            <div style={{ fontWeight: 'bold' }}>Withdraw</div>
-            <div style={{ fontWeight: 'bold' }}>Owner balance</div>
           </Col>
           <Col span={10}>
             <div
@@ -174,15 +171,6 @@ export default function Reserved({
               }}
             >
               {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
-            </div>
-            <div>
-              {formatWad(currentFC.tapped, { decimals: 4 }) || '0'}
-              {hasFundingTarget(currentFC) && (
-                <span>/{formatWad(currentFC.target, { decimals: 4 })} </span>
-              )}{' '}
-            </div>
-            <div>
-              <DetailBalance address={owner} />
             </div>
           </Col>
           <Col span={8}>

@@ -12,12 +12,15 @@ import DetailEdit from '../icons/DetailEdit'
 
 import { ProjectFormFields } from '../Create/ProjectForm'
 import DetailSettingpopupModal from '../modals/DetailSettingpopupModal'
+import DetailToolsModal from '../modals/DetailToolsModal'
 
 export default function ProjectTitle() {
   const [DetailSettingModalVisible, setDetailSettingModalVisible] =
     useState<boolean>(false)
   const { projectId, handle, metadata, isPreviewMode } =
     useContext(ProjectContext)
+  const [DetailToolsModalVisible, setDetailToolsModalVisible] =
+    useState<boolean>(false)
 
   const prettyUrl = (url: string) => {
     if (url.startsWith('https://')) {
@@ -56,6 +59,7 @@ export default function ProjectTitle() {
     fontSize: '12px',
     position: 'relative',
     float: 'right',
+    cursor: 'pointer',
   }
   const ImageReplace: CSSProperties = {
     width: '100%',
@@ -100,7 +104,10 @@ export default function ProjectTitle() {
     <div>
       {!isPreviewMode && (
         <div style={{ height: '25px' }}>
-          <Space style={ToolsIcon}>
+          <Space
+            style={ToolsIcon}
+            onClick={() => setDetailToolsModalVisible(true)}
+          >
             <div style={{ position: 'absolute', top: '1px' }}>
               <Tools />
             </div>
@@ -153,6 +160,10 @@ export default function ProjectTitle() {
         visible={DetailSettingModalVisible}
         onSuccess={() => setDetailSettingModalVisible(false)}
         onCancel={() => setDetailSettingModalVisible(false)}
+      />
+      <DetailToolsModal
+        visible={DetailToolsModalVisible}
+        onCancel={() => setDetailToolsModalVisible(false)}
       />
     </div>
   )

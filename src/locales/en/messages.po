@@ -13,7 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Home/index.tsx
 #: src/components/Landing/index.tsx
 msgid "Build a community around a project, fund it, and program its spending. Light enough for a group of friends, powerful enough for a global network of anons."
 msgstr "Build a community around a project, fund it, and program its spending. Light enough for a group of friends, powerful enough for a global network of anons."
@@ -33,6 +32,10 @@ msgstr "Community funding for people and projects"
 #: src/components/Landing/index.tsx
 msgid "Design your project"
 msgstr "Design your project"
+
+#: src/components/Home/index.tsx
+msgid "Don't let your dreams disappear. Build a Utopians that provides a forum to meet like-minded people, get funding, and program its spending.<0/>It's simple to use and extremely powerful."
+msgstr ""
 
 #: src/components/Landing/index.tsx
 msgid "Ethereum protocols and DAOs"

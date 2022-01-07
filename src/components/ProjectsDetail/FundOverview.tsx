@@ -19,7 +19,7 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import BalancesModal from '../modals/BalancesModal'
 
 export default function FundOverview() {
-  const { projectId, currentFC, balanceInCurrency, balance, owner, earned } =
+  const { projectId, currentFC, balance, owner, earned } =
     useContext(ProjectContext)
   const [DetailEditFundingVisible, setDetailEditFundingVisible] =
     useState<boolean>(false)
@@ -30,6 +30,9 @@ export default function FundOverview() {
   const { data: ownerBalance } = useEthBalanceQuery(owner)
 
   if (!currentFC) return null
+  console.log(balance)
+  console.log(owner)
+  console.log(earned)
 
   const formatCurrencyAmount = (amt: BigNumber | undefined) =>
     amt ? (
@@ -63,7 +66,7 @@ export default function FundOverview() {
     margin: 0,
     lineHeight: '20px',
   }
-
+  console.log(owner)
   const procces = Math.floor(
     (Number(formatWad(currentFC.tapped, { decimals: 2, padEnd: true })) /
       Number(formatWad(currentFC.target, { decimals: 2, padEnd: true }))) *
@@ -141,18 +144,52 @@ export default function FundOverview() {
               borderRight: '1.5px solid #C3D0F9',
             }}
           >
-            <h4>In Utopians</h4>
+            <TooltipLabel
+              label={
+                <div
+                  style={{
+                    fontWeight: 'bold',
+                    marginBottom: '5px',
+                    display: 'inline-block',
+                    marginRight: '10px',
+                    fontSize: '15px',
+                  }}
+                >
+                  <span>In Utopians</span>
+                </div>
+              }
+              tip="The balance of this project in the Utopians contract."
+            />
             <h2 style={NumberTotal}>
+              <MetisLogo />
               {formatWad(balance, { decimals: 2, padEnd: true })}
             </h2>
-            <h4 style={{ color: '#9092A7' }}>
-              <MetisLogo size={12} />
-              {formatCurrencyAmount(balanceInCurrency)}
-            </h4>
+            {/*<h4 style={{ color: '#9092A7' }}>*/}
+            {/*  <MetisLogo size={12} />*/}
+            {/*  {formatCurrencyAmount(balanceInCurrency)}*/}
+            {/*</h4>*/}
           </div>
           <div style={{ width: '40%', paddingLeft: '30px' }}>
             <div style={{ height: '29px' }}>
-              <h4 style={{ float: 'left' }}>In wallet</h4>
+              <TooltipLabel
+                label={
+                  <div
+                    style={{
+                      fontWeight: 'bold',
+                      marginBottom: '5px',
+                      display: 'inline-block',
+                      marginRight: '10px',
+                      fontSize: '15px',
+                    }}
+                  >
+                    <span>In wallet</span>
+                  </div>
+                }
+                tip={
+                  'The balance of the wallet that owns this Utopians project. + ' +
+                  owner
+                }
+              />
               <div
                 style={{ color: '#3A1FF5', float: 'right', cursor: 'pointer' }}
                 onClick={() => setBalancesModalVisible(true)}
@@ -172,17 +209,18 @@ export default function FundOverview() {
                 }}
               >
                 <MetisLogo />
+                {formatWad(ownerBalance, { decimals: 2, padEnd: true })}
+              </h2>
+              <div
+                style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
+              >
+                +
                 <ProjectTokenBalance
                   style={{ display: 'inline-block' }}
                   wallet={owner}
                   projectId={BigNumber.from('0x01')}
                   hideHandle
                 />
-              </h2>
-              <div
-                style={{ color: '#717171', float: 'right', fontWeight: 'bold' }}
-              >
-                + {formatWad(ownerBalance, { decimals: 2, padEnd: true })} UTO
               </div>
             </div>
           </div>
@@ -212,7 +250,7 @@ export default function FundOverview() {
               }
               tip="The amount that has been distributed from the Utopians balance in this funding cycle,
                  out of the current funding target. No more than the funding target can be distributed in
-                  a single funding cycle—any remaining ETH in Utopians is overflow, until the next cycle begins."
+                  a single funding cycle—any remaining METIS in Utopians is overflow, until the next cycle begins."
             />
           </Space>
           <h2

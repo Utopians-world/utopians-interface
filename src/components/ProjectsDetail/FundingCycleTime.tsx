@@ -48,14 +48,9 @@ export function FundingCycleTime({
           <Shape />
         </div>
         <div>
-          {days && days > 1 ? (
-            <span>
-              <span style={NumberStyle}>{Math.floor(days).toString()}</span>
-              <span style={TimeStyle}>d</span>{' '}
-              <span style={NumberStyle}>{Math.floor(hours).toString()}</span>
-              <span style={TimeStyle}>h</span>
-            </span>
-          ) : (
+          {!days ? <span style={NumberStyle}>No set</span> : <span></span>}
+          {days < 0 ? <span style={NumberStyle}>Finish</span> : <span></span>}
+          {days > 0 && days < 1 ? (
             <span>
               <span style={NumberStyle}>{Math.floor(hours).toString()}</span>
               <span style={TimeStyle}>h</span>{' '}
@@ -64,6 +59,18 @@ export function FundingCycleTime({
               <span style={NumberStyle}>{Math.floor(seconds).toString()}</span>
               <span style={TimeStyle}>s</span>
             </span>
+          ) : (
+            <span></span>
+          )}
+          {days > 1 ? (
+            <span>
+              <span style={NumberStyle}>{Math.floor(days).toString()}</span>
+              <span style={TimeStyle}>d</span>{' '}
+              <span style={NumberStyle}>{Math.floor(hours).toString()}</span>
+              <span style={TimeStyle}>h</span>
+            </span>
+          ) : (
+            <span></span>
           )}
         </div>
       </Space>

@@ -161,7 +161,7 @@ export default function YourBalance() {
           <div
             style={{ height: '40px', lineHeight: '40px', fontWeight: 'bold' }}
           >
-            {formatWad(stakedTokenBalance, { decimals: 0 })} uto
+            {formatWad(stakedTokenBalance, { decimals: 0 })} Tokens
           </div>
           <div style={{ fontWeight: 'bold' }}>0 Claimable</div>
           <div style={{ fontSize: 12, color: '#9092A7' }}>0% of supply</div>
@@ -189,10 +189,18 @@ export default function YourBalance() {
         centered
       >
         <Space direction="vertical" style={{ width: '100%' }}>
-          <Button onClick={() => setRedeemModalVisible(true)} block>
-            Return my ETH
+          <Button
+            className="defaultBtn"
+            onClick={() => setRedeemModalVisible(true)}
+            block
+          >
+            Return my METIS
           </Button>
-          <Button onClick={() => setUnstakeModalVisible(true)} block>
+          <Button
+            className="defaultBtn"
+            onClick={() => setUnstakeModalVisible(true)}
+            block
+          >
             Claim {tokenSymbol || 'tokens'} as ERC20
           </Button>
         </Space>

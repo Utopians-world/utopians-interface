@@ -150,7 +150,9 @@ export default function RedeemModal({
 
   return (
     <Modal
-      title={`Burn ${tokenSymbol ? tokenSymbol + ' tokens' : 'tokens'} for ETH`}
+      title={`Burn ${
+        tokenSymbol ? tokenSymbol + ' tokens' : 'tokens'
+      } for METIS`}
       visible={visible}
       confirmLoading={loading}
       onOk={() => {
@@ -165,7 +167,7 @@ export default function RedeemModal({
       }}
       okText={`Burn ${formattedNum(redeemAmount, {
         decimals: 2,
-      })} ${tokenSymbol ?? 'tokens'} for ETH`}
+      })} ${tokenSymbol ?? 'tokens'} for METIS`}
       okButtonProps={{
         disabled:
           redeemDisabled || !redeemAmount || parseInt(redeemAmount) === 0,
@@ -183,7 +185,7 @@ export default function RedeemModal({
           {formatWad(maxClaimable, { decimals: 4 })}
         </p>
         <p>
-          Tokens can be redeemed for a portion of this project's ETH overflow,
+          Tokens can be redeemed for a portion of this project's METIS overflow,
           according to the bonding curve rate of the current funding cycle.{' '}
           <span style={{ fontWeight: 500, color: '#3A1FF5' }}>
             Tokens are burned when they are redeemed.
@@ -212,7 +214,7 @@ export default function RedeemModal({
             />
             <div style={{ fontWeight: 500, marginTop: 20 }}>
               You will receive minimum{' '}
-              {formatWad(minAmount, { decimals: 8 }) || '--'} ETH
+              {formatWad(minAmount, { decimals: 8 }) || '--'} METIS
             </div>
           </div>
         )}

@@ -18,7 +18,6 @@ import WithdrawModal from '../modals/WithdrawModal'
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
 import CurrencySymbol from '../shared/CurrencySymbol'
-import { CurrencyOption } from '../../models/currency-option'
 import { amountSubFee } from '../../utils/math'
 import { PayoutMod } from '../../models/mods'
 
@@ -108,7 +107,7 @@ export default function Distribution({
                     should be withdrawn before it ends."
               />
             </Space>
-            <div style={{ fontWeight: 'bold' }}>Withdraw</div>
+            <div style={{ fontWeight: 'bold' }}>Withdrawn</div>
             <div style={{ fontWeight: 'bold' }}>Owner balance</div>
           </Col>
           <Col span={10}>
@@ -263,11 +262,7 @@ export default function Distribution({
                         <>
                           {' '}
                           (
-                          <CurrencySymbol
-                            currency={
-                              currentFC.currency.toNumber() as CurrencyOption
-                            }
-                          />
+                          <CurrencySymbol currency={0} />
                           {formatWad(baseTotal?.mul(mod.percent).div(10000), {
                             decimals: currentFC.currency.eq(0) ? 4 : 0,
                             padEnd: true,
@@ -360,9 +355,7 @@ export default function Distribution({
                   <>
                     {' '}
                     (
-                    <CurrencySymbol
-                      currency={currentFC.currency.toNumber() as CurrencyOption}
-                    />
+                    <CurrencySymbol currency={0} />
                     {formatWad(baseTotal?.mul(ownerPercent).div(10000), {
                       decimals: currentFC.currency.eq(0) ? 4 : 0,
                       padEnd: true,

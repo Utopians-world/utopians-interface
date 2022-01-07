@@ -230,6 +230,34 @@
         border: 2px solid #bdc1e4;
         padding: 0 15px;
     }
+    .ant-form-item{
+        display: block;
+    }
+    .stepNumberInput{
+        height: 42px;
+        border: none;
+        width: 95%;
+    }
+    .ant-form-item-control{
+        max-width: 100%;
+    }
+    .stepAcssessoryBtn{
+        height: 42px;
+        padding: 0 21px 0 21px;
+    }
+    .ant-btn{
+        width: 160px;
+        height: 35px;
+        border-radius: 3px;
+        border: 3px solid;
+        border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 3 3;
+        font-size: 12px;
+        text-align: center;
+        line-height: 30px;
+        color: #2C1BD7;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
     .ant-input-affix-wrapper .ant-input:hover, .ant-input-number {
         border-color: #ffffff!important;
@@ -375,4 +403,9 @@
     border-left: none;
     line-height: 28px;
     height: 30px;
+}
+.chartsStyle{
+    .ant-space-align-center{
+        gap: 0!important;
+    }
 }

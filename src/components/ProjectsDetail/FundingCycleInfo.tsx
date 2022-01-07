@@ -57,7 +57,11 @@ export default function FundingCycleInfo({
       </Row>
       <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
         <Col span={10}>Target:</Col>
-        <Col span={14}>{formatWad(fundingCycle.target, { decimals: 2 })}</Col>
+        {fundingCycle.target ? (
+          <Col span={14}>{formatWad(fundingCycle.target, { decimals: 2 })}</Col>
+        ) : (
+          <Col span={14}>No target</Col>
+        )}
       </Row>
       <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
         <Col span={10}>Start:</Col>
