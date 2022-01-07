@@ -96,7 +96,10 @@ export default function ProjectCard({
               <div className="proCardConRightConTop">
                 <p className="volume">Volume</p>
                 <span className="price">
-                  <CurrencySymbol currency={0} />
+                  <CurrencySymbol
+                    style={{ height: '27px', marginRight: '10px' }}
+                    currency={0}
+                  />
                   {formatWad(project.totalPaid, { decimals })}{' '}
                 </span>
               </div>

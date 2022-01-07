@@ -76,7 +76,11 @@ export function useProjectsQuery({
               key: 'id',
               value: projectId.toString(),
             }
-          : undefined,
+          : {
+              key: 'uri',
+              value: 'www.utp-dev.com',
+              operator: 'not_contains',
+            },
     },
     {
       staleTime: 60000,
@@ -117,7 +121,11 @@ export function useInfiniteProjectsQuery({
               key: 'id',
               value: projectId.toString(),
             }
-          : undefined,
+          : {
+              key: 'uri',
+              value: 'www.utp-dev.com',
+              operator: 'not_contains',
+            },
     },
     {
       staleTime: 60000,

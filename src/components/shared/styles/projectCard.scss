@@ -21,8 +21,10 @@
   & .proCardConRight {
     flex: 1 1 auto;
     @include centerLayout;
+    flex-flow: column nowrap;
+    height: 160px;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     
     & .title {
         max-height: 46px;
@@ -31,16 +33,25 @@
         font-weight: 600;
         color: #232222;
         line-height: 23px;
+        word-break: break-word;
+        word-wrap: normal;
+        white-space: normal;
+        margin: 0;
     }
     & .subTitle {
-        min-height: 43px;
+        max-height: 42px;
         font-size: 11px;
         font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
         font-weight: 400;
         color: #5F5E61;
         line-height: 14px;
         overflow: hidden;
+        word-break: break-word;
+        word-wrap: normal;
+        white-space: normal;
+        margin: 0;
         text-overflow: ellipsis;
+        flex: 1 1 auto;
     }
     & .archivedTip {
         width: 71px;
@@ -67,6 +78,7 @@
                 font-weight: 600;
                 color: #3A1FF5;
                 line-height: 22px;
+                margin: 0;
             }
             & .price {
                 width: 111px;
@@ -76,6 +88,9 @@
                 font-weight: 600;
                 color: #241515;
                 line-height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
             }
         }
 

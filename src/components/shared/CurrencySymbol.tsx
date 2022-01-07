@@ -1,5 +1,6 @@
 import { CurrencyOption } from 'models/currency-option'
 import { CSSProperties } from 'react'
+import MetisLogo from 'components/icons/MetisLogo'
 import { currencyStyle, currencySymbol } from 'utils/currency'
 
 export default function CurrencySymbol({
@@ -16,7 +17,11 @@ export default function CurrencySymbol({
         ...currencyStyle(currency),
       }}
     >
-      {currencySymbol(currency)}
+      {currencySymbol(currency) === 'M' ? (
+        <MetisLogo />
+      ) : (
+        currencySymbol(currency)
+      )}
     </span>
   )
 }
