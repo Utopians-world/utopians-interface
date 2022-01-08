@@ -43,14 +43,14 @@ export default function Navbar() {
     )
   }
 
-  const logo = (height = 40) => (
+  const logo = (height = 24) => (
     <img
       style={{ height }}
       src={
         forThemeOption &&
         forThemeOption({
-          [ThemeOption.light]: '/assets/juice_logo-ol.png',
-          [ThemeOption.dark]: '/assets/juice_logo-od.png',
+          [ThemeOption.light]: '/assets/metis-logo.png',
+          [ThemeOption.dark]: '/assets/metis-logo.png',
         })
       }
       alt="Utopians logo"

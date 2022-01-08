@@ -20,7 +20,8 @@ export default function Footer() {
 
   return (
     <div className="footerWrapper">
-      <img src="/assets/banana-cover.png" alt="footerLogo" />
+      {/* <img src="/assets/banana-cover.png" alt="footerLogo" /> */}
+      <span className="logoTitle">UTOPIANS</span>
       <p>
         We have a strong and principled community. Many of our members have
         stuck around since the beginning. We look beyond the hype and keep to

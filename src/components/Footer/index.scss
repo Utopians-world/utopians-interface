@@ -6,6 +6,20 @@
   flex-flow: column wrap;
   align-content: center;
   
+  .logoTitle {
+    font-size: 15px;
+    font-family: marinfordaf;
+    color: #ffffff;
+    line-height: 15px;
+    letter-spacing: 1px;
+    margin-left: 8px;
+  
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    text-align: center;
+  
+  }
+  
   img {
     max-width: 168px;
     max-height: 36px;

@@ -1,8 +1,8 @@
-import { Layout, Modal, Space } from 'antd'
+import { Layout, Modal, Space, Button } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 
 import { NetworkContext } from 'contexts/networkContext'
-import { NetworkName } from 'models/network-name'
+// import { NetworkName } from 'models/network-name'
 import { useContext, useLayoutEffect, useState } from 'react'
 
 import { readNetwork } from 'constants/networks'
@@ -15,18 +15,17 @@ function App() {
   const [switchNetworkModalVisible, setSwitchNetworkModalVisible] =
     useState<boolean>()
 
-  const { signerNetwork } = useContext(NetworkContext)
+  const { signerNetwork, onSelectWallet } = useContext(NetworkContext)
 
   const networkName = readNetwork.name
 
-  const supportedNetworks: NetworkName[] = [
-    NetworkName.mainnet,
-    NetworkName.rinkeby,
-  ]
+  // const supportedNetworks: NetworkName[] = [
+  //   NetworkName.mainnet,
+  //   NetworkName.rinkeby,
+  // ]
 
   useLayoutEffect(() => {
     if (!signerNetwork) return
-
     setSwitchNetworkModalVisible(signerNetwork !== networkName)
   }, [networkName, signerNetwork])
 
@@ -50,7 +49,10 @@ function App() {
       <Modal
         visible={switchNetworkModalVisible}
         centered
-        closable={false}
+        // closable={false}
+        onCancel={() => {
+          setSwitchNetworkModalVisible(!switchNetworkModalVisible)
+        }}
         footer={null}
       >
         <div
@@ -61,20 +63,22 @@ function App() {
             height: 200,
           }}
         >
-          <Space direction="vertical">
-            <h2>Connect wallet to {networkName}</h2>
-            <div>Or, go to:</div>
-            {supportedNetworks
-              .filter(n => process.env.REACT_APP_INFURA_NETWORK !== n)
-              .map(_n => {
-                const subDomain = _n === NetworkName.mainnet ? '' : _n + '.'
+          <Space direction="vertical" align="center">
+            <h2 style={{ textAlign: 'center' }}>
+              Please connect to the Andromeda（Metis) network
+            </h2>
 
-                return (
-                  <a key={_n} href={`https://${subDomain}juicebox.money`}>
-                    {subDomain}juicebox.money
-                  </a>
-                )
-              })}
+            <Button
+              className="login-btn"
+              style={{
+                width: '260px',
+                height: '52px',
+                margin: '1.5rem auto 0',
+              }}
+              onClick={onSelectWallet}
+            >
+              Connect to Andromeda
+            </Button>
           </Space>
         </div>
       </Modal>

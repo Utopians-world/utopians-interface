@@ -13,12 +13,12 @@ export default function Account() {
   return (
     <div>
       <Row gutter={10} align="middle">
-        {userAddress && (
+        {signingProvider && userAddress && (
           <Col>
-            <Balance address={userAddress} showEthPrice />
+            <Balance address={userAddress} />
           </Col>
         )}
-        {userAddress && (
+        {signingProvider && userAddress && (
           <Col>
             <Wallet userAddress={userAddress}></Wallet>
           </Col>
