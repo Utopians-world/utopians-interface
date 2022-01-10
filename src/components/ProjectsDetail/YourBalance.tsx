@@ -17,7 +17,7 @@ import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
 import { NetworkContext } from '../../contexts/networkContext'
 import { useErc20Contract } from '../../hooks/Erc20Contract'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
-import { formatWad } from '../../utils/formatNumber'
+import { formatWad, formatPercent } from '../../utils/formatNumber'
 
 import IssueTickets from '../Dashboard/IssueTickets'
 
@@ -131,6 +131,7 @@ export default function YourBalance() {
   })?.add(reservedTicketBalance ? reservedTicketBalance : BigNumber.from(0))
 
   const totalBalance = iouBalance?.add(ticketsBalance ?? 0)
+  const share = formatPercent(totalBalance, totalSupply)
   const redeemDisabled = !totalOverflow || totalOverflow.eq(0)
 
   const ticketsIssued = tokenAddress
@@ -173,8 +174,13 @@ export default function YourBalance() {
           >
             {formatWad(stakedTokenBalance, { decimals: 0 })} Tokens
           </div>
-          <div style={{ fontWeight: 'bold' }}>0 Claimable</div>
-          <div style={{ fontSize: 12, color: '#9092A7' }}>0% of supply</div>
+          <div style={{ fontWeight: 'bold' }}>
+            {formatWad(iouBalance ?? 0, { decimals: 0 })}
+            {ticketsIssued && <> Claimable</>}
+          </div>
+          <div style={{ fontSize: 12, color: '#9092A7' }}>
+            {share || 0}% of supply
+          </div>
         </div>
         <div
           style={{

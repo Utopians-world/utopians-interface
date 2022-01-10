@@ -1,7 +1,7 @@
 import { CheckCircleFilled } from '@ant-design/icons'
-import { Button, Input, Space, Divider } from 'antd'
+import { Button, Space, Divider } from 'antd'
 
-import { NetworkContext } from 'contexts/networkContext'
+// import { NetworkContext } from 'contexts/networkContext'
 import { ThemeContext } from 'contexts/themeContext'
 import { constants, utils } from 'ethers'
 import { useContext, useLayoutEffect, useState } from 'react'
@@ -21,7 +21,7 @@ export default function RulesForm({
   onDeployBtn?: VoidFunction
   isDisable?: boolean
 }) {
-  const { signerNetwork } = useContext(NetworkContext)
+  // const { signerNetwork } = useContext(NetworkContext)
   const [selectedIndex, setSelectedIndex] = useState<number>()
   const [customStrategyAddress, setCustomStrategyAddress] = useState<string>()
 
@@ -105,7 +105,7 @@ export default function RulesForm({
             i,
           ),
         )}
-        {buildOption(
+        {/* {buildOption(
           'Custom strategy',
           <div>
             <Input
@@ -121,7 +121,8 @@ export default function RulesForm({
               implements{' '}
               <a
                 style={{ color: '#3A1FF5' }}
-                href="https://github.com/upt-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
+                // href="https://github.com/upt-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
+                href="https://github.com/jbx-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -131,7 +132,7 @@ export default function RulesForm({
             </p>
           </div>,
           ballotStrategies.length,
-        )}
+        )} */}
       </Space>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         {onDeployBtn && (

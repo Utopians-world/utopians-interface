@@ -1,4 +1,4 @@
-import { Button, Form, FormInstance, Space, Divider, Tooltip } from 'antd'
+import { Button, Form, FormInstance, Space, Divider } from 'antd'
 import { FormItems } from 'components/shared/formItems'
 // import { ThemeContext } from 'contexts/themeContext'
 import { TicketMod } from 'models/mods'
@@ -46,18 +46,12 @@ export default function TicketingForm({
       <p>
         Tokens are earned by anyone who pays your project, and can be redeemed
         for overflow if your project has set a funding target.
-        <Tooltip
-          title={
-            <p>
-              You'll be able to issue ERC-20 tokens once your project contract
-              has been deployed. Until then, your project will use staked
-              tokens, allowing your supporters to still track their balance and
-              redeem for overflow in the meantime.
-            </p>
-          }
-        >
-          <span className="stepTooltip">What is project target ?</span>
-        </Tooltip>
+        <br />
+        <br />
+        You'll be able to issue ERC-20 tokens once your project contract has
+        been deployed. Until then, the protocol will track token balances,
+        allowing your supporters to earn tokens and redeem for overflow in the
+        meantime.
       </p>
 
       <Form form={form} layout="vertical" className="stepFormCon">

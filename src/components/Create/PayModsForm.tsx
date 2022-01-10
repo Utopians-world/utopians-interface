@@ -58,7 +58,7 @@ export default function PayModsForm({
             </p>
           }
         >
-          <span className="stepTooltip">What is project target ?</span>
+          <span className="stepTooltip">what is payout?</span>
         </Tooltip>
       </p>
 
