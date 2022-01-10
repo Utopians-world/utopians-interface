@@ -2,6 +2,9 @@ import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { Button, Modal, Space } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
+import { constants } from 'ethers'
+
+import { OperatorPermission, useHasPermission } from 'hooks/HasPermission'
 
 import RedeemModal from '../modals/RedeemModal'
 import ConfirmUnstakeTokensModal from '../modals/ConfirmUnstakeTokensModal'
@@ -15,6 +18,8 @@ import { NetworkContext } from '../../contexts/networkContext'
 import { useErc20Contract } from '../../hooks/Erc20Contract'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import { formatWad } from '../../utils/formatNumber'
+
+import IssueTickets from '../Dashboard/IssueTickets'
 
 export default function YourBalance() {
   const [manageTokensModalVisible, setManageTokensModalVisible] =
@@ -127,6 +132,11 @@ export default function YourBalance() {
 
   const totalBalance = iouBalance?.add(ticketsBalance ?? 0)
   const redeemDisabled = !totalOverflow || totalOverflow.eq(0)
+
+  const ticketsIssued = tokenAddress
+    ? tokenAddress !== constants.AddressZero
+    : false
+  const hasIssueTicketsPermission = useHasPermission(OperatorPermission.Issue)
   return (
     <div
       style={{
@@ -180,6 +190,9 @@ export default function YourBalance() {
           </div>
         </div>
       </div>
+      {!ticketsIssued && hasIssueTicketsPermission && (
+        <IssueTickets projectId={projectId} />
+      )}
 
       <Modal
         title={`Manage ${tokenSymbol ? tokenSymbol + ' ' : ''}tokens`}

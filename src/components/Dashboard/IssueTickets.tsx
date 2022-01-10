@@ -33,9 +33,14 @@ export default function IssueTickets({
   }
 
   return (
-    <div>
-      <Space>
-        <Button loading={loading} onClick={() => setModalVisible(true)}>
+    <div style={{ marginTop: '10px' }}>
+      <Space align="end">
+        <Button
+          className={'button-spec'}
+          style={{ width: 'auto', lineHeight: 'normal' }}
+          loading={loading}
+          onClick={() => setModalVisible(true)}
+        >
           Issue ERC-20 token
         </Button>
         <Tooltip
