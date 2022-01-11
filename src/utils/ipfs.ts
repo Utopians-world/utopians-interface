@@ -158,7 +158,7 @@ export const editMetadataForCid = (
 export const logoNameForHandle = (handle: string) => `juicebox-@${handle}-logo`
 
 export const metadataNameForHandle = (handle: string) =>
-  `juicebox-@${handle}-metadata`
+  `upo-@${handle}-metadata`
 
 export const ipfsCidUrl = (hash: string) =>
   'https://jbx.mypinata.cloud/ipfs/' + hash
