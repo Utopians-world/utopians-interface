@@ -7,12 +7,14 @@ import { constants } from 'ethers'
 
 import ModalTab from '../ProjectsDetail/ModalTab'
 import { FormItems } from '../shared/formItems'
-import { PayoutMod } from '../../models/mods'
+import { PayoutMod, TicketMod } from '../../models/mods'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { CurrencyOption } from '../../models/currency-option'
 import { fromWad } from '../../utils/formatNumber'
 
 import { UserContext } from '../../contexts/userContext'
+import { FCProperties } from '../../models/funding-cycle-properties'
+import { FCMetadata } from '../../models/funding-cycle'
 
 export default function DetailEditPayoutModal({
   visible,
@@ -20,11 +22,13 @@ export default function DetailEditPayoutModal({
   onCancel,
   initialMods,
   projectId,
+  ticketMods,
 }: {
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
   initialMods: PayoutMod[]
+  ticketMods: TicketMod[]
   projectId?: BigNumber
 }) {
   const [mods, setMods] = useState<PayoutMod[]>([])
@@ -38,16 +42,33 @@ export default function DetailEditPayoutModal({
     setMods(initialMods)
   }, [initialMods])
 
-  async function updatePayout() {
+  async function updatePayout(mods: PayoutMod[]) {
     if (!transactor || !contracts?.TerminalV1 || !projectId) return
 
     setLoading(true)
+
+    const properties: Record<keyof FCProperties, string> = {
+      target: editingFC.target.toHexString(),
+      currency: editingFC.currency.toHexString(),
+      duration: editingFC.duration.toHexString(),
+      discountRate: editingFC.discountRate.toHexString(),
+      cycleLimit: BigNumber.from(0).toHexString(),
+      ballot: editingFC.ballot,
+    }
+
+    const metadata: Omit<FCMetadata, 'version'> = {
+      reservedRate: editingFC.reserved.toNumber(),
+      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+    }
 
     transactor(
       contracts.TerminalV1,
       'configure',
       [
         projectId.toHexString(),
+        properties,
+        metadata,
         editingPayoutMods.map(m => ({
           preferUnstaked: false,
           percent: BigNumber.from(m.percent).toHexString(),
@@ -56,9 +77,17 @@ export default function DetailEditPayoutModal({
           projectId: m.projectId || BigNumber.from(0).toHexString(),
           allocator: constants.AddressZero,
         })),
+        mods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          allocator: constants.AddressZero,
+        })),
       ],
       {
         onDone: () => {
+          onPayModsFormSaved(mods)
           setLoading(false)
         },
       },
@@ -77,8 +106,7 @@ export default function DetailEditPayoutModal({
       okText={'SAVE CHANGES'}
       className="projectModal"
       onOk={() => {
-        onPayModsFormSaved(mods)
-        updatePayout()
+        updatePayout(mods)
       }}
     >
       <Space

@@ -13,6 +13,9 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { UserContext } from '../../contexts/userContext'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { editingProjectActions } from '../../redux/slices/editingProject'
+import { FCProperties } from '../../models/funding-cycle-properties'
+import { FCMetadata } from '../../models/funding-cycle'
+import { PayoutMod, TicketMod } from '../../models/mods'
 
 // import {FundingCycleTitle} from "../../models/funding-cycle";
 
@@ -21,12 +24,16 @@ export default function DetailEditRuleModal({
   onSuccess,
   onCancel,
   projectId,
+  payoutMods,
+  ticketMods,
 }: // fundingCycle
 {
   visible?: boolean
   onSuccess?: VoidFunction
   onCancel: VoidFunction
   projectId?: BigNumber
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
 
   // fundingCycle?: FundingCycleTitle | undefined
 }) {
@@ -43,21 +50,51 @@ export default function DetailEditRuleModal({
     dispatch(editingProjectActions.setBallot(ballot))
   }
 
-  async function updateRule() {
+  async function updateRule(ballot: string) {
     if (!transactor || !contracts?.TerminalV1 || !projectId) return
-
     setLoading(true)
 
-    const properties: { ballot: string } = {
-      ballot: editingFC.ballot,
+    const properties: Record<keyof FCProperties, string> = {
+      target: editingFC.target.toHexString(),
+      currency: editingFC.currency.toHexString(),
+      duration: editingFC.duration.toHexString(),
+      discountRate: editingFC.discountRate.toHexString(),
+      cycleLimit: BigNumber.from(0).toHexString(),
+      ballot: ballot,
+    }
+
+    const metadata: Omit<FCMetadata, 'version'> = {
+      reservedRate: editingFC.reserved.toNumber(),
+      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
     }
 
     transactor(
       contracts.TerminalV1,
       'configure',
-      [projectId.toHexString(), properties],
+      [
+        projectId.toHexString(),
+        properties,
+        metadata,
+        payoutMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          projectId: m.projectId || BigNumber.from(0).toHexString(),
+          allocator: constants.AddressZero,
+        })),
+        ticketMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          allocator: constants.AddressZero,
+        })),
+      ],
       {
         onDone: () => {
+          onRulesFormSaved(ballot)
           setLoading(false)
         },
       },
@@ -100,12 +137,11 @@ export default function DetailEditRuleModal({
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
       onOk={() => {
-        onRulesFormSaved(
+        updateRule(
           selectedIndex !== undefined && selectedIndex < ballotStrategies.length
             ? ballotStrategies[selectedIndex].address
             : customStrategyAddress ?? constants.AddressZero,
         )
-        updateRule()
       }}
       className="projectModal"
     >

@@ -28,19 +28,23 @@ import { formatDate } from '../../utils/formatDate'
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
 import { TicketingFormFields } from '../Create/TicketingForm'
-import { FundingCycle } from '../../models/funding-cycle'
+import { FCMetadata, FundingCycle } from '../../models/funding-cycle'
 import { editingProjectActions } from '../../redux/slices/editingProject'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 
 import { UserContext } from '../../contexts/userContext'
+import { FCProperties } from '../../models/funding-cycle-properties'
+import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 
 export default function Reserved({
   total,
+  payoutMods,
   ticketMods,
   fundingCycle,
 }: {
   total?: BigNumber
-  ticketMods: TicketMod[] | undefined
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
   fundingCycle: FundingCycle | undefined
 }) {
   const {
@@ -58,6 +62,7 @@ export default function Reserved({
   const [ticketingForm] = useForm<TicketingFormFields>()
   const dispatch = useAppDispatch()
   const metadata = decodeFCMetadata(fundingCycle?.metadata)
+  const editingFC = useEditingFundingCycleSelector()
 
   useLayoutEffect(() => {
     if (!ticketMods || !fundingCycle) return
@@ -92,17 +97,40 @@ export default function Reserved({
     ? untapped
     : balanceInCurrency
 
-  async function updateReserved() {
+  async function updateReserved(mods: TicketMod[]) {
     if (!transactor || !contracts?.TerminalV1 || !fundingCycle || !projectId)
       return
-
     setLoading(true)
+    const properties: Record<keyof FCProperties, string> = {
+      target: editingFC.target.toHexString(),
+      currency: editingFC.currency.toHexString(),
+      duration: editingFC.duration.toHexString(),
+      discountRate: editingFC.discountRate.toHexString(),
+      cycleLimit: BigNumber.from(0).toHexString(),
+      ballot: editingFC.ballot,
+    }
+
+    const metadata: Omit<FCMetadata, 'version'> = {
+      reservedRate: editingFC.reserved.toNumber(),
+      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+    }
     transactor(
       contracts.TerminalV1,
       'configure',
       [
         projectId.toHexString(),
-        editingTicketMods.map(m => ({
+        properties,
+        metadata,
+        payoutMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          projectId: m.projectId || BigNumber.from(0).toHexString(),
+          allocator: constants.AddressZero,
+        })),
+        mods.map(m => ({
           preferUnstaked: false,
           percent: BigNumber.from(m.percent).toHexString(),
           lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
@@ -112,6 +140,7 @@ export default function Reserved({
       ],
       {
         onDone: () => {
+          onTicketingFormSaved(mods)
           setLoading(false)
         },
       },
@@ -390,8 +419,7 @@ export default function Reserved({
         onCancel={() => setDetailEditReservesVisible(false)}
         onSave={async mods => {
           await ticketingForm.validateFields()
-          onTicketingFormSaved(mods)
-          updateReserved()
+          updateReserved(mods)
         }}
         initialMods={editingTicketMods}
         confirm={loading}

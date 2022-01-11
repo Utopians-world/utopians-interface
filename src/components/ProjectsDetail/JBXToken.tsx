@@ -5,6 +5,8 @@ import { BigNumber } from '@ethersproject/bignumber'
 
 import { useForm } from 'antd/lib/form/Form'
 
+import { constants } from 'ethers'
+
 import useContractReader from '../../hooks/ContractReader'
 
 import { ContractName } from '../../models/contract-name'
@@ -15,6 +17,8 @@ import {
   formatWad,
   fromPerbicent,
   fromPermille,
+  parsePerbicent,
+  parsePermille,
 } from '../../utils/formatNumber'
 import DetailEdit from '../icons/DetailEdit'
 import DetailIncentivesModal from '../modals/DetailIncentivesModal'
@@ -28,10 +32,17 @@ import { serializeFundingCycle } from '../../utils/serializers'
 import { TicketingFormFields } from '../Create/TicketingForm'
 import { FCMetadata, FundingCycle } from '../../models/funding-cycle'
 import { UserContext } from '../../contexts/userContext'
+import { PayoutMod, TicketMod } from '../../models/mods'
+
+import { FCProperties } from '../../models/funding-cycle-properties'
 
 export default function JBXToken({
+  payoutMods,
+  ticketMods,
   fundingCycle,
 }: {
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
   fundingCycle: FundingCycle | undefined
 }) {
   const { projectId, currentFC } = useContext(ProjectContext)
@@ -88,29 +99,55 @@ export default function JBXToken({
     })
   }, [dispatch, fundingCycle, ticketingForm])
 
-  async function updateToken() {
+  async function updateToken(discountRate: string, bondingCurveRate: string) {
     if (!transactor || !contracts?.TerminalV1 || !fundingCycle || !projectId)
       return
 
     setLoading(true)
 
-    const properties: { discountRate: string; cycleLimit: string } = {
-      discountRate: editingFC.discountRate.toHexString(),
+    const properties: Record<keyof FCProperties, string> = {
+      target: editingFC.target.toHexString(),
+      currency: editingFC.currency.toHexString(),
+      duration: editingFC.duration.toHexString(),
+      discountRate: parsePermille(discountRate).toHexString(),
       cycleLimit: BigNumber.from(0).toHexString(),
+      ballot: editingFC.ballot,
     }
 
     const metadata: Omit<FCMetadata, 'version'> = {
       reservedRate: editingFC.reserved.toNumber(),
-      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
-      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      bondingCurveRate: parsePerbicent(bondingCurveRate).toNumber(),
+      reconfigurationBondingCurveRate:
+        parsePerbicent(bondingCurveRate).toNumber(),
     }
 
     transactor(
       contracts.TerminalV1,
       'configure',
-      [projectId.toHexString(), properties, metadata],
+      [
+        projectId.toHexString(),
+        properties,
+        metadata,
+        payoutMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          projectId: m.projectId || BigNumber.from(0).toHexString(),
+          allocator: constants.AddressZero,
+        })),
+        ticketMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          allocator: constants.AddressZero,
+        })),
+      ],
       {
         onDone: () => {
+          onIncentivesFormSaved(discountRate, bondingCurveRate)
+          ticketingForm.validateFields()
           setLoading(false)
         },
       },
@@ -201,9 +238,7 @@ export default function JBXToken({
         onSuccess={() => setDetailIssueVisible(false)}
         onCancel={() => setDetailIssueVisible(false)}
         onSave={async (discountRate: string, bondingCurveRate: string) => {
-          onIncentivesFormSaved(discountRate, bondingCurveRate)
-          await ticketingForm.validateFields()
-          await updateToken()
+          await updateToken(discountRate, bondingCurveRate)
         }}
         confirm={loading}
       />

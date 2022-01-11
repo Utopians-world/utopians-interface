@@ -8,11 +8,18 @@ import TooltipLabel from '../shared/TooltipLabel'
 import FundingCycleUpcoming from './FundingCycleUpcoming'
 import FundingCycleHistory from './FundingCycleHistory'
 import { ProjectContext } from '../../contexts/projectContext'
+import { PayoutMod, TicketMod } from '../../models/mods'
 // import {ProjectContext} from "../../contexts/projectContext";
 
 type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
 
-export default function FundingCycleTitle() {
+export default function FundingCycleTitle({
+  payoutMods,
+  ticketMods,
+}: {
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
+}) {
   const [selectedTab, setSelectedTab] = useState<TabOption>('INPROGRESS')
   const [hoverTab, setHoverTab] = useState<TabOption>()
 
@@ -140,6 +147,8 @@ export default function FundingCycleTitle() {
         onSuccess={() => setDetailEditRuleVisible(false)}
         onCancel={() => setDetailEditRuleVisible(false)}
         projectId={projectId}
+        payoutMods={payoutMods}
+        ticketMods={ticketMods}
         // fundingCycle={currentFC}
       />
     </div>

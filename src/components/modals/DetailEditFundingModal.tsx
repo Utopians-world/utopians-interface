@@ -4,7 +4,7 @@ import { constants } from 'ethers'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
-import { fromWad } from '../../utils/formatNumber'
+import { fromWad, parseWad } from '../../utils/formatNumber'
 import { CurrencyOption } from '../../models/currency-option'
 import { UserContext } from '../../contexts/userContext'
 import { hasFundingTarget, isRecurring } from '../../utils/fundingCycle'
@@ -13,6 +13,9 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { FormItems } from '../shared/formItems'
 import ModalTab from '../ProjectsDetail/ModalTab'
+import { FCProperties } from '../../models/funding-cycle-properties'
+import { FCMetadata } from '../../models/funding-cycle'
+import { PayoutMod, TicketMod } from '../../models/mods'
 
 // import {FormItems} from "../shared/formItems";
 // import {UserContext} from "../../contexts/userContext";
@@ -25,6 +28,8 @@ export default function DetailEditFundingModal({
   initialTarget,
   initialDuration,
   projectId,
+  payoutMods,
+  ticketMods,
 }: {
   initialCurrency: CurrencyOption
   initialTarget: string
@@ -33,6 +38,8 @@ export default function DetailEditFundingModal({
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
   projectId: BigNumber
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
 }) {
   const [currency, setCurrency] = useState<CurrencyOption>(0)
   const [target, setTarget] = useState<string>('0')
@@ -43,6 +50,13 @@ export default function DetailEditFundingModal({
   const dispatch = useAppDispatch()
   const { adminFeePercent } = useContext(UserContext)
 
+  useLayoutEffect(() => {
+    setCurrency(initialCurrency)
+    setTarget(initialTarget)
+    setDuration(initialDuration)
+    setShowFundingFields(hasFundingTarget(editingFC))
+  }, [editingFC, initialCurrency, initialDuration, initialTarget])
+
   const onBudgetFormSaved = (
     currency: CurrencyOption,
     target: string,
@@ -51,37 +65,56 @@ export default function DetailEditFundingModal({
     dispatch(editingProjectActions.setTarget(target))
     dispatch(editingProjectActions.setDuration(duration))
     dispatch(editingProjectActions.setCurrency(currency))
-    console.log(target)
-    console.log(duration)
-    console.log(currency)
   }
   const { transactor, contracts } = useContext(UserContext)
   const [loading, setLoading] = useState<boolean>()
 
-  useLayoutEffect(() => {
-    setCurrency(initialCurrency)
-    setTarget(initialTarget)
-    setDuration(initialDuration)
-    setShowFundingFields(hasFundingTarget(editingFC))
-  }, [editingFC, initialCurrency, initialDuration, initialTarget])
-
-  async function updateFunding() {
+  function updateFunding() {
     if (!transactor || !contracts?.TerminalV1 || !projectId) return
 
     setLoading(true)
 
-    const properties: { duration: string; currency: string; target: string } = {
-      target: editingFC.target.toHexString(),
-      currency: editingFC.currency.toHexString(),
-      duration: editingFC.duration.toHexString(),
+    const properties: Record<keyof FCProperties, string> = {
+      target: parseWad(BigNumber.from(target)).toHexString(),
+      currency: BigNumber.from(currency).toHexString(),
+      duration: BigNumber.from(duration).toHexString(),
+      discountRate: editingFC.discountRate.toHexString(),
+      cycleLimit: BigNumber.from(0).toHexString(),
+      ballot: editingFC.ballot,
+    }
+
+    const metadata: Omit<FCMetadata, 'version'> = {
+      reservedRate: editingFC.reserved.toNumber(),
+      bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
+      reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
     }
 
     transactor(
       contracts.TerminalV1,
       'configure',
-      [projectId.toHexString(), properties],
+      [
+        projectId.toHexString(),
+        properties,
+        metadata,
+        payoutMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          projectId: m.projectId || BigNumber.from(0).toHexString(),
+          allocator: constants.AddressZero,
+        })),
+        ticketMods.map(m => ({
+          preferUnstaked: false,
+          percent: BigNumber.from(m.percent).toHexString(),
+          lockedUntil: BigNumber.from(m.lockedUntil ?? 0).toHexString(),
+          beneficiary: m.beneficiary || constants.AddressZero,
+          allocator: constants.AddressZero,
+        })),
+      ],
       {
         onDone: () => {
+          onBudgetFormSaved(currency, target, duration)
           setLoading(false)
         },
       },
@@ -102,7 +135,6 @@ export default function DetailEditFundingModal({
       okText={'SAVE CHANGES'}
       className="projectModal"
       onOk={() => {
-        onBudgetFormSaved(currency, target, duration)
         updateFunding()
       }}
     >

@@ -25,6 +25,7 @@ import Loading from '../shared/Loading'
 // import Project from './Project'
 import { useProjectsQuery } from '../../hooks/Projects'
 import ProjectsDetail from '../ProjectsDetail'
+import Project from './Project'
 
 export default function Dashboard() {
   const [projectExists, setProjectExists] = useState<boolean>()
@@ -345,15 +346,15 @@ export default function Dashboard() {
   return (
     <ProjectContext.Provider value={project}>
       <ProjectsDetail />
-      {/*<div style={layouts.maxWidth}>*/}
-      {/*  <Project />*/}
-      {/*  <div*/}
-      {/*    style={{ textAlign: 'center', cursor: 'pointer', padding: 20 }}*/}
-      {/*    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}*/}
-      {/*  >*/}
-      {/*    Back to top*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      <div style={layouts.maxWidth}>
+        <Project />
+        <div
+          style={{ textAlign: 'center', cursor: 'pointer', padding: 20 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          Back to top
+        </div>
+      </div>
     </ProjectContext.Provider>
   )
 }

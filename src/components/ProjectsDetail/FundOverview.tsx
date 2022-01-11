@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext, useState } from 'react'
-import { Col, Row, Slider, Space, Tooltip } from 'antd'
+import { Space, Tooltip } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
@@ -17,8 +17,16 @@ import MetisLogo from '../icons/MetisLogo'
 import { CurrencyOption } from '../../models/currency-option'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import BalancesModal from '../modals/BalancesModal'
+import { PayoutMod, TicketMod } from '../../models/mods'
+import { DitributionLoad } from './DitributionLoad'
 
-export default function FundOverview() {
+export default function FundOverview({
+  payoutMods,
+  ticketMods,
+}: {
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
+}) {
   const { projectId, currentFC, balance, owner, earned } =
     useContext(ProjectContext)
   const [DetailEditFundingVisible, setDetailEditFundingVisible] =
@@ -30,9 +38,6 @@ export default function FundOverview() {
   const { data: ownerBalance } = useEthBalanceQuery(owner)
 
   if (!currentFC) return null
-  console.log(balance)
-  console.log(owner)
-  console.log(earned)
 
   const formatCurrencyAmount = (amt: BigNumber | undefined) =>
     amt ? (
@@ -66,15 +71,8 @@ export default function FundOverview() {
     margin: 0,
     lineHeight: '20px',
   }
-  console.log(owner)
-  const procces = Math.floor(
-    (Number(formatWad(currentFC.tapped, { decimals: 2, padEnd: true })) /
-      Number(formatWad(currentFC.target, { decimals: 2, padEnd: true }))) *
-      100,
-  )
   if (!projectId) return null
   // const inputValue = 1
-  function onChange() {}
   return (
     <div
       style={{
@@ -262,15 +260,11 @@ export default function FundOverview() {
               lineHeight: '20px',
             }}
           >
-            {' $'}
-            {formatCurrencyAmount(currentFC.tapped)} /{' $'}
+            <MetisLogo />
+            {formatCurrencyAmount(balance)} / <MetisLogo />
             {formatCurrencyAmount(currentFC.target)}
           </h2>
-          <Row style={{ margin: '5px 0' }}>
-            <Col span={18}>
-              <Slider min={1} max={100} onChange={onChange} value={procces} />
-            </Col>
-          </Row>
+          <DitributionLoad />
         </div>
       </div>
       <DetailEditFundingModal
@@ -281,7 +275,8 @@ export default function FundOverview() {
         projectId={projectId}
         onSuccess={() => setDetailEditFundingVisible(false)}
         onCancel={() => setDetailEditFundingVisible(false)}
-        // fundingCycle={currentFC}
+        payoutMods={payoutMods}
+        ticketMods={ticketMods}
       />
       <BalancesModal
         visible={balancesModalVisible}

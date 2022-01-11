@@ -19,7 +19,7 @@ import OwnerIcon from '../../assets/images/Owner-1.png'
 
 import CurrencySymbol from '../shared/CurrencySymbol'
 import { amountSubFee } from '../../utils/math'
-import { PayoutMod } from '../../models/mods'
+import { PayoutMod, TicketMod } from '../../models/mods'
 
 import ProjectHandle from '../shared/ProjectHandle'
 import FormattedAddress from '../shared/FormattedAddress'
@@ -28,8 +28,10 @@ import { formatDate } from '../../utils/formatDate'
 
 export default function Distribution({
   payoutMods,
+  ticketMods,
 }: {
-  payoutMods: PayoutMod[] | undefined
+  payoutMods: PayoutMod[]
+  ticketMods: TicketMod[]
 }) {
   const { balanceInCurrency, owner, currentFC, projectId, currentPayoutMods } =
     useContext(ProjectContext)
@@ -374,6 +376,7 @@ export default function Distribution({
         onSuccess={() => setDetailPayoutVisible(false)}
         onCancel={() => setDetailPayoutVisible(false)}
         projectId={projectId}
+        ticketMods={ticketMods}
         // fundingCycle={currentFC}
       />
       <WithdrawModal
