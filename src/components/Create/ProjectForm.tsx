@@ -38,7 +38,12 @@ export default function ProjectForm({
         </Divider>
       </div>
 
-      <Form form={form} layout="vertical" className="stepFormCon">
+      <Form
+        form={form}
+        layout="vertical"
+        className="stepFormCon"
+        scrollToFirstError
+      >
         <FormItems.ProjectName
           name="name"
           formItemProps={{

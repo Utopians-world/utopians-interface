@@ -1,8 +1,13 @@
 @import '../../styles/common.scss';
+
+.faqContainer {
+  width: 100%;
+  background: rgb(246, 248, 255);
+}
 .faqWrapper {
   width: 100%;
   max-width: 960px;
-  padding:68px 0 32px;
+  padding:68px 0;
   margin: 0 auto;
   background: transparent;
   display: flex;
@@ -29,7 +34,7 @@
     font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
     font-weight: 400;
     color: #1C1C20;
-    line-height: 32px;
+    line-height: 56px;
   }
   .ant-collapse-content > .ant-collapse-content-box p{
     font-size: 14px;
@@ -38,22 +43,25 @@
     color: #5F5E61;
     line-height: 25px;
   }
-
-  .faqStillCon{
-    text-align: center;
-    h2 {
-      font-size: 22px;
-      font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
-      font-weight: 600;
-      color: #2713E1;
-      line-height: 32px;
-    }
-    p{
-      font-size: 17px;
-      font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
-      font-weight: 600;
-      color: #9092A7;
-      line-height: 24px;
-    }
+}
+.faqStillCon{
+  text-align: center;
+  background: #EEF1FF;
+  padding: 28px 0 60px;
+  h2 {
+    font-size: 22px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    color: #2713E1;
+    line-height: 32px;
+  }
+  p{
+    font-size: 17px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    max-width: 980px;
+    color: #9092A7;
+    margin: 0 auto;
+    line-height: 24px;
   }
 }

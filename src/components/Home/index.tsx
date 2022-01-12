@@ -12,10 +12,12 @@ import { t } from '@lingui/macro'
 
 // import { ThemeOption } from 'constants/theme/theme-option'
 
-import AtomIcon from 'assets/images/atom-icon.png'
-import CellIcon from 'assets/images/cell-icon.png'
-import ChartIcon from 'assets/images/chart-icon.png'
-import DnaIcon from 'assets/images/dna-icon.png'
+import IndividualIcon from 'assets/images/individual-icon.png'
+import BuyersIcon from 'assets/images/buyers-icon.png'
+import DaoIcon from 'assets/images/dao-icon.png'
+import ProjectIcon from 'assets/images/project-icon.png'
+
+import HoworkTipBg from 'assets/images/howork-pic.png'
 
 import Rectangles from 'assets/images/Rectangles.png'
 import Rectangles1 from 'assets/images/Rectangles1.png'
@@ -61,13 +63,6 @@ export default function Home() {
   )
 
   const smallDes = (text: string) => <p className="secondDes">{text}</p>
-
-  // const listData = [
-  //   t`Indie artists, devs, creators`,
-  //   t`Ethereum protocols and DAOs`,
-  //   t`Public goods and services`,
-  //   t`Open source businesses`,
-  // ]
 
   const section: CSSProperties = {
     padding: '80px 40px',
@@ -123,6 +118,7 @@ export default function Home() {
                     fontSize: '1.25rem',
                     lineHeight: 1.5,
                     fontWeight: 600,
+                    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                   }}
                   href="https://www.metis.io/metis-to-launch-andromeda/"
                   target="_blank"
@@ -188,7 +184,7 @@ export default function Home() {
               {fourthCol(
                 'Individuals',
                 'Crypto developers and Indie artists',
-                AtomIcon,
+                IndividualIcon,
                 'atom',
               )}
             </Col>
@@ -196,7 +192,7 @@ export default function Home() {
               {fourthCol(
                 'Buyers',
                 'Raise funds for collections, art, or other goods and services',
-                CellIcon,
+                BuyersIcon,
                 'cell',
               )}
             </Col>
@@ -204,7 +200,7 @@ export default function Home() {
               {fourthCol(
                 'DACs',
                 'Any DAC that needs to get funding',
-                DnaIcon,
+                DaoIcon,
                 'dna',
               )}
             </Col>
@@ -212,7 +208,7 @@ export default function Home() {
               {fourthCol(
                 'Projects',
                 'Crowdfund investments to build your open-source projects or philanthropic services',
-                ChartIcon,
+                ProjectIcon,
                 'chart',
               )}
             </Col>
@@ -220,7 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={section}>
+      <section style={section} className="howWorkSectionBg">
         <div
           style={{
             ...wrapper,
@@ -250,7 +246,7 @@ export default function Home() {
           {smallDes(
             'In a Utopia, people can create DACs according to their own ideas and visions, owners or contributors can receive their pay transparently, and investors can share in the profits of the project.',
           )}
-          <Row justify="space-between" className="HowroksBg">
+          <Row justify="center" className="HowroksBg">
             <Col span={6}>
               <div className="HoworksCon">
                 <div className="HoworksConTop">
@@ -271,6 +267,13 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+            </Col>
+            <Col span={12} flex="auto">
+              <img
+                style={{ maxWidth: '100%' }}
+                src={HoworkTipBg}
+                alt="howorkTip"
+              />
             </Col>
             <Col span={6}>
               <div
@@ -326,7 +329,7 @@ export default function Home() {
               {smallHeader('Projects in utopains world', 'projectTitle')}
               <div style={{ margin: '20px auto 0', maxWidth: '980px' }}>
                 {previewProjects ? (
-                  <ProjectsGrid projects={previewProjects} list />
+                  <ProjectsGrid projects={previewProjects} list isHome />
                 ) : (
                   <Loading />
                 )}
@@ -354,127 +357,6 @@ export default function Home() {
           </Row>
         </div>
       </section>
-
-      {/* <section
-        style={{
-          ...section,
-          paddingTop: 60,
-          paddingBottom: 40,
-        }}
-      >
-        <div
-          style={{
-            ...wrapper,
-          }}
-        >
-          <Row align="middle">
-            <Col xs={24} sm={11}>
-              <img
-                style={{
-                  maxHeight: 480,
-                  maxWidth: '100%',
-                  objectFit: 'contain',
-                  marginBottom: 40,
-                }}
-                src="/assets/pina.png"
-                alt="Pinepple geek artist holding a paintbrush"
-              />
-            </Col>
-            <Col xs={24} sm={13}>
-              <div style={{ display: 'grid', rowGap: 20, marginBottom: 40 }}>
-                {fourthCol('Programmable spending', [
-                  `Commit portions of your revenue to go to the people or projects you want to support, or the contributors you want to pay. When you get paid, so do they.`,
-                ])}
-                {fourthCol('ERC20 community tokens', [
-                  `When someone pays your project either as a patron or a user of your app, they earn a proportional amount of your project's token. When you win, your token holders win, so they'll want you to win even more.`,
-                ])}
-                {fourthCol('Redistributable surplus', [
-                  `Set a funding target to cover predictable expenses. Any extra revenue can be claimed by anyone holding your project's tokens alongside you.`,
-                ])}
-                {fourthCol('Transparency & accountability', [
-                  `Changes to your project's funding require a community approval period to take effect. Your supporters don't have to trust you—even though they already do.`,
-                ])}
-                <p>
-                  Note: Juicebox is new, unaudited, and not guaranteed to work
-                  perfectly. Before spending money, do your own research:{' '}
-                  <a
-                    href="https://discord.gg/6jXrJSyDFf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    ask questions
-                  </a>
-                  ,{' '}
-                  <a
-                    href="https://github.com/jbx-protocol/juicehouse"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    check out the code
-                  </a>
-                  , and understand the risks!
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </section>
-
-      {window.innerWidth > 600 && (
-        <section
-          id="create"
-          style={{
-            ...section,
-            marginTop: 0,
-            paddingTop: 20,
-            paddingBottom: 40,
-          }}
-        >
-          <Create />
-        </section>
-      )}
-
-      <section
-        style={{
-          padding: 30,
-          paddingTop: 80,
-          paddingBottom: 80,
-          background: colors.background.brand.secondary,
-          color: colors.text.over.brand.secondary,
-        }}
-      >
-        <div style={wrapper}>
-          <Row align="middle" gutter={40}>
-            <Col xs={24} md={14}>
-              <div style={{ display: 'grid', rowGap: 20 }}>
-                {bigHeader('Should you Juicebox?')}
-                <div style={{ color: colors.text.over.brand.secondary }}>
-                  <p className="ol">Almost definitely.</p>
-                  <p className="ol">
-                    With Juicebox, projects are built and maintained by
-                    motivated punks getting paid transparently, and funded by a
-                    community of users and patrons who are rewarded as the
-                    projects they support succeed.
-                  </p>
-                  <p className="ol">
-                    The future will be led by creators, and owned by
-                    communities.
-                  </p>
-                </div>
-              </div>
-            </Col>
-
-            <Col xs={24} md={10}>
-              <img
-                style={{ maxWidth: '100%' }}
-                src="/assets/blueberry-ol.png"
-                alt="Sexy blueberry with bright pink lipstick spraying a can of spraypaint"
-              />
-            </Col>
-          </Row>
-        </div>
-      </section>
-     */}
     </div>
   )
 }

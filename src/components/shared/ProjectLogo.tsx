@@ -11,7 +11,7 @@ export default function ProjectLogo({
   size?: number
 }) {
   const {
-    theme: { colors, radii },
+    theme: { colors },
   } = useContext(ThemeContext)
   const _size = size ?? 80
 
@@ -24,7 +24,6 @@ export default function ProjectLogo({
         overflow: 'hidden',
         height: _size,
         width: _size,
-        borderRadius: radii.xl,
         background: uri ? undefined : colors.background.l1,
       }}
     >

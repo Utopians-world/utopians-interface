@@ -6,9 +6,11 @@ import { currencyStyle, currencySymbol } from 'utils/currency'
 export default function CurrencySymbol({
   currency,
   style,
+  size,
 }: {
   currency: CurrencyOption
   style?: CSSProperties
+  size?: number
 }) {
   return (
     <span
@@ -18,7 +20,7 @@ export default function CurrencySymbol({
       }}
     >
       {currencySymbol(currency) === 'M' ? (
-        <MetisLogo />
+        <MetisLogo size={size} />
       ) : (
         currencySymbol(currency)
       )}

@@ -119,13 +119,13 @@ const QAs: {
 
 export default function Faq() {
   return (
-    <div style={{ background: '#fbf9f6', width: '100%' }}>
+    <div className="faqContainer">
       <div className="faqWrapper">
         <h2 className="faqTitle">
           Frequently <span>asked</span> questions
           <p className="titleLine"></p>
         </h2>
-        <div style={{ width: '100%', margin: '72px 0 96px' }}>
+        <div style={{ width: '100%', margin: '72px 0 0 0' }}>
           <Collapse
             defaultActiveKey={QAs.length ? 0 : undefined}
             accordion
@@ -145,13 +145,13 @@ export default function Faq() {
             ))}
           </Collapse>
         </div>
-        <div className="faqStillCon">
-          <h2>Still have a question?</h2>
-          <p>
-            If you couldn‘t find what you were looking for in our FAQ. you can
-            always contact us on Telegram. We will answer to you shortly!
-          </p>
-        </div>
+      </div>
+      <div className="faqStillCon">
+        <h2>Still have a question?</h2>
+        <p>
+          If you couldn't find what you were looking for in our FAQ. you can
+          always contact us on Telegram. We will answer to you shortly!
+        </p>
       </div>
     </div>
   )

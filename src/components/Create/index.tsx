@@ -1,6 +1,6 @@
 // import { CaretRightFilled, CheckCircleFilled } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Col, Row, Tabs } from 'antd'
+import { Col, Row, Tabs, message } from 'antd'
 import { useForm } from 'antd/lib/form/Form'
 import Modal from 'antd/lib/modal/Modal'
 import Project from 'components/Dashboard/SmartProject'
@@ -80,6 +80,14 @@ export default function Create() {
     payoutMods: editingPayoutMods,
   } = useAppSelector(state => state.editingProject)
   const dispatch = useAppDispatch()
+
+  const disableInfo = () => {
+    message.info({
+      content: 'Please fill and save all of the forms before deploy project',
+      className: 'disableMesInfo',
+      duration: 3,
+    })
+  }
 
   useEffect(() => {
     if (adminFeePercent) {
@@ -480,12 +488,16 @@ export default function Create() {
                     onProjectFormSaved()
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>
@@ -528,12 +540,16 @@ export default function Create() {
                     settabKey('3')
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>
@@ -575,12 +591,16 @@ export default function Create() {
                     settabKey('4')
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>
@@ -621,12 +641,16 @@ export default function Create() {
                     settabKey('5')
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>
@@ -665,12 +689,16 @@ export default function Create() {
                     settabKey('6')
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>
@@ -728,12 +756,16 @@ export default function Create() {
                     setIncentivesFormModalVisible(true)
                   }}
                   onDeployBtn={() => {
-                    setDeployProjectModalVisible(true)
+                    if (
+                      !editingProjectInfo?.metadata.name ||
+                      !editingProjectInfo.handle
+                    ) {
+                      disableInfo()
+                    } else {
+                      setDeployProjectModalVisible(true)
+                    }
                   }}
-                  isDisable={
-                    !editingProjectInfo?.metadata.name ||
-                    !editingProjectInfo.handle
-                  }
+                  isDisable={false}
                 />
               </Col>
               <Col xs={24} md={14}>

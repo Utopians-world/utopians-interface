@@ -80,8 +80,9 @@ export default function Navbar() {
         height: '80px',
         lineHeight: '80px',
         zIndex: 999,
-        // opacity: '0.84',
-        background: 'linear-gradient(163deg, #400AFF 0%, #000000 30%)',
+        opacity: '0.84',
+        background:
+          'linear-gradient(101deg, #400AFF 0%, #400AFF 11%, #000000 20%)',
       }}
     >
       <Space size="large" style={{ flex: 1 }}>

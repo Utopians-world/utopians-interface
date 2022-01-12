@@ -10,10 +10,12 @@ export default function ProjectsGrid({
   projects,
   list,
   selectedtab,
+  isHome,
 }: {
   projects: Pick<Project, 'handle' | 'uri' | 'totalPaid' | 'createdAt'>[]
   list?: boolean
   selectedtab?: string
+  isHome?: boolean
 }) {
   const gutter = 20
 
@@ -33,13 +35,18 @@ export default function ProjectsGrid({
           i % 2 === 0 && (
             <Row gutter={gutter} key={project.handle}>
               <Col {...colProps}>
-                <ProjectCard project={project} selectedtab={selectedtab} />
+                <ProjectCard
+                  project={project}
+                  selectedtab={selectedtab}
+                  isHome={isHome}
+                />
               </Col>
               {i + 1 < projects.length && (
                 <Col {...colProps}>
                   <ProjectCard
                     project={projects[i + 1]}
                     selectedtab={selectedtab}
+                    isHome={isHome}
                   />
                 </Col>
               )}

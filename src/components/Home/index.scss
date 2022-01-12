@@ -23,9 +23,20 @@
     color: #FFFFFF;
     line-height: 46px;
     margin: 20px 0 16px;
+    letter-spacing: 0.1rem;
+    // background: 
+    //   linear-gradient(132deg, rgba(0, 255, 124, 0.3) 0%, rgba(0, 218, 255, 0.3) 32%, rgba(161, 0, 255, 0.3) 100%), 
+    //   linear-gradient(195deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
     background: 
-      linear-gradient(132deg, rgba(0, 255, 124, 0.3) 0%, rgba(0, 218, 255, 0.3) 32%, rgba(161, 0, 255, 0.3) 100%), 
-      linear-gradient(195deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+      linear-gradient(132deg,
+        rgba(0, 255, 231, 1) 0%, 
+        rgba(0, 231, 255, 0.67) 62%, 
+        rgba(250, 178, 255,0.68)
+      ),
+      linear-gradient(146deg,
+        hsl(0deg 0% 100%/0%), 
+        hsl(305deg 100% 67%)
+      );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -36,10 +47,15 @@
     color: #FFFFFF;
     line-height: 25px;
   }
+  
+  .howWorkSectionBg {
+    background: url('../../assets/images/howork-section-bg.png') no-repeat top center #ffffff;
+  }
 
   & .secondTitle{
     font-size: 28px;
     color: #241515;
+    letter-spacing: 0.1rem;
     @include bigTitle;    
   }
   .titleLine {
@@ -59,7 +75,6 @@
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    background-color: #ffffff;
     @media screen and (max-width: 1380px) {
       .worksSectionIconTwo {
         display:none;
@@ -78,6 +93,7 @@
       font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
       font-weight: 600;
       color: #9092A7;
+      text-align: center;
       line-height: 28px;
     }
 
@@ -126,9 +142,9 @@
     }
 
     & .HowroksBg {
-      background: url('../../assets/images/howork-pic.png') no-repeat top center;
-      padding-bottom: 80px;
-      width: 100%;
+      // background: url('../../assets/images/howork-pic.png') no-repeat top center;
+      // padding-bottom: 80px;
+      width: 90%;
     }
     & .HoworksCon{
       display: flex;
@@ -158,7 +174,7 @@
       .HoworksConTop, .HoworksConBottom {
       }
       .HoworksConBottom{
-        margin-top: 116px;
+        margin-top: 100px;
         h3 {
           color: #00DAC5;
           text-shadow: 0px 5px 6px #9EFFF1;

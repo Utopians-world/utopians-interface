@@ -22,6 +22,7 @@ import './styles/projectCard.scss'
 export default function ProjectCard({
   project,
   selectedtab,
+  isHome,
 }: {
   project: Pick<
     Project,
@@ -34,6 +35,7 @@ export default function ProjectCard({
     | 'totalRedeemed'
   >
   selectedtab?: string
+  isHome?: boolean
 }) {
   // const {
   //   theme: { colors, radii },
@@ -121,7 +123,7 @@ export default function ProjectCard({
       //   cursor: 'pointer',
       //   overflow: 'hidden',
       // }}
-      className="proCardCon"
+      className={`proCardCon ${isHome ? 'homeProCardCon' : ''}`}
       key={project?.handle}
       onClick={() => (window.location.hash = '/p/' + project.handle)}
     >
@@ -139,7 +141,7 @@ export default function ProjectCard({
             <ProjectLogo
               uri={metadata.logoUri}
               name={metadata.name}
-              size={158}
+              size={isHome ? 175 : 158}
             />
           </div>
 
@@ -159,8 +161,9 @@ export default function ProjectCard({
                 <p className="volume">Volume</p>
                 <span className="price">
                   <CurrencySymbol
-                    style={{ height: '27px', marginRight: '10px' }}
+                    style={{ marginRight: '10px' }}
                     currency={0}
+                    size={isHome ? 18 : 15}
                   />
                   {formatWad(project.totalPaid, { decimals })}{' '}
                 </span>
@@ -176,6 +179,7 @@ export default function ProjectCard({
                     <span className="">Cycle #{cyclesNum}</span>
                     <Progress
                       percent={progress}
+                      strokeLinecap="round"
                       showInfo={false}
                       strokeColor={'#00DAC5'}
                     />

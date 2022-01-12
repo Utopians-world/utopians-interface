@@ -50,6 +50,7 @@
         align-items: center;
         padding: 0 34px 0 37px;
         letter-spacing: -1px;
+        text-shadow: none;
 
         .createTabpaneArrow{
             display: inline-block;
@@ -92,9 +93,9 @@
     }
     .ant-tabs-tab {
         width: 100%;
-        max-width: 240px;
+        // max-width: 240px;
         height: 77px;
-        margin: 0;
+        margin: 0 !important;
         background: #FFFFFF;
         
         border: 1px solid #C3D0F9;
@@ -628,4 +629,26 @@
     font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
     font-weight: 600 !important;
     color: #665FAC !important;
+}
+
+//create disable message
+.disableMesInfo {
+    margin-top: 40vh;
+    .ant-message-notice-content {
+        max-width: 575px;
+        width: 100%;
+        padding: 24px;
+        background: rgba(31, 35, 39, 0.85);
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0);
+        border-radius: 8px;
+    }
+    .anticon-info-circle {
+        display: none;
+    }
+    .ant-message-info {
+        font-size: 16px;
+        color: #ffffff;
+        font-family: Helvetica;
+        line-height: 20px;
+    }
 }
