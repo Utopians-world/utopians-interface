@@ -6,6 +6,10 @@ import React, {
 } from 'react'
 import { Row, Col } from 'antd'
 
+import { BigNumber } from '@ethersproject/bignumber'
+
+import { useForm } from 'antd/lib/form/Form'
+
 import FundOverview from './FundOverview'
 import JBXToken from './JBXToken'
 import Distribution from './Distribution'
@@ -22,10 +26,10 @@ import { PayoutMod, TicketMod } from '../../models/mods'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import { editingProjectActions } from '../../redux/slices/editingProject'
 import { serializeFundingCycle } from '../../utils/serializers'
-import { BigNumber } from '@ethersproject/bignumber'
+
 import { fromPerbicent } from '../../utils/formatNumber'
 import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useForm } from 'antd/lib/form/Form'
+
 import { TicketingFormFields } from '../Create/TicketingForm'
 
 export default function ProjectsDetail() {
