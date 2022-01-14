@@ -93,22 +93,22 @@ export default function Projects() {
         <div
           style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}
         >
-          <h1 className="firstTitle">project in UTOPIANS</h1>
+          <h1 className="firstTitle">PROJECT ON UTOPIANS</h1>
           <p style={{ maxWidth: 900 }} className="firstDes">
-            he utopians protocol is open to anyone, and project configurations
+            The Utopians protocol is open to anyone, and project configurations
             can vary widely. There are risks associated with interacting with
             all projects on the protocol. Projects built on the protocol are not
-            endorsed or vetted by utopians DAO, so you should do your own
+            endorsed or vetted by Utopians DAO, so you should do your own
             research and understand the risks before committing your funds.
           </p>
         </div>
         <div className="firstWrapperBottom">
           <a href="/#/create">
-            <Button className="createProBtn">+ BULD PROJECT</Button>
+            <Button className="createProBtn">+ BUILD PROJECT</Button>
           </a>
         </div>
       </div>
-      <div className="secondWrapper">
+      <div className="secondWrapper" style={{ paddingBottom: '33px' }}>
         <div className="secondSelectCon">
           <div style={{ borderBottom: '3px solid #DFE7FF' }}>
             <Space direction="horizontal" size={37}>
@@ -122,10 +122,9 @@ export default function Projects() {
               <Select
                 value={orderBy}
                 onChange={setOrderBy}
+                bordered
                 style={{
                   width: 211,
-                  border: '1px solid #7C85CB',
-                  borderRadius: '4px',
                 }}
                 suffixIcon={<CaretDownOutlined style={{ color: '#2713E1' }} />}
               >

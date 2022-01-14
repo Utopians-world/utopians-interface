@@ -102,10 +102,10 @@ export default function FundingCycleDetails({
           <Descriptions.Item
             label={
               <TooltipLabel
-                label={tokenSymbol ? tokenSymbol + '/ETH' : 'Tokens/ETH'}
+                label={tokenSymbol ? tokenSymbol + '/METIS' : 'Tokens/METIS'}
                 tip={`${
                   tokenSymbol ?? 'Tokens'
-                } received per ETH paid to the treasury. This will change according to the project's discount rate over time, as well as its reserved tokens amount.`}
+                } received per METIS paid to the treasury. This will change according to the project's discount rate over time, as well as its reserved tokens amount.`}
               />
             }
           >

@@ -19,6 +19,7 @@
   
   & .firstTitle {
     @include topTitle;
+    color: #ffffff;
   }
 
   & .firstDes {
@@ -39,7 +40,7 @@
       max-width: 980px;
       & .proTab {
         font-size: 22px;
-        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        // font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
         font-weight: 600;
         color: #303030;
         min-width: 170px;
@@ -71,5 +72,9 @@
     height: 53px;
     color: #030303;
     @include solidBtn;
+    span {
+      font-family: GoodTimesW00-Bold, GoodTimesW00;
+      font-size: 17px;
+    }
   }
 }

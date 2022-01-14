@@ -1,8 +1,10 @@
 import { useContext, useLayoutEffect, useState } from 'react'
-import { Modal, Space, Switch, Divider, Tooltip, Form } from 'antd'
+import { Modal, Space, Switch, Divider, Form } from 'antd'
 import { constants } from 'ethers'
 
 import { BigNumber } from '@ethersproject/bignumber'
+
+import Upopover from 'components/Popover'
 
 import { fromWad, parseWad } from '../../utils/formatNumber'
 import { CurrencyOption } from '../../models/currency-option'
@@ -164,8 +166,13 @@ export default function DetailEditFundingModal({
               />
             </Space>
 
-            <Tooltip
-              title={
+            <Upopover
+              children={
+                <span className="switchFormItemTip">
+                  What is project target ?
+                </span>
+              }
+              content={
                 <>
                   <p>
                     No more than the target can be distributed from the project
@@ -181,11 +188,7 @@ export default function DetailEditFundingModal({
                   </p>
                 </>
               }
-            >
-              <span className="switchFormItemTip">
-                What is project target ?
-              </span>
-            </Tooltip>
+            />
           </Form.Item>
 
           {target === maxIntStr && (

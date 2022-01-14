@@ -1,4 +1,4 @@
-import { CrownFilled, LockOutlined } from '@ant-design/icons'
+import { LockOutlined } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Tooltip } from 'antd'
 import { ProjectContext } from 'contexts/projectContext'
@@ -10,6 +10,7 @@ import { formatDate } from 'utils/formatDate'
 import FormattedAddress from './FormattedAddress'
 import ProjectHandle from './ProjectHandle'
 import TooltipLabel from './TooltipLabel'
+import OwnerIcon from '../../assets/images/Owner-1.png'
 
 export default function Mod({
   mod,
@@ -64,7 +65,8 @@ export default function Mod({
                 <FormattedAddress address={mod.beneficiary} />{' '}
                 {owner === mod.beneficiary && (
                   <Tooltip title="Project owner">
-                    <CrownFilled />
+                    {/* <CrownFilled /> */}
+                    <img src={OwnerIcon} alt="ownerIcon" />
                   </Tooltip>
                 )}
               </div>
@@ -75,7 +77,8 @@ export default function Mod({
               {owner === mod.beneficiary && (
                 <span style={{ marginLeft: 5 }}>
                   <Tooltip title="Project owner">
-                    <CrownFilled />
+                    {/* <CrownFilled /> */}
+                    <img src={OwnerIcon} alt="ownerIcon" />
                   </Tooltip>
                 </span>
               )}

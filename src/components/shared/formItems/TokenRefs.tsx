@@ -3,6 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { Button, Form, Input } from 'antd'
 import { constants } from 'ethers'
 import { TokenRef } from 'models/token-ref'
+import { CSSProperties } from 'react'
 
 import ProjectHandleFormItem from './ProjectHandle/ProjectHandleFormItem'
 
@@ -13,13 +14,24 @@ export default function TokenRefs({
   refs: TokenRef[]
   onRefsChange: (x: TokenRef[]) => void
 }) {
+  const changeBtn: CSSProperties = {
+    fontSize: '16px',
+    background: '#dfd6ff',
+    fontWeight: 600,
+    cursor: 'default',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#3F3D3D',
+    lineHeight: '48px',
+    display: 'flex',
+    alignItems: 'center',
+  }
   return (
     <div>
       {refs.map((r, i) => (
         <div>
-          <div style={{ display: 'flex', alignItems: 'baseline', height: 40 }}>
+          <div style={{ display: 'flex', height: 40 }}>
             <Button
-              style={{ marginRight: 20, width: 100 }}
+              style={{ marginRight: 20, ...changeBtn }}
               type="text"
               icon={<CaretDownFilled />}
               onClick={() =>
@@ -42,6 +54,10 @@ export default function TokenRefs({
               {r.type === 'erc20' ? (
                 <Form.Item>
                   <Input
+                    style={{
+                      border: '1px solid #7C85CB',
+                      borderRadius: '3px',
+                    }}
                     value={r.value}
                     placeholder={constants.AddressZero}
                     onChange={e =>
@@ -83,6 +99,7 @@ export default function TokenRefs({
       <Button
         style={{ marginTop: 10 }}
         size="small"
+        className="defaultBtn"
         block
         onClick={() => onRefsChange([...refs, { type: 'erc20', value: '' }])}
       >

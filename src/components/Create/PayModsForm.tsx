@@ -1,4 +1,4 @@
-import { Button, Form, Space, Divider, Tooltip } from 'antd'
+import { Button, Form, Space, Divider } from 'antd'
 import { FormItems } from 'components/shared/formItems'
 // import { ThemeContext } from 'contexts/themeContext'
 import { BigNumber } from 'ethers'
@@ -6,6 +6,7 @@ import { CurrencyOption } from 'models/currency-option'
 import { PayoutMod } from 'models/mods'
 import { useLayoutEffect, useState } from 'react'
 import { fromWad } from 'utils/formatNumber'
+import Upopover from 'components/Popover'
 
 import './index.scss'
 
@@ -47,8 +48,9 @@ export default function PayModsForm({
       <p>
         Payouts are optional. By default, all unallocated revenue will be
         withdrawable to the project owner's wallet.
-        <Tooltip
-          title={
+        <Upopover
+          children={<span className="stepTooltip">what is payout?</span>}
+          content={
             <p>
               Payouts let you commit portions of every withdrawal to other
               Ethereum wallets or Utopians projects. Use this to pay
@@ -57,9 +59,7 @@ export default function PayModsForm({
               withdrawal is made from your project.
             </p>
           }
-        >
-          <span className="stepTooltip">what is payout?</span>
-        </Tooltip>
+        />
       </p>
 
       <Form layout="vertical" className="stepFormCon">

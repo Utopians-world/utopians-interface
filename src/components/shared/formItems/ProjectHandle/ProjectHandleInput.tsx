@@ -71,6 +71,10 @@ export function ProjectHandleInput({
 
   return (
     <Input
+      style={{
+        border: '1px solid #7C85CB',
+        borderRadius: '3px',
+      }}
       value={inputContents}
       onChange={onHandleChange}
       prefix="@"

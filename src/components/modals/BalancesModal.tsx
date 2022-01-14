@@ -9,7 +9,7 @@ import { UserContext } from 'contexts/userContext'
 import { OperatorPermission, useHasPermission } from 'hooks/HasPermission'
 import { ProjectMetadataV3 } from 'models/project-metadata'
 import { TokenRef } from 'models/token-ref'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, CSSProperties } from 'react'
 import { uploadProjectMetadata } from 'utils/ipfs'
 
 export default function BalancesModal({
@@ -32,6 +32,17 @@ export default function BalancesModal({
   }, [metadata])
 
   const hasEditPermission = useHasPermission([OperatorPermission.SetUri])
+
+  const defaultBtn: CSSProperties = {
+    fontSize: '10px',
+    fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
+    background: '#481BE3',
+    borderRadius: '3px',
+    fontWeight: 600,
+    color: '#ffffff',
+    padding: '0 16px',
+    height: '35px',
+  }
 
   async function updateTokenRefs() {
     if (!transactor || !contracts || !projectId) return
@@ -86,7 +97,7 @@ export default function BalancesModal({
           ) : (
             <div></div>
           )}
-          <Button className="defaultBtn" onClick={onCancel}>
+          <Button style={defaultBtn} onClick={onCancel}>
             Done
           </Button>
         </div>

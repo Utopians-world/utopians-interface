@@ -1,4 +1,4 @@
-import { RightCircleOutlined } from '@ant-design/icons'
+import { RightOutlined } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Progress, Tooltip } from 'antd'
 import CurrencySymbol from 'components/shared/CurrencySymbol'
@@ -84,20 +84,28 @@ export default function Paid() {
   )
 
   const primaryTextStyle: CSSProperties = {
-    fontWeight: 600,
-    fontSize: '1rem',
-    lineHeight: 1,
-    fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
-    color: '#717171',
+    fontWeight: 400,
+    fontSize: '19px',
+    lineHeight: '23px',
+    fontFamily: 'GoodTimesRg-Regular, GoodTimesRg',
+    color: '#00dac5',
+    textShadow: '0px 4px 5px #9efff1',
   }
 
   const secondaryTextStyle: CSSProperties = {
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     fontSize: '13px',
     fontWeight: 600,
     fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
     color: '#3F3D3D',
     lineHeight: '20px',
+  }
+  const thirdTextStyle: CSSProperties = {
+    fontSize: '13px',
+    fontWeight: 600,
+    fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
+    color: '#717171',
+    lineHeight: '15px',
   }
   const linkTextStyle: CSSProperties = {
     fontSize: '11px',
@@ -172,11 +180,11 @@ export default function Paid() {
                 </span>
               )}
               <span
-                style={{
-                  color: isConstitutionDAO
-                    ? colors.text.brand.primary
-                    : colors.text.primary,
-                }}
+              // style={{
+              //   color: isConstitutionDAO
+              //     ? colors.text.brand.primary
+              //     : colors.text.primary,
+              // }}
               >
                 <CurrencySymbol currency={0} />
                 {earned?.lt(parseWad('1')) && earned.gt(0)
@@ -200,18 +208,18 @@ export default function Paid() {
             <div
               style={{
                 ...primaryTextStyle,
-                color: '#717171',
+                // color: '#717171',
               }}
             >
               {currentFC.currency.eq(1) ? (
-                <span style={secondaryTextStyle}>
+                <span>
                   <CurrencySymbol currency={0} />
                   {formatWad(balance, { decimals: 2, padEnd: true })}{' '}
                 </span>
               ) : (
                 ''
               )}
-              {formatCurrencyAmount(balanceInCurrency)}
+              {/* {formatCurrencyAmount(balanceInCurrency)} */}
             </div>
           </div>
 
@@ -234,18 +242,19 @@ export default function Paid() {
               />
             </span>
             <span>
-              <span style={secondaryTextStyle}>
-                <ProjectTokenBalance
-                  style={{ display: 'inline-block' }}
-                  wallet={owner}
-                  projectId={BigNumber.from('0x01')}
-                  hideHandle
-                />{' '}
-                +{' '}
-              </span>
               <span style={primaryTextStyle}>
                 <CurrencySymbol currency={0} />
                 {formatWad(ownerBalance, { decimals: 2, padEnd: true })}
+              </span>
+              <span style={thirdTextStyle}>
+                {' '}
+                +{' '}
+                <ProjectTokenBalance
+                  style={{ ...thirdTextStyle, display: 'inline-block' }}
+                  wallet={owner}
+                  projectId={BigNumber.from('0x01')}
+                  hideHandle
+                />
               </span>
             </span>
           </div>
@@ -259,7 +268,7 @@ export default function Paid() {
               style={{ ...linkTextStyle, cursor: 'pointer' }}
               onClick={() => setBalancesModalVisible(true)}
             >
-              All assets <RightCircleOutlined />
+              All assets <RightOutlined />
             </span>
           </div>
         </div>
@@ -279,7 +288,8 @@ export default function Paid() {
               <div style={secondaryTextStyle}>
                 <TooltipLabel
                   label="Distributed"
-                  tip="The amount that has been distributed from the Utopians balance in this funding cycle, out of the current funding target. No more than the funding target can be distributed in a single funding cycle—any remaining ETH in Utopians is overflow, until the next cycle begins."
+                  tip="The amount that has been distributed from the Utopians balance in this funding cycle, out of the current funding target. 
+                  No more than the funding target can be distributed in a single funding cycle—any remaining METIS in Utopians is overflow, until the next cycle begins."
                 />
               </div>
 

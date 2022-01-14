@@ -4,11 +4,23 @@
 
 .bn-onboard-modal-content {
   // !important tags used to override blocknative's theme-based classnames
-  background: var(--background-l0) !important;
-  font-family: 'DM Mono', monospace !important;
+  background: #FFFFFF !important;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.14), 0px 1px 20px 0px rgba(0, 0, 0, 0.12), 0px 2px 24px -1px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
 
   p {
-    color: var(--text-primary);
+    font-size: 12px;
+    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+    font-weight: 400;
+    color: #1C1C20;
+    line-height: 16px;
+  }
+  h3 {
+    font-size: 18px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: 600;
+    color: #1C1C20;
+    line-height: 16px;
   }
 
   // All buttons in modal
@@ -26,9 +38,19 @@
 
   // "Show more" button
   button.bn-onboard-prepare-button {
-    color: var(--text-action-primary);
-    border: 1px solid var(--stroke-action-secondary);
-    font-weight: 500;
+    font-size: 12px;
+    font-family: GoodTimesW00-Bold, GoodTimesW00;
+    font-weight: 600;
+    color: #2C1BD7;
+    line-height: 24px;
+    border: none;
+    border-radius: 3px;
+  }
+ 
+  .cta.svelte-fnc3e1 {
+      color: #FFFFFF;
+      height: 48px;
+      background: #481BE3 !important;
   }
 
   // Header icon
@@ -42,8 +64,8 @@
   }
 
   // Links
-  div.svelte-w9ftfy span.svelte-w9ftfy,
+  div.svelte-w9ftfy span.svelte-w9ftfy, span.bn-onboard-clickable,
   a {
-    color: var(--text-action-primary) !important;
+    color: #3A1FF5 !important;
   }
 }

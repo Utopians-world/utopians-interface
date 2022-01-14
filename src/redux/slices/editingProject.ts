@@ -50,7 +50,7 @@ export const defaultProjectState: EditingProjectState = {
     number: BigNumber.from(1),
     basedOn: BigNumber.from(0),
     target: constants.MaxUint256,
-    currency: BigNumber.from(1),
+    currency: BigNumber.from(0),
     start: BigNumber.from(Math.floor(new Date().valueOf() / 1000)),
     duration: BigNumber.from(0),
     tapped: BigNumber.from(0),

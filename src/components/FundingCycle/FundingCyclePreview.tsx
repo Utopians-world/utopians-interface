@@ -1,11 +1,13 @@
 import { Collapse } from 'antd'
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
-import { CaretUpOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import { CaretUpOutlined } from '@ant-design/icons'
 // import { ThemeContext } from 'contexts/themeContext'
 import { FundingCycle } from 'models/funding-cycle'
 import React from 'react'
-import { detailedTimeString } from 'utils/formatTime'
-import { hasFundingTarget, isRecurring } from 'utils/fundingCycle'
+// import { detailedTimeString } from 'utils/formatTime'
+import { hasFundingTarget } from 'utils/fundingCycle'
+
+import { FundingCycleTime } from 'components/Dashboard/SmartFundingCycleTime'
 
 import FundingCycleDetails from './FundingCycleDetails'
 
@@ -22,21 +24,21 @@ export default function FundingCyclePreview({
 
   if (!fundingCycle) return null
 
-  const secsPerDay = 60 * 60 * 24
+  // const secsPerDay = 60 * 60 * 24
 
-  const endTime = fundingCycle.start
-    .add(fundingCycle.duration.mul(secsPerDay))
-    .mul(1000)
+  // const endTime = fundingCycle.start
+  //   .add(fundingCycle.duration.mul(secsPerDay))
+  //   .mul(1000)
 
-  let headerText = ''
-  if (hasFundingTarget(fundingCycle)) {
-    if (isRecurring(fundingCycle) && fundingCycle.duration.gt(0)) {
-      headerText = `${detailedTimeString(endTime)} until #${fundingCycle.number
-        .add(1)
-        .toString()}`
-    } else if (fundingCycle.duration.gt(0))
-      headerText = detailedTimeString(endTime) + ' left'
-  }
+  // let headerText = ''
+  // if (hasFundingTarget(fundingCycle)) {
+  //   if (isRecurring(fundingCycle) && fundingCycle.duration.gt(0)) {
+  //     headerText = `${detailedTimeString(endTime)} until #${fundingCycle.number
+  //       .add(1)
+  //       .toString()}`
+  //   } else if (fundingCycle.duration.gt(0))
+  //     headerText = detailedTimeString(endTime) + ' left'
+  // }
 
   return (
     <div>
@@ -63,6 +65,7 @@ export default function FundingCyclePreview({
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 cursor: 'pointer',
               }}
             >
@@ -73,14 +76,15 @@ export default function FundingCyclePreview({
               ) : (
                 <span className="previewDetailCycle">Details</span>
               )}
-              <span style={{ color: '#2713E1' }}>
+              {/* <span style={{ color: '#2713E1' }}>
                 {isRecurring(fundingCycle) && fundingCycle.duration.gt(0) && (
                   <ClockCircleOutlined
                     style={{ color: '#A095C3', marginRight: '6px' }}
                   />
                 )}
                 {headerText}
-              </span>
+              </span> */}
+              {showDetail && <FundingCycleTime currentFC={fundingCycle} />}
             </div>
           }
         >

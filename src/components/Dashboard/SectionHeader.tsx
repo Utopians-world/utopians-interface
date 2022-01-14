@@ -23,6 +23,7 @@ export default function SectionHeader({
     fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
     color: '#1D1D1D',
     lineHeight: '15px',
+    height: '20px',
     fontWeight:
       forThemeOption &&
       forThemeOption({

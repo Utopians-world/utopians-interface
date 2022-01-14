@@ -21,7 +21,9 @@
   font-family: GoodTimesW00-Bold, GoodTimesW00;
   font-weight: 600;
   line-height: 46px;
-  background: linear-gradient(173deg, #00FF7C 0%, #00DAFF 32%, #A100FF 100%), linear-gradient(195deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
+  background: 
+    linear-gradient(103deg, rgba(0, 255, 124, 0.5) 0%, rgba(0, 218, 255, 0.5) 32%, rgba(161, 0, 255, 0.5) 100%), 
+    linear-gradient(195deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -68,4 +70,51 @@
   border-radius: 3px!important;
   background: linear-gradient(74deg, #74FFF8 0%, #FFFFFF 100%)!important;
   box-shadow: 0px 2px 9px 0px rgba(8, 255, 238, 0.54);
+}
+
+.ant-select {
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: 1px solid #7C85CB !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+.ant-select-single.ant-select-open .ant-select-selection-item {
+  color: #000;
+}
+.ant-select-dropdown {
+  // border: 1px solid #7C85CB !important;
+}
+
+.ant-popover-inner {
+  max-width: 484px !important;
+  background: rgba(31, 35, 39, 0.85) !important;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0) !important;
+  border-radius: 8px !important;
+}
+.ant-popover-title {
+  padding: 20px 16px 4px !important;
+  border-bottom: none !important;
+  text-align: right;
+}
+.ant-popover-inner-content {
+  color: #fff !important;
+  padding: 8px 30px 32px !important;
+  font-size: 16px;
+  font-family: Helvetica;
+  line-height: 19px;
+}
+.ant-popover-arrow{
+  display: none !important;
+}
+.ant-tooltip-inner {
+  font-size: 16px !important;
+  font-family: Helvetica !important;
+  color: #FFFFFF !important;
+  line-height: 19px !important;
+  border-radius: 8px !important;
+  padding: 25px 16px !important;
+  background: rgba(31, 35, 39, 0.85) !important;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0) !important;
 }

@@ -2,10 +2,17 @@
 .logoTitle {
   font-size: 15px;
   font-family: marinfordaf;
-  color: #ffffff;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-size: 3px 6px;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
   line-height: 15px;
   letter-spacing: 1px;
   margin-left: 8px;
+  text-shadow: -2px -1px #ffffff;
+  background-image: linear-gradient(186deg, #00fdff 25%, #000000 25%, #00fdff 50%, #fff 50%, #fff 75%, #00fdff 75%, #00fdff 100%);
 
   overflow-wrap: break-word;
   white-space: nowrap;

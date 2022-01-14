@@ -9,7 +9,7 @@ export default function TooltipIcon({
   placement?: TooltipProps['placement']
 }) {
   return (
-    <Tooltip title={tip} placement={placement} trigger={['hover', 'click']}>
+    <Tooltip title={tip} placement={placement} trigger={['click']}>
       <InfoCircleOutlined />
     </Tooltip>
   )

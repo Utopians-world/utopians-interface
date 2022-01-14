@@ -153,13 +153,13 @@ input:-webkit-autofill-selected {
   }
 
   .ant-select-item-option-active {
-    color: var(--text-primary);
-    background-color: var(--background-l2);
+    color: var(--text-primary) !important;
+    background-color: var(--background-l3) !important;
   }
 
   .ant-select-item-option-selected {
-    color: var(--text-primary);
-    background-color: var(--background-l2);
+    color: var(--text-over-action-primary) !important;
+    background-color: var(--background-l2) !important;
   }
 }
 

@@ -106,10 +106,10 @@ export default function FundingCycles({
           text="Funding cycle"
           tip="A project's lifetime is defined in funding cycles. If a funding target is set, the project can withdraw no more than the target for the duration of the cycle."
           style={{
-            marginBottom: 12,
+            marginBottom: 6,
           }}
         />
-        <Space style={{ fontSize: '.8rem', marginBottom: 12 }} size="middle">
+        <Space style={{ fontSize: '.8rem' }} size="middle">
           {tab('current')}
           {currentFC?.duration.gt(0) ? tab('upcoming') : null}
           {tab('history')}

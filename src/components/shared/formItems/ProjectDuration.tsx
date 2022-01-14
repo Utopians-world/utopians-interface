@@ -1,5 +1,7 @@
-import { Form, Space, Switch, Tooltip } from 'antd'
+import { Form, Space, Switch } from 'antd'
 import { useEffect, useState } from 'react'
+
+import Upopover from 'components/Popover'
 
 import InputAccessoryButton from '../InputAccessoryButton'
 import FormattedNumberInput from '../inputs/FormattedNumberInput'
@@ -40,8 +42,14 @@ export default function ProjectDuration({
               }}
             />
           </Space>
-          <Tooltip
-            title={
+
+          <Upopover
+            children={
+              <span className="switchFormItemTip">
+                What is project duration ?
+              </span>
+            }
+            content={
               <p>
                 This duration determines how long your funding cycles will last.
                 No more than the target amount (if a target has been set) can be
@@ -50,11 +58,7 @@ export default function ProjectDuration({
                 the next funding cycle.
               </p>
             }
-          >
-            <span className="switchFormItemTip">
-              What is project duration ?
-            </span>
-          </Tooltip>
+          />
         </div>
 
         <Form.Item

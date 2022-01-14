@@ -1,4 +1,4 @@
-import { Button, Divider, Form, Space, Switch, Tooltip } from 'antd'
+import { Button, Divider, Form, Space, Switch } from 'antd'
 import { FormItems } from 'components/shared/formItems'
 // import { ThemeContext } from 'contexts/themeContext'
 import { UserContext } from 'contexts/userContext'
@@ -10,6 +10,8 @@ import { useContext, useLayoutEffect, useState } from 'react'
 import { editingProjectActions } from 'redux/slices/editingProject'
 import { fromWad } from 'utils/formatNumber'
 import { hasFundingTarget, isRecurring } from 'utils/fundingCycle'
+
+import Upopover from 'components/Popover'
 
 import './index.scss'
 
@@ -69,14 +71,18 @@ export default function BudgetForm({
               checked={showFundingFields}
               onChange={checked => {
                 setTarget(checked ? '10000' : maxIntStr || '0')
-                setCurrency(1)
+                setCurrency(0)
                 setShowFundingFields(checked)
               }}
             />
           </Space>
-
-          <Tooltip
-            title={
+          <Upopover
+            children={
+              <span className="switchFormItemTip">
+                What is project target ?
+              </span>
+            }
+            content={
               <>
                 <p>
                   No more than the target can be distributed from the project in
@@ -92,9 +98,7 @@ export default function BudgetForm({
                 </p>
               </>
             }
-          >
-            <span className="switchFormItemTip">What is project target ?</span>
-          </Tooltip>
+          />
         </Form.Item>
 
         {target === maxIntStr && (

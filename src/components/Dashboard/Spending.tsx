@@ -1,4 +1,4 @@
-import { CrownFilled } from '@ant-design/icons'
+// import { CrownFilled } from '@ant-design/icons'
 import { Button, Space, Tooltip } from 'antd'
 import WithdrawModal from 'components/modals/WithdrawModal'
 import Balance from 'components/Navbar/Balance'
@@ -13,6 +13,7 @@ import { formatWad, fromPerbicent } from 'utils/formatNumber'
 import { hasFundingTarget } from 'utils/fundingCycle'
 
 import PayoutModsList from '../shared/PayoutModsList'
+import OwnerIcon from '../../assets/images/Owner-1.png'
 
 export default function Spending({
   payoutMods,
@@ -105,7 +106,7 @@ export default function Spending({
               <Tooltip title="Project owner balance">
                 <Space>
                   <Balance address={owner} />
-                  <CrownFilled /> owner balance
+                  <img src={OwnerIcon} alt="ownerIcon" /> owner balance
                 </Space>
               </Tooltip>
             </div>
@@ -113,7 +114,7 @@ export default function Spending({
         </div>
 
         {currentFC.target.gt(0) && (
-          <div>
+          <div style={{ borderTop: '1px dashed #665FAC', paddingTop: '21px' }}>
             <TooltipLabel
               label={
                 <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>

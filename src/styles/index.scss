@@ -4,7 +4,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-  font-family: 'DM Mono', monospace;
+  font-family: TeXGyreAdventor-Regular, TeXGyreAdventor, 'DM Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-primary);
@@ -21,14 +21,14 @@ div#root {
 code {
   /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace; */
-  font-family: 'DM Mono', monospace;
+  font-family: TeXGyreAdventor-Regular, TeXGyreAdventor, 'DM Mono', monospace;
 }
 
 div,
 p,
 button,
 a {
-  font-family: 'DM Mono', monospace;
+  font-family: TeXGyreAdventor-Regular, TeXGyreAdventor, 'DM Mono', monospace;
 }
 
 label {

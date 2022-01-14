@@ -81,7 +81,7 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     blockExplorer: 'https://explorer-mainnet.maticvigil.com//',
   },
   588: {
-    name: NetworkName.testnet,
+    name: NetworkName.stardust,
     color: '#2bbdf7',
     chainId: 588,
     price: 1,
@@ -89,6 +89,16 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     rpcUrl: 'https://stardust.metis.io/?owner=588',
     faucet: 'https://stardust.metis.io/',
     blockExplorer: 'https://stardust-explorer.metis.io/',
+  },
+  1088: {
+    name: NetworkName.andromeda,
+    color: '#2bbdf7',
+    chainId: 1088,
+    price: 1,
+    gasPrice: 1000000000,
+    rpcUrl: 'https://andromeda.metis.io/?owner=1088',
+    faucet: 'https://andromeda.metis.io/',
+    blockExplorer: 'https://andromeda-explorer.metis.io/',
   },
   80001: {
     name: NetworkName.mumbai,
