@@ -4,7 +4,7 @@ import {
   TwitterOutlined,
 } from '@ant-design/icons'
 import { Button } from 'antd'
-import Discord from 'components/icons/Discord'
+// import Discord from 'components/icons/Discord'
 import EditProjectModal from 'components/modals/EditProjectModal'
 import ProjectToolDrawerModal from 'components/modals/ProjectToolDrawerModal'
 import ProjectLogo from 'components/shared/ProjectLogo'
@@ -201,10 +201,10 @@ export default function ProjectHeader() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span style={{ display: 'flex', marginRight: 4 }}>
+                {/* <span style={{ display: 'flex', marginRight: 4 }}>
                   <Discord size={13} />
-                </span>
-                Discord
+                </span> */}
+                Telegram
               </a>
             )}
           </div>

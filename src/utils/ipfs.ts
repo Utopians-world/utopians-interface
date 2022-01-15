@@ -161,7 +161,7 @@ export const metadataNameForHandle = (handle: string) =>
   `upo-@${handle}-metadata`
 
 export const ipfsCidUrl = (hash: string) =>
-  'https://jbx.mypinata.cloud/ipfs/' + hash
+  'https://gateway.pinata.cloud/ipfs/' + hash
 
 export const cidFromUrl = (url: string | undefined) => url?.split('/').pop()
 

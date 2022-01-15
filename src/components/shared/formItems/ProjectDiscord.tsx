@@ -10,12 +10,12 @@ export default function ProjectDiscord({
   return (
     <Form.Item
       name={name}
-      label={hideLabel ? undefined : 'Discord'}
-      extra="An invite link to your project's Discord server."
+      label={hideLabel ? undefined : 'Telegram'}
+      extra="An invite link to your project's Telegram server."
       {...formItemProps}
     >
       <Input
-        placeholder="https://discord.gg/abcdefgh"
+        placeholder="https://t.me/abcdefgh"
         type="string"
         autoComplete="off"
       />

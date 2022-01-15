@@ -36,7 +36,7 @@ export default function Footer() {
         }}
       >
         <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
-          {link('Telegram', 'https://discord.gg/6jXrJSyDFf')}
+          {link('Telegram', 'https://t.me/6jXrJSyDFf')}
           {link('Github', 'https://github.com/jbx-protocol/juicehouse')}
           {link('Twitter', 'https://twitter.com/juiceboxETH')}
         </div>

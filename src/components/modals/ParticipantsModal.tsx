@@ -333,11 +333,11 @@ export default function ParticipantsModal({
             </a>
             . If this is a big issue for your project, let us know in the{' '}
             <a
-              href="https://discord.gg/6jXrJSyDFf"
+              href="https://t.me/6jXrJSyDFf"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Discord
+              Telegram
             </a>
             .
           </p>

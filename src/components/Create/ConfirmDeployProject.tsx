@@ -115,7 +115,7 @@ export default function ConfirmDeployProject() {
           }
         />
         <Statistic
-          title="Discord"
+          title="Telegram"
           value={orEmpty(editingProject?.metadata.discord)}
         />
       </Space>

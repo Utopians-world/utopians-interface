@@ -148,7 +148,7 @@ export default function Projects() {
               Archived projects have not been modified or deleted on the
               blockchain, and can still be interacted with directly through the
               Utopians contracts.{' '}
-              <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Discord.">
+              <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Telegram.">
                 <span
                   style={{
                     color: colors.text.action.primary,

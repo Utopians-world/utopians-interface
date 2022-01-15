@@ -65,7 +65,7 @@ function App() {
         >
           <Space direction="vertical" align="center">
             <h2 style={{ textAlign: 'center' }}>
-              Please connect to the Andromeda（Metis) network
+              Please connect to the {networkName}（Metis) network
             </h2>
 
             <Button
@@ -77,7 +77,7 @@ function App() {
               }}
               onClick={onSelectWallet}
             >
-              Connect to Andromeda
+              Connect to {networkName}
             </Button>
           </Space>
         </div>
