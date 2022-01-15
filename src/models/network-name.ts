@@ -7,8 +7,8 @@ export enum NetworkName {
   goerli = 'goerli',
   xdai = 'xdai',
   matic = 'matic',
-  // testnet = 'testnet',
-  stardust = 'stardust',
+  testnet = 'testnet',
+  // stardust = 'stardust',
   andromeda = 'andromeda',
   mumbai = 'mumbai',
 }

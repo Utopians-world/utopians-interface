@@ -7,14 +7,14 @@ import { ContractName } from 'models/contract-name'
 import { CSSProperties, useContext, useMemo } from 'react'
 import { bigNumbersDiff } from 'utils/bigNumbersDiff'
 
-import BalanceTimeline from './BalanceTimeline'
-import FundingCycles from './FundingCycles'
-import Paid from './Paid'
+// import BalanceTimeline from './BalanceTimeline'
+import SmartFundingCycles from './SmartFundingCycles'
+// import Paid from './Paid'
 // import Pay from './Pay'
 // import PrintPremined from './PrintPremined'
 // import ProjectActivity from './ProjectActivity'
 import ProjectHeader from './ProjectHeader'
-import Rewards from './Rewards'
+// import Rewards from './Rewards'
 
 import './index.scss'
 
@@ -74,7 +74,22 @@ export default function Project({
 
       <Row gutter={gutter} align="bottom">
         <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
-          <Paid />
+          {/* {projectId.gt(0) && (
+            <div style={{ marginBottom: gutter }}>
+              <BalanceTimeline height={240} />
+            </div>
+          )} */}
+
+          <SmartFundingCycles
+            showCurrentDetail={showCurrentDetail}
+            totalOverflow={totalOverflow}
+          />
+        </Col>
+        <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
+          {/* <div style={{ marginBottom: gutter }}>
+            <Paid />
+          </div>
+          <Rewards totalOverflow={totalOverflow} /> */}
         </Col>
 
         {/* <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
@@ -87,8 +102,8 @@ export default function Project({
         </Col> */}
       </Row>
 
-      <Row gutter={gutter} style={{ paddingBottom: gutter }}>
-        <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
+      {/* <Row gutter={gutter} style={{ paddingBottom: gutter }}> */}
+      {/* <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
           {projectId.gt(0) && (
             <div style={{ marginBottom: gutter }}>
               <BalanceTimeline height={240} />
@@ -100,12 +115,12 @@ export default function Project({
           </div>
 
           <FundingCycles showCurrentDetail={showCurrentDetail} />
-        </Col>
+        </Col> */}
 
-        {/* <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
+      {/* <Col xs={24} md={column ? 24 : 12} style={{ marginTop: gutter }}>
           <ProjectActivity />
         </Col> */}
-      </Row>
+      {/* </Row> */}
     </div>
   )
 }

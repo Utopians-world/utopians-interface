@@ -81,7 +81,7 @@ export const NETWORKS: Record<number, NetworkInfo> = {
     blockExplorer: 'https://explorer-mainnet.maticvigil.com//',
   },
   588: {
-    name: NetworkName.stardust,
+    name: NetworkName.testnet,
     color: '#2bbdf7',
     chainId: 588,
     price: 1,
