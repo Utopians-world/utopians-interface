@@ -37,8 +37,8 @@ export default function Footer() {
       >
         <div style={{ display: 'inline-flex', justifyContent: 'center' }}>
           {link('Telegram', 'https://t.me/6jXrJSyDFf')}
-          {link('Github', 'https://github.com/jbx-protocol/juicehouse')}
-          {link('Twitter', 'https://twitter.com/juiceboxETH')}
+          {link('Github', 'https://github.com/upt-protocol/')}
+          {link('Twitter', 'https://twitter.com/utopiansMETIS')}
         </div>
       </div>
     </div>
