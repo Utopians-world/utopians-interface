@@ -26,6 +26,8 @@ import {
 import { fromWad } from 'utils/formatNumber'
 import { querySubgraph } from 'utils/graph'
 
+import { CaretDownFilled } from '@ant-design/icons'
+
 import { readProvider } from 'constants/readProvider'
 
 import SectionHeader from './SectionHeader'
@@ -369,10 +371,17 @@ export default function BalanceTimeline({ height }: { height: number }) {
           className="small"
           style={{
             ...buttonStyle,
-            width: 100,
+            width: 200,
           }}
           value={duration}
           onChange={val => setDuration(val)}
+          suffixIcon={
+            <CaretDownFilled
+              style={{ color: '#2713E1' }}
+              width={20}
+              height={20}
+            />
+          }
         >
           <Select.Option value={1}>24 hours</Select.Option>
           <Select.Option value={7}>7 days</Select.Option>

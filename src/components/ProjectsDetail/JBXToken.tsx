@@ -20,7 +20,6 @@ import {
   parsePerbicent,
   parsePermille,
 } from '../../utils/formatNumber'
-import DetailEdit from '../icons/DetailEdit'
 import DetailIncentivesModal from '../modals/DetailIncentivesModal'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import TooltipLabel from '../shared/TooltipLabel'
@@ -35,6 +34,7 @@ import { UserContext } from '../../contexts/userContext'
 import { PayoutMod, TicketMod } from '../../models/mods'
 
 import { FCProperties } from '../../models/funding-cycle-properties'
+import DetailEditShow from './DetailEditShow'
 
 export default function JBXToken({
   payoutMods,
@@ -149,6 +149,7 @@ export default function JBXToken({
           onIncentivesFormSaved(discountRate, bondingCurveRate)
           ticketingForm.validateFields()
           setLoading(false)
+          setDetailIssueVisible(false)
         },
       },
     )
@@ -181,7 +182,7 @@ export default function JBXToken({
               overflow whether or not they have been claimed yet."
         />
         <div className="editIcon" onClick={() => setDetailIssueVisible(true)}>
-          <DetailEdit />
+          <DetailEditShow />
         </div>
       </Space>
       <div

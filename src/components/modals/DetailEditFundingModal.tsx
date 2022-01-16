@@ -38,7 +38,7 @@ export default function DetailEditFundingModal({
   initialDuration: string
   visible?: boolean
   onSuccess?: VoidFunction
-  onCancel?: VoidFunction
+  onCancel: VoidFunction
   projectId: BigNumber
   payoutMods: PayoutMod[]
   ticketMods: TicketMod[]
@@ -77,7 +77,7 @@ export default function DetailEditFundingModal({
     setLoading(true)
 
     const properties: Record<keyof FCProperties, string> = {
-      target: parseWad(BigNumber.from(target)).toHexString(),
+      target: BigNumber.from(parseWad(target)).toHexString(),
       currency: BigNumber.from(currency).toHexString(),
       duration: BigNumber.from(duration).toHexString(),
       discountRate: editingFC.discountRate.toHexString(),
@@ -118,6 +118,7 @@ export default function DetailEditFundingModal({
         onDone: () => {
           onBudgetFormSaved(currency, target, duration)
           setLoading(false)
+          onCancel()
         },
       },
     )

@@ -154,6 +154,7 @@ export default function YourBalance() {
           borderBottom: '1px dashed #665FAC',
           paddingBottom: 10,
           color: '#1D1D1D',
+          fontWeight: 'bold',
         }}
       >
         Your Balance

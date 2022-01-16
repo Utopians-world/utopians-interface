@@ -35,7 +35,9 @@ export default function ProjectHandle({
         </a>
       }
     >
-      <span style={{ cursor: 'default', ...style }}>@{handle}</span>
+      <span style={{ cursor: 'default', color: '#6B75FF', ...style }}>
+        @{handle}
+      </span>
     </Tooltip>
   ) : (
     <span style={style}>{handle}</span>

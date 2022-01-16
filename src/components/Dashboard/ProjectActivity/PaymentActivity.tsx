@@ -114,6 +114,8 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
                     style={{
                       lineHeight: contentLineHeight,
                       fontSize: '1rem',
+                      fontWeight: 'bold',
+                      color: '#5F5E61',
                     }}
                   >
                     <MetisLogo size={12} />

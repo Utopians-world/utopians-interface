@@ -26,7 +26,7 @@ export default function DetailEditPayoutModal({
 }: {
   visible?: boolean
   onSuccess?: VoidFunction
-  onCancel?: VoidFunction
+  onCancel: VoidFunction
   initialMods: PayoutMod[]
   ticketMods: TicketMod[]
   projectId?: BigNumber
@@ -37,11 +37,9 @@ export default function DetailEditPayoutModal({
   const [loading, setLoading] = useState<boolean>()
   const [editingPayoutMods, setEditingPayoutMods] = useState<PayoutMod[]>([])
   const onPayModsFormSaved = (mods: PayoutMod[]) => setEditingPayoutMods(mods)
-
   useLayoutEffect(() => {
     setMods(initialMods)
   }, [initialMods])
-
   async function updatePayout(mods: PayoutMod[]) {
     if (!transactor || !contracts?.TerminalV1 || !projectId) return
 
@@ -89,6 +87,7 @@ export default function DetailEditPayoutModal({
         onDone: () => {
           onPayModsFormSaved(mods)
           setLoading(false)
+          onCancel()
         },
       },
     )
