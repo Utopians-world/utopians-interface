@@ -7,8 +7,10 @@ import { ThemeContext } from 'contexts/themeContext'
 import { useInfiniteProjectsQuery } from 'hooks/Projects'
 import { ProjectState } from 'models/project-visibility'
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import { createGlobalStyle } from 'styled-components'
 
 // import { layouts } from 'constants/styles/layouts'
+import BodyBg from 'assets/images/home-pic.png'
 import './index.scss'
 
 type OrderByOption = 'createdAt' | 'totalPaid'
@@ -24,6 +26,15 @@ export default function Projects() {
   const {
     theme: { colors },
   } = useContext(ThemeContext)
+
+  const GlobalStyle = createGlobalStyle`
+    body {
+      background-image: url(${BodyBg});
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;
+    }
+  `
 
   const {
     data: pages,
@@ -89,6 +100,7 @@ export default function Projects() {
 
   return (
     <div className="proWrapper">
+      <GlobalStyle />
       <div className="firstWrapper">
         <div
           style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}
@@ -108,85 +120,89 @@ export default function Projects() {
           </a>
         </div>
       </div>
-      <div className="secondWrapper" style={{ paddingBottom: '33px' }}>
-        <div className="secondSelectCon">
-          <div style={{ borderBottom: '3px solid #DFE7FF' }}>
-            <Space direction="horizontal" size={37}>
-              {tab('active')}
-              {tab('archived')}
-            </Space>
-          </div>
+      <div style={{ width: '100%', backgroundColor: '#F6F8FF' }}>
+        <div className="secondWrapper" style={{ paddingBottom: '33px' }}>
+          <div className="secondSelectCon">
+            <div style={{ borderBottom: '3px solid #DFE7FF' }}>
+              <Space direction="horizontal" size={37}>
+                {tab('active')}
+                {tab('archived')}
+              </Space>
+            </div>
 
-          <div>
-            <Space direction="horizontal">
-              <Select
-                value={orderBy}
-                onChange={setOrderBy}
-                bordered
-                style={{
-                  width: 211,
-                }}
-                suffixIcon={<CaretDownOutlined style={{ color: '#2713E1' }} />}
-              >
-                <Select.Option value="totalPaid">Volume</Select.Option>
-                <Select.Option value="createdAt">Created</Select.Option>
-              </Select>
-            </Space>
-          </div>
-        </div>
-
-        {selectedTab === 'archived' && (
-          <p className="archivedNote">
-            <InfoCircleFilled
-              style={{
-                color: 'rgba(1, 1, 1, 0.64)',
-                fontSize: '27px',
-                marginRight: '32px',
-              }}
-            />
-            <span>
-              Archived projects have not been modified or deleted on the
-              blockchain, and can still be interacted with directly through the
-              Utopians contracts.{' '}
-              <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Telegram.">
-                <span
+            <div>
+              <Space direction="horizontal">
+                <Select
+                  value={orderBy}
+                  onChange={setOrderBy}
+                  bordered
                   style={{
-                    color: colors.text.action.primary,
-                    fontWeight: 500,
-                    cursor: 'default',
+                    width: 211,
                   }}
+                  suffixIcon={
+                    <CaretDownOutlined style={{ color: '#2713E1' }} />
+                  }
                 >
-                  How do I archive a project?
-                </span>
-              </Tooltip>
-            </span>
-          </p>
-        )}
-
-        {concatenatedPages && (
-          <ProjectsGrid
-            projects={concatenatedPages}
-            selectedtab={selectedTab}
-          />
-        )}
-        {(isLoading || isFetchingNextPage) && <Loading />}
-
-        {/* Place a div below the grid that we can connect to an intersection observer */}
-        <div ref={loadMoreContainerRef} />
-
-        {hasNextPage && !isFetchingNextPage && (
-          <div
-            role="button"
-            style={{
-              textAlign: 'center',
-              color: colors.text.secondary,
-              cursor: 'pointer',
-            }}
-            onClick={() => fetchNextPage()}
-          >
-            Load more
+                  <Select.Option value="totalPaid">Volume</Select.Option>
+                  <Select.Option value="createdAt">Created</Select.Option>
+                </Select>
+              </Space>
+            </div>
           </div>
-        )}
+
+          {selectedTab === 'archived' && (
+            <p className="archivedNote">
+              <InfoCircleFilled
+                style={{
+                  color: 'rgba(1, 1, 1, 0.64)',
+                  fontSize: '27px',
+                  marginRight: '32px',
+                }}
+              />
+              <span>
+                Archived projects have not been modified or deleted on the
+                blockchain, and can still be interacted with directly through
+                the Utopians contracts.{' '}
+                <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Telegram.">
+                  <span
+                    style={{
+                      color: colors.text.action.primary,
+                      fontWeight: 500,
+                      cursor: 'default',
+                    }}
+                  >
+                    How do I archive a project?
+                  </span>
+                </Tooltip>
+              </span>
+            </p>
+          )}
+
+          {concatenatedPages && (
+            <ProjectsGrid
+              projects={concatenatedPages}
+              selectedtab={selectedTab}
+            />
+          )}
+          {(isLoading || isFetchingNextPage) && <Loading />}
+
+          {/* Place a div below the grid that we can connect to an intersection observer */}
+          <div ref={loadMoreContainerRef} />
+
+          {hasNextPage && !isFetchingNextPage && (
+            <div
+              role="button"
+              style={{
+                textAlign: 'center',
+                color: colors.text.secondary,
+                cursor: 'pointer',
+              }}
+              onClick={() => fetchNextPage()}
+            >
+              Load more
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

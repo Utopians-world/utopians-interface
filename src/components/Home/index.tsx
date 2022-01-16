@@ -7,11 +7,13 @@ import { ThemeContext } from 'contexts/themeContext'
 import { useProjectsQuery } from 'hooks/Projects'
 
 import { CSSProperties, useContext } from 'react'
+import { createGlobalStyle } from 'styled-components'
 import { Trans } from '@lingui/macro'
 import { t } from '@lingui/macro'
 
 // import { ThemeOption } from 'constants/theme/theme-option'
 
+import BodyBg from 'assets/images/home-pic.png'
 import IndividualIcon from 'assets/images/individual-icon.png'
 import BuyersIcon from 'assets/images/buyers-icon.png'
 import DaoIcon from 'assets/images/dao-icon.png'
@@ -33,6 +35,15 @@ export default function Home() {
   const colors = theme.colors
 
   const totalMaxWidth = 1440
+
+  const GlobalStyle = createGlobalStyle`
+    body {
+      background-image: url(${BodyBg});
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;
+    }
+  `
 
   const bigHeader = (text: string) => (
     <h1
@@ -88,6 +99,7 @@ export default function Home() {
   )
   return (
     <div className="homeWrapper">
+      <GlobalStyle />
       <section className="firstSection">
         <div
           style={{
