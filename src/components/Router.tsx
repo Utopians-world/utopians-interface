@@ -13,28 +13,14 @@ export default function Router() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/create">
-          <Create />
-        </Route>
-        <Route path="/projects/:owner">
-          <Projects />
-        </Route>
-        <Route path="/projects">
-          <Projects />
-        </Route>
-        <Route path="/faq">
-          <Faq />
-        </Route>
-        <Route path="/p/:handle">
-          <Dashboard />
-        </Route>
-        <Route path="/congratulation/:handle">
-          <Congratulation />
-        </Route>
-        <Route path="/:route">
-          <CatchallRedirect />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/projects/:owner" element={<Projects />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/p/:handle" element={<Dashboard />} />
+        <Route path="/congratulation/:handle" element={<Congratulation />} />
+        <Route path="/:route" element={<CatchallRedirect />} />
       </Routes>
     </HashRouter>
   )
