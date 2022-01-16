@@ -1,7 +1,7 @@
 import Dashboard from 'components/Dashboard'
 // import Landing from 'components/Landing'
 import Home from 'components/Home'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 
 import CatchallRedirect from './CatchallRedirect'
 import Create from './Create'
@@ -12,10 +12,8 @@ import Faq from './Faq'
 export default function Router() {
   return (
     <HashRouter>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/create">
           <Create />
         </Route>
@@ -37,7 +35,7 @@ export default function Router() {
         <Route path="/:route">
           <CatchallRedirect />
         </Route>
-      </Switch>
+      </Routes>
     </HashRouter>
   )
 }
