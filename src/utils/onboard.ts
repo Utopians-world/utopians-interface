@@ -5,6 +5,7 @@ import { readNetwork } from 'constants/networks'
 
 // const appName = 'Juicebox'
 const networkId = readNetwork.chainId
+const networkName = readNetwork.name
 // const rpcUrl = readNetwork.rpcUrl
 const dappId = process.env.REACT_APP_BLOCKNATIVE_API_KEY
 
@@ -14,6 +15,7 @@ export function initOnboard(subscriptions: Subscriptions, darkMode: boolean) {
     dappId,
     hideBranding: true,
     networkId,
+    networkName,
     darkMode,
     subscriptions,
     walletSelect: {

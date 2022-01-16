@@ -40,7 +40,7 @@ export function CardSection({
           ...shadowCard(theme),
           overflow: 'hidden',
           ...style,
-          ...(padded ? { padding: 15 } : {}),
+          ...(padded ? { padding: 16 } : {}),
         }}
       >
         {children}

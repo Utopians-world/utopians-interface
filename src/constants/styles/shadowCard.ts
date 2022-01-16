@@ -7,6 +7,6 @@ export const shadowCard = (theme: SemanticTheme): CSSProperties => ({
   background: '#FFFFFF',
   boxShadow: '0px 0px 4px 0px rgba(150, 144, 171, 0.29)',
   border: '1px solid #D3DCEE',
-  borderRadius: theme.radii.lg,
+  borderRadius: '3px',
   stroke: 'none',
 })

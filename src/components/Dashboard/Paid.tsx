@@ -281,7 +281,7 @@ export default function Paid() {
                 justifyContent: 'space-between',
                 flexFlow: 'column wrap',
                 alignItems: 'baseline',
-                paddingTop: '20px',
+                padding: '20px 22px 0',
                 borderTop: '1px solid #C3D0F9',
               }}
             >
@@ -315,7 +315,14 @@ export default function Paid() {
         {hasFundingTarget(currentFC) &&
           currentFC.target.gt(0) &&
           (totalOverflow?.gt(0) ? (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                maxWidth: 322,
+                marginLeft: 22,
+              }}
+            >
               <Progress
                 style={{
                   width: (1 - percentOverflow) * 100 + '%',
@@ -347,11 +354,18 @@ export default function Paid() {
               />
             </div>
           ) : (
-            <Progress
-              percent={percentPaid ? Math.max(percentPaid, 1) : 0}
-              showInfo={false}
-              strokeColor={'#665FAC'}
-            />
+            <div
+              style={{
+                maxWidth: 322,
+                marginLeft: 22,
+              }}
+            >
+              <Progress
+                percent={percentPaid ? Math.max(percentPaid, 1) : 0}
+                showInfo={false}
+                strokeColor={'#665FAC'}
+              />
+            </div>
           ))}
 
         <BalancesModal

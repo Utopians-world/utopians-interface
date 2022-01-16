@@ -160,7 +160,7 @@ export default function Rewards({
               column={1}
               style={{
                 ...shadowCard(theme),
-                padding: 15,
+                padding: '16px 38px',
               }}
             >
               <Descriptions.Item

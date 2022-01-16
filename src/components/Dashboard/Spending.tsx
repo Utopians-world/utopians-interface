@@ -49,7 +49,11 @@ export default function Spending({
   return (
     <div>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
-        <div>
+        <div
+          style={{
+            padding: '0 22px',
+          }}
+        >
           <div
             style={{
               display: 'flex',
@@ -117,7 +121,13 @@ export default function Spending({
           <div style={{ borderTop: '1px dashed #665FAC', paddingTop: '21px' }}>
             <TooltipLabel
               label={
-                <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
+                <h4
+                  style={{
+                    ...smallHeaderStyle,
+                    display: 'inline-block',
+                    paddingLeft: '22px',
+                  }}
+                >
                   Distribution
                 </h4>
               }

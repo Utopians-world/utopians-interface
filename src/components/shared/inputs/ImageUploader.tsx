@@ -3,7 +3,7 @@ import { UploadOutlined } from '@ant-design/icons'
 import { Button, Col, message, Row, Space, Upload } from 'antd'
 import { ThemeContext } from 'contexts/themeContext'
 import { useContext, useLayoutEffect, useState } from 'react'
-import { ipfsCidUrl, pinFileToIpfs } from 'utils/ipfs'
+import { ipfsCidUrl, pinFileToIpfs, showIpfsCidUrl } from 'utils/ipfs'
 
 export default function ImageUploader({
   initialUrl,
@@ -19,13 +19,16 @@ export default function ImageUploader({
   text?: string
 }) {
   const [url, setUrl] = useState<string | undefined>(initialUrl)
+  const [showUrl, setShowUrl] = useState<string | undefined>(initialUrl)
   const [loadingUpload, setLoadingUpload] = useState<boolean>()
 
   const { theme } = useContext(ThemeContext)
 
   const setValue = (cid?: string) => {
     const newUrl = cid ? ipfsCidUrl(cid) : undefined
+    const newShowUrl = cid ? showIpfsCidUrl(cid) : undefined
     setUrl(newUrl)
+    setShowUrl(newShowUrl)
     onSuccess && onSuccess(newUrl)
   }
 
@@ -107,8 +110,8 @@ export default function ImageUploader({
             }}
           >
             Uploaded to:{' '}
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              {url}
+            <a href={showUrl} target="_blank" rel="noopener noreferrer">
+              {showUrl}
             </a>
           </span>
         ) : null}

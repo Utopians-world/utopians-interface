@@ -97,8 +97,14 @@ export default function ReservedTokens({
     readNetwork.name === NetworkName.mainnet && projectId?.eq(7)
 
   return (
-    <div>
-      <div>
+    <div style={{ padding: '0 22px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+        }}
+      >
         <TooltipLabel
           label={
             <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
@@ -108,6 +114,17 @@ export default function ReservedTokens({
           }
           tip="A project can reserve a percentage of tokens minted from every payment it receives. They can be distributed to the receivers below at any time."
         />
+        {!hideActions && !isConstitutionDAO && !isSharkDAO && (
+          <Button
+            className="defaultBtn"
+            style={{ marginLeft: 10 }}
+            size="small"
+            onClick={() => setModalIsVisible(true)}
+            disabled={isPreviewMode}
+          >
+            Distribute
+          </Button>
+        )}
       </div>
 
       {metadata?.reservedRate ? (
@@ -131,15 +148,6 @@ export default function ReservedTokens({
             {formatWad(reservedTickets, { decimals: 0 }) || 0}{' '}
             {tokenSymbol ?? 'tokens'}
           </span>
-          <Button
-            className="defaultBtn"
-            style={{ marginLeft: 10 }}
-            size="small"
-            onClick={() => setModalIsVisible(true)}
-            disabled={isPreviewMode}
-          >
-            Distribute
-          </Button>
 
           <DistributeTokensModal
             visible={modalIsVisible}

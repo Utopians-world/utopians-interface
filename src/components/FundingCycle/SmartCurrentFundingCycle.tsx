@@ -30,7 +30,7 @@ export default function CurrentFundingCycle({
 
   return (
     <div style={{ position: 'relative' }}>
-      <CardSection>
+      <CardSection style={{ border: '1px solid #9b9eff' }}>
         <FundingCyclePreview
           fundingCycle={currentFC}
           showDetail={showCurrentDetail}
