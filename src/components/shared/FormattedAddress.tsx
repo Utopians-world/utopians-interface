@@ -100,7 +100,12 @@ export default function FormattedAddress({
         </span>
       }
     >
-      <span style={{ cursor: 'default', userSelect: 'all' }}>{formatted}</span>
+      <span
+        style={{ cursor: 'default', userSelect: 'all', color: '#5F5E61' }}
+        className="main-ui"
+      >
+        {formatted}
+      </span>
     </Tooltip>
   )
 }

@@ -36,7 +36,7 @@ export default function DetailSettingpopupModal({
   handle?: string
   visible?: boolean
   onSuccess?: VoidFunction
-  onCancel?: VoidFunction
+  onCancel: VoidFunction
 }) {
   const { transactor, contracts } = useContext(UserContext)
   const [loadingSetURI, setLoadingSetURI] = useState<boolean>()
@@ -75,6 +75,7 @@ export default function DetailSettingpopupModal({
     setLoadingSetURI(true)
 
     const fields = projectInfoForm.getFieldsValue(true)
+    console.log(fields)
 
     const uploadedMetadata = await uploadProjectMetadata({
       name: fields.name,
@@ -98,7 +99,10 @@ export default function DetailSettingpopupModal({
       'setUri',
       [projectId.toHexString(), uploadedMetadata.cid],
       {
-        onDone: () => setLoadingSetURI(false),
+        onDone: () => {
+          setLoadingSetURI(false)
+          onCancel()
+        },
         onConfirmed: () => {
           if (onSuccess) onSuccess()
 
@@ -148,7 +152,7 @@ export default function DetailSettingpopupModal({
           textSecond={' upcoming '}
           textLast={'funding cycle.'}
         />
-        <Form>
+        <Form form={projectInfoForm}>
           <Row gutter={16}>
             <Col span={12} style={{ height: '100px' }}>
               <Divider orientation="right" style={DividerStyle}>

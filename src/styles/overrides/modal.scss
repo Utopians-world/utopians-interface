@@ -412,6 +412,46 @@
 
 .fullSlider{
     .ant-slider-step{
-        background: #00acbf;
+        background: #665FAC;
+    }
+    .ant-slider-handle{
+        background: #B1B1B1;
+        border-color: #665FAC;
+    }
+}
+.fullSliderHalf{
+    .ant-slider-track{
+        background: #665FAC;
+    }
+    .ant-slider-handle{
+        background: #B1B1B1;
+        border-color: #665FAC;
+    }
+    .ant-slider-rail{
+        background: #afacd5;
+    }
+}
+.fullSliderHalf:hover {
+    .ant-slider-track{
+        background: #665FAC;
+    }
+    .ant-slider-handle{
+        background: #665FAC!important;
+        border-color: #665FAC!important;
+        box-shadow: 0 0 0 2px #afacd5;
+    }
+    .ant-slider-rail{
+        background: #afacd5;
+    }
+}
+
+.progres-mine{
+    .ant-progress-bg{
+        background-color: #00DAC5;
+    }
+}
+.distribution-main{
+    .main-ui{
+        color: #6B75FF!important;
     }
 }

@@ -3,8 +3,6 @@ import { Col, Row, Space, Tooltip } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
-import { LockOutlined } from '@ant-design/icons'
-
 import { useForm } from 'antd/lib/form/Form'
 import { constants } from 'ethers'
 
@@ -16,7 +14,6 @@ import {
 } from '../../utils/formatNumber'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
-import DetailEdit from '../icons/DetailEdit'
 import DistributeTokensModal from '../modals/DistributeTokensModal'
 import { PayoutMod, TicketMod } from '../../models/mods'
 
@@ -24,7 +21,6 @@ import ProjectHandle from '../shared/ProjectHandle'
 import TooltipLabel from '../shared/TooltipLabel'
 import FormattedAddress from '../shared/FormattedAddress'
 
-import { formatDate } from '../../utils/formatDate'
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
 import { TicketingFormFields } from '../Create/TicketingForm'
@@ -35,6 +31,7 @@ import { useAppDispatch } from '../../hooks/AppDispatch'
 import { UserContext } from '../../contexts/userContext'
 import { FCProperties } from '../../models/funding-cycle-properties'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
+import DetailEditShow from './DetailEditShow'
 
 export default function Reserved({
   total,
@@ -142,6 +139,7 @@ export default function Reserved({
         onDone: () => {
           onTicketingFormSaved(mods)
           setLoading(false)
+          setDetailEditReservesVisible(false)
         },
       },
     )
@@ -153,6 +151,7 @@ export default function Reserved({
         width: '100%',
         marginTop: '20px',
       }}
+      className="distribution-main"
     >
       <h2 style={{ fontWeight: 'bold' }}>
         Reserved tokens ({fromPerbicent(metadata?.reservedRate)}%)
@@ -160,7 +159,7 @@ export default function Reserved({
           className="editIcon"
           onClick={() => setDetailEditReservesVisible(true)}
         >
-          <DetailEdit />
+          <DetailEditShow />
         </span>
       </h2>
       <div
@@ -223,17 +222,23 @@ export default function Reserved({
           {currentTicketMods?.length
             ? [...currentTicketMods]
                 .sort((a, b) => (a.percent < b.percent ? 1 : -1))
-                .map(mod => (
+                .map((mod, i) => (
                   <div
                     style={{
                       padding: '0 20px',
-                      background: '#F6F7FF',
+                      ...(i % 2 === 0
+                        ? {
+                            background: '#F6F7FF',
+                          }
+                        : {
+                            background: '#ffffff',
+                          }),
                       height: '30px',
                       lineHeight: '30px',
                     }}
                   >
                     <div style={{ float: 'left', width: '50%' }}>
-                      <div style={{ lineHeight: 1.4 }}>
+                      <div style={{ lineHeight: '30px', height: '30px' }}>
                         <div
                           style={{ display: 'flex', alignItems: 'baseline' }}
                         >
@@ -293,14 +298,6 @@ export default function Reserved({
                             </div>
                           )}
                         </div>
-                        {mod.lockedUntil ? (
-                          <div style={{ fontSize: '.8rem' }}>
-                            <LockOutlined /> until{' '}
-                            {mod.lockedUntil
-                              ? formatDate(mod.lockedUntil * 1000, 'MM-DD-yyyy')
-                              : null}
-                          </div>
-                        ) : null}{' '}
                       </div>
                     </div>
                     <div

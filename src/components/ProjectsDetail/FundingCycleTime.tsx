@@ -74,7 +74,7 @@ export function FundingCycleTime({
           )}
         </div>
       </Space>
-      <Progress percent={progress} showInfo={false} />
+      <Progress percent={progress} showInfo={false} className="progres-mine" />
     </Col>
   )
 }

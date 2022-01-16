@@ -1,5 +1,5 @@
 import { CSSProperties, useContext, useLayoutEffect, useState } from 'react'
-import { Modal, Space, Input } from 'antd'
+import { Modal, Space } from 'antd'
 
 import { CheckCircleFilled } from '@ant-design/icons'
 import { constants } from 'ethers'
@@ -7,7 +7,6 @@ import { constants } from 'ethers'
 import { BigNumber } from '@ethersproject/bignumber'
 
 import ModalTab from '../ProjectsDetail/ModalTab'
-import { NetworkContext } from '../../contexts/networkContext'
 import { ballotStrategies } from '../../constants/ballot-strategies'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import { UserContext } from '../../contexts/userContext'
@@ -39,7 +38,6 @@ export default function DetailEditRuleModal({
 }) {
   const editingFC = useEditingFundingCycleSelector()
   const initialBallot = editingFC.ballot
-  const { signerNetwork } = useContext(NetworkContext)
   const [selectedIndex, setSelectedIndex] = useState<number>()
   const [customStrategyAddress, setCustomStrategyAddress] = useState<string>()
 
@@ -96,6 +94,7 @@ export default function DetailEditRuleModal({
         onDone: () => {
           onRulesFormSaved(ballot)
           setLoading(false)
+          onCancel()
         },
       },
     )
@@ -111,14 +110,6 @@ export default function DetailEditRuleModal({
       setCustomStrategyAddress(initialBallot)
     }
   }, [initialBallot])
-  const InputStyle: CSSProperties = {
-    width: '95%',
-    height: '42px',
-    borderRadius: '5px',
-    border: '2px solid #bdc1e4',
-    padding: '0 15px',
-    marginTop: '5px',
-  }
   const SecondDivStyle: CSSProperties = {
     width: '15%',
     textAlign: 'center',
@@ -270,59 +261,59 @@ export default function DetailEditRuleModal({
             )}
           </div>
         </div>
-        <div
-          style={{
-            ...(selectedIndex === 3 ? { border: '2px solid #3A1FF5' } : {}),
-          }}
-          onClick={() => setSelectedIndex(3)}
-          key={3}
-          className="editRule"
-        >
-          <div style={{ width: '85%', fontSize: '12px', padding: '10px 20px' }}>
-            <div style={{ fontSize: '18px' }}>Custom strategy</div>
-            <div>
-              <Input
-                style={InputStyle}
-                value={customStrategyAddress}
-                placeholder={constants.AddressZero}
-                onChange={e =>
-                  setCustomStrategyAddress(e.target.value.toLowerCase())
-                }
-              />
-            </div>
-            <div>
-              The address of any smart contract deployed on {signerNetwork}
-              <a
-                style={{ color: '#3A1FF5' }}
-                href="https://github.com/upt-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                this interface
-              </a>
-              .
-            </div>
-          </div>
-          <div style={SecondDivStyle}>
-            {3 === selectedIndex ? (
-              <CheckCircleFilled
-                style={{ fontSize: '22px', color: '#3A1FF5' }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '10px',
-                  border: '2px solid #D3DCEE',
-                  margin: '55px auto',
-                }}
-              >
-                {' '}
-              </div>
-            )}
-          </div>
-        </div>
+        {/*<div*/}
+        {/*  style={{*/}
+        {/*    ...(selectedIndex === 3 ? { border: '2px solid #3A1FF5' } : {}),*/}
+        {/*  }}*/}
+        {/*  onClick={() => setSelectedIndex(3)}*/}
+        {/*  key={3}*/}
+        {/*  className="editRule"*/}
+        {/*>*/}
+        {/*  <div style={{ width: '85%', fontSize: '12px', padding: '10px 20px' }}>*/}
+        {/*    <div style={{ fontSize: '18px' }}>Custom strategy</div>*/}
+        {/*    <div>*/}
+        {/*      <Input*/}
+        {/*        style={InputStyle}*/}
+        {/*        value={customStrategyAddress}*/}
+        {/*        placeholder={constants.AddressZero}*/}
+        {/*        onChange={e =>*/}
+        {/*          setCustomStrategyAddress(e.target.value.toLowerCase())*/}
+        {/*        }*/}
+        {/*      />*/}
+        {/*    </div>*/}
+        {/*    <div>*/}
+        {/*      The address of any smart contract deployed on {signerNetwork}*/}
+        {/*      <a*/}
+        {/*        style={{ color: '#3A1FF5' }}*/}
+        {/*        href="https://github.com/upt-protocol/juice-contracts-v1/blob/05828d57e3a27580437fc258fe9041b2401fc044/contracts/FundingCycles.sol"*/}
+        {/*        target="_blank"*/}
+        {/*        rel="noopener noreferrer"*/}
+        {/*      >*/}
+        {/*        this interface*/}
+        {/*      </a>*/}
+        {/*      .*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*  <div style={SecondDivStyle}>*/}
+        {/*    {3 === selectedIndex ? (*/}
+        {/*      <CheckCircleFilled*/}
+        {/*        style={{ fontSize: '22px', color: '#3A1FF5' }}*/}
+        {/*      />*/}
+        {/*    ) : (*/}
+        {/*      <div*/}
+        {/*        style={{*/}
+        {/*          width: '20px',*/}
+        {/*          height: '20px',*/}
+        {/*          borderRadius: '10px',*/}
+        {/*          border: '2px solid #D3DCEE',*/}
+        {/*          margin: '55px auto',*/}
+        {/*        }}*/}
+        {/*      >*/}
+        {/*        {' '}*/}
+        {/*      </div>*/}
+        {/*    )}*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </Space>
     </Modal>
   )

@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react'
 import { Row, Col, Space } from 'antd'
 
 import FundingCycleDetail from './FundingCycleDetail'
-import DetailEdit from '../icons/DetailEdit'
 import DetailEditRuleModal from '../modals/DetailEditRuleModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import FundingCycleUpcoming from './FundingCycleUpcoming'
 import FundingCycleHistory from './FundingCycleHistory'
 import { ProjectContext } from '../../contexts/projectContext'
 import { PayoutMod, TicketMod } from '../../models/mods'
+import DetailEditShow from './DetailEditShow'
 // import {ProjectContext} from "../../contexts/projectContext";
 
 type TabOption = 'INPROGRESS' | 'UPCOMING' | 'HISTORY'
@@ -133,7 +133,7 @@ export default function FundingCycleTitle({
               className="editIcon"
               onClick={() => setDetailEditRuleVisible(true)}
             >
-              <DetailEdit />
+              <DetailEditShow />
             </div>
           </Space>
         </Col>

@@ -51,7 +51,6 @@ export default function IssueTickets({
           <InfoCircleOutlined style={{ color: undefined }} />
         </Tooltip>
       </Space>
-
       <Modal
         visible={modalVisible}
         title="Issue ERC-20 token"
@@ -59,24 +58,58 @@ export default function IssueTickets({
         onOk={issue}
         onCancel={() => setModalVisible(false)}
       >
-        <p>
-          Issue an ERC-20 token for this project. Once issued, current staked
-          token holders will be able to claim their existing balance in the new
-          token.
-        </p>
-        <Form form={form} layout="vertical">
-          <Form.Item name="name" label="Token name">
-            <Input placeholder="Project Token" />
-          </Form.Item>
-          <Form.Item name="symbol" label="Token symbol">
-            <Input
-              placeholder="PRJ"
-              onChange={e =>
-                form.setFieldsValue({ symbol: e.target.value.toUpperCase() })
-              }
-            />
-          </Form.Item>
-        </Form>
+        <Space
+          direction="vertical"
+          size="large"
+          style={{ width: '100%', paddingTop: 0, gap: '20px' }}
+        >
+          <div>
+            <div
+              style={{
+                fontFamily: 'TeXGyreAdventor-Regular',
+                fontSize: '12px',
+                marginBottom: '20px',
+              }}
+            >
+              Issue an ERC-20 token for this project. once issued, current
+              staked token holders will be able to claim their exsting balance
+              in the new token
+            </div>
+            <Form form={form} layout="vertical">
+              <Form.Item name="name" label="Token name">
+                <Input
+                  style={{
+                    width: '100%',
+                    height: '42px',
+                    borderRadius: '5px',
+                    border: '2px solid #bdc1e4',
+                    padding: '0 15px',
+                    marginTop: '5px',
+                  }}
+                  placeholder={'Project Token'}
+                />
+              </Form.Item>
+              <Form.Item name="symbol" label="Token symbol">
+                <Input
+                  style={{
+                    width: '100%',
+                    height: '42px',
+                    borderRadius: '5px',
+                    border: '2px solid #bdc1e4',
+                    padding: '0 15px',
+                    marginTop: '5px',
+                  }}
+                  placeholder="PRJ"
+                  onChange={e =>
+                    form.setFieldsValue({
+                      symbol: e.target.value.toUpperCase(),
+                    })
+                  }
+                />
+              </Form.Item>
+            </Form>
+          </div>
+        </Space>
       </Modal>
     </div>
   )

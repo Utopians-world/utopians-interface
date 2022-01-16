@@ -8,11 +8,11 @@ import WalletIcon from '../icons/WalletIcon'
 import Dworld from '../icons/Dworld'
 import TheDworld from '../icons/TheDworld'
 import { ProjectContext } from '../../contexts/projectContext'
-import DetailEdit from '../icons/DetailEdit'
 
 import { ProjectFormFields } from '../Create/ProjectForm'
 import DetailSettingpopupModal from '../modals/DetailSettingpopupModal'
 import DetailToolsModal from '../modals/DetailToolsModal'
+import DetailEditShow from './DetailEditShow'
 
 export default function ProjectTitle() {
   const [DetailSettingModalVisible, setDetailSettingModalVisible] =
@@ -134,13 +134,14 @@ export default function ProjectTitle() {
               className="editIcon"
               onClick={() => setDetailSettingModalVisible(true)}
             >
-              <DetailEdit />
+              <DetailEditShow />
             </span>
           </p>
           <p
             style={{
               color: '#777576',
               fontSize: '13px',
+              fontWeight: 'bold',
             }}
           >
             @ {UniqueHandle}

@@ -9,7 +9,6 @@ import { formatWad, fromWad, parseWad } from '../../utils/formatNumber'
 import CurrencySymbol from '../shared/CurrencySymbol'
 import { useCurrencyConverter } from '../../hooks/CurrencyConverter'
 import { useEthBalanceQuery } from '../../hooks/EthBalance'
-import DetailEdit from '../icons/DetailEdit'
 import DetailEditFundingModal from '../modals/DetailEditFundingModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import ProjectTokenBalance from '../shared/ProjectTokenBalance'
@@ -19,6 +18,7 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import BalancesModal from '../modals/BalancesModal'
 import { PayoutMod, TicketMod } from '../../models/mods'
 import { DitributionLoad } from './DitributionLoad'
+import DetailEditShow from './DetailEditShow'
 
 export default function FundOverview({
   payoutMods,
@@ -86,7 +86,7 @@ export default function FundOverview({
           className="editIcon"
           onClick={() => setDetailEditFundingVisible(true)}
         >
-          <DetailEdit />
+          <DetailEditShow />
         </span>
       </h2>
       <div

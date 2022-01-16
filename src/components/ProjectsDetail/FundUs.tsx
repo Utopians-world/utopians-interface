@@ -80,7 +80,7 @@ export default function FundUs() {
     } else {
       return (
         <Button
-          style={{ width: '100%' }}
+          style={{ width: '100%', fontWeight: 'bold' }}
           type="primary"
           disabled={currentFC.configured.eq(0) || isArchived}
           onClick={weiPayAmt ? pay : undefined}
@@ -112,7 +112,7 @@ export default function FundUs() {
           borderRadius: '3px',
         }}
       >
-        <h3 style={{ color: '#1D1D1D' }}>Fund us</h3>
+        <h3 style={{ color: '#1D1D1D', fontWeight: 'bold' }}>Fund us</h3>
         <div className="fundUsStyle">
           <FormattedNumberInput
             placeholder="0"

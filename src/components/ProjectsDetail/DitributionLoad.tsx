@@ -35,7 +35,12 @@ export function DitributionLoad() {
       {overFlow === 0 ? (
         <Row style={{ margin: '5px 0' }}>
           <Col span={18}>
-            <Slider min={1} max={100} value={posses} />
+            <Slider
+              min={1}
+              max={100}
+              value={posses}
+              className="fullSliderHalf"
+            />
           </Col>
         </Row>
       ) : (

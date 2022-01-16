@@ -11,7 +11,6 @@ import { ProjectContext } from '../../contexts/projectContext'
 import { formatWad, fromPermyriad } from '../../utils/formatNumber'
 import { hasFundingTarget } from '../../utils/fundingCycle'
 import DetailBalance from './DetailBalance'
-import DetailEdit from '../icons/DetailEdit'
 import DetailEditPayoutModal from '../modals/DetailEditPayoutModal'
 import TooltipLabel from '../shared/TooltipLabel'
 import WithdrawModal from '../modals/WithdrawModal'
@@ -25,6 +24,7 @@ import ProjectHandle from '../shared/ProjectHandle'
 import FormattedAddress from '../shared/FormattedAddress'
 
 import { formatDate } from '../../utils/formatDate'
+import DetailEditShow from './DetailEditShow'
 
 export default function Distribution({
   payoutMods,
@@ -65,11 +65,12 @@ export default function Distribution({
         width: '100%',
         marginTop: '20px',
       }}
+      className="distribution-main"
     >
       <h2 style={{ fontWeight: 'bold' }}>
         Distribution
         <span className="editIcon" onClick={() => setDetailPayoutVisible(true)}>
-          <DetailEdit />
+          <DetailEditShow />
         </span>
       </h2>
       <div
