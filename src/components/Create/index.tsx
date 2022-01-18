@@ -206,19 +206,19 @@ export default function Create() {
 
     if (!fee) return
 
-    const targetWithFee = editingFC.target
-      ?.add(hasFundingTarget(editingFC) ? fee : 0)
-      .toHexString()
+    // const targetWithFee = editingFC.target
+    //   ?.add(hasFundingTarget(editingFC) ? fee : 0)
+    //   .toHexString()
 
     const properties: Record<keyof FCProperties, any> = {
-      target: targetWithFee,
+      target: editingFC.target.toHexString(),
       currency: hasFundingTarget(editingFC) ? editingFC.currency.toNumber() : 0,
       duration: editingFC.duration.toNumber(),
       discountRate: editingFC.duration.gt(0)
         ? editingFC.discountRate.toNumber()
         : 0,
       cycleLimit: editingFC.cycleLimit.toNumber(),
-      ballot: constants.AddressZero,
+      ballot: editingFC.ballot,
     }
 
     const metadata: Omit<FCMetadata, 'version'> = {
