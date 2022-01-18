@@ -216,7 +216,9 @@ export default function FundOverview({
                 <ProjectTokenBalance
                   style={{ display: 'inline-block' }}
                   wallet={owner}
-                  projectId={BigNumber.from('0x01')}
+                  projectId={BigNumber.from(
+                    process.env.UTOPIANS_GOV_PROJECT_ID ?? '0x01',
+                  )}
                   hideHandle
                 />
               </div>

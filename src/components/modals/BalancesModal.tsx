@@ -110,7 +110,9 @@ export default function BalancesModal({
         <Space direction="vertical" style={{ width: '100%', marginTop: 20 }}>
           <ProjectTokenBalance
             wallet={owner}
-            projectId={BigNumber.from('0x01')}
+            projectId={BigNumber.from(
+              process.env.UTOPIANS_GOV_PROJECT_ID ?? '0x01',
+            )}
           />
           {(metadata as ProjectMetadataV3)?.tokens?.map(t =>
             t.type === 'erc20' ? (
