@@ -21,7 +21,7 @@ export default function PayWarningModal({
       <h2>Heads up</h2>
       <p style={{ fontWeight: 500 }}>
         <a
-          href="https://github.com/jbx-protocol/juice-contracts"
+          href="https://github.com/uto-protocol/juice-contracts"
           target="_blank"
           rel="noopener noreferrer"
         >

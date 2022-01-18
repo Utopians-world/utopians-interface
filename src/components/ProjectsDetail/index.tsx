@@ -11,7 +11,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { useForm } from 'antd/lib/form/Form'
 
 import FundOverview from './FundOverview'
-import JBXToken from './JBXToken'
+import UTOToken from './UTOToken'
 import Distribution from './Distribution'
 import Reserved from './Reserved'
 import FundUs from './FundUs'
@@ -106,7 +106,7 @@ export default function ProjectsDetail() {
         <div style={{ marginTop: '20px' }} className="chartsStyle">
           <BalanceTimeline height={240} />
         </div>
-        <JBXToken
+        <UTOToken
           payoutMods={editingPayoutMods}
           ticketMods={editingTicketMods}
           fundingCycle={fundingCycle}
