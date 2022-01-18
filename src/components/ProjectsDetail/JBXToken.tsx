@@ -36,7 +36,7 @@ import { PayoutMod, TicketMod } from '../../models/mods'
 import { FCProperties } from '../../models/funding-cycle-properties'
 import DetailEditShow from './DetailEditShow'
 
-export default function JBXToken({
+export default function UTOToken({
   payoutMods,
   ticketMods,
   fundingCycle,

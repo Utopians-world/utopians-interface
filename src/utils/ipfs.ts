@@ -155,13 +155,13 @@ export const editMetadataForCid = (
         })
     : undefined
 
-export const logoNameForHandle = (handle: string) => `juicebox-@${handle}-logo`
+export const logoNameForHandle = (handle: string) => `utopians-@${handle}-logo`
 
 export const metadataNameForHandle = (handle: string) =>
   `upo-@${handle}-metadata`
 
 export const ipfsCidUrl = (hash: string) =>
-  'https://jbx.mypinata.cloud/ipfs/' + hash
+  'https://uto.mypinata.cloud/ipfs/' + hash
 
 export const showIpfsCidUrl = (hash: string) =>
   'https://gateway.pinata.cloud/ipfs/' + hash

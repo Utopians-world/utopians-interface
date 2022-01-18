@@ -286,7 +286,7 @@ export default function Landing() {
                   </a>
                   ,{' '}
                   <a
-                    href="https://github.com/jbx-protocol/juicehouse"
+                    href="https://github.com/uto-protocol/juicehouse"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

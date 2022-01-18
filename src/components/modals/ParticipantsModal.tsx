@@ -325,7 +325,7 @@ export default function ParticipantsModal({
             inaccurate for users who have unstaked and transferred their tokens.
             This will be solved with the release of{' '}
             <a
-              href="https://app.gitbook.com/@jbx/s/Utopians/"
+              href="https://app.gitbook.com/@uto/s/Utopians/"
               target="_blank"
               rel="noopener noreferrer"
             >
