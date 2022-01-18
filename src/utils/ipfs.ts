@@ -280,7 +280,7 @@ export const uploadProjectMetadata = (
       version: 3,
     },
     {
-      name: 'juicebox-project-metadata.json',
+      name: 'uto-project-metadata.json',
       metadata: {
         tag: IPFS_TAGS.METADATA,
       },
