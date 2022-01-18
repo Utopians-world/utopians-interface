@@ -34,7 +34,6 @@ export default function FundOverview({
   const [balancesModalVisible, setBalancesModalVisible] = useState<boolean>()
   const editingFC = useEditingFundingCycleSelector()
   const converter = useCurrencyConverter()
-
   const { data: ownerBalance } = useEthBalanceQuery(owner)
 
   if (!currentFC) return null
@@ -217,7 +216,7 @@ export default function FundOverview({
                   style={{ display: 'inline-block' }}
                   wallet={owner}
                   projectId={BigNumber.from(
-                    process.env.UTOPIANS_GOV_PROJECT_ID ?? '0x01',
+                    process.env.REACT_APP_UTOPIANS_GOV_PROJECT_ID ?? '0x01',
                   )}
                   hideHandle
                 />

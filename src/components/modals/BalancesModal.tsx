@@ -111,7 +111,7 @@ export default function BalancesModal({
           <ProjectTokenBalance
             wallet={owner}
             projectId={BigNumber.from(
-              process.env.UTOPIANS_GOV_PROJECT_ID ?? '0x01',
+              process.env.REACT_APP_UTOPIANS_GOV_PROJECT_ID ?? '0x01',
             )}
           />
           {(metadata as ProjectMetadataV3)?.tokens?.map(t =>
