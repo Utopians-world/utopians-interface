@@ -2,7 +2,13 @@ import { Button, Form, Space, Divider } from 'antd'
 import { InfoCircleFilled } from '@ant-design/icons'
 import { FormItems } from 'components/shared/formItems'
 import { ThemeContext } from 'contexts/themeContext'
-import { CSSProperties, useContext, useLayoutEffect, useState } from 'react'
+import {
+  CSSProperties,
+  useContext,
+  useLayoutEffect,
+  useState,
+  useEffect,
+} from 'react'
 
 import './index.scss'
 
@@ -39,6 +45,14 @@ export default function IncentivesForm({
     setBondingCurveRate(initialBondingCurveRate)
   }, [initialBondingCurveRate, initialDiscountRate])
 
+  useEffect(() => {
+    if (discountRate === undefined || bondingCurveRate === undefined) return
+    console.log(discountRate, 'discountRate')
+    console.log(bondingCurveRate, 'bondingCurveRate')
+    onSave(discountRate, bondingCurveRate)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discountRate, bondingCurveRate])
+
   const saveButton = (
     <Form.Item className="stepSaveDeployBtnsCon">
       {onDeployBtn && (
@@ -54,7 +68,8 @@ export default function IncentivesForm({
           deploy Project
         </Button>
       )}
-      <Button
+      {/* <Button
+        style={{display: 'none'}}
         className="stepSaveBtn"
         htmlType="submit"
         type="primary"
@@ -65,7 +80,7 @@ export default function IncentivesForm({
         }}
       >
         Save
-      </Button>
+      </Button> */}
     </Form.Item>
   )
 

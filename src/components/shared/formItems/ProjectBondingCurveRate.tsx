@@ -131,7 +131,7 @@ export default function ProjectBondingCurveRate({
           {disableBondingCurve && (
             <div
               className="stepExtraCon"
-              style={{ width: '100%', marginBottom: '20px' }}
+              style={{ width: '100%', marginBottom: '20px', marginTop: '24px' }}
             >
               <InfoCircleFilled
                 style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
@@ -200,7 +200,7 @@ export default function ProjectBondingCurveRate({
     >
       <NumberSlider
         min={0}
-        max={100}
+        max={80}
         step={0.5}
         sliderValue={parseFloat(value ?? '0')}
         disabled={disabled}
