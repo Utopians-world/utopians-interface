@@ -32,6 +32,7 @@ import { TicketingFormFields } from '../Create/TicketingForm'
 import { FCMetadata, FundingCycle } from '../../models/funding-cycle'
 import { UserContext } from '../../contexts/userContext'
 import { PayoutMod, TicketMod } from '../../models/mods'
+import FormattedAddress from '../shared/FormattedAddress'
 
 import { FCProperties } from '../../models/funding-cycle-properties'
 import DetailEditShow from './DetailEditShow'
@@ -45,7 +46,7 @@ export default function UTOToken({
   ticketMods: TicketMod[]
   fundingCycle: FundingCycle | undefined
 }) {
-  const { projectId, currentFC } = useContext(ProjectContext)
+  const { projectId, currentFC, tokenAddress } = useContext(ProjectContext)
   const { transactor, contracts } = useContext(UserContext)
   const [DetailIssueVisible, setDetailIssueVisible] = useState<boolean>(false)
   const [DetailIncentiveVisible, setDetailIncentiveVisible] =
@@ -80,6 +81,10 @@ export default function UTOToken({
     args: projectId ? [projectId?.toHexString()] : null,
     valueDidChange: bigNumbersDiff,
   })?.add(reservedTicketBalance ? reservedTicketBalance : BigNumber.from(0))
+
+  const ticketsIssued = tokenAddress
+    ? tokenAddress !== constants.AddressZero
+    : false
 
   useLayoutEffect(() => {
     if (!fundingCycle) return
@@ -208,7 +213,9 @@ export default function UTOToken({
             width: '45%',
           }}
         >
-          <div>0x9329582…..f3434242</div>
+          <div>
+            {ticketsIssued ? <FormattedAddress address={tokenAddress} /> : '--'}
+          </div>
           <div>
             {formatWad(totalSupply, { decimals: 0 })}
             <span style={{ fontWeight: 'bold' }}> Tokens</span>

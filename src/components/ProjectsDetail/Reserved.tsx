@@ -21,6 +21,7 @@ import { PayoutMod, TicketMod } from '../../models/mods'
 import ProjectHandle from '../shared/ProjectHandle'
 import TooltipLabel from '../shared/TooltipLabel'
 import FormattedAddress from '../shared/FormattedAddress'
+import CurrencySymbol from '../shared/CurrencySymbol'
 
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
@@ -238,6 +239,7 @@ export default function Reserved({
                 marginBottom: '5px',
               }}
             >
+              <CurrencySymbol currency={0} />
               {formatWad(reservedTickets, { decimals: 0 }) || 0}{' '}
             </div>
           </Col>

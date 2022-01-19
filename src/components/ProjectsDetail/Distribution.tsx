@@ -123,9 +123,11 @@ export default function Distribution({
                 marginBottom: '5px',
               }}
             >
+              <CurrencySymbol currency={0} />
               {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
             </div>
             <div>
+              <CurrencySymbol currency={0} />
               {formatWad(currentFC.tapped, { decimals: 4 }) || '0'}
               {hasFundingTarget(currentFC) && (
                 <span>/{formatWad(currentFC.target, { decimals: 4 })} </span>
