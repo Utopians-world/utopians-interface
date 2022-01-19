@@ -15,7 +15,8 @@ export default function IssueTickets({
   const [loading, setLoading] = useState<boolean>()
   const [form] = useForm<{ name: string; symbol: string }>()
 
-  function issue() {
+  const issue = async () => {
+    await form.validateFields()
     if (!projectId || !transactor || !contracts) return
 
     setLoading(true)
@@ -27,7 +28,10 @@ export default function IssueTickets({
       'issue',
       [projectId.toHexString(), fields.name, fields.symbol],
       {
-        onDone: () => setModalVisible(false),
+        onDone: () => {
+          setLoading(false)
+          setModalVisible(false)
+        },
       },
     )
   }
@@ -76,7 +80,11 @@ export default function IssueTickets({
               in the new token
             </div>
             <Form form={form} layout="vertical">
-              <Form.Item name="name" label="Token name">
+              <Form.Item
+                name="name"
+                label="Token name"
+                rules={[{ required: true, message: 'Token name is required' }]}
+              >
                 <Input
                   style={{
                     width: '100%',
@@ -89,7 +97,13 @@ export default function IssueTickets({
                   placeholder={'Project Token'}
                 />
               </Form.Item>
-              <Form.Item name="symbol" label="Token symbol">
+              <Form.Item
+                name="symbol"
+                label="Token symbol"
+                rules={[
+                  { required: true, message: 'Token symbol is required' },
+                ]}
+              >
                 <Input
                   style={{
                     width: '100%',

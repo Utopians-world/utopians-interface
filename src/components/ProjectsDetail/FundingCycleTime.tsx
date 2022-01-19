@@ -48,8 +48,16 @@ export function FundingCycleTime({
           <Shape />
         </div>
         <div>
-          {!days ? <span style={NumberStyle}>No set</span> : <span></span>}
-          {days < 0 ? <span style={NumberStyle}>Finish</span> : <span></span>}
+          {currentFC.duration.toNumber() === 0 ? (
+            <span style={NumberStyle}>No set</span>
+          ) : (
+            <span></span>
+          )}
+          {currentFC.duration.toNumber() !== 0 && days < 0 ? (
+            <span style={NumberStyle}>Finish</span>
+          ) : (
+            <span></span>
+          )}
           {days > 0 && days < 1 ? (
             <span>
               <span style={NumberStyle}>{Math.floor(hours).toString()}</span>
@@ -74,7 +82,15 @@ export function FundingCycleTime({
           )}
         </div>
       </Space>
-      <Progress percent={progress} showInfo={false} className="progres-mine" />
+      {currentFC.duration.toNumber() === 0 ? (
+        <Progress percent={0} showInfo={false} className="progres-mine" />
+      ) : (
+        <Progress
+          percent={progress}
+          showInfo={false}
+          className="progres-mine"
+        />
+      )}
     </Col>
   )
 }

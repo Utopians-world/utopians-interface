@@ -3,6 +3,8 @@ import { Space, Tooltip } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
 
+import { constants } from 'ethers'
+
 import { ProjectContext } from '../../contexts/projectContext'
 import { formatWad, fromWad, parseWad } from '../../utils/formatNumber'
 
@@ -99,7 +101,11 @@ export default function FundOverview({
             height: '60px',
             display: 'flex',
             justifyContent: 'center',
-            marginBottom: '20px',
+            marginBottom:
+              constants.MaxUint256.toHexString() !==
+              currentFC.target.toHexString()
+                ? '20px'
+                : 0,
           }}
         >
           <div
@@ -224,49 +230,55 @@ export default function FundOverview({
             </div>
           </div>
         </div>
-        <div
-          style={{
-            height: '90px',
-            borderTop: '1.5px solid #C3D0F9',
-            paddingLeft: '30px',
-            paddingTop: '20px',
-          }}
-        >
-          <Space style={{ fontSize: '12px' }}>
-            <TooltipLabel
-              label={
-                <div
-                  style={{
-                    fontWeight: 'bold',
-                    marginBottom: '5px',
-                    display: 'inline-block',
-                    marginRight: '10px',
-                    fontSize: '15px',
-                  }}
-                >
-                  <span>Distributed</span>
-                </div>
-              }
-              tip="The amount that has been distributed from the Utopians balance in this funding cycle,
-                 out of the current funding target. No more than the funding target can be distributed in
-                  a single funding cycle—any remaining METIS in Utopians is overflow, until the next cycle begins."
-            />
-          </Space>
-          <h2
+        {constants.MaxUint256.toHexString() !==
+        currentFC.target.toHexString() ? (
+          <div
             style={{
-              color: '#3A1FF5',
-              textShadow: '0px 5px 6px #C4BAE1',
-              fontFamily: 'GoodTimesRg-Regular',
-              margin: 0,
-              lineHeight: '20px',
+              height: '90px',
+              borderTop: '1.5px solid #C3D0F9',
+              paddingLeft: '30px',
+              paddingTop: '20px',
             }}
           >
-            <MetisLogo />
-            {formatCurrencyAmount(balance)} / <MetisLogo />
-            {formatCurrencyAmount(currentFC.target)}
-          </h2>
-          <DitributionLoad />
-        </div>
+            <Space style={{ fontSize: '12px' }}>
+              <TooltipLabel
+                label={
+                  <div
+                    style={{
+                      fontWeight: 'bold',
+                      marginBottom: '5px',
+                      display: 'inline-block',
+                      marginRight: '10px',
+                      fontSize: '15px',
+                    }}
+                  >
+                    <span>Distributed</span>
+                  </div>
+                }
+                tip="The amount that has been distributed from the Utopians balance in this funding cycle,
+                         out of the current funding target. No more than the funding target can be distributed in
+                          a single funding cycle—any remaining METIS in Utopians is overflow, until the next cycle begins."
+              />
+            </Space>
+            <h2
+              style={{
+                color: '#3A1FF5',
+                textShadow: '0px 5px 6px #C4BAE1',
+                fontFamily: 'GoodTimesRg-Regular',
+                margin: 0,
+                lineHeight: '20px',
+              }}
+            >
+              <MetisLogo />
+              {formatCurrencyAmount(earned)} / <MetisLogo />
+              {formatCurrencyAmount(currentFC.target)}
+            </h2>
+
+            <DitributionLoad />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <DetailEditFundingModal
         initialCurrency={editingFC.currency.toNumber() as CurrencyOption}

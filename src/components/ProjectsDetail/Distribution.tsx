@@ -29,9 +29,11 @@ import DetailEditShow from './DetailEditShow'
 export default function Distribution({
   payoutMods,
   ticketMods,
+  total,
 }: {
   payoutMods: PayoutMod[]
   ticketMods: TicketMod[]
+  total?: BigNumber
 }) {
   const { balanceInCurrency, owner, currentFC, projectId, currentPayoutMods } =
     useContext(ProjectContext)
@@ -47,7 +49,7 @@ export default function Distribution({
 
   const untapped = currentFC.target.sub(currentFC.tapped)
 
-  const baseTotal = projectId ?? amountSubFee(currentFC?.target, currentFC.fee)
+  const baseTotal = total ?? amountSubFee(currentFC?.target, currentFC.fee)
 
   const modsTotal = currentPayoutMods?.reduce(
     (acc, curr) => acc + curr.percent,

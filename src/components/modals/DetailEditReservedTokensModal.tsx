@@ -21,7 +21,7 @@ export default function DetailEditReservedTokensModal({
   onSuccess?: VoidFunction
   onCancel?: VoidFunction
   initialMods: TicketMod[]
-  onSave: (mods: TicketMod[]) => void
+  onSave: (mods: TicketMod[], receive: string) => void
   confirm?: boolean
 }) {
   const DivInputStyle: CSSProperties = {
@@ -32,7 +32,10 @@ export default function DetailEditReservedTokensModal({
   useLayoutEffect(() => {
     setMods(initialMods)
   }, [initialMods])
-
+  function getReceive() {
+    const fields = form.getFieldsValue(true)
+    return fields.reserved
+  }
   const DividerStyle: CSSProperties = {
     color: '#D3DCEE',
     margin: 0,
@@ -52,7 +55,10 @@ export default function DetailEditReservedTokensModal({
       cancelText={'CANCEL'}
       okText={'SAVE CHANGES'}
       className="projectModal"
-      onOk={() => onSave(mods)}
+      onOk={() => {
+        let receive = getReceive()
+        onSave(mods, receive)
+      }}
     >
       <Space
         direction="vertical"

@@ -324,13 +324,82 @@
     }
 }
 .IncentivesModalLeft {
+    .ant-input-number{
+        .ant-input-number-handler-wrap{
+            border: 2px solid #bdc1e4;
+            border-left: none;
+        }
+    }
     .ant-slider{
-        margin-bottom: 68px;
+        .ant-slider-track{
+            background: #665FAC;
+        }
+        .ant-slider-handle{
+            background: #B1B1B1;
+            border-color: #665FAC;
+        }
+        .ant-slider-rail{
+            background: #afacd5;
+        }
+        .ant-slider-step{
+            background: #665FAC!important;
+        }
     }
-    .ant-slider-step{
-        background: #e3e3e3;
+    .ant-slider:hover {
+        .ant-slider-track{
+            background: #665FAC;
+        }
+        .ant-slider-handle{
+            background: #665FAC!important;
+            border-color: #665FAC!important;
+            box-shadow: 0 0 0 2px #afacd5;
+        }
+        .ant-slider-rail{
+            background: #afacd5;
+        }
     }
+
 }
+
+.IncentivesModalRight {
+    .ant-input-number{
+        .ant-input-number-handler-wrap{
+            border: 2px solid #bdc1e4;
+            border-left: none;
+        }
+    }
+    .ant-slider{
+        .ant-slider-track{
+            background: #665FAC;
+        }
+        .ant-slider-handle{
+            background: #B1B1B1;
+            border-color: #665FAC;
+        }
+        .ant-slider-rail{
+            background: #afacd5;
+        }
+        .ant-slider-step{
+            background: #665FAC!important;
+        }
+    }
+    .ant-slider:hover {
+        .ant-slider-track{
+            background: #665FAC;
+        }
+        .ant-slider-handle{
+            background: #665FAC!important;
+            border-color: #665FAC!important;
+            box-shadow: 0 0 0 2px #afacd5;
+        }
+        .ant-slider-rail{
+            background: #afacd5;
+        }
+    }
+
+}
+
+
 .numberSlier {
     .ant-slider-step{
         background: #00acbf!important;
@@ -412,11 +481,11 @@
 
 .fullSlider{
     .ant-slider-step{
-        background: #665FAC;
+        background: #00DAC5;
     }
     .ant-slider-handle{
-        background: #B1B1B1;
-        border-color: #665FAC;
+        background: #00DAC5;
+        border-color: #00DAC5;
     }
 }
 .fullSliderHalf{

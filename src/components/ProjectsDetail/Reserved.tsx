@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useState } from 'react'
+import React, { useContext, useLayoutEffect, useMemo, useState } from 'react'
 import { Col, Row, Space, Tooltip } from 'antd'
 
 import { BigNumber } from '@ethersproject/bignumber'
@@ -11,6 +11,7 @@ import {
   formatWad,
   fromPerbicent,
   fromPermyriad,
+  parsePerbicent,
 } from '../../utils/formatNumber'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import DetailEditReservedTokensModal from '../modals/DetailEditReservedTokensModal'
@@ -32,6 +33,10 @@ import { UserContext } from '../../contexts/userContext'
 import { FCProperties } from '../../models/funding-cycle-properties'
 import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import DetailEditShow from './DetailEditShow'
+import useContractReader from '../../hooks/ContractReader'
+import { ContractName } from '../../models/contract-name'
+import { bigNumbersDiff } from '../../utils/bigNumbersDiff'
+import { NetworkContext } from '../../contexts/networkContext'
 
 export default function Reserved({
   total,
@@ -44,14 +49,8 @@ export default function Reserved({
   ticketMods: TicketMod[]
   fundingCycle: FundingCycle | undefined
 }) {
-  const {
-    balanceInCurrency,
-    owner,
-    currentFC,
-    tokenSymbol,
-    currentTicketMods,
-    projectId,
-  } = useContext(ProjectContext)
+  const { owner, currentFC, tokenSymbol, currentTicketMods, projectId } =
+    useContext(ProjectContext)
   const [DetailEditReservesVisible, setDetailEditReservesVisible] =
     useState<boolean>(false)
   const [modalIsVisible, setModalIsVisible] = useState<boolean>()
@@ -60,6 +59,53 @@ export default function Reserved({
   const dispatch = useAppDispatch()
   const metadata = decodeFCMetadata(fundingCycle?.metadata)
   const editingFC = useEditingFundingCycleSelector()
+  const { userAddress } = useContext(NetworkContext)
+
+  const reservedTickets = useContractReader<BigNumber>({
+    contract: ContractName.TerminalV1,
+    functionName: 'reservedTicketBalanceOf',
+    args:
+      projectId && metadata?.reservedRate
+        ? [
+            projectId.toHexString(),
+            BigNumber.from(metadata.reservedRate).toHexString(),
+          ]
+        : null,
+    valueDidChange: bigNumbersDiff,
+    updateOn: useMemo(
+      () => [
+        {
+          contract: ContractName.TerminalV1,
+          eventName: 'Pay',
+          topics: projectId ? [[], projectId.toHexString()] : undefined,
+        },
+        {
+          contract: ContractName.TerminalV1,
+          eventName: 'PrintPreminedTickets',
+          topics: projectId ? [projectId.toHexString()] : undefined,
+        },
+        {
+          contract: ContractName.TicketBooth,
+          eventName: 'Redeem',
+          topics: projectId ? [projectId.toHexString()] : undefined,
+        },
+        {
+          contract: ContractName.TicketBooth,
+          eventName: 'Convert',
+          topics:
+            userAddress && projectId
+              ? [userAddress, projectId.toHexString()]
+              : undefined,
+        },
+        {
+          contract: ContractName.TerminalV1,
+          eventName: 'PrintReserveTickets',
+          topics: projectId ? [[], projectId.toHexString()] : undefined,
+        },
+      ],
+      [userAddress, projectId],
+    ),
+  })
 
   useLayoutEffect(() => {
     if (!ticketMods || !fundingCycle) return
@@ -81,8 +127,6 @@ export default function Reserved({
 
   if (!currentFC) return null
 
-  const untapped = currentFC.target.sub(currentFC.tapped)
-
   const modsTotal = currentTicketMods?.reduce(
     (acc, curr) => acc + curr.percent,
     0,
@@ -90,11 +134,7 @@ export default function Reserved({
   const ownerPercent = 10000 - (modsTotal ?? 0)
   const lastMod = { beneficiary: owner, percent: ownerPercent }
 
-  const withdrawable = balanceInCurrency?.gt(untapped)
-    ? untapped
-    : balanceInCurrency
-
-  async function updateReserved(mods: TicketMod[]) {
+  async function updateReserved(mods: TicketMod[], receive: string) {
     if (!transactor || !contracts?.TerminalV1 || !fundingCycle || !projectId)
       return
     setLoading(true)
@@ -108,7 +148,7 @@ export default function Reserved({
     }
 
     const metadata: Omit<FCMetadata, 'version'> = {
-      reservedRate: editingFC.reserved.toNumber(),
+      reservedRate: parsePerbicent(receive).toNumber(),
       bondingCurveRate: editingFC.bondingCurveRate.toNumber(),
       reconfigurationBondingCurveRate: editingFC.bondingCurveRate.toNumber(),
     }
@@ -198,7 +238,7 @@ export default function Reserved({
                 marginBottom: '5px',
               }}
             >
-              {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
+              {formatWad(reservedTickets, { decimals: 0 }) || 0}{' '}
             </div>
           </Col>
           <Col span={8}>
@@ -414,9 +454,9 @@ export default function Reserved({
         visible={DetailEditReservesVisible}
         onSuccess={() => setDetailEditReservesVisible(false)}
         onCancel={() => setDetailEditReservesVisible(false)}
-        onSave={async mods => {
+        onSave={async (mods, receive: string) => {
           await ticketingForm.validateFields()
-          updateReserved(mods)
+          updateReserved(mods, receive)
         }}
         initialMods={editingTicketMods}
         confirm={loading}
