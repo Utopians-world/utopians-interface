@@ -47,8 +47,6 @@ export default function IncentivesForm({
 
   useEffect(() => {
     if (discountRate === undefined || bondingCurveRate === undefined) return
-    console.log(discountRate, 'discountRate')
-    console.log(bondingCurveRate, 'bondingCurveRate')
     onSave(discountRate, bondingCurveRate)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [discountRate, bondingCurveRate])

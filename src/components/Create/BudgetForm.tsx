@@ -146,7 +146,10 @@ export default function BudgetForm({
               editingProjectActions.setIsRecurring(!isRecurring(editingFC)),
             )
           }
-          onValueChange={val => setDuration(val ?? '0')}
+          onValueChange={val => {
+            setDuration(val ?? '0')
+            dispatch(editingProjectActions.setDuration(val ?? '0'))
+          }}
           formItemProps={{
             rules: [{ required: true }],
           }}
