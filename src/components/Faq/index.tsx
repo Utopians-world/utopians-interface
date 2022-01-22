@@ -127,6 +127,7 @@ export default function Faq() {
         </h2>
         <div style={{ width: '100%', margin: '72px 0 0 0' }}>
           <Collapse
+            style={{ backgroundColor: 'transparent' }}
             defaultActiveKey={QAs.length ? 0 : undefined}
             accordion
             expandIconPosition="right"

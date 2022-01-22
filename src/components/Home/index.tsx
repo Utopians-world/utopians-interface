@@ -48,12 +48,12 @@ export default function Home() {
   const bigHeader = (text: string) => (
     <h1
       className="firstTitle"
-      style={{
-        fontSize: '2.4rem',
-        fontWeight: 600,
-        lineHeight: 1.2,
-        margin: 0,
-      }}
+      // style={{
+      //   fontSize: '2.4rem',
+      //   fontWeight: 600,
+      //   lineHeight: 1.2,
+      //   margin: 0,
+      // }}
     >
       {text}
     </h1>
@@ -110,7 +110,7 @@ export default function Home() {
           <Row align="middle" justify="space-around">
             <Col
               xs={24}
-              md={12}
+              md={14}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -121,7 +121,6 @@ export default function Home() {
               <div
                 style={{
                   display: 'grid',
-                  rowGap: 30,
                 }}
               >
                 <a
@@ -161,7 +160,7 @@ export default function Home() {
               </div>
             </Col>
 
-            <Col xs={24} md={12}></Col>
+            <Col xs={24} md={10}></Col>
           </Row>
         </div>
       </section>
@@ -318,13 +317,13 @@ export default function Home() {
           ...section,
           paddingTop: 20,
           paddingBottom: 0,
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #D5DAFF 100%)',
         }}
       >
         <div
           style={{
             ...wrapper,
             marginTop: 80,
-            background: 'linear-gradient(180deg, #FFFFFF 0%, #D5DAFF 100%)',
           }}
         >
           <Row gutter={60}>

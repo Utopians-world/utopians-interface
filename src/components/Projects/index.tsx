@@ -79,12 +79,13 @@ export default function Projects() {
         textTransform: 'uppercase',
         cursor: 'pointer',
         borderBottom: '5px solid transparent',
+        fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
         ...(tab === selectedTab
           ? {
               color: '#303030',
               borderImageSource:
                 'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
-              borderImageSlice: 1,
+              borderImageSlice: '0 0 1 0',
             }
           : {
               color: '#5F5E61',
@@ -106,7 +107,7 @@ export default function Projects() {
           style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}
         >
           <h1 className="firstTitle">PROJECT ON UTOPIANS</h1>
-          <p style={{ maxWidth: 900 }} className="firstDes">
+          <p className="firstDes">
             The Utopians protocol is open to anyone, and project configurations
             can vary widely. There are risks associated with interacting with
             all projects on the protocol. Projects built on the protocol are not

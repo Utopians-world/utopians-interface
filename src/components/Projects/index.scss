@@ -24,6 +24,7 @@
 
   & .firstDes {
     margin: 14px auto 22px;
+
     @include defaultDes;
   }
 
@@ -71,7 +72,7 @@
   & .createProBtn {
     width: 243px;
     height: 53px;
-    color: #030303;
+    color: #030303!important;
     @include solidBtn;
     span {
       font-family: GoodTimesW00-Bold, GoodTimesW00;

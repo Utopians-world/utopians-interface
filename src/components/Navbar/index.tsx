@@ -26,7 +26,7 @@ export default function Navbar() {
       <a
         className="hover-nav"
         style={{
-          fontWeight: 600,
+          fontWeight: 400,
           color: '#ffffff',
         }}
         href={route}
@@ -43,7 +43,7 @@ export default function Navbar() {
     )
   }
 
-  const logo = (height = 24) => (
+  const logo = (height = 42) => (
     <img
       style={{ height }}
       src={
@@ -72,33 +72,36 @@ export default function Navbar() {
   }
 
   return window.innerWidth > 900 ? (
-    <Header
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        height: '80px',
-        lineHeight: '80px',
-        zIndex: 999,
-        opacity: '0.84',
-        background:
-          'linear-gradient(101deg, #400AFF 0%, #400AFF 11%, #000000 20%)',
-      }}
-    >
-      <Space size="large" style={{ flex: 1 }}>
-        <a href="/" style={{ display: 'inline-block' }}>
-          {logo()}
-          <span className="logoTitle">UTOPIANS</span>
-        </a>
-        {menu()}
-      </Space>
-      <Space size="middle">
-        {/* <ThemePicker /> */}
-        <div className="hide-mobile">
-          <Account />
-        </div>
-      </Space>
-    </Header>
+    <div style={{ position: 'fixed', zIndex: 999, width: '100%' }}>
+      <Header
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          height: '80px',
+          zIndex: 999,
+          background:
+            // 'linear-gradient(101deg, #400AFF 0%, #400AFF 11%, #000000 20%)',
+            'linear-gradient(101deg, rgba(64, 10, 255, 0.84) 0%, rgba(64, 10, 255, 0.84) 11%, rgba(0, 0, 0, 0.84) 20%)',
+        }}
+      >
+        <Space size={[55, 0]} style={{ flex: 1 }}>
+          <a href="/" style={{ display: 'inline-block' }}>
+            {logo()}
+            <span className="logoTitle">
+              <img src="/assets/metis-logo-txt.png" alt="logotxt" />
+            </span>
+          </a>
+          {menu()}
+        </Space>
+        <Space size="middle">
+          {/* <ThemePicker /> */}
+          <div className="hide-mobile">
+            <Account />
+          </div>
+        </Space>
+      </Header>
+    </div>
   ) : (
     <Header
       style={{

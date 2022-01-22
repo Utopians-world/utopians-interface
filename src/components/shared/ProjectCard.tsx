@@ -116,91 +116,93 @@ export default function ProjectCard({
   }, [currentFC])
 
   return (
-    <div
-      // style={{
-      //   padding: 20,
-      //   borderRadius: radii.md,
-      //   cursor: 'pointer',
-      //   overflow: 'hidden',
-      // }}
-      className={`proCardCon ${isHome ? 'homeProCardCon' : ''}`}
-      key={project?.handle}
-      onClick={() => (window.location.hash = '/p/' + project.handle)}
-    >
-      {metadata ? (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            whiteSpace: 'pre',
-            overflow: 'hidden',
-            width: '100%',
-          }}
-        >
-          <div className="proCardConLeft">
-            <ProjectLogo
-              uri={metadata.logoUri}
-              name={metadata.name}
-              size={isHome ? 175 : 158}
-            />
-          </div>
+    <div className="proCardWrapper">
+      <div
+        // style={{
+        //   padding: 20,
+        //   borderRadius: radii.md,
+        //   cursor: 'pointer',
+        //   overflow: 'hidden',
+        // }}
+        className={`proCardCon ${isHome ? 'homeProCardCon' : ''}`}
+        key={project?.handle}
+        onClick={() => (window.location.hash = '/p/' + project.handle)}
+      >
+        {metadata ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              whiteSpace: 'pre',
+              overflow: 'hidden',
+              width: '100%',
+            }}
+          >
+            <div className="proCardConLeft">
+              <ProjectLogo
+                uri={metadata.logoUri}
+                name={metadata.name}
+                size={isHome ? 175 : 158}
+              />
+            </div>
 
-          <div className="proCardConRight">
-            <h3 className="title">{metadata.name}</h3>
+            <div className="proCardConRight">
+              <h3 className="title">{metadata.name}</h3>
 
-            {metadata.description && (
-              <Tooltip title={metadata.description} placement="bottom">
-                <h4 className="subTitle">{metadata.description}</h4>
-              </Tooltip>
-            )}
-            {selectedtab === 'selectedtab' && (
-              <span className="archivedTip">ARCHIVED</span>
-            )}
-            <div className="proCardConRightCon">
-              <div className="proCardConRightConTop">
-                <p className="volume">Volume</p>
-                <span className="price">
-                  <CurrencySymbol
-                    style={{ marginRight: '10px' }}
-                    currency={0}
-                    size={isHome ? 18 : 15}
-                  />
-                  {formatWad(project.totalPaid, { decimals })}{' '}
-                </span>
-              </div>
-              <div className="proCardConRightConTop">
-                since&nbsp;
-                {!!project.createdAt &&
-                  formatDate(project.createdAt * 1000, 'MM-DD-YY')}
-              </div>
-              <div className="proCardConRightConBottom">
-                {isDuration !== '0' && (
-                  <>
-                    <span className="">Cycle #{cyclesNum}</span>
-                    <Progress
-                      percent={progress}
-                      strokeLinecap="round"
-                      showInfo={false}
-                      strokeColor={'#00DAC5'}
+              {metadata.description && (
+                <Tooltip title={metadata.description} placement="bottom">
+                  <h4 className="subTitle">{metadata.description}</h4>
+                </Tooltip>
+              )}
+              {selectedtab === 'selectedtab' && (
+                <span className="archivedTip">ARCHIVED</span>
+              )}
+              <div className="proCardConRightCon">
+                <div className="proCardConRightConTop">
+                  <p className="volume">Volume</p>
+                  <span className="price">
+                    <CurrencySymbol
+                      style={{ marginRight: '10px' }}
+                      currency={0}
+                      size={18}
                     />
-                  </>
-                )}
+                    {formatWad(project.totalPaid, { decimals })}{' '}
+                  </span>
+                </div>
+                <div className="proCardConRightConTop">
+                  since&nbsp;
+                  {!!project.createdAt &&
+                    formatDate(project.createdAt * 1000, 'MM-DD-YY')}
+                </div>
+                <div className="proCardConRightConBottom">
+                  {isDuration !== '0' && (
+                    <>
+                      <span className="">Cycle #{cyclesNum}</span>
+                      <Progress
+                        percent={progress}
+                        strokeLinecap="round"
+                        showInfo={false}
+                        strokeColor={'#00DAC5'}
+                      />
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div
-          style={{
-            display: 'flex',
-            flex: 1,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          {project.handle} <Loading />
-        </div>
-      )}
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            {project.handle} <Loading />
+          </div>
+        )}
+      </div>
     </div>
   )
 }
