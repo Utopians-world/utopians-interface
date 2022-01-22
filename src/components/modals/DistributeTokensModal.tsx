@@ -67,6 +67,7 @@ export default function DistributeTokensModal({
       okText={`Distribute ${tokenSymbol ?? 'tokens'}`}
       confirmLoading={loading}
       onCancel={onCancel}
+      className="projectModal"
       okButtonProps={{ disabled: !reservedTokens?.gt(0) }}
       width={640}
       centered={true}

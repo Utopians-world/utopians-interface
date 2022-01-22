@@ -21,7 +21,6 @@ import { PayoutMod, TicketMod } from '../../models/mods'
 import ProjectHandle from '../shared/ProjectHandle'
 import TooltipLabel from '../shared/TooltipLabel'
 import FormattedAddress from '../shared/FormattedAddress'
-import CurrencySymbol from '../shared/CurrencySymbol'
 
 import OwnerIcon from '../../assets/images/Owner-1.png'
 
@@ -194,7 +193,17 @@ export default function Reserved({
       }}
       className="distribution-main"
     >
-      <h2 style={{ fontWeight: 'bold' }}>
+      <h2
+        style={{
+          marginBottom: '5px',
+          marginRight: '10px',
+          display: 'inline-block',
+          fontSize: '19px',
+          fontWeight: 'bold',
+          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+          color: '#1D1D1D',
+        }}
+      >
         Reserved tokens ({fromPerbicent(metadata?.reservedRate)}%)
         <span
           className="editIcon"
@@ -214,17 +223,19 @@ export default function Reserved({
           style={{
             borderBottom: '1px dashed #665FAC',
             padding: '0 20px',
-            paddingBottom: '20px',
+            paddingBottom: '10px',
           }}
         >
           <Col span={6}>
             <Space>
               <div
                 style={{
-                  color: '#2713E1',
-                  fontWeight: 'bold',
-                  fontSize: '18px',
                   marginBottom: '5px',
+                  display: 'inline-block',
+                  fontSize: '19px',
+                  fontWeight: 'bold',
+                  fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                  color: 'rgb(39, 19, 225)',
                 }}
               >
                 Available
@@ -237,10 +248,11 @@ export default function Reserved({
                 fontWeight: 'bold',
                 fontSize: '18px',
                 marginBottom: '5px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
               }}
             >
-              <CurrencySymbol currency={0} />
               {formatWad(reservedTickets, { decimals: 0 }) || 0}{' '}
+              {tokenSymbol ?? 'Tokens'}
             </div>
           </Col>
           <Col span={8}>
@@ -255,7 +267,12 @@ export default function Reserved({
         <div>
           <Space style={{ padding: '15px 20px' }}>
             <div
-              style={{ color: '#2713E1', fontWeight: 'bold', fontSize: '18px' }}
+              style={{
+                color: '#2713E1',
+                fontWeight: 'bold',
+                fontSize: '19px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+              }}
             >
               Distribute to
             </div>

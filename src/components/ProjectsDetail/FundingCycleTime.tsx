@@ -34,10 +34,12 @@ export function FundingCycleTime({
     fontSize: '17px',
     marginLeft: '3px',
     marginRight: '10px',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
   }
   const NumberStyle: CSSProperties = {
     fontSize: '18px',
     fontWeight: 'bold',
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
     color: '#303030',
   }
 

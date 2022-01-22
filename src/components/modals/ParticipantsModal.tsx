@@ -314,9 +314,18 @@ export default function ParticipantsModal({
       onOk={onCancel}
       okText="Done"
       cancelButtonProps={{ hidden: true }}
+      className="projectModal"
     >
       <div>
-        <h4>{tokenSymbol || 'Token'} holders</h4>
+        <h4
+          style={{
+            fontWeight: 'bold',
+            fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+            fontSize: '22px',
+          }}
+        >
+          {tokenSymbol || 'Token'} holders
+        </h4>
 
         {erc20IsUntracked && (
           <p>

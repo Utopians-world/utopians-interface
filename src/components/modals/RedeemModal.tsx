@@ -155,6 +155,7 @@ export default function RedeemModal({
       } for METIS`}
       visible={visible}
       confirmLoading={loading}
+      className="projectModal"
       onOk={() => {
         redeem()
 

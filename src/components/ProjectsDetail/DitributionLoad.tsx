@@ -38,7 +38,7 @@ export function DitributionLoad() {
             <Progress
               percent={posses}
               showInfo={false}
-              className="progres-mine"
+              className="fullSliderPosses"
             />
           </Col>
         </Row>

@@ -52,7 +52,13 @@ export default function ProjectTokenBalance({
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', ...style }}>
-      <span>
+      <span
+        style={{
+          fontWeight: 'bold',
+          fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
+          fontSize: '16px',
+        }}
+      >
         {symbol !== undefined ? (
           <>
             {formatWad(balance, { decimals: decimals ?? 0 })}{' '}

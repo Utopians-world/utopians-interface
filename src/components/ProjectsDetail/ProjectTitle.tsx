@@ -47,16 +47,17 @@ export default function ProjectTitle() {
   const Discord = metadata?.discord
 
   const TitleStyle: CSSProperties = {
-    fontSize: '30px',
+    fontSize: '24px',
     color: '#555252',
     fontWeight: 'bold',
     fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
     lineHeight: '35px',
+    marginBottom: '10px',
   }
   const ToolsIcon: CSSProperties = {
     textAlign: 'right',
     color: '#6D6B6B',
-    fontSize: '12px',
+    fontSize: '14px',
     position: 'relative',
     float: 'right',
     cursor: 'pointer',
@@ -77,17 +78,27 @@ export default function ProjectTitle() {
     Title: boolean,
     twitter: boolean,
   ) => (
-    <Space
+    <Col
       style={{
         fontSize: '12px',
         width: '24%',
+        position: 'relative',
       }}
+      span={7}
     >
-      {Icon}
+      <div
+        style={{
+          position: 'absolute',
+          top: '2px',
+        }}
+      >
+        {Icon}
+      </div>
       <a
         style={{
           textDecoration: 'none',
           color: '#00DAC5',
+          marginLeft: '20px',
         }}
         href={twitter ? 'https://twitter.com/' + text : linkUrl(text)}
         target="_blank"
@@ -96,7 +107,7 @@ export default function ProjectTitle() {
         {Title && '@'}
         {text}
       </a>
-    </Space>
+    </Col>
   )
 
   if (!projectId) return null
@@ -108,8 +119,8 @@ export default function ProjectTitle() {
             style={ToolsIcon}
             onClick={() => setDetailToolsModalVisible(true)}
           >
-            <div style={{ position: 'absolute', top: '1px' }}>
-              <Tools />
+            <div style={{ position: 'absolute', top: '2px', left: '-5px' }}>
+              <Tools size={13} />
             </div>
             <p style={{ marginLeft: '5px' }}>ID: {projectId.toNumber()}</p>
           </Space>
@@ -146,11 +157,25 @@ export default function ProjectTitle() {
           >
             @ {UniqueHandle}
           </p>
-          {ProjectWebsite &&
-            SpaceIcon(prettyUrl(ProjectWebsite), <WalletIcon />, false, false)}
-          {Twitter && SpaceIcon(prettyUrl(Twitter), <Dworld />, true, true)}
-          {Discord && SpaceIcon(prettyUrl(Discord), <TheDworld />, true, false)}
-          <p style={{ marginTop: '10px' }}>{ProjectDescription}</p>
+          <Row>
+            {ProjectWebsite &&
+              SpaceIcon(
+                prettyUrl(ProjectWebsite),
+                <WalletIcon size={13} />,
+                false,
+                false,
+              )}
+            {Twitter &&
+              SpaceIcon(prettyUrl(Twitter), <Dworld size={13} />, true, true)}
+            {Discord &&
+              SpaceIcon(
+                prettyUrl(Discord),
+                <TheDworld size={13} />,
+                true,
+                false,
+              )}
+          </Row>
+          <p style={{ marginTop: '15px' }}>{ProjectDescription}</p>
         </Col>
       </Row>
       <DetailSettingpopupModal

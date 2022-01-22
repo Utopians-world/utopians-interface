@@ -41,7 +41,7 @@
 
     .ant-modal-title {
       color: #1D1D1D!important;
-      font-weight: bold;
+      font-weight: bold!important;
     }
     .ant-modal-body{
         padding-top: 0;
@@ -60,6 +60,7 @@
         font-weight: bold;
         float: right;
         cursor: pointer;
+        font-family: GoodTimesW00-Bold, GoodTimesW00;
     }
 }
 
@@ -76,7 +77,9 @@
 //h1, h2, h3, h4, h5{
 //    color: #1D1D1D;
 //}
-
+.ant-layout-content{
+    background: #F6F8FF;
+}
 .projectModal{
     background: #ffffff;
     padding: 0;
@@ -86,6 +89,11 @@
     }
     .ant-modal-content {
       background: #ffffff;
+    }
+    .ant-modal-content .ant-modal-title{
+        font-weight: bold;
+        font-size: 22px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
     }
     p {
         margin-bottom: 0;
@@ -271,7 +279,7 @@
         width: 95%;
         height: 42px;
         border-radius: 5px;
-        border: 2px solid #bdc1e4;
+        border: 2px solid #bdc1e4!important;
         padding: 0 15px;
     }
     .ant-input-affix-wrapper input{
@@ -481,13 +489,27 @@
 
 .fullSlider{
     .ant-slider-step{
-        background: #00DAC5;
+        background: #665FAC;
     }
     .ant-slider-handle{
-        background: #00DAC5;
-        border-color: #00DAC5;
+        background: #665FAC;
+        border-color: #665FAC;
     }
 }
+.fullSlider:hover {
+    .ant-slider-track{
+        background: #665FAC;
+    }
+    .ant-slider-handle{
+        background: #665FAC!important;
+        border-color: #665FAC!important;
+        box-shadow: 0 0 0 2px #afacd5;
+    }
+    .ant-slider-rail{
+        background: #afacd5;
+    }
+}
+
 .fullSliderHalf{
     .ant-slider-track{
         background: #665FAC;
@@ -498,6 +520,11 @@
     }
     .ant-slider-rail{
         background: #afacd5;
+    }
+}
+.fullSliderPosses{
+    .ant-progress-bg{
+        background-color: #665FAC;
     }
 }
 .fullSliderHalf:hover {

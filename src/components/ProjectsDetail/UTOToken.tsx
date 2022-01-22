@@ -173,9 +173,10 @@ export default function UTOToken({
             <div
               style={{
                 display: 'inline-block',
-                fontSize: '20px',
-                marginRight: '10px',
+                fontSize: '19px',
                 fontWeight: 'bold',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                color: '#1D1D1D',
               }}
             >
               Token
@@ -205,8 +206,26 @@ export default function UTOToken({
             width: '25%',
           }}
         >
-          <div>Address</div>
-          <div>Total supply</div>
+          <div
+            style={{
+              color: '#3F3D3D',
+              fontWeight: 'bold',
+              fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+              fontSize: '14px',
+            }}
+          >
+            Address
+          </div>
+          <div
+            style={{
+              color: '#3F3D3D',
+              fontWeight: 'bold',
+              fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+              fontSize: '14px',
+            }}
+          >
+            Total supply
+          </div>
         </div>
         <div
           style={{

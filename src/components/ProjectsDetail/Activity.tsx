@@ -19,9 +19,12 @@ export default function Activity() {
       <h3
         style={{
           padding: '10px 15px 0 15px',
-          marginBottom: 0,
-          color: '#1D1D1D',
+          display: 'inline-block',
+          fontSize: '22px',
           fontWeight: 'bold',
+          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+          color: '#1D1D1D',
+          marginBottom: 0,
         }}
       >
         Activity

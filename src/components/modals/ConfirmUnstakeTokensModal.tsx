@@ -84,6 +84,7 @@ export default function ConfirmUnstakeTokensModal({
       onCancel={onCancel}
       width={600}
       centered
+      className="projectModal"
     >
       <Space direction="vertical" size="large">
         {!ticketsIssued && (

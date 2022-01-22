@@ -60,6 +60,7 @@ export default function IssueTickets({
         title="Issue ERC-20 token"
         okText="Issue token"
         onOk={issue}
+        className="projectModal"
         onCancel={() => setModalVisible(false)}
       >
         <Space

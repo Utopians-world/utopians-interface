@@ -1,6 +1,6 @@
 export default function TheDworld({ size }: { size?: number }) {
-  const height = 10
-  const width = 10
+  const height = size ? size : 10
+  const width = size ? size : 10
 
   return (
     <svg

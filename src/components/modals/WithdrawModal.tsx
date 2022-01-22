@@ -101,6 +101,7 @@ export default function WithdrawModal({
         disabled: !tapAmount || tapAmount === '0',
       }}
       confirmLoading={loading}
+      className="projectModal"
       okText="Withdraw"
       width={640}
     >

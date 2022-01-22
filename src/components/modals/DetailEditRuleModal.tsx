@@ -155,13 +155,28 @@ export default function DetailEditRuleModal({
           className="editRule"
         >
           <div style={{ width: '85%', fontSize: '12px', padding: '10px 20px' }}>
-            <div style={{ fontSize: '18px' }}>NO strategy</div>
+            <div
+              style={{
+                fontSize: '18px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
+              NO strategy
+            </div>
             <p>
               Any reconfiguration to an upcoming funding cycle will take effect
               once the current cycle ends. A project with no strategy may be
               vulnerable to being rug-pulled by its owner.
             </p>
-            <div>
+            <div
+              style={{
+                marginTop: '10px',
+                color: '#9092A7',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
               Contract Address 0X0003034304930493049304930493403493049343049304
             </div>
           </div>
@@ -194,12 +209,27 @@ export default function DetailEditRuleModal({
           className="editRule"
         >
           <div style={{ width: '85%', fontSize: '12px', padding: '10px 20px' }}>
-            <div style={{ fontSize: '18px' }}>7-day delay</div>
+            <div
+              style={{
+                fontSize: '18px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
+              7-day delay
+            </div>
             <p>
               A reconfiguration to an upcoming funding cycle must be submitted
               at least 7 days before it starts.
             </p>
-            <div>
+            <div
+              style={{
+                marginTop: '25px',
+                color: '#9092A7',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
               Contract Address 0x01bE2c1d3b5833DAdc6b21834C76657DeEE8cDfE
             </div>
           </div>
@@ -232,12 +262,27 @@ export default function DetailEditRuleModal({
           className="editRule"
         >
           <div style={{ width: '85%', fontSize: '12px', padding: '10px 20px' }}>
-            <div style={{ fontSize: '18px' }}>3-day delay</div>
+            <div
+              style={{
+                fontSize: '18px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
+              3-day delay
+            </div>
             <p>
               A reconfiguration to an upcoming funding cycle must be submitted
               at least 3 days before it starts.
             </p>
-            <div>
+            <div
+              style={{
+                marginTop: '25px',
+                color: '#9092A7',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontWeight: 'bold',
+              }}
+            >
               Contract Address 0x509058f8B9A49D399B64554b21E7018c3641a0cC
             </div>
           </div>

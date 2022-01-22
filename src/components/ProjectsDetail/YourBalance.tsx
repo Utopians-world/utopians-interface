@@ -152,9 +152,13 @@ export default function YourBalance() {
       <h3
         style={{
           borderBottom: '1px dashed #665FAC',
-          paddingBottom: 10,
-          color: '#1D1D1D',
+          paddingBottom: 5,
+          display: 'inline-block',
+          fontSize: '22px',
           fontWeight: 'bold',
+          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+          color: '#1D1D1D',
+          marginBottom: 0,
         }}
       >
         Your Balance
@@ -168,6 +172,8 @@ export default function YourBalance() {
         <div
           style={{
             width: '60%',
+            fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+            fontWeight: 'bold',
           }}
         >
           <div
@@ -207,6 +213,8 @@ export default function YourBalance() {
         onCancel={() => setManageTokensModalVisible(false)}
         okButtonProps={{ hidden: true }}
         centered
+        footer={null}
+        className="projectModal"
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <Button
