@@ -81,7 +81,7 @@ export default function ProjectActivity() {
             ? {
                 borderImageSource:
                   'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
-                borderImageSlice: 1,
+                borderImageSlice: '0 0 1 0',
               }
             : { borderColor: 'transparent' }),
         }}

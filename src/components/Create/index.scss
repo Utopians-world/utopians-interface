@@ -48,7 +48,7 @@
     .createTabPane{
         @include betweenLayout;
         align-items: center;
-        padding: 0 34px 0 37px;
+        padding: 0 24px 0 27px;
         // letter-spacing: -1px;
         text-shadow: none;
 
@@ -73,6 +73,7 @@
         background: #665FAC;
         margin-right: 9px;
         display: inline-block;
+        font-size: 12px;
         border-radius: 50%;
         color: #ffffff;
         line-height: 16px;
@@ -220,6 +221,7 @@
     }
     .ant-form-item-extra {
         @include stepExplain;
+        margin-top: 10px;
     }
 
     .stepUpload {

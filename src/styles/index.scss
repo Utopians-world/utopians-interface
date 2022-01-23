@@ -85,11 +85,15 @@ h6 {
 .hover-nav {
   display: inline-block;
   padding: 0 16px;
-  border-bottom: 3px solid transparent;
+  line-height: 74px;
+  border: 3px solid transparent;
   &:hover {
+    border-top:  3px solid transparent;
+    border-left:  3px solid transparent;
+    border-right:  3px solid transparent;
     border-bottom: 3px solid;
     border-image-source: linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%);
-    border-image-slice: 1;
+    border-image-slice: 0 0 1 0;
   }
 }
 
