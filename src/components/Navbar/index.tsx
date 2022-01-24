@@ -14,10 +14,7 @@ import Account from './Account'
 export default function Navbar() {
   const [activeKey, setActiveKey] = useState<0 | undefined>()
 
-  const {
-    theme: { colors },
-    forThemeOption,
-  } = useContext(ThemeContext)
+  const { forThemeOption } = useContext(ThemeContext)
 
   const menuItem = (text: string, route?: string, onClick?: VoidFunction) => {
     const external = route?.startsWith('http')
@@ -103,41 +100,67 @@ export default function Navbar() {
       </Header>
     </div>
   ) : (
-    <Header
-      style={{
-        background: colors.background.l0,
-        zIndex: 100,
-        padding: 8,
-      }}
-      onClick={e => {
-        setActiveKey(undefined)
-        e.stopPropagation()
-      }}
-    >
-      <Collapse style={{ border: 'none' }} activeKey={activeKey}>
-        <CollapsePanel
-          style={{ border: 'none' }}
-          key={0}
-          showArrow={false}
-          header={
-            <Space
-              onClick={e => {
-                setActiveKey(activeKey === 0 ? undefined : 0)
-                e.stopPropagation()
-              }}
-            >
-              {logo(30)}
-              <MenuOutlined style={{ color: colors.icon.primary }} />
-            </Space>
-          }
-          // extra={<ThemePicker />}
+    <div style={{ position: 'fixed', zIndex: 999, width: '100%' }}>
+      <Header
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          height: '46px',
+          background:
+            'linear-gradient(101deg, rgba(64, 10, 255, 0.84) 0%, rgba(64, 10, 255, 0.84) 11%, rgba(0, 0, 0, 0.92) 20%)',
+          zIndex: 999,
+          padding: '0 0 0 22px',
+        }}
+        onClick={e => {
+          setActiveKey(undefined)
+          e.stopPropagation()
+        }}
+      >
+        <Space>
+          {logo(30)}
+          <span className="logoTitle">
+            <img src="/assets/metis-logo-txt.png" alt="logotxt" />
+          </span>
+        </Space>
+        <Collapse
+          className="navCollapse"
+          style={{ border: 'none', background: 'transparent' }}
+          activeKey={activeKey}
         >
-          <Space direction="vertical" size="middle">
-            {menu()}
-            <Account />
-          </Space>
-        </CollapsePanel>
-      </Collapse>
-    </Header>
+          <CollapsePanel
+            style={{
+              border: 'none',
+              paddingRight: 22,
+              backgroundColor: 'rgba(0, 0, 0, 0.92)',
+            }}
+            key={0}
+            showArrow={false}
+            header={
+              <Space
+                onClick={e => {
+                  setActiveKey(activeKey === 0 ? undefined : 0)
+                  e.stopPropagation()
+                }}
+              >
+                <MenuOutlined style={{ color: '#ffffff' }} />
+              </Space>
+            }
+            // extra={<ThemePicker />}
+          >
+            <div className="mobileLoginSection">
+              <Account />
+            </div>
+            <Space
+              className="mobileNav"
+              size={[0, 0]}
+              direction="vertical"
+              style={{ width: '316px' }}
+            >
+              {menu()}
+            </Space>
+          </CollapsePanel>
+        </Collapse>
+      </Header>
+    </div>
   )
 }

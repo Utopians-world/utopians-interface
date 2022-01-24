@@ -14,7 +14,7 @@ export default function ProjectLogo({
   // const {
   //   theme: { colors },
   // } = useContext(ThemeContext)
-  const _size = size ?? 80
+  // const _size = size ?? 80
 
   return (
     <div
@@ -23,8 +23,8 @@ export default function ProjectLogo({
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        height: _size,
-        width: _size,
+        // height: _size,
+        // width: _size,
         background: uri ? undefined : '#ffffff',
       }}
     >

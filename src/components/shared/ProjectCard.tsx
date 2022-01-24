@@ -142,7 +142,7 @@ export default function ProjectCard({
               <ProjectLogo
                 uri={metadata.logoUri}
                 name={metadata.name}
-                size={isHome ? 175 : 158}
+                // size={isHome ? 175 : 158}
               />
             </div>
 

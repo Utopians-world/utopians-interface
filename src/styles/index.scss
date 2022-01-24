@@ -127,6 +127,15 @@ button {
   transition: background-color 100ms ease-in, background 100ms ease-in;
 }
 
+.appContent {
+  min-height: auto !important;
+  background: transparent !important;
+  padding-top: 80px;
+  @media screen and (max-width: 750px) {
+    padding-top: 46px;
+  }
+}
+
 @import 'antd-overrides/index.scss';
 @import 'blocknative-overrides.scss';
 @import 'fonts.scss';

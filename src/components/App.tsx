@@ -40,7 +40,7 @@ function App() {
         }}
       >
         <Navbar />
-        <Content style={{ minHeight: 'auto', paddingTop: 80 }}>
+        <Content className="appContent">
           <Router />
         </Content>
         <Footer />

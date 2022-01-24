@@ -11,15 +11,19 @@ import { createGlobalStyle } from 'styled-components'
 import { Trans } from '@lingui/macro'
 import { t } from '@lingui/macro'
 
+// import { isMobile } from 'react-device-detect'
+
 // import { ThemeOption } from 'constants/theme/theme-option'
 
 import BodyBg from 'assets/images/home-pic.png'
+import BodyMobileBg from 'assets/images/home-pic-mobile.png'
 import IndividualIcon from 'assets/images/individual-icon.png'
 import BuyersIcon from 'assets/images/buyers-icon.png'
 import DaoIcon from 'assets/images/dao-icon.png'
 import ProjectIcon from 'assets/images/project-icon.png'
 
 import HoworkTipBg from 'assets/images/howork-pic.png'
+import HoworkTipMobileBg from 'assets/images/howork-pic-mobile.png'
 
 import Rectangles from 'assets/images/Rectangles.png'
 import Rectangles1 from 'assets/images/Rectangles1.png'
@@ -42,6 +46,10 @@ export default function Home() {
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;
+      
+      @media screen and (max-width: 750px) {
+        background-image: url(${BodyMobileBg});
+      }
     }
   `
 
@@ -75,11 +83,6 @@ export default function Home() {
 
   const smallDes = (text: string) => <p className="secondDes">{text}</p>
 
-  const section: CSSProperties = {
-    padding: '80px 40px',
-    backgroundColor: '#ffffff',
-  }
-
   const wrapper: CSSProperties = {
     maxWidth: totalMaxWidth,
     margin: '0 auto',
@@ -101,12 +104,7 @@ export default function Home() {
     <div className="homeWrapper">
       <GlobalStyle />
       <section className="firstSection">
-        <div
-          style={{
-            ...wrapper,
-            padding: '0 80px',
-          }}
-        >
+        <div className="firstSectionContent">
           <Row align="middle" justify="space-around">
             <Col
               xs={24}
@@ -118,18 +116,10 @@ export default function Home() {
               }}
               className="firstSectionLeft"
             >
-              <div
-                style={{
-                  display: 'grid',
-                }}
-              >
+              <div className="firstSectionLeftCon">
                 <a
                   style={{
                     color: colors.text.metisgreen,
-                    fontSize: '1.25rem',
-                    lineHeight: 1.5,
-                    fontWeight: 600,
-                    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                   }}
                   href="https://www.metis.io/metis-to-launch-andromeda/"
                   target="_blank"
@@ -148,14 +138,12 @@ export default function Home() {
                   </Trans>
                 </div>
 
-                <div className="hide-mobile">
-                  <div style={{ display: 'inline-block' }}>
-                    <a href="/#/create">
-                      <Button className="createProjectBtn">
-                        + build project
-                      </Button>
-                    </a>
-                  </div>
+                <div style={{ display: 'inline-block' }}>
+                  <a href="/#/create">
+                    <Button className="createProjectBtn">
+                      + build project
+                    </Button>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -165,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={section}>
+      <section className="defaultSection">
         <div
           style={{
             ...wrapper,
@@ -227,7 +215,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={section} className="howWorkSectionBg">
+      <section className="howWorkSectionBg">
         <div
           style={{
             ...wrapper,
@@ -257,64 +245,120 @@ export default function Home() {
           {smallDes(
             'In a Utopia, people can create DACs according to their own ideas and visions, owners or contributors can receive their pay transparently, and investors can share in the profits of the project.',
           )}
-          <Row justify="center" className="HowroksBg">
-            <Col span={6}>
-              <div className="HoworksCon">
-                <div className="HoworksConTop">
-                  <h3>Programmable spending</h3>
-                  <p>
-                    Commit portions of your revenue to go to the people or
-                    projects you want to support, or the contributors you want
-                    to pay. When you get paid, so do they.
-                  </p>
+          {window.innerWidth > 751 ? (
+            <Row justify="center" className="HowroksBg">
+              <Col span={6}>
+                <div className="HoworksCon">
+                  <div className="HoworksConTop">
+                    <h3>Programmable spending</h3>
+                    <p>
+                      Commit portions of your revenue to go to the people or
+                      projects you want to support, or the contributors you want
+                      to pay. When you get paid, so do they.
+                    </p>
+                  </div>
+                  <div className="HoworksConBottom">
+                    <h3>ERC20 community tokens</h3>
+                    <p>
+                      When someone pays your project either as a patron or a
+                      user of your app, they earn a proportional amount of your
+                      project's token. When you win, your token holders win, so
+                      they'll want you to win even more.
+                    </p>
+                  </div>
                 </div>
-                <div className="HoworksConBottom">
-                  <h3>ERC20 community tokens</h3>
-                  <p>
-                    When someone pays your project either as a patron or a user
-                    of your app, they earn a proportional amount of your
-                    project's token. When you win, your token holders win, so
-                    they'll want you to win even more.
-                  </p>
+              </Col>
+              <Col span={12} flex="auto">
+                <img
+                  style={{ maxWidth: '100%' }}
+                  src={HoworkTipBg}
+                  alt="howorkTip"
+                />
+              </Col>
+              <Col span={6}>
+                <div
+                  className="HoworksCon"
+                  style={{ textAlign: 'left', float: 'right' }}
+                >
+                  <div className="HoworksConTop">
+                    <h3>Redistributable surplus</h3>
+                    <p>
+                      Set a funding target to cover predictable expenses. Any
+                      extra revenue can be claimed by anyone holding your
+                      project's tokens alongside you.
+                    </p>
+                  </div>
+                  <div className="HoworksConBottom">
+                    <h3>Transparency & accountability</h3>
+                    <p>
+                      Changes to your project's funding require a community
+                      approval period to take effect. Your supporters don't have
+                      to trust you—even though they already do.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Col>
-            <Col span={12} flex="auto">
-              <img
-                style={{ maxWidth: '100%' }}
-                src={HoworkTipBg}
-                alt="howorkTip"
-              />
-            </Col>
-            <Col span={6}>
-              <div
-                className="HoworksCon"
-                style={{ textAlign: 'left', float: 'right' }}
-              >
-                <div className="HoworksConTop">
-                  <h3>Redistributable surplus</h3>
-                  <p>
-                    Set a funding target to cover predictable expenses. Any
-                    extra revenue can be claimed by anyone holding your
-                    project's tokens alongside you.
-                  </p>
+              </Col>
+            </Row>
+          ) : (
+            <Row justify="center" className="HowroksBg">
+              <Col span={24}>
+                <div className="HoworksCon">
+                  <div className="HoworksConTop">
+                    <h3>Programmable spending</h3>
+                    <p>
+                      Commit portions of your revenue to go to the people or
+                      projects you want to support, or the contributors you want
+                      to pay. When you get paid, so do they.
+                    </p>
+                  </div>
+                  <div className="HoworksConTop" style={{ textAlign: 'left' }}>
+                    <h3>Redistributable surplus</h3>
+                    <p>
+                      Set a funding target to cover predictable expenses. Any
+                      extra revenue can be claimed by anyone holding your
+                      project's tokens alongside you.
+                    </p>
+                  </div>
                 </div>
-                <div className="HoworksConBottom">
-                  <h3>Transparency & accountability</h3>
-                  <p>
-                    Changes to your project's funding require a community
-                    approval period to take effect. Your supporters don't have
-                    to trust you—even though they already do.
-                  </p>
+              </Col>
+              <Col span={24} flex="auto" style={{ margin: '40px 0 50px' }}>
+                <img
+                  style={{ maxWidth: '100%' }}
+                  src={HoworkTipMobileBg}
+                  alt="howorkTip"
+                />
+              </Col>
+              <Col span={24}>
+                <div className="HoworksCon">
+                  <div className="HoworksConBottom">
+                    <h3>ERC20 community tokens</h3>
+                    <p>
+                      When someone pays your project either as a patron or a
+                      user of your app, they earn a proportional amount of your
+                      project's token. When you win, your token holders win, so
+                      they'll want you to win even more.
+                    </p>
+                  </div>
+                  <div
+                    className="HoworksConBottom"
+                    style={{ textAlign: 'left' }}
+                  >
+                    <h3>Transparency & accountability</h3>
+                    <p>
+                      Changes to your project's funding require a community
+                      approval period to take effect. Your supporters don't have
+                      to trust you—even though they already do.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          )}
         </div>
       </section>
       <section
+        className="defaultSection"
         style={{
-          ...section,
           paddingTop: 20,
           paddingBottom: 0,
           background: 'linear-gradient(180deg, #FFFFFF 0%, #D5DAFF 100%)',
@@ -332,11 +376,13 @@ export default function Home() {
               md={24}
               style={{ marginBottom: 100, position: 'relative' }}
             >
-              <img
-                style={{ position: 'absolute', right: '80px' }}
-                src={Rectangles3}
-                alt=""
-              />
+              {window.innerWidth > 751 && (
+                <img
+                  style={{ position: 'absolute', right: '80px' }}
+                  src={Rectangles3}
+                  alt=""
+                />
+              )}
               {smallHeader('Projects in utopains world', 'projectTitle')}
               <div style={{ margin: '20px auto 0', maxWidth: '980px' }}>
                 {previewProjects ? (

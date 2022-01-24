@@ -10,8 +10,6 @@ export default function Footer() {
     <a
       style={{
         color: colors.text.metisgreen,
-        marginLeft: 60,
-        marginRight: 60,
       }}
       href={link}
     >

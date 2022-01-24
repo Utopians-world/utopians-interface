@@ -1,6 +1,11 @@
 @import '../../styles/common.scss';
 .homeWrapper {
   z-index: -1;
+  
+  .defaultSection {
+    padding: 80px 40px;
+    background-color: #ffffff;
+  }
   & .firstSection {
     background: 
       linear-gradient(192deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%), 
@@ -12,9 +17,23 @@
     padding-bottom: 194px;
     min-height: 760px;
   }
+  .firstSectionContent {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px;
+  }
   & .firstSectionLeft {
     // background: linear-gradient(153deg, rgba(15, 0, 255, 0) 0%, rgba(73, 6, 255, 0.79) 27%, rgba(61, 136, 231, 0.93) 77%, #38FFDD 100%);
     // opacity: 0.65;
+  }
+  .firstSectionLeftCon {
+    display: grid;
+    a {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      font-weight: 600;
+      font-family: 'TeXGyreAdventor-Bold, TeXGyreAdventor';
+    }
   }
   & .firstTitle {
     font-size: 44px;
@@ -51,6 +70,8 @@
   }
   
   .howWorkSectionBg {
+    padding: 80px 40px;
+    background-color: #ffffff;
     background: url('../../assets/images/howork-section-bg.png') no-repeat top center #ffffff;
     background-size: contain;
   }
@@ -205,4 +226,156 @@
   font-weight: 600!important;
   clip-path: inset(0 round 4px);
   border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 4 4;
+}
+
+
+@media screen and (max-width: 750px) {  
+  .homeWrapper {
+    .defaultSection {
+      padding: 40px 20px;
+    }
+    .firstSection {
+      padding-top: 216px;
+      // padding-bottom: 194px;
+      min-height: 490px;
+      background: 
+        linear-gradient(188deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
+        linear-gradient(179deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
+        linear-gradient(168deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
+        linear-gradient(180deg, transparent 0%, rgba(73, 6, 255, 0.94) 54%, rgba(61, 136, 231, 0.94) 90%, rgba(56, 255, 221, 0.94) 100%);
+    }
+    .firstSectionContent {
+      padding: 0 30px;
+    }
+
+    .firstSectionLeftCon {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      a {
+        height: 15px;
+        font-size: 0.625rem;
+        line-height: 15px;
+      }
+    }
+      
+    .firstTitle {
+      font-size: 1.375rem;
+      line-height: 1;
+      margin: 8px 0 11px;
+      text-align: center;
+    }
+    .firstNote {
+      font-size: 0.625rem;
+      line-height: 12px;
+      text-align: center;
+    }
+    .howWorkSectionBg {
+      padding: 40px 20px;
+    }
+
+    .secondTitle{
+      font-size: 0.85rem;
+      line-height: 17px; 
+    }
+    
+
+  & .projectTitle{
+    font-size: 0.85rem;
+    line-height: 17px;
+    margin-bottom: 35px;
+  }
+  & .sectionWrapper{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    @media screen and (max-width: 1380px) {
+      .worksSectionIconTwo {
+        display:none;
+      }
+    }
+    @media screen and (max-width: 1280px) {
+      .worksSectionIconOne, .worksSectionIconTwo {
+        display:none;
+      }
+    }
+
+    & .secondDes{
+      margin: 10px 0 39px;
+      font-size: 0.625rem;
+      line-height: 14px;
+    }
+
+    & .communityCon{
+      margin-bottom: 26px;
+      max-width: 100%;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      min-height: auto;
+      
+      h3 {
+        font-size: 1rem;
+        line-height: 13px;
+        text-shadow: 0px 0px 4px #9EFFF1;
+        margin: 4px 0 10px;
+      }
+      p {
+        font-size: 0.75rem;
+        line-height: 15px;
+        text-align: center;
+      }
+    }
+
+    & .HowroksBg {
+      // background: url('../../assets/images/howork-pic.png') no-repeat top center;
+      // padding-bottom: 80px;
+      width: 90%;
+    }
+    & .HoworksCon{
+      display: flex;
+      flex-flow: row nowrap;
+      max-width: 100%;
+      width: 100%;
+      float: none;
+      text-align: right;
+      justify-content: space-between;
+      
+      h3 {
+        font-size: 0.75rem;
+        line-height: 14px;
+        text-shadow: 0px 1px 2px #C4BAE1;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 0.75rem;
+        color: #282828;
+        line-height: 13px;
+      }
+      .HoworksConTop, .HoworksConBottom {
+        width: 40%;
+      }
+      .HoworksConBottom{
+        margin-top: 0;
+        h3 {
+          color: #00DAC5;
+          text-shadow: 0px 5px 6px #9EFFF1;
+        }
+      }
+    }
+  }
+    
+  }
+  
+  .createProjectBtn{
+    width: 200px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+
+  .allProjectsBtn{
+    width: 200px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
 }

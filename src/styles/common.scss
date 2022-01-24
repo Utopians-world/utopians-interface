@@ -26,6 +26,11 @@
     linear-gradient(195deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media screen and (max-width: 750px) {
+    font-size: 1.375rem;
+    line-height: 28px;
+  }
 }
 @mixin defaultDes {
   font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
@@ -33,6 +38,11 @@
   color: #ffffff;
   font-size: 18px;
   line-height: 21px;
+  
+  @media screen and (max-width: 750px) {
+    font-size: 0.75rem;
+    line-height: 15px;
+  }
 }
 
 @mixin bigTitle {
@@ -45,6 +55,12 @@
   border-right: 12px solid #A42DEA;
   & span{
     color:#3A1FF5;
+  }
+  
+  @media screen and (max-width: 750px) {
+    padding:0 10px;
+    border-left: 7px solid #A42DEA;
+    border-right: 7px solid #A42DEA;
   }
 }
 @mixin titleLine {
