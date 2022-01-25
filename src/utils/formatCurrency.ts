@@ -7,7 +7,9 @@ export class CurrencyUtils {
   // Define non-fractional conversion units
   usdPerEth: number | undefined = undefined
   weiPerUsd: number | undefined = undefined
-  metisWei = 1e8
+  //原本逻辑返回的1usd兑eth的价格,和新增的合约不同,新增合约是返回1metis兑usd的价格,所以精度不能再是1e18,要切换成对应的usd精度(1e8)
+  //变量不再做调整,新增该注释
+  usdWei = 1e8
   constructor(usdPerEth: number | undefined) {
     if (!usdPerEth) {
       console.info(
@@ -18,7 +20,7 @@ export class CurrencyUtils {
     }
 
     this.usdPerEth = usdPerEth
-    this.weiPerUsd = Math.round((1 / usdPerEth) * this.metisWei)
+    this.weiPerUsd = Math.round((1 / usdPerEth) * this.usdWei)
   }
 
   weiToUsd = (wei: BigNumberish | undefined) => {
