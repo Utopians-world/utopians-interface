@@ -7,7 +7,7 @@ export class CurrencyUtils {
   // Define non-fractional conversion units
   usdPerEth: number | undefined = undefined
   weiPerUsd: number | undefined = undefined
-
+  metisWei = 1e8
   constructor(usdPerEth: number | undefined) {
     if (!usdPerEth) {
       console.info(
@@ -18,14 +18,16 @@ export class CurrencyUtils {
     }
 
     this.usdPerEth = usdPerEth
-    this.weiPerUsd = Math.round((1 / usdPerEth) * 1e18)
+    this.weiPerUsd = Math.round((1 / usdPerEth) * this.metisWei)
   }
 
   weiToUsd = (wei: BigNumberish | undefined) => {
     if (!wei || !this.weiPerUsd) return BigNumber.from(0)
-
+    // return this.usdPerEth
     try {
-      return BigNumber.from(wei).div(this.weiPerUsd)
+      const w = BigNumber.from(wei)
+      const wpu = BigNumber.from(this.weiPerUsd)
+      return w.div(wpu)
     } catch (e) {
       console.log("Couldn't convert wei amount", wei.toString(), 'to USD', e)
     }
