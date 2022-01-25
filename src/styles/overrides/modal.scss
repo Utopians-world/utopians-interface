@@ -62,6 +62,22 @@
         cursor: pointer;
         font-family: GoodTimesW00-Bold, GoodTimesW00;
     }
+    .button-spec-mobile{
+        width: 130px;
+        height: 35px;
+        border-radius: 3px;
+        border: 3px solid;
+        border-image: linear-gradient(to right top, #2100D2 0%, #8BFFFE 100%) 3 3;;
+        font-size: 12px;
+        text-align: center;
+        line-height: 30px;
+        color: #2C1BD7;
+        font-weight: bold;
+        float: right;
+        cursor: pointer;
+        font-family: GoodTimesW00-Bold, GoodTimesW00;
+        -webkit-transform:scale(0.8);
+    }
 }
 
 
