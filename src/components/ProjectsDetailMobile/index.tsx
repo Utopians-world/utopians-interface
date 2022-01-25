@@ -87,6 +87,7 @@ export default function ProjectsDetailMobile() {
 
   return (
     <Row style={MainLayout} className="mainLayout">
+      <FundUsMobile />
       <Col span={24} style={LeftLayout}>
         <ProjectTitleMobile />
         <FundingCycleTitleMobile
@@ -114,11 +115,10 @@ export default function ProjectsDetailMobile() {
           ticketMods={editingTicketMods}
           fundingCycle={queuedFC?.number.gt(0) ? queuedFC : currentFC}
         />
-        <FundUsMobile />
         <YourBalanceMobile />
         <ActivityMobile />
       </Col>
-      <div className="indexBackground"> </div>
+      <div className="indexBackgroundMobile"> </div>
     </Row>
   )
 }

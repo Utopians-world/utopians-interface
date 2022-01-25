@@ -129,19 +129,19 @@ export default function ProjectTitleMobile() {
           </Space>
         </div>
       )}
-      <Row style={{ width: '100%', marginTop: '60px', textAlign: 'center' }}>
+      <Row style={{ width: '100%', marginTop: '30px', textAlign: 'center' }}>
         <Col span={24}>
           {ImageUri ? (
             <img
               src={ImageUri}
               alt=""
-              style={{ width: '30%', minHeight: '50px' }}
+              style={{ width: '35%', minHeight: '50px' }}
             />
           ) : (
             <div style={ImageReplace}>🧃</div>
           )}
         </Col>
-        <Col span={24} style={{ marginTop: '23px', padding: 0 }}>
+        <Col span={24} style={{ marginTop: '18px', padding: 0 }}>
           <p style={TitleStyle}>
             {ProjectName}
             <span

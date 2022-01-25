@@ -102,12 +102,20 @@ export default function FundUsMobile() {
   if (!currentFC || !projectId || !metadata) return null
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div
+      style={{
+        marginTop: '20px',
+        position: 'fixed',
+        bottom: 0,
+        width: '100%',
+        background: '#ffffff',
+        zIndex: 999,
+        boxShadow: '0px 2px 10px 0px rgba(0, 0, 0, 0.5)',
+      }}
+    >
       <div
         style={{
           width: '100%',
-          background: '#ffffff',
-          border: '1px solid #D3DCEE',
           padding: '15px',
           borderRadius: '3px',
         }}
