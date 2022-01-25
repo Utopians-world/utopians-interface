@@ -43,7 +43,7 @@ export default function TicketingForm({
         </Divider>
       </div>
 
-      <p>
+      <p className="stepPayModsDes">
         Tokens are earned by anyone who pays your project, and can be redeemed
         for overflow if your project has set a funding target.
         <br />
@@ -62,7 +62,7 @@ export default function TicketingForm({
         <Divider className="stepTopConDivider" orientation="right">
           Allocate
         </Divider>
-        <p>
+        <p className="stepPayModsDes">
           Allocate reserved tokens is optional. By default, automatically
           distribute a portion of your project's reserved tokens to other
           utopians projects or ETH wallets.

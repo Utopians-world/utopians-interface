@@ -45,7 +45,7 @@ export default function PayModsForm({
         <h2>How your project will distribute funds.</h2>
         <Divider className="stepTopConDivider" />
       </div>
-      <p>
+      <p className="stepPayModsDes">
         Payouts are optional. By default, all unallocated revenue will be
         withdrawable to the project owner's wallet.
         <Upopover

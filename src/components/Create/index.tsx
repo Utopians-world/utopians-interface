@@ -447,6 +447,8 @@ export default function Create() {
     ],
   )
 
+  const GutterMobile = window.innerWidth > 500 ? 80 : 36
+
   return (
     <ProjectContext.Provider value={project}>
       <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
@@ -454,9 +456,10 @@ export default function Create() {
           CREATE A <span>NEW</span> PROJECT
         </h1>
         <Tabs
-          centered
+          // centered
           defaultActiveKey="1"
           className="createTabs"
+          tabPosition="top"
           activeKey={tabKey}
           onTabClick={params => {
             settabKey(params)
@@ -464,20 +467,43 @@ export default function Create() {
         >
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">1</span>Appearance
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">1</span>Appearance
+                  </div>
+                  {projectFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
                 </div>
-                {projectFormModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: projectFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>1</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {projectFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Appearance</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="1"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <ProjectForm
                   form={projectForm}
@@ -500,7 +526,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">
@@ -512,21 +538,44 @@ export default function Create() {
 
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">2</span>Funding
-                </div>
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">2</span>Funding
+                  </div>
 
-                {budgetFormModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+                  {budgetFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: budgetFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>2</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {budgetFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Funding</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="2"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <BudgetForm
                   initialCurrency={
@@ -552,7 +601,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">
@@ -564,21 +613,42 @@ export default function Create() {
 
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">3</span>Distribution
-                </div>
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">3</span>Distribution
+                  </div>
 
-                {payModsModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+                  {payModsModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{ minWidth: payModsModalVisible ? 'auto' : '112px' }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>3</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {payModsModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Distribution</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="3"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <PayModsForm
                   initialMods={editingPayoutMods}
@@ -603,7 +673,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">
@@ -615,21 +685,46 @@ export default function Create() {
 
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">4</span>Reserved Tokens
-                </div>
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">4</span>Reserved Tokens
+                  </div>
 
-                {ticketingFormModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+                  {ticketingFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: ticketingFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>4</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {ticketingFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">
+                          Reserved Tokens
+                        </span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="4"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <TicketingForm
                   form={ticketingForm}
@@ -653,7 +748,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">
@@ -665,21 +760,44 @@ export default function Create() {
 
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">5</span>Reconfiguration
-                </div>
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">5</span>Reconfiguration
+                  </div>
 
-                {rulesFormModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+                  {rulesFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{ minWidth: rulesFormModalVisible ? 'auto' : '112px' }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>5</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {rulesFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">
+                          Reconfiguration
+                        </span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="5"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <RulesForm
                   initialBallot={editingFC.ballot}
@@ -701,7 +819,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">
@@ -713,20 +831,43 @@ export default function Create() {
 
           <TabPane
             tab={
-              <div className="createTabPane">
-                <div>
-                  <span className="createTabpaneNum">6</span>Incentives
+              window.innerWidth > 750 ? (
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">6</span>Incentives
+                  </div>
+                  {incentivesFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
                 </div>
-                {incentivesFormModalVisible ? (
-                  <span className="createTabpaneRight"></span>
-                ) : (
-                  <span className="createTabpaneArrow"></span>
-                )}
-              </div>
+              ) : (
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: incentivesFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>6</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {incentivesFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Incentives</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )
             }
             key="6"
           >
-            <Row gutter={80} className="createTabWrapper">
+            <Row gutter={GutterMobile} className="createTabWrapper">
               <Col xs={24} md={10}>
                 <IncentivesForm
                   initialDiscountRate={
@@ -768,7 +909,7 @@ export default function Create() {
                   isDisable={false}
                 />
               </Col>
-              <Col xs={24} md={14}>
+              <Col xs={24} md={14} className="hide-create-mobile">
                 <h3 className="smartPreviewTitle">Smart preview</h3>
 
                 <div className="smartPreviewWrapper">

@@ -111,7 +111,7 @@ export default function ProjectBondingCurveRate({
     position: 'absolute',
   }
 
-  const graphSize = 520
+  const graphSize = window.innerWidth > 500 ? 520 : 360
   const graphHeight = 190
   const graphPad = 50
 

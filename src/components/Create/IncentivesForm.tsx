@@ -96,7 +96,7 @@ export default function IncentivesForm({
       </div>
 
       <Form layout="vertical" className="stepFormCon">
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px' }} className="stepPayModsDes">
           The ratio of tokens rewarded per payment amount will decrease by this
           percentage with each new funding cycle. A higher discount rate will
           incentivize supporters to pay your project earlier than later.
@@ -110,7 +110,7 @@ export default function IncentivesForm({
         {disableDiscountRate && (
           <div className="stepExtraCon" style={disableTextStyle}>
             <InfoCircleFilled
-              style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
+            // style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
             />
             {disableDiscountRate}
           </div>
@@ -119,7 +119,7 @@ export default function IncentivesForm({
           className="stepTopConDivider"
           style={{ margin: '40px 0 26px' }}
         />
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px' }} className="stepPayModsDes">
           This rate determines the amount of overflow that each token can be
           redeemed for at any given time. On a lower bonding curve, redeeming a
           token increases the value of each remaining token, creating an

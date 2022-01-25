@@ -28,8 +28,9 @@ export default function ProjectForm({
   onDeployBtn?: VoidFunction
   isDisable?: boolean
 }) {
+  const SpaceSizeMobile = window.innerWidth > 500 ? 'large' : 0
   return (
-    <Space direction="vertical" size="large">
+    <Space direction="vertical" size={SpaceSizeMobile}>
       <div className="stepTopCon">
         <h1>Appearance</h1>
         <h2>Project name, handle, links, and other details.</h2>

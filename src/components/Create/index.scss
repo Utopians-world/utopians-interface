@@ -6,6 +6,10 @@
     font-weight: 600;
     color: #1C1C20;
     line-height: 16px;
+    @media screen and (max-width: 500px) {
+        font-size: 0.8125rem;
+        line-height: 20px;
+    }
 }
 @mixin stepExplain {
     font-size: 13px;
@@ -13,6 +17,11 @@
     font-weight: 400;
     color: #5F5E61;
     line-height: 18px;
+    @media screen and (max-width: 500px) {
+        font-size: 0.625rem;
+        color: #000000;
+        line-height: 15px;
+    }
 }
 @mixin stepInput {
     border-radius: 3px;
@@ -21,6 +30,10 @@
     font-weight: 400;
     color: #241515;
     line-height: 38px;
+    @media screen and (max-width: 500px) {
+        font-size: 0.75rem;
+        line-height: 24px;
+    }
 }
 @mixin stepTip {
     font-size: 14px;
@@ -28,6 +41,10 @@
     font-weight: 400;
     color: #3A1FF5;
     line-height: 20px;
+    @media screen and (max-width: 500px) {
+        font-size: 0.75rem;
+        text-decoration: underline;
+    }
 }
 
 .createTitle {
@@ -408,6 +425,11 @@
     font-weight: 400;
     color: #241515;
     line-height: 20px;
+    .anticon-info-circle {
+        color: #000;
+        font-size: 20px;
+        margin-right: 10px;
+    }
 }
 
 .stepPayoutListCon {
@@ -416,6 +438,9 @@
     background: rgba(253, 254, 255, 0.99);
     border-radius: 3px;
     border: 2px solid #D3DCEE;
+    @media screen and (max-width: 500px) {
+        padding: 10px;
+    }
 
     .ant-space-item{width: 100%;}
 
@@ -435,6 +460,11 @@
             color: #1D1D1D;
             line-height: 70px;
             letter-spacing: -1px;
+            
+            @media screen and (max-width: 500px) {
+                font-size: 2.1875rem;
+                line-height: 54px;
+            }
         }
         &Des {
             font-size: 14px;
@@ -443,6 +473,10 @@
             color: #5F5E61;
             line-height: 18px;
             cursor: pointer;
+            @media screen and (max-width: 500px) {
+                font-size: 0.625rem;
+                line-height: 10px;
+            }
         }
     }
 }
@@ -551,6 +585,10 @@
     height: 48px;
 }
 
+.stepRulesSection {
+    display: flex;
+    flex-flow: column nowrap;
+}
 .stepRulesCon {
     @include flexCenter;
     background: rgba(253, 254, 255, 0.99);
@@ -641,6 +679,8 @@
 }
 
 .stepSaveDeployBtnsCon {
+    display: flex;
+    justify-content: flex-end;
     .ant-form-item-control-input-content {
         display: flex;
         justify-content: flex-end;
@@ -684,6 +724,11 @@
     line-height: 48px;
     display: flex;
     align-items: center;
+    @media screen and (max-width: 500px) {
+        font-size: 0.75rem;
+        height: 34px;
+        line-height: 34px;
+    }
 }
 .stepAddPayout {
     width: 100%;
@@ -695,6 +740,11 @@
     font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
     font-weight: 600 !important;
     color: #665FAC !important;
+
+    @media screen and (max-width: 500px) {
+        height: 45px;
+        font-size: 0.85rem;
+    }
 }
 
 //create disable message
@@ -716,5 +766,368 @@
         color: #ffffff;
         font-family: Helvetica;
         line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .hide-create-mobile {
+        display:none;
+    }
+    .createTitle {
+        border:none;
+        padding: 20px 0 22px 18px;
+        font-size: 0.85rem;
+    }
+    .createTabs{
+        justify-content: flex-start;
+        .createTabPane{
+            // min-width: 112px;
+            @include centerLayout;
+            align-items: flex-start;
+            padding: 0 10px;
+            text-shadow: none;
+
+            .createTabpaneArrow{
+                height: 9px;
+                width: 9px;
+                background-image: url('../../assets/images/create-arrow-default-mobile.png');
+            }
+
+            .createTabpaneRight{
+                height: 15px;
+                width: 15px;
+                background-image: url('../../assets/images/creat-save-check-mobile.png');
+            }
+            .createTabPaneMobileCon {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .createTabpaneInfo {
+                font-size: 10px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: bold;
+                color: #000000;
+                line-height: 15px;
+            }
+        }
+        .createTabpaneNum{
+            width: 10px;
+            height: 10px;
+            font-size: 0.625rem;
+            line-height: 10px;
+        }
+
+        .ant-tabs-nav{
+            margin: 0;
+            box-shadow: 0px 2px 9px 0px rgba(102, 95, 172, 0.32);
+        }
+        .ant-tabs-nav-list{
+            justify-content: space-around;
+            width: 100%;
+            
+        }
+        .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar{
+            height: 4px;
+            background-color: #3A1FF5;
+        }
+        .ant-tabs-tab {
+            height: 54px;
+        }
+        .ant-tabs-tab .ant-tabs-tab-btn {
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: 600;
+            line-height: 21px;
+            color: #9092A7;
+            text-shadow:none;
+        }
+        .ant-tabs-tab.ant-tabs-tab-active {
+            background-color: #dfd6ff;
+            & .ant-tabs-tab-btn{
+                color: #000000;
+            }
+
+            .createTabpaneArrow{
+                background-image: url('../../assets/images/creat-arrow-right-mobile.png');
+            }
+        }
+
+        .createTabWrapper{
+            background:#fff;
+            padding: 40px 80px 90px;
+            
+            .smartPreviewTitle {
+                font-size: 22px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: 600;
+                color: #1D1D1D;
+                line-height: 34px;
+            }
+
+            .smartPreviewWrapper {
+                width: 100%;
+                background: rgba(253, 254, 255, 0.99);
+                box-shadow: 0px 2px 9px 0px #D3DCEE;
+                border-radius: 2px;
+                border: 2px solid #D3DCEE;
+            }
+
+            .ant-btn-icon-only {
+                border: none;
+                color: #7c85cb;
+            }
+        }
+    }
+
+
+    .stepSaveDeployBtnsCon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+        .ant-form-item-control-input-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column-reverse;
+        }
+    }
+
+    .stepSaveBtn {
+        width: 200px;
+        height: 40px;
+        font-size: 0.85rem;
+        margin-left: 0;
+        margin-bottom: 24px;
+
+        &:hover {
+            border: none;
+            opacity: 0.8;
+            color: #ffffff;
+        }
+    }
+
+    .stepDeployBtn {
+        width: 200px;
+        height: 40px;
+        font-size: 0.85rem;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .stepTopCon {
+        h1 {
+            font-size: 1.125rem;
+            line-height: 27px;
+        }
+
+        h2 {
+            font-size: 0.75rem;
+            line-height: 16px;
+        }
+    }
+
+    .stepTopConDivider {
+        font-size: 0.625rem !important;
+        line-height: 15px;
+        margin: 12px 0;
+    }
+
+    .createTabs{
+        .createTabWrapper{
+            padding: 20px 18px 80px;
+        }
+    }
+
+
+    .stepFormCon {
+
+        .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+            display: inline-block;
+            margin-left: 4px;
+            color: #FE5164;
+            font-size: 16px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            line-height: 1;
+            content: '*';
+        }
+        .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before, .ant-form-hide-required-mark .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+            display: none;
+        }
+
+        .ant-input-number-input {
+            height: 34px;
+        }
+        .ant-input, .ant-input-affix-wrapper{
+            border: 1px solid #7C85CB;
+        } 
+        .ant-input-affix-wrapper .ant-input:hover, .ant-input-number {
+            border: none;
+            box-shadow: none;
+        }
+        .ant-input:hover {
+            box-shadow: 0px 2px 4px 0px rgba(58, 31, 245, 0.31);
+            border: 1px solid #8372F9;
+        }
+        .ant-form-item-extra {
+            @include stepExplain;
+            margin-top: 10px;
+        }
+
+        .stepUpload {
+            width: 120px;
+            height: 34px;
+            background: #D3DCEE;
+            color: #5F5E61;
+            border-radius: 3px;
+            border: 1px solid #7C85CB;
+            font-size: 0.85rem;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        .payoutTotalCon {
+            .payoutTotalConTotal{
+                font-size: 1rem;
+                line-height: 25px;
+            }
+            .payoutTotalConTo{
+                font-size: 0.625rem;
+                line-height: 15px;
+            }
+        }
+
+        .stepSelect{
+            border: none;
+            border-radius: 3px;
+            .ant-select-selector {
+                font-size: 0.625rem;
+                height: 34px;
+                padding: 2px 11px;
+            }
+            .ant-select-selector:hover {
+                border: 1px solid #8372F9;
+            }
+            .ant-select-selection-item{
+                font-size: 0.625rem;
+                color: #000000;
+            }
+        }
+    }
+
+    .stepExtraCon {
+        padding: 16px 18px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        line-height: 16px;
+        .anticon-info-circle {
+            font-size: 0.75rem;
+            margin-right: 6px;
+        }
+    }
+
+    .stepPayModsDes {
+        font-size: 0.75rem;
+        font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+        font-weight: 400;
+        color: #1c1c20;
+        line-height: 20px;
+    }
+
+    .stepDatePicker {
+        font-size: 0.75rem;
+        height: 34px;
+        .ant-picker-input > input {
+            font-size: 0.75rem;
+        }
+    }
+
+    .stepModalCon {
+        .ant-modal-content .ant-modal-title{
+            height: 14px;
+            font-size: 1.125rem;
+            line-height: 11px;
+        }
+        .ant-form-item-extra {
+            font-size: 0.625rem;
+            margin-top: 6px;
+        }
+
+        .ant-input-number {
+            border: 1px solid #7C85CB;
+            height: 27px;
+            border-radius: 2px;
+            font-size: 0.75rem;
+        }
+        
+        .ant-input-number-input {
+            height: auto;
+        }
+        .ant-input-number-handler-wrap {
+            opacity: 1;
+        }
+        .ant-input-number-handler {
+            border-left: 1px solid #7C85CB;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .ant-input-number-handler-up {
+            background-image: url('../../assets/images/inputNumberUp.png');
+        }
+        .ant-input-number-handler-down {
+            background-image: url('../../assets/images/inputNumberDown.png');
+            border-top: 1px solid #7C85CB;
+        }
+        .ant-input-number-handler-up-inner, .ant-input-number-handler-down-inner {
+            display: none;
+        }
+
+        .ant-modal-footer {
+            padding: 10px 24px;
+        }
+        .ant-modal-footer .ant-btn-primary {
+            width: 113px;
+            height: 40px;
+        }
+    }
+
+
+    .stepRulesCon {
+        padding: 12px 8px;
+        margin-bottom: 12px;
+
+        &Txt {
+            max-width: 100%;
+            font-size: 0.625rem;
+            line-height: 10px;
+            h3 {
+                font-size: 0.75rem;
+                line-height: 11px;
+            }
+            p {
+                word-break: break-all;
+            }
+        }
+        &:last-child {
+            margin-bottom: 24px;
+        }
+    }
+
+
+    .disableMesInfo {
+        margin-top: 40vh;
+        .ant-message-notice-content {
+            padding: 18px 24px;
+        }
+        .ant-message-info {
+            font-size: 0.85rem;
+            line-height: 17px;
+        }
     }
 }

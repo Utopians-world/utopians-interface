@@ -38,7 +38,7 @@
   color: #ffffff;
   font-size: 18px;
   line-height: 21px;
-  
+
   @media screen and (max-width: 750px) {
     font-size: 0.75rem;
     line-height: 15px;
@@ -137,4 +137,15 @@
 
 .ant-progress-inner {
   background: #c4d1ec !important;
+}
+
+@media screen and (max-width: 500px) {
+  .ant-popover-inner-content {
+    font-size: 0.85rem;
+    line-height: 17px;
+  }
+  .ant-tooltip-inner {
+    font-size: 0.85rem !important;
+    line-height: 17px !important;
+  }
 }
