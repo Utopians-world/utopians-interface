@@ -26,6 +26,7 @@ import {
   useMemo,
   useState,
 } from 'react'
+// import { usePrompt } from 'react-router-dom'
 import { editingProjectActions } from 'redux/slices/editingProject'
 import { fromPerbicent, fromPermille, fromWad } from 'utils/formatNumber'
 import { encodeFCMetadata, hasFundingTarget } from 'utils/fundingCycle'
@@ -70,6 +71,8 @@ export default function Create() {
     useState<boolean>(false)
   const [deployProjectModalVisible, setDeployProjectModalVisible] =
     useState<boolean>(false)
+  // const [continueModalVisible, setContinueModalVisible] =
+  //   useState<boolean>(false)
   const [loadingCreate, setLoadingCreate] = useState<boolean>()
   const [projectForm] = useForm<ProjectFormFields>()
   const [ticketingForm] = useForm<TicketingFormFields>()
@@ -449,6 +452,19 @@ export default function Create() {
 
   const GutterMobile = window.innerWidth > 500 ? 80 : 36
 
+  // usePrompt('sdsdfsdsfd', true)
+  {
+    /* <Modal
+className='continueModal'
+visible={continueModalVisible}
+onCancel={() => setContinueModalVisible(false)}
+onOk={deployProject}
+okText={'continue'}
+>
+<div className='continueModalTitle'>Confirm</div>
+<div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
+</Modal> */
+  }
   return (
     <ProjectContext.Provider value={project}>
       <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
@@ -933,6 +949,20 @@ export default function Create() {
         >
           <ConfirmDeployProject />
         </Modal>
+        {/* <usePrompt when={true}>
+            {() => (
+                <Modal
+                  className='continueModal'
+                  visible={continueModalVisible}
+                  onCancel={() => setContinueModalVisible(false)}
+                  onOk={deployProject}
+                  okText={'continue'}
+                >
+                  <div className='continueModalTitle'>Confirm</div>
+                  <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
+                </Modal>
+            )}
+          </usePrompt> */}
       </Row>
       {/* <Row style={{ marginTop: 40, display: 'none' }}> */}
       {/* <Col
