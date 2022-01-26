@@ -58,7 +58,12 @@ export default function DistributeTokensModal({
   }
 
   const reservedTokensFormatted = formatWad(reservedTokens, { decimals: 0 })
-
+  console.log(
+    plural(reservedTokensFormatted ?? 0, {
+      one: '# token',
+      other: '# tokens',
+    }),
+  )
   return (
     <Modal
       title={`Distribute reserved ${tokenSymbol ?? 'tokens'}`}
@@ -78,10 +83,7 @@ export default function DistributeTokensModal({
           <div>
             {tokenSymbol
               ? `${reservedTokensFormatted} ${tokenSymbol}`
-              : plural(reservedTokensFormatted ?? 0, {
-                  one: '# token',
-                  other: '# tokens',
-                })}
+              : reservedTokensFormatted}
           </div>
         </div>
         {currentTicketMods?.length ? (
