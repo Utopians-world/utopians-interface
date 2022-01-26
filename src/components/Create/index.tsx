@@ -1,6 +1,7 @@
 // import { CaretRightFilled, CheckCircleFilled } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Col, Row, Tabs, message } from 'antd'
+import { Tabs as MobileTabs } from 'antd-mobile'
 import { useForm } from 'antd/lib/form/Form'
 import Modal from 'antd/lib/modal/Modal'
 import Project from 'components/Dashboard/SmartProject'
@@ -453,8 +454,7 @@ export default function Create() {
   const GutterMobile = window.innerWidth > 500 ? 80 : 36
 
   // usePrompt('sdsdfsdsfd', true)
-  {
-    /* <Modal
+  /* <Modal
 className='continueModal'
 visible={continueModalVisible}
 onCancel={() => setContinueModalVisible(false)}
@@ -464,14 +464,723 @@ okText={'continue'}
 <div className='continueModalTitle'>Confirm</div>
 <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
 </Modal> */
-  }
   return (
     <ProjectContext.Provider value={project}>
       <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
         <h1 className="createTitle">
           CREATE A <span>NEW</span> PROJECT
         </h1>
-        <Tabs
+        {window.innerWidth > 750 ? (
+          <Tabs
+            // centered
+            defaultActiveKey="1"
+            className="createTabs"
+            tabPosition="top"
+            activeKey={tabKey}
+            onTabClick={params => {
+              settabKey(params)
+            }}
+          >
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">1</span>Appearance
+                  </div>
+                  {projectFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="1"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <ProjectForm
+                    form={projectForm}
+                    onSave={async () => {
+                      await projectForm.validateFields()
+                      setProjectFormModalVisible(true)
+                      settabKey('2')
+                      onProjectFormSaved()
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">2</span>Funding
+                  </div>
+
+                  {budgetFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="2"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <BudgetForm
+                    initialCurrency={
+                      editingFC.currency.toNumber() as CurrencyOption
+                    }
+                    initialTarget={fromWad(editingFC.target)}
+                    initialDuration={editingFC?.duration.toString()}
+                    onSave={async (currency, target, duration) => {
+                      onBudgetFormSaved(currency, target, duration)
+                      setBudgetFormModalVisible(true)
+                      settabKey('3')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">3</span>Distribution
+                  </div>
+
+                  {payModsModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="3"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <PayModsForm
+                    initialMods={editingPayoutMods}
+                    currency={editingFC.currency.toNumber() as CurrencyOption}
+                    target={editingFC.target}
+                    fee={editingFC.fee}
+                    onSave={async mods => {
+                      onPayModsFormSaved(mods)
+                      setPayModsFormModalVisible(true)
+                      settabKey('4')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">4</span>Reserved Tokens
+                  </div>
+
+                  {ticketingFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="4"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <TicketingForm
+                    form={ticketingForm}
+                    initialMods={editingTicketMods}
+                    onSave={async mods => {
+                      await ticketingForm.validateFields()
+                      onTicketingFormSaved(mods)
+                      setTicketingFormModalVisible(true)
+                      settabKey('5')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">5</span>Reconfiguration
+                  </div>
+
+                  {rulesFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="5"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <RulesForm
+                    initialBallot={editingFC.ballot}
+                    onSave={(ballot: string) => {
+                      onRulesFormSaved(ballot)
+                      setRulesFormModalVisible(true)
+                      settabKey('6')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <div className="createTabPane">
+                  <div>
+                    <span className="createTabpaneNum">6</span>Incentives
+                  </div>
+                  {incentivesFormModalVisible ? (
+                    <span className="createTabpaneRight"></span>
+                  ) : (
+                    <span className="createTabpaneArrow"></span>
+                  )}
+                </div>
+              }
+              key="6"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <IncentivesForm
+                    initialDiscountRate={
+                      editingFC.duration.eq(0)
+                        ? '0'
+                        : fromPermille(editingFC.discountRate)
+                    }
+                    initialBondingCurveRate={fromPerbicent(
+                      editingFC.bondingCurveRate,
+                    )}
+                    disableDiscountRate={
+                      editingFC.duration.eq(0)
+                        ? 'Discount rate disabled while funding cycle duration is 0.'
+                        : undefined
+                    }
+                    disableBondingCurve={
+                      !hasFundingTarget(editingFC)
+                        ? 'Bonding curve disabled while no funding target is set.'
+                        : undefined
+                    }
+                    onSave={async (
+                      discountRate: string,
+                      bondingCurveRate: string,
+                    ) => {
+                      await ticketingForm.validateFields()
+                      onIncentivesFormSaved(discountRate, bondingCurveRate)
+                      setIncentivesFormModalVisible(true)
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </TabPane>
+          </Tabs>
+        ) : (
+          <MobileTabs
+            defaultActiveKey="1"
+            className="createTabs"
+            activeKey={tabKey}
+            onChange={params => {
+              settabKey(params)
+            }}
+          >
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: projectFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>1</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {projectFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Appearance</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="1"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <ProjectForm
+                    form={projectForm}
+                    onSave={async () => {
+                      await projectForm.validateFields()
+                      setProjectFormModalVisible(true)
+                      settabKey('2')
+                      onProjectFormSaved()
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: budgetFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>2</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {budgetFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Funding</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="2"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <BudgetForm
+                    initialCurrency={
+                      editingFC.currency.toNumber() as CurrencyOption
+                    }
+                    initialTarget={fromWad(editingFC.target)}
+                    initialDuration={editingFC?.duration.toString()}
+                    onSave={async (currency, target, duration) => {
+                      onBudgetFormSaved(currency, target, duration)
+                      setBudgetFormModalVisible(true)
+                      settabKey('3')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{ minWidth: payModsModalVisible ? 'auto' : '112px' }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>3</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {payModsModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Distribution</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="3"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <PayModsForm
+                    initialMods={editingPayoutMods}
+                    currency={editingFC.currency.toNumber() as CurrencyOption}
+                    target={editingFC.target}
+                    fee={editingFC.fee}
+                    onSave={async mods => {
+                      onPayModsFormSaved(mods)
+                      setPayModsFormModalVisible(true)
+                      settabKey('4')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: ticketingFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>4</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {ticketingFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">
+                          Reserved Tokens
+                        </span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="4"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <TicketingForm
+                    form={ticketingForm}
+                    initialMods={editingTicketMods}
+                    onSave={async mods => {
+                      await ticketingForm.validateFields()
+                      onTicketingFormSaved(mods)
+                      setTicketingFormModalVisible(true)
+                      settabKey('5')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{ minWidth: rulesFormModalVisible ? 'auto' : '112px' }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>5</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {rulesFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">
+                          Reconfiguration
+                        </span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="5"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <RulesForm
+                    initialBallot={editingFC.ballot}
+                    onSave={(ballot: string) => {
+                      onRulesFormSaved(ballot)
+                      setRulesFormModalVisible(true)
+                      settabKey('6')
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+
+            <MobileTabs.Tab
+              title={
+                <div
+                  className="createTabPane"
+                  style={{
+                    minWidth: incentivesFormModalVisible ? 'auto' : '112px',
+                  }}
+                >
+                  <span className="createTabpaneNum">
+                    <small>6</small>
+                  </span>
+                  <div className="createTabPaneMobileCon">
+                    {incentivesFormModalVisible ? (
+                      <span className="createTabpaneRight"></span>
+                    ) : (
+                      <>
+                        <span className="createTabpaneInfo">Incentives</span>
+                        <span className="createTabpaneArrow"></span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+              key="6"
+            >
+              <Row gutter={GutterMobile} className="createTabWrapper">
+                <Col xs={24} md={10}>
+                  <IncentivesForm
+                    initialDiscountRate={
+                      editingFC.duration.eq(0)
+                        ? '0'
+                        : fromPermille(editingFC.discountRate)
+                    }
+                    initialBondingCurveRate={fromPerbicent(
+                      editingFC.bondingCurveRate,
+                    )}
+                    disableDiscountRate={
+                      editingFC.duration.eq(0)
+                        ? 'Discount rate disabled while funding cycle duration is 0.'
+                        : undefined
+                    }
+                    disableBondingCurve={
+                      !hasFundingTarget(editingFC)
+                        ? 'Bonding curve disabled while no funding target is set.'
+                        : undefined
+                    }
+                    onSave={async (
+                      discountRate: string,
+                      bondingCurveRate: string,
+                    ) => {
+                      await ticketingForm.validateFields()
+                      onIncentivesFormSaved(discountRate, bondingCurveRate)
+                      setIncentivesFormModalVisible(true)
+                    }}
+                    onDeployBtn={() => {
+                      if (
+                        !editingProjectInfo?.metadata.name ||
+                        !editingProjectInfo.handle
+                      ) {
+                        disableInfo()
+                      } else {
+                        setDeployProjectModalVisible(true)
+                      }
+                    }}
+                    isDisable={false}
+                  />
+                </Col>
+                <Col xs={24} md={14} className="hide-create-mobile">
+                  <h3 className="smartPreviewTitle">Smart preview</h3>
+
+                  <div className="smartPreviewWrapper">
+                    <Project showCurrentDetail column />
+                  </div>
+                </Col>
+              </Row>
+            </MobileTabs.Tab>
+          </MobileTabs>
+        )}
+
+        {/* <Tabs
           // centered
           defaultActiveKey="1"
           className="createTabs"
@@ -934,7 +1643,7 @@ okText={'continue'}
               </Col>
             </Row>
           </TabPane>
-        </Tabs>
+        </Tabs> */}
         <Modal
           visible={deployProjectModalVisible}
           okText={
