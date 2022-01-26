@@ -280,90 +280,96 @@
     }
     
 
-  & .projectTitle{
-    font-size: 0.85rem;
-    line-height: 17px;
-    margin-bottom: 35px;
-  }
-  & .sectionWrapper{
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    @media screen and (max-width: 1380px) {
-      .worksSectionIconTwo {
-        display:none;
-      }
+    & .projectTitle{
+      font-size: 0.85rem;
+      line-height: 17px;
+      margin-bottom: 35px;
     }
-    @media screen and (max-width: 1280px) {
-      .worksSectionIconOne, .worksSectionIconTwo {
-        display:none;
-      }
-    }
-
-    & .secondDes{
-      margin: 10px 0 39px;
-      font-size: 0.625rem;
-      line-height: 14px;
-    }
-
-    & .communityCon{
-      margin-bottom: 26px;
-      max-width: 100%;
-      padding: 0;
-      box-shadow: none;
-      border-radius: 0;
-      min-height: auto;
-      
-      h3 {
-        font-size: 1rem;
-        line-height: 13px;
-        text-shadow: 0px 0px 4px #9EFFF1;
-        margin: 4px 0 10px;
-      }
-      p {
-        font-size: 0.75rem;
-        line-height: 15px;
-        text-align: center;
-      }
-    }
-
-    & .HowroksBg {
-      // background: url('../../assets/images/howork-pic.png') no-repeat top center;
-      // padding-bottom: 80px;
-      width: 90%;
-    }
-    & .HoworksCon{
+    & .sectionWrapper{
       display: flex;
-      flex-flow: row nowrap;
-      max-width: 100%;
-      width: 100%;
-      float: none;
-      text-align: right;
-      justify-content: space-between;
-      
-      h3 {
-        font-size: 0.75rem;
+      flex-flow: column wrap;
+      align-items: center;
+      position: relative;
+
+      & .secondDes{
+        margin: 10px 0 39px;
+        font-size: 0.625rem;
         line-height: 14px;
-        text-shadow: 0px 1px 2px #C4BAE1;
-        margin-bottom: 20px;
       }
-      p {
-        font-size: 0.75rem;
-        color: #282828;
-        line-height: 13px;
-      }
-      .HoworksConTop, .HoworksConBottom {
-        width: 40%;
-      }
-      .HoworksConBottom{
-        margin-top: 0;
+
+      & .communityCon{
+        margin-bottom: 26px;
+        max-width: 100%;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        min-height: auto;
+        
         h3 {
-          color: #00DAC5;
-          text-shadow: 0px 5px 6px #9EFFF1;
+          font-size: 1rem;
+          line-height: 13px;
+          text-shadow: 0px 0px 4px #9EFFF1;
+          margin: 4px 0 10px;
+        }
+        p {
+          font-size: 0.75rem;
+          line-height: 15px;
+          text-align: center;
+        }
+      }
+
+      & .HowroksBg {
+        // background: url('../../assets/images/howork-pic.png') no-repeat top center;
+        // padding-bottom: 80px;
+        width: 90%;
+      }
+      & .HoworksCon{
+        display: flex;
+        flex-flow: row nowrap;
+        max-width: 100%;
+        width: 100%;
+        float: none;
+        text-align: right;
+        justify-content: space-between;
+        
+        h3 {
+          font-size: 0.75rem;
+          line-height: 14px;
+          text-shadow: 0px 1px 2px #C4BAE1;
+          margin-bottom: 20px;
+        }
+        p {
+          font-size: 0.75rem;
+          color: #282828;
+          line-height: 13px;
+        }
+        .HoworksConTop, .HoworksConBottom {
+          width: 40%;
+        }
+        .HoworksConBottom{
+          margin-top: 0;
+          h3 {
+            color: #00DAC5;
+            text-shadow: 0px 5px 6px #9EFFF1;
+          }
         }
       }
     }
-  }
+  
+    .solutionRectangles {
+      width:16px;
+    }
+    .projectListRectangles {
+      width:12px;
+    }
+    .worksSectionIconOne {
+      width:10px;
+      display: inline-block !important;
+    }
+    .worksSectionIconTwo {
+      width:16px;
+      display: inline-block !important;
+    }
     
   }
   
