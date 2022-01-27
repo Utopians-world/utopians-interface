@@ -1,5 +1,5 @@
 import { Collapse, Space } from 'antd'
-import { MenuOutlined } from '@ant-design/icons'
+import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 import { Header } from 'antd/lib/layout/layout'
 
@@ -124,13 +124,17 @@ export default function Navbar() {
         </Space>
         <Collapse
           className="navCollapse"
-          style={{ border: 'none', background: 'transparent' }}
+          // style={{ border: 'none', background: 'transparent' }}
           activeKey={activeKey}
+
+          // expandIcon={({ isActive }) => (
+          //   isActive ? <CloseOutlined /> : <MenuOutlined />
+          // )}
         >
           <CollapsePanel
             style={{
               border: 'none',
-              paddingRight: 22,
+              // paddingRight: 22,
               backgroundColor: 'rgba(0, 0, 0, 0.92)',
             }}
             key={0}
@@ -142,10 +146,14 @@ export default function Navbar() {
                   e.stopPropagation()
                 }}
               >
-                <MenuOutlined style={{ color: '#ffffff' }} />
+                {activeKey !== 0 && (
+                  <MenuOutlined style={{ color: '#ffffff' }} />
+                )}
               </Space>
             }
-            // extra={<ThemePicker />}
+            extra={
+              activeKey === 0 && <CloseOutlined style={{ color: '#ffffff' }} />
+            }
           >
             <div className="mobileLoginSection">
               <Account />
@@ -154,7 +162,7 @@ export default function Navbar() {
               className="mobileNav"
               size={[0, 0]}
               direction="vertical"
-              style={{ width: '316px' }}
+              style={{ width: '286px' }}
             >
               {menu()}
             </Space>

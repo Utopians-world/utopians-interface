@@ -77,6 +77,11 @@
   }
 
   .navCollapse {
+    border: none;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
     .ant-collapse-content {
       .ant-collapse-content-box {
         padding: 70px 0 70px 31px;
@@ -84,7 +89,8 @@
     }
 }
   .mobileLoginSection {
-    width: 316px;
+    width: 100%;
+    max-width: 316px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

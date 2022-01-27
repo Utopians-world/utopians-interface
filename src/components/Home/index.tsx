@@ -160,6 +160,34 @@ export default function Home() {
           }}
           className="sectionWrapper"
         >
+          {window.innerWidth <= 750 && (
+            <>
+              <img
+                className="solutionRectangles"
+                style={{ position: 'absolute', right: '-20px', top: '20px' }}
+                src={Rectangles}
+                alt=""
+              />
+              <img
+                className="worksSectionIconOne"
+                style={{ position: 'absolute', left: '20px', top: '160px' }}
+                src={Rectangles1}
+                alt=""
+              />
+              <img
+                className="worksSectionIconTwo"
+                style={{ position: 'absolute', left: '7px', top: '132px' }}
+                src={Rectangles2}
+                alt=""
+              />
+              <img
+                className="projectListRectangles"
+                style={{ position: 'absolute', right: '10px', top: '50%' }}
+                src={Rectangles3}
+                alt=""
+              />
+            </>
+          )}
           {smallHeader(
             <>
               A better <span>solution</span> for?
@@ -174,11 +202,14 @@ export default function Home() {
             justify="space-between"
             style={{ width: '100%', position: 'relative' }}
           >
-            <img
-              style={{ position: 'absolute', right: '-30px', top: '20px' }}
-              src={Rectangles}
-              alt=""
-            />
+            {window.innerWidth > 751 && (
+              <img
+                className="solutionRectangles"
+                style={{ position: 'absolute', right: '-30px', top: '20px' }}
+                src={Rectangles}
+                alt=""
+              />
+            )}
             <Col xs={24} md={12} lg={6}>
               {fourthCol(
                 'Individuals',
@@ -223,18 +254,22 @@ export default function Home() {
           }}
           className="sectionWrapper"
         >
-          <img
-            className="worksSectionIconOne"
-            style={{ position: 'absolute', left: '17px', top: '0px' }}
-            src={Rectangles1}
-            alt=""
-          />
-          <img
-            className="worksSectionIconTwo"
-            style={{ position: 'absolute', left: '90px', top: '103px' }}
-            src={Rectangles2}
-            alt=""
-          />
+          {window.innerWidth > 751 && (
+            <>
+              <img
+                className="worksSectionIconOne"
+                style={{ position: 'absolute', left: '17px', top: '0px' }}
+                src={Rectangles1}
+                alt=""
+              />
+              <img
+                className="worksSectionIconTwo"
+                style={{ position: 'absolute', left: '90px', top: '103px' }}
+                src={Rectangles2}
+                alt=""
+              />
+            </>
+          )}
           {smallHeader(
             <>
               How <span>Utopians</span> works?
@@ -378,6 +413,7 @@ export default function Home() {
             >
               {window.innerWidth > 751 && (
                 <img
+                  className="projectListRectangles"
                   style={{ position: 'absolute', right: '80px' }}
                   src={Rectangles3}
                   alt=""
