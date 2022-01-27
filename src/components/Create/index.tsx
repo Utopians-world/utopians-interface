@@ -338,17 +338,6 @@ export default function Create() {
 
   const GutterMobile = window.innerWidth > 500 ? 80 : 36
 
-  // usePrompt('sdsdfsdsfd', true)
-  /* <Modal
-className='continueModal'
-visible={continueModalVisible}
-onCancel={() => setContinueModalVisible(false)}
-onOk={deployProject}
-okText={'continue'}
->
-<div className='continueModalTitle'>Confirm</div>
-<div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
-</Modal> */
   return (
     <ProjectContext.Provider value={project}>
       <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
@@ -1077,6 +1066,7 @@ okText={'continue'}
           </MobileTabs>
         )}
         <Modal
+          className="createPreviewModal"
           visible={deployProjectModalVisible}
           okText={
             signerNetwork
@@ -1085,7 +1075,6 @@ okText={'continue'}
           }
           onOk={deployProject}
           confirmLoading={loadingCreate}
-          width={600}
           onCancel={() => setDeployProjectModalVisible(false)}
         >
           <ConfirmDeployProject />

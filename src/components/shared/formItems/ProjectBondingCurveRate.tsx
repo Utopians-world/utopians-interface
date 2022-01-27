@@ -200,7 +200,7 @@ export default function ProjectBondingCurveRate({
     >
       <NumberSlider
         min={0}
-        max={80}
+        max={100}
         step={0.5}
         sliderValue={parseFloat(value ?? '0')}
         disabled={disabled}

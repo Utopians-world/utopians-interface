@@ -135,7 +135,7 @@ export default function PayoutModsList({
         <Mod
           mod={{ beneficiary: owner, percent: ownerPercent }}
           value={
-            <div style={{ fontWeight: 400 }}>
+            <div style={{ fontWeight: 400 }} className="previewOwner">
               {fromPermyriad(ownerPercent)}%
               {!fundingCycle.target.eq(constants.MaxUint256) && (
                 <>

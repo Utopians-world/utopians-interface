@@ -827,6 +827,84 @@
     }
 }
 
+//create preview modal
+.createPreviewModal {
+    width: 100% !important;
+    max-width: 1230px;
+    h1 {
+        height: 40px;
+        font-size: 22px;
+        font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+        font-weight: bold;
+        color: #1d1d1d;
+        line-height: 34px;
+    }
+    .previewLogo {
+        width: 135px;
+    }
+    .payoutWrapper {
+        margin-top: 12px;
+        .previewOwner {
+            font-size: 16px !important;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400 !important;
+            color: #4B5057 !important;
+            line-height: 24px !important;
+        }
+        .main-ui {
+            font-size: 16px !important;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400 !important;
+            color: #6B75FF !important;
+            line-height: 24px !important;
+        }
+    }
+    .ant-modal-content {
+        border-radius: 8px;
+    }
+    .ant-modal-body {
+        padding: 56px 33px 0 33px;
+    }
+    .ant-modal-footer {
+        padding-bottom: 33px;
+    }
+
+    .ant-statistic {
+        .ant-statistic-title{
+            height: 20px;
+            font-size: 16px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: bold;
+            color: #1c1c20;
+            line-height: 16px;
+        }
+        .ant-statistic-content{
+            line-height: 20px;
+            span, .ant-statistic-content-value{
+                height: 20px;
+                font-size: 14px;
+                font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+                font-weight: 400;
+                color: #000000;
+                line-height: 20px;
+            }
+        }
+        &.previewName {
+            margin-bottom: 8px;
+            .ant-statistic-title {
+                font-size: 20px;
+            }
+            .ant-statistic-content{
+                span, .ant-statistic-content-value{
+                    height: 26px;
+                    font-size: 18px;
+                    line-height: 26px;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 750px) {
     .hide-create-mobile {
         display:none;
@@ -990,6 +1068,15 @@
         width: 200px;
         height: 40px;
         font-size: 0.85rem;
+    }
+
+
+    //create preview modal
+    .createPreviewModal {
+        max-width: 730px;
+        .ant-col-xs-24 {
+            margin-top: 12px;
+        }
     }
 }
 
@@ -1203,6 +1290,124 @@
         .ant-message-info {
             font-size: 0.85rem;
             line-height: 17px;
+        }
+    }
+
+
+    .congratulationWrapper{
+        width:100%;
+        background-color: #fff;
+        max-width: 470px;
+        padding: 69px 0 0 0;
+        margin: 0 auto;
+        @include centerLayout;
+        h2 {
+            height: 18px;
+            font-size: 20px;
+            line-height: 18px;
+        }
+
+        p {
+            font-size: 14px;
+            padding-top: 190px;
+            margin-bottom: 28px;
+            background: url('../../assets/images/success-mobile.png') no-repeat center 10px;
+        }
+
+        .goToMyPro {
+            width: 200px;
+            height: 40px;
+        }
+    }
+
+    //continueModal ant-modal-confirm-body-wrapper
+    .continueModal {
+        .ant-modal-body {
+            padding: 30px 16px 0;
+        }
+        .ant-modal-confirm-btns{
+            .ant-btn-primary {
+                height: 40px;
+            }
+        }
+        .continueModalTitle {
+            height: 14px;
+            font-size: 1.125rem;
+            line-height: 11px;
+        }
+    }
+    
+    //create preview modal
+    .createPreviewModal {
+        max-width: 470px;
+        h1 {
+            height: 40px;
+            font-size: 18px;
+            font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+            font-weight: bold;
+            color: #1d1d1d;
+            line-height: 26px;
+        }
+        .previewLogo {
+            width: 80px;
+        }
+        .payoutWrapper {
+            margin-top: 12px;
+            .previewOwner {
+                font-size: 14px !important;
+                line-height: 20px !important;
+            }
+            .main-ui {
+                font-size: 14px !important;
+                line-height: 20px !important;
+            }
+        }
+        .ant-modal-content {
+            border-radius: 8px;
+        }
+        .ant-modal-body {
+            padding: 46px 23px 0 23px;
+        }
+        .ant-modal-footer {
+            padding-bottom: 23px;
+        }
+        .ant-modal-footer .ant-btn-primary {
+            height: 40px;
+        }
+
+        .ant-statistic {
+            .ant-statistic-title{
+                height: 20px;
+                font-size: 14px;
+                font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+                font-weight: bold;
+                color: #1c1c20;
+                line-height: 14px;
+            }
+            .ant-statistic-content{
+                line-height: 16px;
+                span, .ant-statistic-content-value{
+                    height: 20px;
+                    font-size: 12px;
+                    font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+                    font-weight: 400;
+                    color: #000000;
+                    line-height: 16px;
+                }
+            }
+            &.previewName {
+                margin-bottom: 8px;
+                .ant-statistic-title {
+                    font-size: 18px;
+                }
+                .ant-statistic-content{
+                    span, .ant-statistic-content-value{
+                        height: 20px;
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                }
+            }
         }
     }
 }
