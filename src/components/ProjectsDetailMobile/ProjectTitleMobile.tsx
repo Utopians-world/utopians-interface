@@ -13,6 +13,7 @@ import { ProjectFormFields } from '../Create/ProjectForm'
 import DetailToolsModal from '../modals/DetailToolsModal'
 import DetailSettingpopupMobileModal from '../MobileModel/DetailSettingpopupMobileModal'
 import DetailEditShowMobile from './DetailEditShowMobile'
+import ProjectLogo from '../shared/ProjectLogo'
 
 export default function ProjectTitleMobile() {
   const [DetailSettingModalVisible, setDetailSettingModalVisible] =
@@ -61,15 +62,6 @@ export default function ProjectTitleMobile() {
     position: 'relative',
     float: 'right',
     cursor: 'pointer',
-  }
-  const ImageReplace: CSSProperties = {
-    width: '100%',
-    minHeight: '150px',
-    fontSize: '2.5rem',
-    background: '#e4dfd7',
-    borderRadius: '10px',
-    padding: '40px',
-    textAlign: 'center',
   }
 
   const SpaceIcon = (
@@ -131,15 +123,13 @@ export default function ProjectTitleMobile() {
       )}
       <Row style={{ width: '100%', marginTop: '30px', textAlign: 'center' }}>
         <Col span={24}>
-          {ImageUri ? (
-            <img
-              src={ImageUri}
-              alt=""
-              style={{ width: '35%', minHeight: '50px' }}
+          <div style={{ width: '40%', margin: '0 auto' }}>
+            <ProjectLogo
+              uri={ImageUri}
+              name={ProjectName}
+              // size={isHome ? 175 : 158}
             />
-          ) : (
-            <div style={ImageReplace}>🧃</div>
-          )}
+          </div>
         </Col>
         <Col span={24} style={{ marginTop: '18px', padding: 0 }}>
           <p style={TitleStyle}>

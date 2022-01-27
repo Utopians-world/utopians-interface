@@ -13,6 +13,7 @@ import { ProjectFormFields } from '../Create/ProjectForm'
 import DetailSettingpopupModal from '../modals/DetailSettingpopupModal'
 import DetailToolsModal from '../modals/DetailToolsModal'
 import DetailEditShow from './DetailEditShow'
+import ProjectLogo from '../shared/ProjectLogo'
 
 export default function ProjectTitle() {
   const [DetailSettingModalVisible, setDetailSettingModalVisible] =
@@ -62,15 +63,15 @@ export default function ProjectTitle() {
     float: 'right',
     cursor: 'pointer',
   }
-  const ImageReplace: CSSProperties = {
-    width: '100%',
-    minHeight: '150px',
-    fontSize: '2.5rem',
-    background: '#e4dfd7',
-    borderRadius: '10px',
-    padding: '40px',
-    textAlign: 'center',
-  }
+  // const ImageReplace: CSSProperties = {
+  //   width: '100%',
+  //   minHeight: '150px',
+  //   fontSize: '2.5rem',
+  //   background: '#e4dfd7',
+  //   borderRadius: '10px',
+  //   padding: '40px',
+  //   textAlign: 'center',
+  // }
 
   const SpaceIcon = (
     text: string,
@@ -128,15 +129,11 @@ export default function ProjectTitle() {
       )}
       <Row gutter={20}>
         <Col span={6}>
-          {ImageUri ? (
-            <img
-              src={ImageUri}
-              alt=""
-              style={{ width: '100%', minHeight: '150px' }}
-            />
-          ) : (
-            <div style={ImageReplace}>🧃</div>
-          )}
+          <ProjectLogo
+            uri={ImageUri}
+            name={ProjectName}
+            // size={isHome ? 175 : 158}
+          />
         </Col>
         <Col span={17}>
           <p style={TitleStyle}>
