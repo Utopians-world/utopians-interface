@@ -48,14 +48,15 @@
   //   line-height: auto;
   // }
   .hover-nav {
-    height: 30px;
+    height: 45px;
     font-size: 16px;
     font-family: GoodTimesW00-Bold, GoodTimesW00;
     font-weight: bold;
     color: #ffffff;
     line-height: 30px;
+    width: 100%;
     border: none;
-    padding: 0;
+    padding: 0 0 15px 0;
 
     &:hover {
       border: none;
@@ -118,7 +119,6 @@
 
   .mobileNav {
     .ant-space-item {
-      padding-bottom: 15px;
       margin-bottom: 13px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.19);
       width: 100%;
