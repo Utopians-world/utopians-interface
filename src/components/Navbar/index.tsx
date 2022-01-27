@@ -147,7 +147,9 @@ export default function Navbar() {
                 }}
               >
                 {activeKey !== 0 && (
-                  <MenuOutlined style={{ color: '#ffffff' }} />
+                  <MenuOutlined
+                    style={{ color: '#ffffff', fontSize: '18px' }}
+                  />
                 )}
               </Space>
             }

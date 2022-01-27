@@ -71,6 +71,11 @@ export default function BudgetForm({
               checked={showFundingFields}
               onChange={checked => {
                 setTarget(checked ? '10000' : maxIntStr || '0')
+                dispatch(
+                  editingProjectActions.setTarget(
+                    checked ? '10000' : maxIntStr || '0',
+                  ),
+                )
                 setCurrency(0)
                 setShowFundingFields(checked)
               }}
@@ -116,7 +121,10 @@ export default function BudgetForm({
               extra: null,
             }}
             value={target.toString()}
-            onValueChange={val => setTarget(val || '0')}
+            onValueChange={val => {
+              setTarget(val ?? '0')
+              dispatch(editingProjectActions.setTarget(val ?? '0'))
+            }}
             currency={0}
             onCurrencyChange={setCurrency}
             fee={adminFeePercent}

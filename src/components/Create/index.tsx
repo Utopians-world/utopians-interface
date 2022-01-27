@@ -27,7 +27,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { Prompt } from 'react-router-dom'
+import { Prompt, useHistory } from 'react-router-dom'
 import { editingProjectActions } from 'redux/slices/editingProject'
 import { fromPerbicent, fromPermille, fromWad } from 'utils/formatNumber'
 import { encodeFCMetadata, hasFundingTarget } from 'utils/fundingCycle'
@@ -53,6 +53,7 @@ import './index.scss'
 export default function Create() {
   const { TabPane } = Tabs
   const { confirm } = RouterModal
+  const history = useHistory()
   const { transactor, contracts, adminFeePercent } = useContext(UserContext)
   const { signerNetwork, userAddress } = useContext(NetworkContext)
   // const { colors, radii } = useContext(ThemeContext).theme
@@ -461,17 +462,6 @@ export default function Create() {
 
   const GutterMobile = window.innerWidth > 500 ? 80 : 36
 
-  // usePrompt('sdsdfsdsfd', true)
-  /* <Modal
-className='continueModal'
-visible={continueModalVisible}
-onCancel={() => setContinueModalVisible(false)}
-onOk={deployProject}
-okText={'continue'}
->
-<div className='continueModalTitle'>Confirm</div>
-<div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
-</Modal> */
   return (
     <ProjectContext.Provider value={project}>
       <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
@@ -1665,6 +1655,7 @@ okText={'continue'}
           </TabPane>
         </Tabs> */}
         <Modal
+          className="createPreviewModal"
           visible={deployProjectModalVisible}
           okText={
             signerNetwork
@@ -1673,40 +1664,17 @@ okText={'continue'}
           }
           onOk={deployProject}
           confirmLoading={loadingCreate}
-          width={600}
           onCancel={() => setDeployProjectModalVisible(false)}
         >
           <ConfirmDeployProject />
         </Modal>
-        {/* <Prompt when={true} message={() => (
-            <Modal
-              className='continueModal'
-              visible={continueModalVisible}
-              onCancel={() => setContinueModalVisible(false)}
-              onOk={deployProject}
-              okText={'continue'}
-            >
-              <div className='continueModalTitle'>Confirm</div>
-              <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
-            </Modal>
-          )}
-        /> */}
+
         <Prompt
           when={dirty}
           message={location => {
-            // if (!continueModalVisible) {
-            //   return true;
-            // }
-            // <Modal>
-            //   className='continueModal'
-            //   visible={continueModalVisible}
-            //   onCancel={() => setContinueModalVisible(false)}
-            //   onOk={deployProject}
-            //   okText={'continue'}
-            // >
-            //   <div className='continueModalTitle'>Confirm</div>
-            //   <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
-            // </Modal>
+            if (!dirty) {
+              return true
+            }
             confirm({
               className: 'continueModal',
               title: <div className="continueModalTitle">Confirm</div>,
@@ -1718,7 +1686,8 @@ okText={'continue'}
               ),
               okText: 'continue',
               onOk() {
-                return true
+                setDirty(false)
+                history.goBack()
               },
               onCancel() {
                 return false
