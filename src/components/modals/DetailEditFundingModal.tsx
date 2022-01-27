@@ -161,7 +161,7 @@ export default function DetailEditFundingModal({
                 checked={showFundingFields}
                 onChange={checked => {
                   setTarget(checked ? '10000' : maxIntStr || '0')
-                  setCurrency(1)
+                  setCurrency(0)
                   setShowFundingFields(checked)
                 }}
               />
