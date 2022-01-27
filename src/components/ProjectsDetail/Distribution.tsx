@@ -58,9 +58,12 @@ export default function Distribution({
   const ownerPercent = 10000 - (modsTotal ?? 0)
   const lastMod = { beneficiary: owner, percent: ownerPercent }
 
-  const withdrawable = balanceInCurrency?.gt(untapped)
-    ? untapped
-    : balanceInCurrency
+  const withdrawable = balanceInCurrency
+    ? balanceInCurrency.gt(untapped)
+      ? untapped
+      : balanceInCurrency
+    : 0
+
   return (
     <div
       style={{

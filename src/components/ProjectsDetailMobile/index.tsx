@@ -1,6 +1,7 @@
 import React, {
   CSSProperties,
   useContext,
+  useEffect,
   useLayoutEffect,
   useState,
 } from 'react'
@@ -43,6 +44,17 @@ export default function ProjectsDetailMobile() {
     padding: '5px 20px',
     zIndex: 2,
   }
+  const [stateVisible, setStateVisible] = useState<boolean>(false)
+  useEffect(() => {
+    window.addEventListener('scroll', () => setStateVisible(true))
+    setTimeout(() => {
+      if (stateVisible) setStateVisible(false)
+    }, 1000)
+    return () => {
+      // 卸载组件时解除对事件的绑定
+      window.removeEventListener('scroll', () => setStateVisible(true))
+    }
+  })
 
   const {
     queuedFC,
@@ -87,6 +99,7 @@ export default function ProjectsDetailMobile() {
 
   return (
     <Row style={MainLayout} className="mainLayout">
+      {!stateVisible ? <FundUsMobile /> : ' '}
       <Col span={24} style={LeftLayout}>
         <ProjectTitleMobile />
         <FundingCycleTitleMobile
@@ -114,11 +127,10 @@ export default function ProjectsDetailMobile() {
           ticketMods={editingTicketMods}
           fundingCycle={queuedFC?.number.gt(0) ? queuedFC : currentFC}
         />
-        <FundUsMobile />
         <YourBalanceMobile />
         <ActivityMobile />
       </Col>
-      <div className="indexBackground"> </div>
+      <div className="indexBackgroundMobile"> </div>
     </Row>
   )
 }
