@@ -1,6 +1,6 @@
 // import { CaretRightFilled, CheckCircleFilled } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Col, Row, Tabs, message } from 'antd'
+import { Col, Row, Tabs, message, Modal as RouterModal } from 'antd'
 import { Tabs as MobileTabs } from 'antd-mobile'
 import { useForm } from 'antd/lib/form/Form'
 import Modal from 'antd/lib/modal/Modal'
@@ -27,7 +27,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-// import { usePrompt } from 'react-router-dom'
+import { Prompt } from 'react-router-dom'
 import { editingProjectActions } from 'redux/slices/editingProject'
 import { fromPerbicent, fromPermille, fromWad } from 'utils/formatNumber'
 import { encodeFCMetadata, hasFundingTarget } from 'utils/fundingCycle'
@@ -52,6 +52,7 @@ import './index.scss'
 
 export default function Create() {
   const { TabPane } = Tabs
+  const { confirm } = RouterModal
   const { transactor, contracts, adminFeePercent } = useContext(UserContext)
   const { signerNetwork, userAddress } = useContext(NetworkContext)
   // const { colors, radii } = useContext(ThemeContext).theme
@@ -73,7 +74,7 @@ export default function Create() {
   const [deployProjectModalVisible, setDeployProjectModalVisible] =
     useState<boolean>(false)
   // const [continueModalVisible, setContinueModalVisible] =
-  //   useState<boolean>(false)
+  //   useState<boolean>(true)
   const [loadingCreate, setLoadingCreate] = useState<boolean>()
   const [projectForm] = useForm<ProjectFormFields>()
   const [ticketingForm] = useForm<TicketingFormFields>()
@@ -1658,20 +1659,55 @@ okText={'continue'}
         >
           <ConfirmDeployProject />
         </Modal>
-        {/* <usePrompt when={true}>
-            {() => (
-                <Modal
-                  className='continueModal'
-                  visible={continueModalVisible}
-                  onCancel={() => setContinueModalVisible(false)}
-                  onOk={deployProject}
-                  okText={'continue'}
-                >
-                  <div className='continueModalTitle'>Confirm</div>
-                  <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
-                </Modal>
-            )}
-          </usePrompt> */}
+        {/* <Prompt when={true} message={() => (
+            <Modal
+              className='continueModal'
+              visible={continueModalVisible}
+              onCancel={() => setContinueModalVisible(false)}
+              onOk={deployProject}
+              okText={'continue'}
+            >
+              <div className='continueModalTitle'>Confirm</div>
+              <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
+            </Modal>
+          )}
+        /> */}
+        <Prompt
+          when={true}
+          message={location => {
+            // if (!continueModalVisible) {
+            //   return true;
+            // }
+            // <Modal>
+            //   className='continueModal'
+            //   visible={continueModalVisible}
+            //   onCancel={() => setContinueModalVisible(false)}
+            //   onOk={deployProject}
+            //   okText={'continue'}
+            // >
+            //   <div className='continueModalTitle'>Confirm</div>
+            //   <div className='continueModalDes'>Leaving now may lose the information you have filled in. Are you sure you want to leave now?</div>
+            // </Modal>
+            confirm({
+              className: 'continueModal',
+              title: <div className="continueModalTitle">Confirm</div>,
+              content: (
+                <div className="continueModalDes">
+                  Leaving now may lose the information you have filled in. Are
+                  you sure you want to leave now?
+                </div>
+              ),
+              okText: 'continue',
+              onOk() {
+                return true
+              },
+              onCancel() {
+                return false
+              },
+            })
+            return false
+          }}
+        />
       </Row>
       {/* <Row style={{ marginTop: 40, display: 'none' }}> */}
       {/* <Col

@@ -769,7 +769,7 @@
     }
 }
 
-//continueModal
+//continueModal ant-modal-confirm-body-wrapper
 .continueModal {
     background-color: #ffffff;
     padding: 0;
@@ -779,12 +779,35 @@
         border-radius: 8px;
         padding-bottom: 14px;
     }
+    .ant-modal-confirm-content {
+        margin: 0 !important;
+    }
     .ant-modal-body {
         padding-top: 30px;
         text-align: left;
     }
+    .anticon-exclamation-circle {
+        display: none;
+    }
     .ant-modal-footer {
         padding-top: 0;
+    }
+    .ant-modal-confirm-btns{
+        .ant-btn {
+            font-size: 12px;
+            font-family: GoodTimesW00-Bold, GoodTimesW00;
+            font-weight: 600;
+            color: #2C1BD7;
+            line-height: 24px;
+            border: none;
+            border-radius: 3px;
+        }
+        .ant-btn-primary {
+            color: #FFFFFF;
+            width: 113px;
+            height: 48px;
+            background: #481BE3;
+        }
     }
     .continueModalTitle {
         height: 20px;
