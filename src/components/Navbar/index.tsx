@@ -4,7 +4,8 @@ import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 import { Header } from 'antd/lib/layout/layout'
 
 import { ThemeContext } from 'contexts/themeContext'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+// import { useLocation } from 'react-router-dom'
 
 import { ThemeOption } from 'constants/theme/theme-option'
 
@@ -13,15 +14,20 @@ import Account from './Account'
 
 export default function Navbar() {
   const [activeKey, setActiveKey] = useState<0 | undefined>()
+  const [isActive, setIsActive] = useState('Home')
 
   const { forThemeOption } = useContext(ThemeContext)
+
+  useEffect(() => {
+    console.log(window.location, 'location')
+  }, [isActive])
 
   const menuItem = (text: string, route?: string, onClick?: VoidFunction) => {
     const external = route?.startsWith('http')
 
     return (
       <a
-        className="hover-nav"
+        className={`hover-nav ${isActive === text ? 'active' : ''}`}
         style={{
           fontWeight: 400,
           color: '#ffffff',
@@ -57,9 +63,21 @@ export default function Navbar() {
   const menu = () => {
     return (
       <>
-        {menuItem('Home', '/')}
-        {menuItem('Projects', '/#/projects')}
-        {menuItem('FAQ', '/#/faq')}
+        {/* {menuItem('Home', '/')}
+        {menuItem('Projects', '/#/projects')} */}
+        {/* {menuItem('FAQ', '/#/faq')} */}
+        {menuItem('Home', undefined, () => {
+          window.location.hash = '/'
+          setIsActive('Home')
+        })}
+        {menuItem('Projects', undefined, () => {
+          window.location.hash = '/projects'
+          setIsActive('Projects')
+        })}
+        {menuItem('FAQ', undefined, () => {
+          window.location.hash = '/faq'
+          setIsActive('FAQ')
+        })}
         {/* {menuItem('Docs', 'https://docs.juicebox.money')}
         {menuItem('Blog', 'https://blog.juicebox.money')}
         {menuItem('Discord', 'https://discord.gg/6jXrJSyDFf')}
@@ -83,7 +101,13 @@ export default function Navbar() {
         }}
       >
         <Space size={[55, 0]} style={{ flex: 1 }}>
-          <a href="/" style={{ display: 'inline-block' }}>
+          <a
+            href="/"
+            onClick={() => {
+              setIsActive('Home')
+            }}
+            style={{ display: 'inline-block' }}
+          >
             {logo()}
             <span className="logoTitle">
               <img src="/assets/metis-logo-txt.png" alt="logotxt" />

@@ -95,6 +95,14 @@ h6 {
     border-image-source: linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%);
     border-image-slice: 0 0 1 0;
   }
+  &.active {
+    border-top:  3px solid transparent;
+    border-left:  3px solid transparent;
+    border-right:  3px solid transparent;
+    border-bottom: 3px solid;
+    border-image-source: linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%);
+    border-image-slice: 0 0 1 0;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 600px) {

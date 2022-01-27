@@ -61,6 +61,10 @@
       border: none;
       border-image-slice: 0;
     }
+    &.active {
+      border: none;
+      border-image-slice: 0;
+    }
   }
   .logoTitle {
     img {height: 20px;}
