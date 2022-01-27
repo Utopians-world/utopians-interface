@@ -101,6 +101,13 @@ export default function Create() {
       )
     }
   }, [adminFeePercent, dispatch])
+  const [dirty, setDirty] = useState(false)
+  useEffect(() => {
+    window.onbeforeunload = dirty ? () => dirty : null
+    return () => {
+      window.onbeforeunload = () => null
+    }
+  }, [dirty])
 
   const resetProjectForm = useCallback(() => {
     projectForm.setFieldsValue({
@@ -506,6 +513,7 @@ okText={'continue'}
                       setProjectFormModalVisible(true)
                       settabKey('2')
                       onProjectFormSaved()
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -558,6 +566,7 @@ okText={'continue'}
                       onBudgetFormSaved(currency, target, duration)
                       setBudgetFormModalVisible(true)
                       settabKey('3')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -609,6 +618,7 @@ okText={'continue'}
                       onPayModsFormSaved(mods)
                       setPayModsFormModalVisible(true)
                       settabKey('4')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -659,6 +669,7 @@ okText={'continue'}
                       onTicketingFormSaved(mods)
                       setTicketingFormModalVisible(true)
                       settabKey('5')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -707,6 +718,7 @@ okText={'continue'}
                       onRulesFormSaved(ballot)
                       setRulesFormModalVisible(true)
                       settabKey('6')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -774,6 +786,7 @@ okText={'continue'}
                       await ticketingForm.validateFields()
                       onIncentivesFormSaved(discountRate, bondingCurveRate)
                       setIncentivesFormModalVisible(true)
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -841,6 +854,7 @@ okText={'continue'}
                       setProjectFormModalVisible(true)
                       settabKey('2')
                       onProjectFormSaved()
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -902,6 +916,7 @@ okText={'continue'}
                       onBudgetFormSaved(currency, target, duration)
                       setBudgetFormModalVisible(true)
                       settabKey('3')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -960,6 +975,7 @@ okText={'continue'}
                       onPayModsFormSaved(mods)
                       setPayModsFormModalVisible(true)
                       settabKey('4')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -1021,6 +1037,7 @@ okText={'continue'}
                       onTicketingFormSaved(mods)
                       setTicketingFormModalVisible(true)
                       settabKey('5')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -1078,6 +1095,7 @@ okText={'continue'}
                       onRulesFormSaved(ballot)
                       setRulesFormModalVisible(true)
                       settabKey('6')
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -1155,6 +1173,7 @@ okText={'continue'}
                       await ticketingForm.validateFields()
                       onIncentivesFormSaved(discountRate, bondingCurveRate)
                       setIncentivesFormModalVisible(true)
+                      setDirty(true)
                     }}
                     onDeployBtn={() => {
                       if (
@@ -1673,7 +1692,7 @@ okText={'continue'}
           )}
         /> */}
         <Prompt
-          when={true}
+          when={dirty}
           message={location => {
             // if (!continueModalVisible) {
             //   return true;
