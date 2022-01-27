@@ -61,6 +61,7 @@ export default function FundingCycleDetail({
                     fontSize: '18px',
                     color: '#2713E1',
                     lineHeight: '50px',
+                    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                   }}
                 >
                   Cycle #{currentFC.number.toString()}

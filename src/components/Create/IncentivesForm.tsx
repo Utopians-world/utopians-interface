@@ -2,7 +2,13 @@ import { Button, Form, Space, Divider } from 'antd'
 import { InfoCircleFilled } from '@ant-design/icons'
 import { FormItems } from 'components/shared/formItems'
 import { ThemeContext } from 'contexts/themeContext'
-import { CSSProperties, useContext, useLayoutEffect, useState } from 'react'
+import {
+  CSSProperties,
+  useContext,
+  useLayoutEffect,
+  useState,
+  useEffect,
+} from 'react'
 
 import './index.scss'
 
@@ -39,6 +45,12 @@ export default function IncentivesForm({
     setBondingCurveRate(initialBondingCurveRate)
   }, [initialBondingCurveRate, initialDiscountRate])
 
+  useEffect(() => {
+    if (discountRate === undefined || bondingCurveRate === undefined) return
+    onSave(discountRate, bondingCurveRate)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discountRate, bondingCurveRate])
+
   const saveButton = (
     <Form.Item className="stepSaveDeployBtnsCon">
       {onDeployBtn && (
@@ -54,7 +66,8 @@ export default function IncentivesForm({
           deploy Project
         </Button>
       )}
-      <Button
+      {/* <Button
+        style={{display: 'none'}}
         className="stepSaveBtn"
         htmlType="submit"
         type="primary"
@@ -65,7 +78,7 @@ export default function IncentivesForm({
         }}
       >
         Save
-      </Button>
+      </Button> */}
     </Form.Item>
   )
 
@@ -83,7 +96,7 @@ export default function IncentivesForm({
       </div>
 
       <Form layout="vertical" className="stepFormCon">
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px' }} className="stepPayModsDes">
           The ratio of tokens rewarded per payment amount will decrease by this
           percentage with each new funding cycle. A higher discount rate will
           incentivize supporters to pay your project earlier than later.
@@ -97,7 +110,7 @@ export default function IncentivesForm({
         {disableDiscountRate && (
           <div className="stepExtraCon" style={disableTextStyle}>
             <InfoCircleFilled
-              style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
+            // style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
             />
             {disableDiscountRate}
           </div>
@@ -106,7 +119,7 @@ export default function IncentivesForm({
           className="stepTopConDivider"
           style={{ margin: '40px 0 26px' }}
         />
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '20px' }} className="stepPayModsDes">
           This rate determines the amount of overflow that each token can be
           redeemed for at any given time. On a lower bonding curve, redeeming a
           token increases the value of each remaining token, creating an

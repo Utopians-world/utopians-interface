@@ -31,10 +31,11 @@ export default function FundingCycleTitle({
       <div
         style={{
           fontWeight: 'bold',
-          fontSize: '13px',
+          fontSize: '14px',
           lineHeight: '31px',
           textAlign: 'center',
           cursor: 'pointer',
+          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
           ...(option === selectedTab
             ? {
                 color: '#303030',
@@ -118,8 +119,11 @@ export default function FundingCycleTitle({
                 <div
                   style={{
                     display: 'inline-block',
-                    fontSize: '20px',
+                    fontSize: '19px',
                     marginRight: '10px',
+                    fontWeight: 'bold',
+                    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                    color: '#1D1D1D',
                   }}
                 >
                   Funding cycle

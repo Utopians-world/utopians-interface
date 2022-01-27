@@ -23,6 +23,7 @@ export default function Balance({
 
   return (
     <div
+      className="mobileBalance"
       style={{
         verticalAlign: 'middle',
         lineHeight: 1,

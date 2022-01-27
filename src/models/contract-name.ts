@@ -6,4 +6,5 @@ export enum ContractName {
   Prices = 'Prices',
   Projects = 'Projects',
   TicketBooth = 'TicketBooth',
+  MetisPrice = 'DIAOracleV2',
 }

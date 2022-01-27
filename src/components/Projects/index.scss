@@ -24,6 +24,7 @@
 
   & .firstDes {
     margin: 14px auto 22px;
+
     @include defaultDes;
   }
 
@@ -39,6 +40,9 @@
       @include betweenLayout;
       width: 100%;
       max-width: 980px;
+      .secondSelectConBorder {
+        border-bottom: 3px solid #dfe7ff;
+      }
       & .proTab {
         font-size: 22px;
         // font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
@@ -49,6 +53,11 @@
         line-height: 34px;
       }
     }
+    .secondSelectRightCon {
+      .secondSelectRightConSelect {
+        width: 211px;
+      }
+    }
 
     & .archivedNote {
       margin-top: 24px;
@@ -57,6 +66,11 @@
       background: rgba(58, 31, 245, 0.096);
       border-radius: 13px;
       @include flexCenter;
+      .archivedNoteIcon {
+        color: rgba(1, 1, 1, 0.64);
+        font-size: 27px;
+        margin-right: 32px;
+      }
 
       & span {
         font-size: 12px;
@@ -71,11 +85,110 @@
   & .createProBtn {
     width: 243px;
     height: 53px;
-    color: #030303;
+    color: #030303!important;
     @include solidBtn;
     span {
       font-family: GoodTimesW00-Bold, GoodTimesW00;
       font-size: 17px;
+    }
+  }
+  .projectGridCon {
+    max-width: 980px;
+    width: 100%;
+    margin: 46px auto 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .proWrapper {
+    .firstWrapper {
+      padding: 30px 0 0 0;
+      height: 300px;
+    }
+    .firstWrapperBottom {
+      flex: 1 1 auto;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(246, 248, 255, 0) 0%, #F6F8FF 86%, #F6F8FF 100%);
+    }
+    
+    .firstTitle {
+      @include topTitle;
+      color: #ffffff;
+    }
+  
+    .firstDes {
+      margin: 16px auto 17px;
+      padding: 0 30px;
+  
+      @include defaultDes;
+    }
+  
+    .secondWrapper {
+  
+      .secondSelectCon{
+        @include centerLayout;
+        align-items: flex-end;
+
+        .secondSelectConBorder {
+          width: 100%;
+          .ant-space {
+            width: 100%;
+          }
+          .ant-space-item {
+            width: 50%;
+          }
+        }
+        .proTab {
+          font-size: 1.125rem;
+          min-width: 170px;
+          line-height: 27px;
+        }
+      }
+      .secondSelectRightCon {
+        max-width: 640px;
+        padding-right: 50px;
+        margin: 46px 0 15px;
+        .secondSelectRightConSelect {
+          width: 98px;
+          .ant-select {
+            font-size: 0.75rem;
+            font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+            font-weight: 400;
+            color: #000000;
+            line-height: 18px;
+          }
+        }
+      }
+  
+      .archivedNote {
+        margin: 26px 10px 0;
+        padding: 16px 43px;
+        border-radius: 8px;
+        .archivedNoteIcon {
+          color: rgba(1, 1, 1, 1);
+          font-size: 12px;
+          margin-right: 6px;
+        }
+        & span {
+          font-size: 12px;
+          font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+          font-weight: 400;
+          color: #241515;
+          line-height: 16px;
+        }
+      }
+    }
+  
+    .createProBtn {
+      width: 200px;
+      height: 40px;
+      span {
+        font-size: 0.85rem;
+      }
+    }
+    .projectGridCon {
+      margin: 0 auto;
+      padding: 0 50px;
     }
   }
 }

@@ -1,10 +1,9 @@
 export default function MetisLogo({ size }: { size?: number }) {
   const height = size ? size : 15
-  const width = size ? size : 15
 
   return (
     <svg
-      style={{ height: height, width: width, marginRight: '5px' }}
+      style={{ height: height, marginRight: '5px' }}
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"

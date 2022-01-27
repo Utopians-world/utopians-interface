@@ -80,7 +80,7 @@ export default function TicketModsList({
   const hasEditPermission = useHasPermission(OperatorPermission.SetTicketMods)
 
   return (
-    <div>
+    <div className="payoutWrapper">
       {mods?.length
         ? [...mods]
             .sort((a, b) => (a.percent < b.percent ? 1 : -1))
@@ -109,7 +109,7 @@ export default function TicketModsList({
         <Mod
           mod={{ beneficiary: owner, percent: ownerPercent }}
           value={
-            <span style={{ fontWeight: 400 }}>
+            <span style={{ fontWeight: 400 }} className="previewOwner">
               {fromPermyriad(ownerPercent)}%
               {total
                 ? ` (${formatWad(total?.mul(ownerPercent).div(10000), {

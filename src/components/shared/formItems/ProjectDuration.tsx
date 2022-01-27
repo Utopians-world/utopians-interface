@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import Upopover from 'components/Popover'
 
-import InputAccessoryButton from '../InputAccessoryButton'
+// import InputAccessoryButton from '../InputAccessoryButton'
 import FormattedNumberInput from '../inputs/FormattedNumberInput'
 import { FormItemExt } from './formItemExt'
 
@@ -74,13 +74,13 @@ export default function ProjectDuration({
             suffix="days"
             onChange={onValueChange}
             min={1}
-            accessory={
-              <InputAccessoryButton
-                content={isRecurring ? 'recurring' : 'onetime'}
-                withArrow={true}
-                onClick={onToggleRecurring}
-              />
-            }
+            // accessory={
+            //   <InputAccessoryButton
+            //     content={isRecurring ? 'recurring' : 'onetime'}
+            //     withArrow={true}
+            //     onClick={onToggleRecurring}
+            //   />
+            // }
           />
         </Form.Item>
       </Space>

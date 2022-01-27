@@ -96,8 +96,8 @@ export default function ConfirmPayOwnerModal({
 
         <Descriptions column={1} bordered>
           <Descriptions.Item label="Pay amount" className="content-right">
-            {formattedNum(usdAmount)} {currencyName(1)} ({formatWad(weiAmount)}{' '}
-            {currencyName(0)})
+            {formatWad(weiAmount)} {currencyName(0)}({formattedNum(usdAmount)}{' '}
+            {currencyName(1)})
           </Descriptions.Item>
           <Descriptions.Item
             label={(tokenSymbol ?? 'Tokens') + ' for you'}

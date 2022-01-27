@@ -29,9 +29,11 @@ import DetailEditShow from './DetailEditShow'
 export default function Distribution({
   payoutMods,
   ticketMods,
+  total,
 }: {
   payoutMods: PayoutMod[]
   ticketMods: TicketMod[]
+  total?: BigNumber
 }) {
   const { balanceInCurrency, owner, currentFC, projectId, currentPayoutMods } =
     useContext(ProjectContext)
@@ -47,7 +49,7 @@ export default function Distribution({
 
   const untapped = currentFC.target.sub(currentFC.tapped)
 
-  const baseTotal = projectId ?? amountSubFee(currentFC?.target, currentFC.fee)
+  const baseTotal = total ?? amountSubFee(currentFC?.target, currentFC.fee)
 
   const modsTotal = currentPayoutMods?.reduce(
     (acc, curr) => acc + curr.percent,
@@ -56,9 +58,12 @@ export default function Distribution({
   const ownerPercent = 10000 - (modsTotal ?? 0)
   const lastMod = { beneficiary: owner, percent: ownerPercent }
 
-  const withdrawable = balanceInCurrency?.gt(untapped)
-    ? untapped
-    : balanceInCurrency
+  const withdrawable = balanceInCurrency
+    ? balanceInCurrency.gt(untapped)
+      ? untapped
+      : balanceInCurrency
+    : 0
+
   return (
     <div
       style={{
@@ -67,7 +72,17 @@ export default function Distribution({
       }}
       className="distribution-main"
     >
-      <h2 style={{ fontWeight: 'bold' }}>
+      <h2
+        style={{
+          marginBottom: '5px',
+          marginRight: '10px',
+          display: 'inline-block',
+          fontSize: '19px',
+          fontWeight: 'bold',
+          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+          color: '#1D1D1D',
+        }}
+      >
         Distribution
         <span className="editIcon" onClick={() => setDetailPayoutVisible(true)}>
           <DetailEditShow />
@@ -95,10 +110,11 @@ export default function Distribution({
                     style={{
                       color: '#2713E1',
                       fontWeight: 'bold',
-                      fontSize: '18px',
-                      marginBottom: '5px',
+                      fontSize: '19px',
+                      marginBottom: '8px',
                       display: 'inline-block',
                       marginRight: '10px',
+                      fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                     }}
                   >
                     Available
@@ -110,26 +126,55 @@ export default function Distribution({
                     should be withdrawn before it ends."
               />
             </Space>
-            <div style={{ fontWeight: 'bold' }}>Withdrawn</div>
-            <div style={{ fontWeight: 'bold' }}>Owner balance</div>
+            <div
+              style={{
+                fontWeight: 'bold',
+                marginBottom: '3px',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontSize: '16px',
+              }}
+            >
+              Withdrawn
+            </div>
+            <div
+              style={{
+                fontWeight: 'bold',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                fontSize: '16px',
+              }}
+            >
+              Owner balance
+            </div>
           </Col>
           <Col span={10}>
             <div
               style={{
                 fontWeight: 'bold',
-                fontSize: '18px',
+                fontSize: '22px',
                 marginBottom: '5px',
+                color: '#303030',
+                fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
               }}
             >
+              <CurrencySymbol currency={0} />
               {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
             </div>
-            <div>
+            <div
+              style={{
+                fontSize: '16px',
+              }}
+            >
+              <CurrencySymbol currency={0} />
               {formatWad(currentFC.tapped, { decimals: 4 }) || '0'}
               {hasFundingTarget(currentFC) && (
                 <span>/{formatWad(currentFC.target, { decimals: 4 })} </span>
               )}{' '}
             </div>
-            <div>
+            <div
+              style={{
+                fontSize: '16px',
+              }}
+            >
               <DetailBalance address={owner} />
             </div>
           </Col>
@@ -150,10 +195,10 @@ export default function Distribution({
                   style={{
                     color: '#2713E1',
                     fontWeight: 'bold',
-                    fontSize: '18px',
-                    marginBottom: '5px',
+                    fontSize: '19px',
                     display: 'inline-block',
                     marginRight: '10px',
+                    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                   }}
                 >
                   Distribute to

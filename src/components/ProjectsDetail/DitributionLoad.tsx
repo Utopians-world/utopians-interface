@@ -1,4 +1,4 @@
-import { Col, Row, Slider } from 'antd'
+import { Col, Progress, Row, Slider } from 'antd'
 
 import React, { useContext } from 'react'
 
@@ -6,10 +6,10 @@ import { ProjectContext } from '../../contexts/projectContext'
 import { formatWad } from '../../utils/formatNumber'
 
 export function DitributionLoad() {
-  const { currentFC, balance } = useContext(ProjectContext)
+  const { currentFC, earned } = useContext(ProjectContext)
   if (!currentFC) return null
   const target = formatWad(currentFC.target, { decimals: 2, padEnd: true })
-  const getBalance = Number(formatWad(balance, { decimals: 2, padEnd: true }))
+  const getBalance = Number(formatWad(earned, { decimals: 2, padEnd: true }))
   let posses
   let overFlow
   let getTarget
@@ -35,11 +35,10 @@ export function DitributionLoad() {
       {overFlow === 0 ? (
         <Row style={{ margin: '5px 0' }}>
           <Col span={18}>
-            <Slider
-              min={1}
-              max={100}
-              value={posses}
-              className="fullSliderHalf"
+            <Progress
+              percent={posses}
+              showInfo={false}
+              className="fullSliderPosses"
             />
           </Col>
         </Row>

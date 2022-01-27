@@ -111,7 +111,7 @@ export default function ProjectBondingCurveRate({
     position: 'absolute',
   }
 
-  const graphSize = 520
+  const graphSize = window.innerWidth > 500 ? 520 : 360
   const graphHeight = 190
   const graphPad = 50
 
@@ -131,7 +131,7 @@ export default function ProjectBondingCurveRate({
           {disableBondingCurve && (
             <div
               className="stepExtraCon"
-              style={{ width: '100%', marginBottom: '20px' }}
+              style={{ width: '100%', marginBottom: '20px', marginTop: '24px' }}
             >
               <InfoCircleFilled
                 style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}

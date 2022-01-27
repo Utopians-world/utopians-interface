@@ -13,7 +13,6 @@ import { formatWad, fromPerbicent } from 'utils/formatNumber'
 import { hasFundingTarget } from 'utils/fundingCycle'
 
 import PayoutModsList from '../shared/PayoutModsList'
-import OwnerIcon from '../../assets/images/Owner-1.png'
 
 export default function Spending({
   payoutMods,
@@ -62,6 +61,17 @@ export default function Spending({
             }}
           >
             <div>
+              <TooltipLabel
+                style={{ minWidth: 112, display: 'inline-block' }}
+                label={
+                  <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
+                    Available
+                  </h4>
+                }
+                tip={`The funds available to withdraw for this funding cycle after the ${fromPerbicent(
+                  currentFC.fee,
+                )}% UTO fee is subtracted. This number won't roll over to the next funding cycle, so funds should be withdrawn before it ends.`}
+              />
               <span
                 style={{
                   fontSize: '1rem',
@@ -73,16 +83,6 @@ export default function Spending({
                 />
                 {formatWad(withdrawable, { decimals: 4 }) || '0'}{' '}
               </span>
-              <TooltipLabel
-                label={
-                  <h4 style={{ ...smallHeaderStyle, display: 'inline-block' }}>
-                    AVAILABLE
-                  </h4>
-                }
-                tip={`The funds available to withdraw for this funding cycle after the ${fromPerbicent(
-                  currentFC.fee,
-                )}% UTO fee is subtracted. This number won't roll over to the next funding cycle, so funds should be withdrawn before it ends.`}
-              />
             </div>
             <Button
               className="defaultBtn"
@@ -95,22 +95,53 @@ export default function Spending({
             </Button>
           </div>
           <div style={{ ...smallHeaderStyle, color: '#3F3D3D' }}>
-            <div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 13,
+                  color: '#3F3D3D',
+                  display: 'inline-block',
+                  minWidth: 112,
+                }}
+              >
+                Withdrawn
+              </span>{' '}
               <CurrencySymbol
                 currency={currentFC.currency.toNumber() as CurrencyOption}
               />
               {formatWad(currentFC.tapped, { decimals: 4 }) || '0'}
               {hasFundingTarget(currentFC) && (
                 <span>/{formatWad(currentFC.target, { decimals: 4 })} </span>
-              )}{' '}
-              withdrawn
+              )}
             </div>
 
-            <div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
+            >
               <Tooltip title="Project owner balance">
                 <Space>
+                  <span
+                    style={{
+                      ...smallHeaderStyle,
+                      fontSize: 13,
+                      display: 'inline-block',
+                      color: '#3F3D3D',
+                      minWidth: 104,
+                    }}
+                  >
+                    Owner balance
+                  </span>
                   <Balance address={owner} />
-                  <img src={OwnerIcon} alt="ownerIcon" /> owner balance
                 </Space>
               </Tooltip>
             </div>

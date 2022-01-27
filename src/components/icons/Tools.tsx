@@ -1,5 +1,5 @@
 export default function Tools({ size }: { size?: number }) {
-  const height = 10
+  const height = size ? size : 10
   const widthToHeight = 1
 
   return (

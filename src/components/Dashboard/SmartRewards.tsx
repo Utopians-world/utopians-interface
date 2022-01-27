@@ -205,7 +205,7 @@ export default function Rewards({
                   >
                     {formatWad(totalSupply, { decimals: 0 })}{' '}
                     <span style={{ marginLeft: '16px', ...labelStyle }}>
-                      UTO
+                      tokens
                     </span>
                   </div>
                 }

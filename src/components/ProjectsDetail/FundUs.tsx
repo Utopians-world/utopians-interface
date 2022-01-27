@@ -112,7 +112,17 @@ export default function FundUs() {
           borderRadius: '3px',
         }}
       >
-        <h3 style={{ color: '#1D1D1D', fontWeight: 'bold' }}>Fund us</h3>
+        <h3
+          style={{
+            display: 'inline-block',
+            fontSize: '22px',
+            fontWeight: 'bold',
+            fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+            color: '#1D1D1D',
+          }}
+        >
+          Fund us
+        </h3>
         <div className="fundUsStyle">
           <FormattedNumberInput
             placeholder="0"
@@ -146,7 +156,15 @@ export default function FundUs() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', minWidth: 150 }}>{payButton}</div>
+        <div
+          style={{
+            textAlign: 'center',
+            minWidth: 150,
+            fontFamily: 'GoodTimesW00-Bold, GoodTimesW00',
+          }}
+        >
+          {payButton}
+        </div>
       </div>
 
       <PayWarningModal

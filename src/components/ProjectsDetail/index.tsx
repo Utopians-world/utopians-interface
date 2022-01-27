@@ -34,7 +34,7 @@ import { TicketingFormFields } from '../Create/TicketingForm'
 
 export default function ProjectsDetail() {
   const MainLayout: CSSProperties = {
-    maxWidth: '1420px',
+    maxWidth: '1340px',
     width: '100%',
     margin: '40px auto',
     paddingLeft: '20px',
@@ -93,7 +93,7 @@ export default function ProjectsDetail() {
 
   return (
     <Row gutter={20} style={MainLayout} className="mainLayout">
-      <Col span={17} style={LeftLayout}>
+      <Col span={15} style={LeftLayout}>
         <ProjectTitle />
         <FundingCycleTitle
           payoutMods={editingPayoutMods}
@@ -121,7 +121,7 @@ export default function ProjectsDetail() {
           fundingCycle={queuedFC?.number.gt(0) ? queuedFC : currentFC}
         />
       </Col>
-      <Col span={6} style={{ zIndex: 2 }}>
+      <Col span={8} style={{ zIndex: 2 }}>
         <FundUs />
         <YourBalance />
         <Activity />

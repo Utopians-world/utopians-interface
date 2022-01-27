@@ -1,5 +1,6 @@
-import { ThemeContext } from 'contexts/themeContext'
-import { useContext } from 'react'
+// import { ThemeContext } from 'contexts/themeContext'
+// import { useContext } from 'react'
+import DefaultUri from 'assets/images/default-pro-icon.png'
 
 export default function ProjectLogo({
   uri,
@@ -10,10 +11,10 @@ export default function ProjectLogo({
   name: string | undefined
   size?: number
 }) {
-  const {
-    theme: { colors },
-  } = useContext(ThemeContext)
-  const _size = size ?? 80
+  // const {
+  //   theme: { colors },
+  // } = useContext(ThemeContext)
+  // const _size = size ?? 80
 
   return (
     <div
@@ -22,9 +23,9 @@ export default function ProjectLogo({
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        height: _size,
-        width: _size,
-        background: uri ? undefined : colors.background.l1,
+        // height: _size,
+        // width: _size,
+        background: uri ? undefined : '#ffffff',
       }}
     >
       {uri ? (
@@ -39,13 +40,16 @@ export default function ProjectLogo({
           alt={name + ' logo'}
         />
       ) : (
-        <div
+        <img
           style={{
-            fontSize: '2.5rem',
+            maxHeight: '100%',
+            minWidth: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
           }}
-        >
-          🧃
-        </div>
+          src={DefaultUri}
+          alt="default logo"
+        />
       )}
     </div>
   )

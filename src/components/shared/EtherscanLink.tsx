@@ -13,16 +13,16 @@ export default function EtherscanLink({
 }) {
   if (!value) return null
 
-  let subdomain = ''
+  let subdomain = readNetwork.blockExplorer
 
   if (readNetwork.name !== NetworkName.mainnet) {
-    subdomain = readNetwork.name + '.'
+    subdomain = readNetwork.blockExplorer
   }
 
   return (
     <a
       className="quiet"
-      href={`https://${subdomain}etherscan.io/${type}/${value}`}
+      href={`${subdomain}${type}/${value}`}
       target="_blank"
       rel="noopener noreferrer"
       style={{ color: '#00DAC5', marginLeft: '5px' }}

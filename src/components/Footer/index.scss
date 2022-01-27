@@ -2,9 +2,7 @@
   width: 100%;
   padding:22px 0 32px;
   background: #000000;
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
+  text-align: center;
   
   .logoTitle {
     font-size: 15px;
@@ -40,5 +38,39 @@
     font-weight: 400;
     color: #9092A7;
     line-height: 22px;
+  }
+
+  a {
+    display: inline-block;
+    min-width: 210px;
+    font-size: 14px;
+    font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
+    font-weight: bold;
+    line-height: 14px;
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footerWrapper {
+    padding:22px 22px 32px;
+    
+    img {
+      max-height: 26px;
+    }
+  
+    p {
+      font-size: 0.625rem;
+      line-height: 12px;
+      height: auto;
+      margin: 18px 0 14px;
+    }
+
+    a {
+      min-width: 72px;
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0 12px;
+    }
   }
 }

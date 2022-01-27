@@ -30,6 +30,7 @@
   border-radius: 4px !important;
   height: 37px;
   @include solidBtn;
+  font-weight: 400 !important;
 }
 .logout-btn{
   // width: 102px;
@@ -38,4 +39,89 @@
   color: #fff!important;
   letter-spacing: 1px;
   @include hollowBtn;
+  font-weight: 400 !important;
+}
+
+@media screen and (max-width: 750px) {
+  // .ant-layout-header {
+  //   height: auto;
+  //   line-height: auto;
+  // }
+  .hover-nav {
+    height: 30px;
+    font-size: 16px;
+    font-family: GoodTimesW00-Bold, GoodTimesW00;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 30px;
+    border: none;
+    padding: 0;
+
+    &:hover {
+      border: none;
+      border-image-slice: 0;
+    }
+    &.active {
+      border: none;
+      border-image-slice: 0;
+    }
+  }
+  .logoTitle {
+    img {height: 20px;}
+  }
+  .login-btn {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 43px;
+  }
+  .logout-btn{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 43px;
+  }
+
+  .navCollapse {
+    border: none;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+    .ant-collapse-content {
+      .ant-collapse-content-box {
+        padding: 70px 0 70px 31px;
+      }
+    }
+}
+  .mobileLoginSection {
+    width: 100%;
+    max-width: 316px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .ant-row {
+      flex-flow: column nowrap;
+    }
+    .mobileBalance {
+      height: 24px;
+      font-size: 24px;
+      font-family: TeXGyreAdventor-Regular, TeXGyreAdventor;
+      font-weight: 400;
+      color: #00fdff;
+      line-height: 24px;
+      margin-bottom: 10px;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .mobileNav {
+    .ant-space-item {
+      padding-bottom: 15px;
+      margin-bottom: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.19);
+      width: 100%;
+    }
+  }
 }

@@ -24,10 +24,19 @@ import { archivedProjectIds } from 'constants/archived-projects'
 import Loading from '../shared/Loading'
 // import Project from './Project'
 import { useProjectsQuery } from '../../hooks/Projects'
+import ProjectsDetailMobile from '../ProjectsDetailMobile'
+
 import ProjectsDetail from '../ProjectsDetail'
 
 export default function Dashboard() {
   const [projectExists, setProjectExists] = useState<boolean>()
+
+  function isMobile() {
+    const userAgent = navigator.userAgent
+    return userAgent.match(
+      /(iPhone|iPod|Android|ios|iPad|AppleWebKit.*Mobile.*)/i,
+    )
+  }
 
   const converter = useCurrencyConverter()
 
@@ -344,7 +353,9 @@ export default function Dashboard() {
 
   return (
     <ProjectContext.Provider value={project}>
-      <ProjectsDetail />
+      {/*<ProjectsDetailMobile />*/}
+      {isMobile() ? <ProjectsDetailMobile /> : <ProjectsDetail />}
+
       {/*<div style={layouts.maxWidth}>*/}
       {/*  <Project />*/}
       {/*  <div*/}

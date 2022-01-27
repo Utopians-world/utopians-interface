@@ -4,6 +4,8 @@ import React, { useContext } from 'react'
 
 import { parseEther } from '@ethersproject/units'
 
+import { constants } from 'ethers'
+
 import { FundingCycle } from '../../models/funding-cycle'
 
 import { ProjectContext } from '../../contexts/projectContext'
@@ -56,21 +58,37 @@ export default function FundingCycleInfo({
         </Col>
       </Row>
       <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
+        <Col span={10}>Duration:</Col>
+        {fundingCycle.duration.toNumber() !== 0 ? (
+          <Col span={14}>{fundingCycle.duration.toNumber()} days</Col>
+        ) : (
+          <Col span={14}>No Set</Col>
+        )}
+      </Row>
+      <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
         <Col span={10}>Target:</Col>
-        {fundingCycle.target ? (
+        {constants.MaxUint256.toHexString() !==
+        fundingCycle.target.toHexString() ? (
           <Col span={14}>{formatWad(fundingCycle.target, { decimals: 2 })}</Col>
         ) : (
           <Col span={14}>No target</Col>
         )}
       </Row>
-      <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
-        <Col span={10}>Start:</Col>
-        <Col span={14}>{formattedStartTime}</Col>
-      </Row>
-      <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
-        <Col span={10}>End:</Col>
-        <Col span={14}>{formattedEndTime}</Col>
-      </Row>
+      {fundingCycle.duration.toNumber() !== 0 ? (
+        <div>
+          <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
+            <Col span={10}>Start:</Col>
+            <Col span={14}>{formattedStartTime}</Col>
+          </Row>
+          <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
+            <Col span={10}>End:</Col>
+            <Col span={14}>{formattedEndTime}</Col>
+          </Row>
+        </div>
+      ) : (
+        ' '
+      )}
+
       <Row style={{ padding: '10px', borderTop: '1px dashed #665FAC' }}>
         <Col span={10} style={{ height: '25px' }}>
           <TooltipLabel

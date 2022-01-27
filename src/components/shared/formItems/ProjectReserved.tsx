@@ -20,7 +20,7 @@ export default function ProjectReserved({
       extra={
         <div className="stepExtraCon">
           <InfoCircleFilled
-            style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
+          // style={{ color: '#000', fontSize: '20px', marginRight: '10px' }}
           />
           Whenever someone pays your project, this percentage of tokens will be
           reserved and the rest will go to the payer. Reserve tokens are

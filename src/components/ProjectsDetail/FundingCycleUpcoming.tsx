@@ -78,6 +78,7 @@ export default function FundingCycleUpcoming({
                           fontSize: '18px',
                           color: '#2713E1',
                           lineHeight: '50px',
+                          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                         }}
                       >
                         Cycle #{queuedFC.number.toString()}
@@ -89,7 +90,14 @@ export default function FundingCycleUpcoming({
                       <div style={{ paddingTop: '5px' }}>
                         <Shape />
                       </div>
-                      <div>WAITING</div>
+                      <div
+                        style={{
+                          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        WAITING
+                      </div>
                     </Space>
                     <Progress percent={0} showInfo={false} />
                   </Col>

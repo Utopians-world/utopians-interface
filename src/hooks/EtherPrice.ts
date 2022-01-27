@@ -9,11 +9,16 @@ export function useEtherPrice() {
   const [price, setPrice] = useState<number>()
 
   useContractReader({
-    contract: ContractName.Prices,
-    functionName: 'getETHPriceFor',
-    args: ['1'], // USD
+    contract: ContractName.MetisPrice,
+    functionName: 'getValue',
+    args: ['Metis/USD'], // USD
     callback: useCallback(
-      (val?: BigNumber) => setPrice(parseFloat(fromWad(val))),
+      (val?: BigNumber[]) => {
+        if (!val) return 0
+        console.log('number ' + BigNumber.from(val[0]))
+        console.log(val)
+        setPrice(parseFloat(fromWad(val[0])))
+      },
       [setPrice],
     ),
   })

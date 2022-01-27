@@ -82,8 +82,13 @@ export default function RulesForm({
     </div>
   )
 
+  const SpaceSizeMobile = window.innerWidth > 500 ? 'large' : 0
   return (
-    <Space direction="vertical" size="large">
+    <Space
+      direction="vertical"
+      size={SpaceSizeMobile}
+      style={{ width: '100%' }}
+    >
       <div className="stepTopCon">
         <h1>Reconfiguration</h1>
         <h2>
@@ -92,7 +97,7 @@ export default function RulesForm({
         <Divider className="stepTopConDivider" />
       </div>
 
-      <Space direction="vertical">
+      <div className="stepRulesSection">
         {ballotStrategies.map((s, i) =>
           buildOption(
             s.name,
@@ -133,8 +138,8 @@ export default function RulesForm({
           </div>,
           ballotStrategies.length,
         )} */}
-      </Space>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      </div>
+      <div className="stepSaveDeployBtnsCon">
         {onDeployBtn && (
           <Button
             htmlType="submit"

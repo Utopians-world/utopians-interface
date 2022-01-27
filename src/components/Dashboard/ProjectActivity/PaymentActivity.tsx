@@ -113,12 +113,13 @@ export function PaymentActivity({ pageSize }: { pageSize: number }) {
                   <div
                     style={{
                       lineHeight: contentLineHeight,
-                      fontSize: '1rem',
+                      fontSize: '22px',
                       fontWeight: 'bold',
                       color: '#5F5E61',
+                      fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                     }}
                   >
-                    <MetisLogo size={12} />
+                    <MetisLogo size={18} />
                     {formatWad(e.amount, { decimals: 4 })}
                   </div>
                 </div>

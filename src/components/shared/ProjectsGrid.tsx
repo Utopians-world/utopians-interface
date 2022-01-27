@@ -55,7 +55,7 @@ export default function ProjectsGrid({
       )}
     </Space>
   ) : (
-    <div style={{ maxWidth: '980px', width: '100%', margin: '46px auto 0' }}>
+    <div className="projectGridCon">
       {projects?.map(
         (project, i) =>
           i % 2 === 0 && (

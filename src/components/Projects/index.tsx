@@ -11,6 +11,7 @@ import { createGlobalStyle } from 'styled-components'
 
 // import { layouts } from 'constants/styles/layouts'
 import BodyBg from 'assets/images/home-pic.png'
+import BodyMobileBg from 'assets/images/home-pic-mobile.png'
 import './index.scss'
 
 type OrderByOption = 'createdAt' | 'totalPaid'
@@ -33,6 +34,10 @@ export default function Projects() {
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;
+      
+      @media screen and (max-width: 750px) {
+        background-image: url(${BodyMobileBg});
+      }
     }
   `
 
@@ -79,12 +84,13 @@ export default function Projects() {
         textTransform: 'uppercase',
         cursor: 'pointer',
         borderBottom: '5px solid transparent',
+        fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
         ...(tab === selectedTab
           ? {
               color: '#303030',
               borderImageSource:
                 'linear-gradient(90deg, #06E6DA 0%, #3297DA 30%, #B5A8EE 62%, #FFFFFF 100%)',
-              borderImageSlice: 1,
+              borderImageSlice: '0 0 1 0',
             }
           : {
               color: '#5F5E61',
@@ -106,7 +112,7 @@ export default function Projects() {
           style={{ maxWidth: '1100px', margin: '0 auto', textAlign: 'center' }}
         >
           <h1 className="firstTitle">PROJECT ON UTOPIANS</h1>
-          <p style={{ maxWidth: 900 }} className="firstDes">
+          <p className="firstDes">
             The Utopians protocol is open to anyone, and project configurations
             can vary widely. There are risks associated with interacting with
             all projects on the protocol. Projects built on the protocol are not
@@ -123,22 +129,42 @@ export default function Projects() {
       <div style={{ width: '100%', backgroundColor: '#F6F8FF' }}>
         <div className="secondWrapper" style={{ paddingBottom: '33px' }}>
           <div className="secondSelectCon">
-            <div style={{ borderBottom: '3px solid #DFE7FF' }}>
+            <div className="secondSelectConBorder">
               <Space direction="horizontal" size={37}>
                 {tab('active')}
                 {tab('archived')}
               </Space>
             </div>
 
-            <div>
+            {selectedTab === 'archived' && window.innerWidth <= 750 && (
+              <p className="archivedNote">
+                <InfoCircleFilled className="archivedNoteIcon" />
+                <span>
+                  Archived projects have not been modified or deleted on the
+                  blockchain, and can still be interacted with directly through
+                  the Utopians contracts.{' '}
+                  <Tooltip title="If you have a project you'd like to archive, let the Utopians team know in Telegram.">
+                    <span
+                      style={{
+                        color: colors.text.action.primary,
+                        fontWeight: 500,
+                        cursor: 'default',
+                      }}
+                    >
+                      How do I archive a project?
+                    </span>
+                  </Tooltip>
+                </span>
+              </p>
+            )}
+
+            <div className="secondSelectRightCon">
               <Space direction="horizontal">
                 <Select
+                  className="secondSelectRightConSelect"
                   value={orderBy}
                   onChange={setOrderBy}
                   bordered
-                  style={{
-                    width: 211,
-                  }}
                   suffixIcon={
                     <CaretDownOutlined style={{ color: '#2713E1' }} />
                   }
@@ -150,15 +176,9 @@ export default function Projects() {
             </div>
           </div>
 
-          {selectedTab === 'archived' && (
+          {selectedTab === 'archived' && window.innerWidth > 750 && (
             <p className="archivedNote">
-              <InfoCircleFilled
-                style={{
-                  color: 'rgba(1, 1, 1, 0.64)',
-                  fontSize: '27px',
-                  marginRight: '32px',
-                }}
-              />
+              <InfoCircleFilled className="archivedNoteIcon" />
               <span>
                 Archived projects have not been modified or deleted on the
                 blockchain, and can still be interacted with directly through

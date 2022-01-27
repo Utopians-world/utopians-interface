@@ -28,7 +28,7 @@ export type EditingProjectState = {
 }
 
 const defaultDiscountRate = parsePermille(0)
-const defaultBondingCurveRate = parsePerbicent(100)
+const defaultBondingCurveRate = parsePerbicent(80)
 
 export const defaultProjectState: EditingProjectState = {
   info: {

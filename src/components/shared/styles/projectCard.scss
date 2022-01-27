@@ -1,11 +1,19 @@
 @import '../../../styles/common.scss';
 
+.proCardWrapper {
+    background: linear-gradient(180deg, rgba(127, 251, 206, 1), rgba(161, 125, 255, 0.78), rgba(103, 44, 255, 1));
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px 1px rgba(144, 199, 202, 0.5);
+}
+
 .proCardCon {
-    max-width: 463px;
-    border: 2px solid;
-    border-image: linear-gradient(180deg, rgba(127, 251, 206, 1), rgba(161, 125, 255, 0.78), rgba(103, 44, 255, 1)) 2 2;
+    max-width: 476px;
+    border-radius: 4px;
+    // border: 2px solid;
+    // border-image: linear-gradient(180deg, rgba(127, 251, 206, 1), rgba(161, 125, 255, 0.78), rgba(103, 44, 255, 1)) 2 2;
     transition: border-color 120ms ease-out;
-    clip-path: inset(0 round 6px);
+    // clip-path: inset(0 round 6px);
     padding: 31px 29px 43px 19px;
     background: #ffffff;
     cursor: pointer;
@@ -14,7 +22,6 @@
     &.homeProCardCon {
         max-width: 514px;
         opacity: 0.99;
-        box-shadow: 0px 2px 4px 1px rgba(144, 199, 202, 0.5);
         .proCardConLeft {
             width: 175px;
             height: 189px;
@@ -32,9 +39,7 @@
             }
 
             .proCardConRightCon {
-
                 .proCardConRightConTop {
-
                     .volume {
                         font-size: 21px;
                         line-height: 24px;
@@ -160,4 +165,140 @@
         }
     }
   }
+}
+
+@media screen and (max-width: 750px) {
+    .proCardWrapper {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    .proCardCon {
+        max-width: 100%;
+        &.homeProCardCon {
+            max-width: 100%;
+            .proCardConLeft {
+                width: 175px;
+                height: 189px;
+            }
+        }
+
+        .proCardConLeft {
+            width: 157px;
+            height: 169px;
+            margin-right: 24px;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .proCardCon {
+        max-width: 100%;
+        padding: 18px 17px 16px 7px;
+        &.homeProCardCon {
+            max-width: 100%;
+            .proCardConLeft {
+                width: 102px;
+                height: 107px;
+            }
+
+            .proCardConRight {
+                height: 108px;
+                flex: 1;
+                
+                .title {
+                    max-height: 29px;
+                    font-size: 0.75rem;
+                    line-height: 14px;
+                }
+                .subTitle {
+                    max-height: 27px;
+                    font-size: 0.625rem;
+                    line-height: 10px;
+                }
+                .archivedTip {
+                    width: 52px;
+                    height: 16px;
+                    font-size: 0.625rem;
+                    line-height: 16px;
+                }
+                .proCardConRightCon {
+                    .proCardConRightConTop {
+                        .volume {
+                            font-size: 0.725rem;
+                            line-height: 12px;
+                        }
+                        .price {
+                            font-size: 1.125rem;
+                            line-height: 1;
+                        }
+                    }
+    
+                    .proCardConRightConBottom {
+                        span{
+                            width: 48px;
+                            font-size: 0.625rem;
+                            line-height: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .proCardConLeft {
+            width: 102px;
+            height: 107px;
+            margin-right: 7px;
+            img {
+                max-width: 100%;
+                width: 102px !important;
+                max-height: 100%;
+            }
+        }
+        .proCardConRight {
+            height: 108px;
+            flex: 1;
+            
+            .title {
+                max-height: 29px;
+                font-size: 0.75rem;
+                line-height: 14px;
+            }
+            .subTitle {
+                max-height: 27px;
+                font-size: 0.625rem;
+                line-height: 10px;
+            }
+            .archivedTip {
+                width: 52px;
+                height: 16px;
+                font-size: 0.625rem;
+                line-height: 16px;
+            }
+            .proCardConRightCon {
+                .proCardConRightConTop {
+                    .volume {
+                        font-size: 0.725rem;
+                        line-height: 12px;
+                    }
+                    .price {
+                        font-size: 1.125rem;
+                        line-height: 1;
+                    }
+                }
+
+                .proCardConRightConBottom {
+                    span{
+                        width: 48px;
+                        font-size: 0.625rem;
+                        line-height: 14px;
+                    }
+                }
+            }
+        }
+    }
 }

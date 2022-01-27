@@ -1,5 +1,5 @@
 export default function DetailEdit({ size }: { size?: number }) {
-  const height = 15
+  const height = size ? size : 15
   const widthToHeight = 1
 
   return (

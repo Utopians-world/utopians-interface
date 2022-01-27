@@ -23,6 +23,10 @@
   .titleLine {
     @include titleLine
   }
+  .faqSection {
+    width: 100%;
+    margin: 72px 0 0 0;
+  }
   .ant-collapse{
     border:none;
   }
@@ -63,5 +67,43 @@
     color: #9092A7;
     margin: 0 auto;
     line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .faqWrapper {
+    padding: 43px 0;
+    .faqTitle {
+      font-size: 0.85rem;
+      color: #241515;
+      margin-bottom: 0;
+      @include bigTitle;
+      line-height: 17px;
+    }
+    .faqSection {
+      margin: 36px 0 0 0;
+    }
+    .ant-collapse .ant-collapse-item .ant-collapse-header{
+      font-size: 0.85rem;
+      line-height: 32px;
+    }
+    .ant-collapse-content > .ant-collapse-content-box p{
+      font-size: 0.75rem;
+      color: #605F62;
+      line-height: 17px;
+    }
+  }
+  .faqStillCon{
+    padding: 34px 0 47px;
+    h2 {
+      font-size: 1rem;
+      line-height: 25px;
+    }
+    p{
+      font-size: 0.75rem;
+      padding: 0 18px;
+      margin: 10px auto 0;
+      line-height: 14px;
+    }
   }
 }

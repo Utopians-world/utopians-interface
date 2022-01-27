@@ -40,7 +40,7 @@ function App() {
         }}
       >
         <Navbar />
-        <Content style={{ minHeight: 'auto' }}>
+        <Content className="appContent">
           <Router />
         </Content>
         <Footer />
@@ -64,12 +64,20 @@ function App() {
           }}
         >
           <Space direction="vertical" align="center">
-            <h2 style={{ textAlign: 'center' }}>
+            <h2
+              style={{
+                textAlign: 'center',
+                fontSize: 18,
+                fontFamily: 'TeXGyreAdventor-Bold',
+                color: '#1c1c20',
+                lineHeight: '16px',
+              }}
+            >
               Please connect to the {networkName}（Metis) network
             </h2>
 
             <Button
-              className="login-btn"
+              className="stepSaveBtn"
               style={{
                 width: '260px',
                 height: '52px',
