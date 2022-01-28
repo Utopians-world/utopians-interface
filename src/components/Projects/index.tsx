@@ -39,6 +39,10 @@ export default function Projects() {
         background-image: url(${BodyMobileBg});
       }
     }
+    
+    .appContent {
+      background: transparent !important;
+    }
   `
 
   const {
