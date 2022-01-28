@@ -51,6 +51,10 @@ export default function Home() {
         background-image: url(${BodyMobileBg});
       }
     }
+    
+    .appContent {
+      background: transparent !important;
+    }
   `
 
   const bigHeader = (text: string) => (
