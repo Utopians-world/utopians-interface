@@ -22,7 +22,7 @@ const QAs: {
   {
     q: `What is the cost of Utopians ?`,
     a: [
-      `Utopians currently takes a 5% cut of every project withdrawal for development  of Utopia projects.  You will get Utopia tokens ($UTP) in return. As the ecosystem continues to grow, the value of Utopia tokens may continue to appreciate and benefit all holders.`,
+      `Utopians currently takes a 5% cut of every project withdrawal for development  of Utopia projects.  You will get Utopia tokens ($UTO) in return. As the ecosystem continues to grow, the value of Utopia tokens may continue to appreciate and benefit all holders.`,
       `Utopia is an open protocol on Metis Andromeda, you can check out the fund details at https://utopians.world/#/p/utopians. `,
     ],
   },

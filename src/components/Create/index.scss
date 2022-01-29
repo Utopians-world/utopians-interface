@@ -472,6 +472,8 @@
             font-weight: 600;
             color: #5F5E61;
             line-height: 18px;
+            display: flex;
+            align-items: center;
             cursor: pointer;
             @media screen and (max-width: 500px) {
                 font-size: 0.625rem;
@@ -609,6 +611,9 @@
             font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
             font-weight: bold;
             line-height: 18px;
+        }
+        &Address {
+            font-size: 0.7rem;
         }
 
         .ant-input {
@@ -1266,7 +1271,7 @@
 
         &Txt {
             max-width: 100%;
-            font-size: 0.625rem;
+            font-size: 0.5rem;
             line-height: 10px;
             h3 {
                 font-size: 0.75rem;
@@ -1274,6 +1279,10 @@
             }
             p {
                 word-break: break-all;
+            }
+            
+            &Address {
+                font-size: 0.5rem;
             }
         }
         &:last-child {
