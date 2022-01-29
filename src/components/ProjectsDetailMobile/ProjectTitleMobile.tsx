@@ -14,6 +14,7 @@ import DetailToolsModal from '../modals/DetailToolsModal'
 import DetailSettingpopupMobileModal from '../MobileModel/DetailSettingpopupMobileModal'
 import DetailEditShowMobile from './DetailEditShowMobile'
 import ProjectLogo from '../shared/ProjectLogo'
+import ProjectLogoMobile from './ProjectLogoMobile'
 
 export default function ProjectTitleMobile() {
   const [DetailSettingModalVisible, setDetailSettingModalVisible] =
@@ -106,6 +107,9 @@ export default function ProjectTitleMobile() {
   if (!projectId) return null
   return (
     <div>
+      <div className="indexBackgroundMobile">
+        <ProjectLogoMobile uri={metadata?.logoUri} name={ProjectName} />
+      </div>
       {!isPreviewMode && (
         <div style={{ height: '25px' }}>
           <Space

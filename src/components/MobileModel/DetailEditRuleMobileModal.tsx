@@ -113,7 +113,7 @@ export default function DetailEditRuleMobileModal({
   const SecondDivStyle: CSSProperties = {
     width: '15%',
     textAlign: 'center',
-    lineHeight: '190px',
+    lineHeight: '210px',
   }
   // console.log(fundingCycle)
 
@@ -139,7 +139,7 @@ export default function DetailEditRuleMobileModal({
       <Space
         direction="vertical"
         size="large"
-        style={{ gap: '20px!important' }}
+        style={{ gap: '20px!important', width: '100%' }}
       >
         <ModalTab
           textFirst={'Changes will be applied to the'}
@@ -149,7 +149,7 @@ export default function DetailEditRuleMobileModal({
         <div
           style={{
             ...(selectedIndex === 0 ? { border: '2px solid #3A1FF5' } : {}),
-            height: '190px',
+            minHeight: '210px',
           }}
           onClick={() => setSelectedIndex(0)}
           key={0}
@@ -193,7 +193,7 @@ export default function DetailEditRuleMobileModal({
                   height: '20px',
                   borderRadius: '10px',
                   border: '2px solid #D3DCEE',
-                  margin: '82px auto',
+                  margin: '93px auto',
                 }}
               >
                 {' '}
@@ -204,7 +204,7 @@ export default function DetailEditRuleMobileModal({
         <div
           style={{
             ...(selectedIndex === 1 ? { border: '2px solid #3A1FF5' } : {}),
-            height: '190px',
+            height: '210px',
           }}
           onClick={() => setSelectedIndex(1)}
           key={1}
@@ -226,7 +226,7 @@ export default function DetailEditRuleMobileModal({
             </p>
             <div
               style={{
-                marginTop: '25px',
+                marginTop: '45px',
                 color: '#9092A7',
                 fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                 fontWeight: 'bold',
@@ -247,7 +247,7 @@ export default function DetailEditRuleMobileModal({
                   height: '20px',
                   borderRadius: '10px',
                   border: '2px solid #D3DCEE',
-                  margin: '82px auto',
+                  margin: '93px auto',
                 }}
               >
                 {' '}
@@ -257,7 +257,7 @@ export default function DetailEditRuleMobileModal({
         </div>
         <div
           style={{
-            height: '190px',
+            height: '210px',
             ...(selectedIndex === 2 ? { border: '2px solid #3A1FF5' } : {}),
           }}
           onClick={() => setSelectedIndex(2)}
@@ -280,7 +280,7 @@ export default function DetailEditRuleMobileModal({
             </p>
             <div
               style={{
-                marginTop: '25px',
+                marginTop: '45px',
                 color: '#9092A7',
                 fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
                 fontWeight: 'bold',
@@ -301,7 +301,7 @@ export default function DetailEditRuleMobileModal({
                   height: '20px',
                   borderRadius: '10px',
                   border: '2px solid #D3DCEE',
-                  margin: '82px auto',
+                  margin: '93px auto',
                 }}
               >
                 {' '}

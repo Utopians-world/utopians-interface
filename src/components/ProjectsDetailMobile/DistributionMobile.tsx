@@ -331,7 +331,7 @@ export default function DistributionMobile({
           {ownerPercent > 0 && (
             <div
               style={{
-                padding: '0 20px',
+                padding: '0 5px',
                 height: '30px',
                 lineHeight: '30px',
                 ...(currentPayoutMods?.length &&

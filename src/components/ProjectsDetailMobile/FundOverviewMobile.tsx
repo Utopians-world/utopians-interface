@@ -259,7 +259,16 @@ export default function FundOverviewMobile({
               </h2>
             </div>
           </div>
-          <div style={{ paddingLeft: '15px', marginTop: '22px' }}>
+          <div style={{ paddingLeft: '20px' }}>
+            <div
+              style={{
+                color: '#3A1FF5',
+                cursor: 'pointer',
+              }}
+              onClick={() => setBalancesModalVisible(true)}
+            >
+              All Asset &gt;
+            </div>
             <div
               style={{
                 color: '#717171',
@@ -274,6 +283,7 @@ export default function FundOverviewMobile({
                   fontSize: '14px',
                   fontFamily: 'GoodTimesRg-Regular, GoodTimesW00',
                   marginRight: '5px',
+                  paddingTop: '3px',
                 }}
               >
                 +
@@ -291,17 +301,6 @@ export default function FundOverviewMobile({
                 hideHandle
               />
             </div>
-          </div>
-          <div
-            style={{
-              color: '#3A1FF5',
-              cursor: 'pointer',
-              marginTop: '28px',
-              marginLeft: '10px',
-            }}
-            onClick={() => setBalancesModalVisible(true)}
-          >
-            All Asset &gt;
           </div>
         </div>
 

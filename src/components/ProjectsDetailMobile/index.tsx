@@ -13,7 +13,6 @@ import { useForm } from 'antd/lib/form/Form'
 
 import '../../styles/overrides/modal.scss'
 import { ProjectContext } from '../../contexts/projectContext'
-import BalanceTimeline from '../Dashboard/BalanceTimeline'
 import { PayoutMod, TicketMod } from '../../models/mods'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import { editingProjectActions } from '../../redux/slices/editingProject'
@@ -32,6 +31,7 @@ import ReservedMobile from './ReservedMobile'
 import YourBalanceMobile from './YourBalanceMobile'
 import ActivityMobile from './ActivityMobile'
 import FundUsMobile from './FundUsMobile'
+import BalanceTimelineMobile from './BalanceTimelineMobile'
 
 export default function ProjectsDetailMobile() {
   const MainLayout: CSSProperties = {
@@ -111,7 +111,7 @@ export default function ProjectsDetailMobile() {
           ticketMods={editingTicketMods}
         />
         <div style={{ marginTop: '20px' }} className="chartsStyle">
-          <BalanceTimeline height={240} />
+          <BalanceTimelineMobile height={240} />
         </div>
         <UTOTokenMobile
           payoutMods={editingPayoutMods}
@@ -130,7 +130,6 @@ export default function ProjectsDetailMobile() {
         <YourBalanceMobile />
         <ActivityMobile />
       </Col>
-      <div className="indexBackgroundMobile"> </div>
     </Row>
   )
 }

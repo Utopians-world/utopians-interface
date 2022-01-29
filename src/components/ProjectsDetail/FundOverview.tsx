@@ -39,8 +39,6 @@ export default function FundOverview({
   const { data: ownerBalance } = useEthBalanceQuery(owner)
 
   if (!currentFC) return null
-  console.log('111')
-  console.log(currentFC.currency)
   const formatCurrencyAmount = (amt: BigNumber | undefined) =>
     amt ? (
       <>
