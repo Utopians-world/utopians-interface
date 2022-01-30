@@ -41,6 +41,12 @@
   @include hollowBtn;
   font-weight: 400 !important;
 }
+.mobileBalance {
+  img {
+    width: 14px;
+    height: 14px;
+  }
+}
 
 @media screen and (max-width: 750px) {
   // .ant-layout-header {

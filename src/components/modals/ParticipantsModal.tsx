@@ -118,7 +118,7 @@ export default function ParticipantsModal({
     let pageNumber = 0
 
     const rows = [
-      ['Wallet', 'Token balance', 'Total ETH paid', 'Last paid timestamp'], // CSV header row
+      ['Wallet', 'Token balance', 'Total METIS paid', 'Last paid timestamp'], // CSV header row
     ]
 
     function query() {

@@ -161,7 +161,10 @@ export default function ProjectPayoutMods({
                 </div>
               </Col>
               <Col flex="auto">
-                <div className="stepPayoutListConItem">
+                <div
+                  className="stepPayoutListConItem"
+                  style={{ paddingLeft: '20px' }}
+                >
                   {mod.projectId?.gt(0) ? (
                     <div>
                       <small className="stepPayoutListConItemTitle">

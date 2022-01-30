@@ -146,10 +146,10 @@ export default function FundingCycleInfo({
                   fontSize: '15px',
                 }}
               >
-                <span>Tokens/ETH:</span>
+                <span>Tokens/METIS:</span>
               </div>
             }
-            tip="Tokens received per ETH paid to the treasury. This will change according to the
+            tip="Tokens received per METIS paid to the treasury. This will change according to the
                  project's discount rate over time, as well as its reserved tokens amount."
           />
         </Col>

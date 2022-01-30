@@ -37,13 +37,12 @@
     .indexBackgroundMobile {
         position: absolute;
         width: 100%;
-        height: 300px;
+        height: 150px;
         z-index: 0;
-        top: 20px;
-        background-image: url('../../assets/images/bg_mobile.png');
-        background-repeat: no-repeat;
+        top: 0;
         left: 0;
-        background-size: 100%;
+        filter: blur(5px);
+        transform: scale(1.1);
     }
 
     .ant-modal-header {
@@ -142,9 +141,6 @@
     }
     .ant-space {
         gap: 10px!important;
-    }
-    .ant-modal-footer{
-        height: 80px!important;
     }
     .ant-modal-footer{
         .ant-btn {
@@ -508,6 +504,8 @@
     border-left: none;
     line-height: 28px;
     height: 30px;
+    width: 90px;
+    text-align: center;
 }
 .chartsStyle{
     .ant-space-align-center{

@@ -1,6 +1,5 @@
-import { InfoCircleOutlined } from '@ant-design/icons'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Button, Form, Input, Modal, Space, Tooltip } from 'antd'
+import { Button, Form, Input, Modal, Space } from 'antd'
 import { useForm } from 'antd/lib/form/Form'
 import { UserContext } from 'contexts/userContext'
 import { useContext, useState } from 'react'
@@ -37,7 +36,14 @@ export default function IssueTicketsMobile({
   }
 
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div
+      style={{
+        marginTop: '-5px',
+        textAlign: 'right',
+        width: '51%',
+        marginRight: '10px',
+      }}
+    >
       <Space align="end">
         <Button
           className={'button-spec-mobile'}
@@ -47,13 +53,6 @@ export default function IssueTicketsMobile({
         >
           Issue ERC-20 token
         </Button>
-        <Tooltip
-          title="Issue an ERC-20 to be used as this project's token. Once
-          issued, current staked token holders will be able to claim their
-          balance in the new token."
-        >
-          <InfoCircleOutlined style={{ color: undefined }} />
-        </Tooltip>
       </Space>
       <Modal
         visible={modalVisible}

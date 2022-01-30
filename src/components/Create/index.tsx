@@ -264,7 +264,10 @@ export default function Create() {
         })),
       ],
       {
-        onDone: () => setLoadingCreate(false),
+        onDone: () => {
+          setDirty(false)
+          setLoadingCreate(false)
+        },
         onConfirmed: () => {
           setDeployProjectModalVisible(false)
 
@@ -440,6 +443,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -492,6 +496,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -543,6 +548,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -592,6 +598,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -660,6 +667,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -790,6 +798,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -849,6 +858,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -911,6 +921,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -969,6 +980,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }
@@ -1047,6 +1059,7 @@ export default function Create() {
                         !editingProjectInfo.handle
                       ) {
                         disableInfo()
+                        settabKey('1')
                       } else {
                         setDeployProjectModalVisible(true)
                       }

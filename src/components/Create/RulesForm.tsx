@@ -63,6 +63,7 @@ export default function RulesForm({
       <div
         style={{
           minWidth: 20,
+          marginLeft: 4,
         }}
       >
         {index === selectedIndex ? (
@@ -103,7 +104,10 @@ export default function RulesForm({
             s.name,
             <div>
               <p>{s.description}</p>
-              <p style={{ fontSize: '0.7rem', color: colors.text.tertiary }}>
+              <p
+                className="stepRulesTxtAddress"
+                style={{ color: colors.text.tertiary }}
+              >
                 Contract address: {s.address}
               </p>
             </div>,

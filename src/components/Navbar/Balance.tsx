@@ -4,7 +4,7 @@ import { useEthBalanceQuery } from 'hooks/EthBalance'
 import { useContext } from 'react'
 import { formatWad } from 'utils/formatNumber'
 
-import MetisPrice from '../../assets/images/metis-price.png'
+import MetisPrice from '../../assets/images/metis-price.svg'
 
 // import CurrencySymbol from '../shared/CurrencySymbol'
 

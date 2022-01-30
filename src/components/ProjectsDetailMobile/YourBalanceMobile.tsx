@@ -149,20 +149,32 @@ export default function YourBalanceMobile() {
         marginTop: '20px',
       }}
     >
-      <h3
+      <div
         style={{
+          display: 'flex',
+          justifyContent: 'left',
           borderBottom: '1px dashed #665FAC',
           paddingBottom: 5,
-          display: 'inline-block',
-          fontSize: '16px',
-          fontWeight: 'bold',
-          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-          color: '#1D1D1D',
-          marginBottom: 0,
         }}
       >
-        Your Balance
-      </h3>
+        <h3
+          style={{
+            display: 'inline-block',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+            color: '#1D1D1D',
+            marginBottom: 0,
+            width: '40%',
+          }}
+        >
+          Your Balance
+        </h3>
+        {!ticketsIssued && hasIssueTicketsPermission && (
+          <IssueTicketsMobile projectId={projectId} />
+        )}
+      </div>
+
       <div
         style={{
           display: 'flex',
@@ -203,9 +215,6 @@ export default function YourBalanceMobile() {
           </div>
         </div>
       </div>
-      {!ticketsIssued && hasIssueTicketsPermission && (
-        <IssueTicketsMobile projectId={projectId} />
-      )}
 
       <Modal
         title={`Manage ${tokenSymbol ? tokenSymbol + ' ' : ''}tokens`}

@@ -19,7 +19,7 @@ import { useErc20Contract } from '../../hooks/Erc20Contract'
 import { decodeFCMetadata } from '../../utils/fundingCycle'
 import { formatWad, formatPercent } from '../../utils/formatNumber'
 
-import IssueTickets from '../Dashboard/IssueTickets'
+import IssueTicketsMobile from '../ProjectsDetailMobile/IssueTicketsMobile'
 
 export default function YourBalance() {
   const [manageTokensModalVisible, setManageTokensModalVisible] =
@@ -149,20 +149,31 @@ export default function YourBalance() {
         marginTop: '20px',
       }}
     >
-      <h3
+      <div
         style={{
+          display: 'flex',
+          justifyContent: 'left',
           borderBottom: '1px dashed #665FAC',
           paddingBottom: 5,
-          display: 'inline-block',
-          fontSize: '22px',
-          fontWeight: 'bold',
-          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-          color: '#1D1D1D',
-          marginBottom: 0,
         }}
       >
-        Your Balance
-      </h3>
+        <h3
+          style={{
+            display: 'inline-block',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+            color: '#1D1D1D',
+            marginBottom: 0,
+            width: '52%',
+          }}
+        >
+          Your Balance
+        </h3>
+        {!ticketsIssued && hasIssueTicketsPermission && (
+          <IssueTicketsMobile projectId={projectId} />
+        )}
+      </div>
       <div
         style={{
           display: 'flex',
@@ -203,9 +214,6 @@ export default function YourBalance() {
           </div>
         </div>
       </div>
-      {!ticketsIssued && hasIssueTicketsPermission && (
-        <IssueTickets projectId={projectId} />
-      )}
 
       <Modal
         title={`Manage ${tokenSymbol ? tokenSymbol + ' ' : ''}tokens`}
