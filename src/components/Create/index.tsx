@@ -265,7 +265,6 @@ export default function Create() {
       ],
       {
         onDone: () => {
-          setDirty(false)
           setLoadingCreate(false)
         },
         onConfirmed: () => {
@@ -391,6 +390,7 @@ export default function Create() {
                       ) {
                         disableInfo()
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -445,6 +445,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -498,6 +499,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -550,6 +552,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -600,6 +603,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -669,6 +673,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -737,6 +742,7 @@ export default function Create() {
                       ) {
                         disableInfo()
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -800,6 +806,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -860,6 +867,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -923,6 +931,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -982,6 +991,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -1061,6 +1071,7 @@ export default function Create() {
                         disableInfo()
                         settabKey('1')
                       } else {
+                        setDirty(false)
                         setDeployProjectModalVisible(true)
                       }
                     }}
@@ -1088,7 +1099,10 @@ export default function Create() {
           }
           onOk={deployProject}
           confirmLoading={loadingCreate}
-          onCancel={() => setDeployProjectModalVisible(false)}
+          onCancel={() => {
+            if (!dirty) setDirty(true)
+            setDeployProjectModalVisible(false)
+          }}
         >
           <ConfirmDeployProject />
         </Modal>
