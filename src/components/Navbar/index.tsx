@@ -1,11 +1,9 @@
-import { Collapse, Space } from 'antd'
+import { Space, Drawer } from 'antd' //Collapse
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
-import CollapsePanel from 'antd/lib/collapse/CollapsePanel'
 import { Header } from 'antd/lib/layout/layout'
 
 import { ThemeContext } from 'contexts/themeContext'
 import { useContext, useEffect, useState } from 'react'
-// import { useLocation } from 'react-router-dom'
 
 import { ThemeOption } from 'constants/theme/theme-option'
 
@@ -13,8 +11,14 @@ import Account from './Account'
 // import ThemePicker from './ThemePicker' hide 2021-12-21 明暗风格切换
 
 export default function Navbar() {
-  const [activeKey, setActiveKey] = useState<0 | undefined>()
   const [isActive, setIsActive] = useState('Home')
+  const [visible, setVisible] = useState(false)
+  const showDrawer = () => {
+    setVisible(true)
+  }
+  const onClose = () => {
+    setVisible(false)
+  }
 
   const { forThemeOption } = useContext(ThemeContext)
 
@@ -69,14 +73,17 @@ export default function Navbar() {
         {menuItem('Home', undefined, () => {
           window.location.hash = '/'
           setIsActive('Home')
+          setVisible(false)
         })}
         {menuItem('Projects', undefined, () => {
           window.location.hash = '/projects'
           setIsActive('Projects')
+          setVisible(false)
         })}
         {menuItem('FAQ', undefined, () => {
           window.location.hash = '/faq'
           setIsActive('FAQ')
+          setVisible(false)
         })}
         {/* {menuItem('Docs', 'https://docs.juicebox.money')}
         {menuItem('Blog', 'https://blog.juicebox.money')}
@@ -135,10 +142,6 @@ export default function Navbar() {
           zIndex: 999,
           padding: '0 0 0 22px',
         }}
-        onClick={e => {
-          setActiveKey(undefined)
-          e.stopPropagation()
-        }}
       >
         <Space>
           {logo(30)}
@@ -146,54 +149,38 @@ export default function Navbar() {
             <img src="/assets/metis-logo-txt.png" alt="logotxt" />
           </span>
         </Space>
-        <Collapse
-          className="navCollapse"
-          // style={{ border: 'none', background: 'transparent' }}
-          activeKey={activeKey}
+        <MenuOutlined
+          onClick={showDrawer}
+          style={{
+            color: '#ffffff',
+            fontSize: '18px',
+            lineHeight: '46px',
+            paddingRight: '18px',
+          }}
+        />
 
-          // expandIcon={({ isActive }) => (
-          //   isActive ? <CloseOutlined /> : <MenuOutlined />
-          // )}
+        <Drawer
+          className="navCollapse"
+          title=""
+          placement="right"
+          closeIcon={
+            <CloseOutlined style={{ color: '#ffffff', fontSize: '18px' }} />
+          }
+          onClose={onClose}
+          visible={visible}
         >
-          <CollapsePanel
-            style={{
-              border: 'none',
-              // paddingRight: 22,
-              backgroundColor: 'rgba(0, 0, 0, 0.92)',
-            }}
-            key={0}
-            showArrow={false}
-            header={
-              <Space
-                onClick={e => {
-                  setActiveKey(activeKey === 0 ? undefined : 0)
-                  e.stopPropagation()
-                }}
-              >
-                {activeKey !== 0 && (
-                  <MenuOutlined
-                    style={{ color: '#ffffff', fontSize: '18px' }}
-                  />
-                )}
-              </Space>
-            }
-            extra={
-              activeKey === 0 && <CloseOutlined style={{ color: '#ffffff' }} />
-            }
+          <div className="mobileLoginSection">
+            <Account />
+          </div>
+          <Space
+            className="mobileNav"
+            size={[0, 0]}
+            direction="vertical"
+            style={{ width: '286px' }}
           >
-            <div className="mobileLoginSection">
-              <Account />
-            </div>
-            <Space
-              className="mobileNav"
-              size={[0, 0]}
-              direction="vertical"
-              style={{ width: '286px' }}
-            >
-              {menu()}
-            </Space>
-          </CollapsePanel>
-        </Collapse>
+            {menu()}
+          </Space>
+        </Drawer>
       </Header>
     </div>
   )
