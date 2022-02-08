@@ -52,8 +52,8 @@ export default function Navbar() {
       src={
         forThemeOption &&
         forThemeOption({
-          [ThemeOption.light]: '/assets/metis-logo.png',
-          [ThemeOption.dark]: '/assets/metis-logo.png',
+          [ThemeOption.light]: '/assets/metis-logo.svg',
+          [ThemeOption.dark]: '/assets/metis-logo.svg',
         })
       }
       alt="Utopians logo"

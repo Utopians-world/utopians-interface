@@ -27,6 +27,7 @@ import {
   useMemo,
   useState,
 } from 'react'
+import { createGlobalStyle } from 'styled-components'
 import { Prompt } from 'react-router-dom'
 import { editingProjectActions } from 'redux/slices/editingProject'
 import { fromPerbicent, fromPermille, fromWad } from 'utils/formatNumber'
@@ -340,12 +341,25 @@ export default function Create() {
 
   const GutterMobile = window.innerWidth > 500 ? 80 : 36
 
+  const GlobalStyle = createGlobalStyle`
+    .appContent {
+      background: #ffffff !important;
+    }
+  `
+
+  const scrollToTop = () => {
+    document.getElementById('createTop')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <ProjectContext.Provider value={project}>
-      <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
-        <h1 className="createTitle">
+      <GlobalStyle />
+      <h1 className="createTitle" id="createTop">
+        <div className="createTitleCon">
           CREATE A <span>NEW</span> PROJECT
-        </h1>
+        </div>
+      </h1>
+      <Row style={{ maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
         {window.innerWidth > 750 ? (
           <Tabs
             // centered
@@ -380,6 +394,7 @@ export default function Create() {
                       await projectForm.validateFields()
                       setProjectFormModalVisible(true)
                       settabKey('2')
+                      scrollToTop()
                       onProjectFormSaved()
                       if (!dirty) setDirty(true)
                     }}
@@ -435,6 +450,7 @@ export default function Create() {
                       onBudgetFormSaved(currency, target, duration)
                       setBudgetFormModalVisible(true)
                       settabKey('3')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
@@ -489,6 +505,7 @@ export default function Create() {
                       onPayModsFormSaved(mods)
                       setPayModsFormModalVisible(true)
                       settabKey('4')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
@@ -542,6 +559,7 @@ export default function Create() {
                       onTicketingFormSaved(mods)
                       setTicketingFormModalVisible(true)
                       settabKey('5')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
@@ -732,6 +750,7 @@ export default function Create() {
                       await projectForm.validateFields()
                       setProjectFormModalVisible(true)
                       settabKey('2')
+                      scrollToTop()
                       onProjectFormSaved()
                       if (!dirty) setDirty(true)
                     }}
@@ -796,6 +815,7 @@ export default function Create() {
                       onBudgetFormSaved(currency, target, duration)
                       setBudgetFormModalVisible(true)
                       settabKey('3')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
@@ -857,6 +877,7 @@ export default function Create() {
                       onPayModsFormSaved(mods)
                       setPayModsFormModalVisible(true)
                       settabKey('4')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
@@ -921,6 +942,7 @@ export default function Create() {
                       onTicketingFormSaved(mods)
                       setTicketingFormModalVisible(true)
                       settabKey('5')
+                      scrollToTop()
                       if (!dirty) setDirty(true)
                     }}
                     onDeployBtn={() => {
