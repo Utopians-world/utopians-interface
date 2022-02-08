@@ -23,7 +23,7 @@
         max-width: 514px;
         opacity: 0.99;
         .proCardConLeft {
-            width: 175px;
+            max-width: 175px;
             height: 189px;
         }
         .proCardConRight {
@@ -64,7 +64,8 @@
     }
 
     .proCardConLeft {
-        width: 157px;
+        width: 100%;
+        max-width: 157px;
         height: 169px;
         margin-right: 24px;
         img {
@@ -151,7 +152,7 @@
             align-items: center;
             width: 100%;
             span{
-                width: 62px;
+                width: 67px;
                 font-size: 13px;
                 font-family: TeXGyreAdventor-Bold, TeXGyreAdventor;
                 font-weight: 600;
@@ -177,13 +178,13 @@
         &.homeProCardCon {
             max-width: 100%;
             .proCardConLeft {
-                width: 175px;
+                max-width: 175px;
                 height: 189px;
             }
         }
 
         .proCardConLeft {
-            width: 157px;
+            max-width: 157px;
             height: 169px;
             margin-right: 24px;
             img {
@@ -202,7 +203,7 @@
         &.homeProCardCon {
             max-width: 100%;
             .proCardConLeft {
-                width: 102px;
+                max-width: 102px;
                 height: 107px;
             }
 
@@ -250,7 +251,7 @@
         }
 
         .proCardConLeft {
-            width: 102px;
+            max-width: 102px;
             height: 107px;
             margin-right: 7px;
             img {

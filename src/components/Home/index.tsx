@@ -24,6 +24,7 @@ import ProjectIcon from 'assets/images/project-icon.png'
 
 import HoworkTipBg from 'assets/images/howork-pic.png'
 import HoworkTipMobileBg from 'assets/images/howork-pic-mobile.png'
+import HomePageArrow from 'assets/images/home-page-arrow.png'
 
 import Rectangles from 'assets/images/Rectangles.png'
 import Rectangles1 from 'assets/images/Rectangles1.png'
@@ -154,6 +155,9 @@ export default function Home() {
 
             <Col xs={24} md={10}></Col>
           </Row>
+        </div>
+        <div className="firstSectionFooterCon">
+          <img src={HomePageArrow} alt="home-page-arrow" />
         </div>
       </section>
 

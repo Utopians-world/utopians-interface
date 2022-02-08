@@ -14,13 +14,20 @@
       linear-gradient(229deg, transparent 40%, rgba(73, 6, 255, 0.85) 67%, rgba(61, 136, 231, 0.85) 90%, rgba(56, 255, 221,0.85) 100%);
       
     padding-top: 130px;
-    padding-bottom: 194px;
-    min-height: 760px;
+    padding-bottom: 54px;
+    min-height: 80vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
   }
   .firstSectionContent {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 80px;
+  }
+  
+  .firstSectionFooterCon {
+    text-align: center;
   }
   & .firstSectionLeft {
     // background: linear-gradient(153deg, rgba(15, 0, 255, 0) 0%, rgba(73, 6, 255, 0.79) 27%, rgba(61, 136, 231, 0.93) 77%, #38FFDD 100%);
