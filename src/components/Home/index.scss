@@ -13,7 +13,7 @@
       linear-gradient(162deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 79%, #FFFFFF 93%, #FFFFFF 100%, #FFFFFF 100%),
       linear-gradient(229deg, transparent 40%, rgba(73, 6, 255, 0.85) 67%, rgba(61, 136, 231, 0.85) 90%, rgba(56, 255, 221,0.85) 100%);
       
-    padding-top: 130px;
+    padding-top: 18vh;
     padding-bottom: 54px;
     min-height: 80vh;
     display: flex;
@@ -22,8 +22,8 @@
   }
   .firstSectionContent {
     max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 80px;
+    // margin: 0 auto;
+    padding: 0 0 0 5.6%;
   }
   
   .firstSectionFooterCon {
@@ -53,15 +53,24 @@
     // background: 
     //   linear-gradient(132deg, rgba(0, 255, 124, 0.3) 0%, rgba(0, 218, 255, 0.3) 32%, rgba(161, 0, 255, 0.3) 100%), 
     //   linear-gradient(195deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+    // background: 
+    //   linear-gradient(132deg,
+    //     rgba(0, 255, 231, 1) 0%, 
+    //     rgba(0, 231, 255, 0.67) 62%, 
+    //     rgba(250, 178, 255,0.68)
+    //   ),
+    //   linear-gradient(146deg,
+    //     hsl(0deg 0% 100%/0%), 
+    //     hsl(305deg 100% 67%)
+    //   );
     background: 
       linear-gradient(132deg,
         rgba(0, 255, 231, 1) 0%, 
-        rgba(0, 231, 255, 0.67) 62%, 
-        rgba(250, 178, 255,0.68)
+        rgba(255, 255, 255, 0.67) 62%, 
+        rgba(255, 255, 255,0.68)
       ),
       linear-gradient(146deg,
-        hsl(0deg 0% 100%/0%), 
-        hsl(305deg 100% 67%)
+        hsla(0, 0%, 100%, 0%), #ffffff
       );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
