@@ -12,6 +12,8 @@ export default function Footer() {
         color: colors.text.metisgreen,
       }}
       href={link}
+      target="_blank"
+      rel="noreferrer"
     >
       {text}
     </a>
@@ -26,9 +28,9 @@ export default function Footer() {
         the principles that keep blockchains functioning.
       </p>
       <Space style={{ margin: '0 auto' }}>
-        {link('Telegram', 'https://t.me/6jXrJSyDFf')}
-        {link('Github', 'https://github.com/upt-protocol/')}
-        {link('Twitter', 'https://twitter.com/utopiansMETIS')}
+        {link('Discord', 'https://discord.gg/2yXDRHvhAe')}
+        {link('Github', 'https://github.com/Utopians-world/utopians-interface')}
+        {link('Telegram', 'https://t.me/utopians_en')}
       </Space>
     </div>
   )
