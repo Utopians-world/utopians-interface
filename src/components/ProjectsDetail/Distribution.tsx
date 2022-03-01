@@ -207,12 +207,7 @@ export default function Distribution({
               tip="Available funds are distributed according to any payouts below."
             />
           </Space>
-          {/*<PayoutModsList*/}
-          {/*    mods={currentPayoutMods}*/}
-          {/*    fundingCycle={currentFC}*/}
-          {/*    projectId={projectId}*/}
-          {/*    fee={currentFC.fee}*/}
-          {/*  />*/}
+
           {currentPayoutMods?.length
             ? [...currentPayoutMods]
                 .sort((a, b) => (a.percent < b.percent ? 1 : -1))

@@ -1,11 +1,93 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+
+import { Space } from 'antd'
 
 import { PaymentActivity } from '../Dashboard/ProjectActivity/PaymentActivity'
+import { ThemeContext } from '../../contexts/themeContext'
+
 // import { Space } from 'antd'
 
 // import LinkIcon from '../icons/LinkIcon'
 
+type ShowGraph = 'Pay' | 'Redeem' | 'Widthdraw' | 'Reserves'
+
 export default function Activity() {
+  const [showGraph, setShowGraph] = useState<ShowGraph>('Pay')
+  const {
+    theme: { colors },
+  } = useContext(ThemeContext)
+
+  const textTitle = () => {
+    switch (showGraph) {
+      case 'Pay':
+        return 'Activity-Pay'
+      case 'Redeem':
+        return 'Activity-redeem'
+      case 'Widthdraw':
+        return 'Activity-Widthdraw'
+      case 'Reserves':
+        return 'Activity-Reserves'
+    }
+  }
+
+  const tabMemo = () => {
+    switch (showGraph) {
+      case 'Pay':
+        return <PaymentActivity pageSize={50} />
+      case 'Redeem':
+        return ''
+      case 'Widthdraw':
+        return ''
+      case 'Reserves':
+        return ''
+    }
+  }
+
+  const tab = (tab: ShowGraph) => {
+    const selected = tab === showGraph
+
+    let text: string
+    switch (tab) {
+      case 'Pay':
+        text = 'Pay'
+        break
+      case 'Redeem':
+        text = 'Redeem'
+        break
+      case 'Widthdraw':
+        text = 'Widthdraw'
+        break
+      case 'Reserves':
+        text = 'Reserves'
+        break
+    }
+
+    return (
+      <div
+        style={{
+          textTransform: 'uppercase',
+          fontSize: '12px',
+          color: selected ? colors.text.secondary : colors.text.tertiary,
+          cursor: 'pointer',
+          background: selected ? '#d9d5fe' : '#ffffff',
+          fontWeight: 600,
+          minWidth: '70px',
+          textAlign: 'center',
+        }}
+        onClick={() => setShowGraph(tab)}
+        className={
+          text === 'Pay'
+            ? 'leftChartsText'
+            : text === 'Reserves'
+            ? 'rightChartsText'
+            : 'midChartsText'
+        }
+      >
+        {text}
+      </div>
+    )
+  }
+
   return (
     <div
       style={{
@@ -27,11 +109,21 @@ export default function Activity() {
           marginBottom: 0,
         }}
       >
-        Activity
+        {textTitle()}
       </h3>
-      <div style={{ padding: '0 15px' }}>
-        <PaymentActivity pageSize={50} />
+
+      <div
+        className="chartsStyle"
+        style={{ textAlign: 'center', margin: '15px 0' }}
+      >
+        <Space size="large" style={{ margin: '0 auto' }}>
+          {tab('Pay')}
+          {tab('Redeem')}
+          {tab('Widthdraw')}
+          {tab('Reserves')}
+        </Space>
       </div>
+      <div style={{ padding: '0 15px' }}>{tabMemo()}</div>
     </div>
   )
 }
