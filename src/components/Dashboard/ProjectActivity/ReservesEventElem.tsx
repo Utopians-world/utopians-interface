@@ -53,7 +53,13 @@ export default function ReservesEventElem({
           justifyContent: 'space-between',
         }}
       >
-        <div style={smallHeaderStyle(colors)}>
+        <div
+          style={{
+            color: '#2713E1',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          }}
+        >
           Distributed reserved {tokenSymbol ?? 'tokens'}
         </div>
 

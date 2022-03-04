@@ -4,6 +4,9 @@ import { Space } from 'antd'
 
 import { PaymentActivity } from '../Dashboard/ProjectActivity/PaymentActivity'
 import { ThemeContext } from '../../contexts/themeContext'
+import { RedeemActivity } from '../Dashboard/ProjectActivity/RedeemActivity'
+import { TapActivity } from '../Dashboard/ProjectActivity/TapActivity'
+import { ReservesActivity } from '../Dashboard/ProjectActivity/ReservesActivity'
 
 // import { Space } from 'antd'
 
@@ -35,11 +38,11 @@ export default function Activity() {
       case 'Pay':
         return <PaymentActivity pageSize={50} />
       case 'Redeem':
-        return ''
+        return <RedeemActivity pageSize={50} />
       case 'Widthdraw':
-        return ''
+        return <TapActivity pageSize={50} />
       case 'Reserves':
-        return ''
+        return <ReservesActivity pageSize={50} />
     }
   }
 

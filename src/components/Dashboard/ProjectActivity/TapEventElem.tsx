@@ -56,7 +56,15 @@ export default function TapEventElem({
           justifyContent: 'space-between',
         }}
       >
-        <div style={smallHeaderStyle(colors)}>Withdrawn</div>
+        <div
+          style={{
+            color: '#2713E1',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          }}
+        >
+          Withdrawn
+        </div>
 
         <div
           style={{

@@ -74,7 +74,15 @@ export function RedeemActivity({ pageSize }: { pageSize: number }) {
                 }}
               >
                 <div>
-                  <div style={smallHeaderStyle(colors)}>Redeemed</div>
+                  <div
+                    style={{
+                      color: '#2713E1',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Redeemed
+                  </div>
                   <div
                     style={{
                       lineHeight: contentLineHeight,
@@ -96,7 +104,6 @@ export function RedeemActivity({ pageSize }: { pageSize: number }) {
                     {e.timestamp && (
                       <span>{formatHistoricalDate(e.timestamp * 1000)}</span>
                     )}{' '}
-                    <EtherscanLink value={e.txHash} type="tx" />
                   </div>
                   <div
                     style={{
@@ -106,6 +113,7 @@ export function RedeemActivity({ pageSize }: { pageSize: number }) {
                     }}
                   >
                     <FormattedAddress address={e.beneficiary} />
+                    <EtherscanLink value={e.txHash} type="tx" />
                   </div>
                 </div>
               </div>
