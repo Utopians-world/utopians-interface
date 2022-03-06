@@ -155,7 +155,7 @@ export default function Paid() {
   return (
     <div className="fundovervieWrapper">
       <SectionHeader
-        text="Fund Overview"
+        text="Funding Information"
         style={{
           margin: '14px 0 6px',
         }}
@@ -165,7 +165,7 @@ export default function Paid() {
           <div className="fundoverviewConTopCon">
             <span style={secondaryTextStyle}>
               <TooltipLabel
-                label="Volume"
+                label="Total Rasied"
                 tip="The total amount received by this project through Utopians since it was created."
               />
             </span>
@@ -200,7 +200,7 @@ export default function Paid() {
           >
             <div style={secondaryTextStyle}>
               <TooltipLabel
-                label="In Utopians"
+                label="Reserved in Project Vault"
                 tip="The balance of this project in the Utopians contract."
               />
             </div>
@@ -229,7 +229,7 @@ export default function Paid() {
           >
             <span style={secondaryTextStyle}>
               <TooltipLabel
-                label="In wallet"
+                label="In Owner's Wallet"
                 tip={
                   <div>
                     <p>
@@ -289,7 +289,7 @@ export default function Paid() {
             >
               <div style={secondaryTextStyle}>
                 <TooltipLabel
-                  label="Distributed"
+                  label="Current Funding Cycle Progress(0%)"
                   tip="The amount that has been distributed from the Utopians balance in this funding cycle, out of the current funding target. 
                   No more than the funding target can be distributed in a single funding cycle—any remaining METIS in Utopians is overflow, until the next cycle begins."
                 />
@@ -316,6 +316,7 @@ export default function Paid() {
 
         {hasFundingTarget(currentFC) &&
           currentFC.target.gt(0) &&
+          false &&
           (totalOverflow?.gt(0) ? (
             <div
               style={{

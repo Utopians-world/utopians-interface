@@ -91,7 +91,7 @@ export default function Spending({
               onClick={() => setWithdrawModalVisible(true)}
               disabled={isPreviewMode}
             >
-              Distribute
+              WITHDRAW FUNDS FOR THE PROJECT
             </Button>
           </div>
           <div style={{ ...smallHeaderStyle, color: '#3F3D3D' }}>

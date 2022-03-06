@@ -41,9 +41,11 @@ export default function CurrentFundingCycle({
       </div>
       <SmartRewards totalOverflow={totalOverflow} />
       <SectionHeader
-        text="Distribution"
+        text="Funds Distribution"
+        tip="Available funds are distributed to the owner and other payouts below"
         style={{
           margin: '20px 0 6px 20px',
+          display: 'inline-block',
         }}
       />
       <CardSection>
