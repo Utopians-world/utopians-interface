@@ -20,7 +20,6 @@ import { useEditingFundingCycleSelector } from '../../hooks/AppSelector'
 import BalancesModal from '../modals/BalancesModal'
 import { PayoutMod, TicketMod } from '../../models/mods'
 import DetailEditShowMobile from './DetailEditShowMobile'
-import { DitributionLoadMobile } from './DitributionLoadMobile'
 
 export default function FundOverviewMobile({
   payoutMods,
@@ -37,6 +36,15 @@ export default function FundOverviewMobile({
   const editingFC = useEditingFundingCycleSelector()
   const converter = useCurrencyConverter()
   const { data: ownerBalance } = useEthBalanceQuery(owner)
+
+  const secondaryTextStyle: CSSProperties = {
+    // textTransform: 'uppercase',
+    fontSize: '13px',
+    fontWeight: 600,
+    fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+    color: '#3F3D3D',
+    lineHeight: '20px',
+  }
 
   if (!currentFC) return null
 
@@ -72,6 +80,15 @@ export default function FundOverviewMobile({
     margin: 0,
     lineHeight: '20px',
   }
+  let getTarget
+  const target = formatWad(currentFC.target, { decimals: 2, padEnd: true })
+  const getBalance = Number(formatWad(earned, { decimals: 2, padEnd: true }))
+  if (target) {
+    getTarget = target.replace(',', '')
+  } else {
+    getTarget = 0
+  }
+  let posses = Math.floor((getBalance / Number(getTarget)) * 100)
   if (!projectId) return null
   // const inputValue = 1
   return (
@@ -93,7 +110,7 @@ export default function FundOverviewMobile({
               color: '#1D1D1D',
             }}
           >
-            Fund Overview
+            Funding Information
           </h2>
         </Col>
         <Col span={6} style={{ textAlign: 'right' }}>
@@ -133,30 +150,12 @@ export default function FundOverviewMobile({
             }}
           >
             <Space style={{ fontSize: '12px' }}>
-              <TooltipLabel
-                label={
-                  <div
-                    style={{
-                      fontWeight: 'bold',
-                      marginBottom: '5px',
-                      display: 'inline-block',
-                      marginRight: '10px',
-                      fontSize: '15px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Volume
-                    </span>
-                  </div>
-                }
-                tip="The total amount received by this project through Utopians since it was created."
-              />
+              <div style={secondaryTextStyle}>
+                <TooltipLabel
+                  label="Total Rasied"
+                  tip="The total amount received by this project through Utopians since it was created."
+                />
+              </div>
             </Space>
             <h2 style={NumberTotal}>
               <MetisLogo size={18} />
@@ -171,30 +170,12 @@ export default function FundOverviewMobile({
               paddingLeft: '10px',
             }}
           >
-            <TooltipLabel
-              label={
-                <div
-                  style={{
-                    fontWeight: 'bold',
-                    marginBottom: '5px',
-                    display: 'inline-block',
-                    marginRight: '10px',
-                    fontSize: '15px',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-                      fontWeight: 'bold',
-                      fontSize: '14px',
-                    }}
-                  >
-                    In Utopians
-                  </span>
-                </div>
-              }
-              tip="The balance of this project in the Utopians contract."
-            />
+            <div style={secondaryTextStyle}>
+              <TooltipLabel
+                label="Reserved in Project Vault"
+                tip="The balance of this project in the Utopians contract."
+              />
+            </div>
             <h2 style={NumberTotal}>
               <MetisLogo size={18} />
               {formatWad(balance, { decimals: 2, padEnd: true })}
@@ -215,33 +196,15 @@ export default function FundOverviewMobile({
         >
           <div style={{ paddingLeft: '10px' }}>
             <div style={{ height: '29px' }}>
-              <TooltipLabel
-                label={
-                  <div
-                    style={{
-                      fontWeight: 'bold',
-                      marginBottom: '5px',
-                      display: 'inline-block',
-                      marginRight: '10px',
-                      fontSize: '15px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                      }}
-                    >
-                      In wallet
-                    </span>
-                  </div>
-                }
-                tip={
-                  'The balance of the wallet that owns this Utopians project. + ' +
-                  owner
-                }
-              />
+              <div style={secondaryTextStyle}>
+                <TooltipLabel
+                  label="In Owner’s Wallet"
+                  tip={
+                    'The balance of the wallet that owns this Utopians project. + ' +
+                    owner
+                  }
+                />
+              </div>
             </div>
             <div style={{ height: '40px' }}>
               <h2
@@ -333,7 +296,7 @@ export default function FundOverviewMobile({
                         fontSize: '14px',
                       }}
                     >
-                      Distributed
+                      Current Funding Cycle Progress（ {posses}%）
                     </span>
                   </div>
                 }
@@ -355,8 +318,6 @@ export default function FundOverviewMobile({
               {formatCurrencyAmount(earned)} / <MetisLogo size={18} />
               {formatCurrencyAmount(currentFC.target)}
             </h2>
-
-            <DitributionLoadMobile />
           </div>
         ) : (
           ''

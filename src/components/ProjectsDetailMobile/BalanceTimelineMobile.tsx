@@ -322,10 +322,10 @@ export default function BalanceTimelineMobile({ height }: { height: number }) {
     let text: string
     switch (tab) {
       case 'balance':
-        text = 'In Utopians'
+        text = 'IN VAULT'
         break
       case 'volume':
-        text = 'Volume'
+        text = 'TOTAL RAISED'
         break
     }
 
@@ -339,7 +339,9 @@ export default function BalanceTimelineMobile({ height }: { height: number }) {
           fontWeight: 600,
         }}
         onClick={() => setShowGraph(tab)}
-        className={text === 'Volume' ? 'leftChartsText' : 'rightChartsText'}
+        className={
+          text === 'TOTAL RAISED' ? 'leftChartsText' : 'rightChartsText'
+        }
       >
         {text}
       </div>

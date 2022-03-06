@@ -72,22 +72,26 @@ export default function Distribution({
       }}
       className="distribution-main"
     >
-      <h2
-        style={{
-          marginBottom: '5px',
-          marginRight: '10px',
-          display: 'inline-block',
-          fontSize: '19px',
-          fontWeight: 'bold',
-          fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-          color: '#1D1D1D',
-        }}
-      >
-        Distribution
-        <span className="editIcon" onClick={() => setDetailPayoutVisible(true)}>
-          <DetailEditShow />
-        </span>
-      </h2>
+      <TooltipLabel
+        label={
+          <div
+            style={{
+              display: 'inline-block',
+              fontSize: '19px',
+              marginRight: '10px',
+              fontWeight: 'bold',
+              fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+              color: '#1D1D1D',
+            }}
+          >
+            Funds Distribution
+          </div>
+        }
+        tip="Available funds are distributed to the owner and other payouts below"
+      />
+      <div className="editIcon" onClick={() => setDetailPayoutVisible(true)}>
+        <DetailEditShow />
+      </div>
       <div
         style={{
           border: '1px solid #D3DCEE',
@@ -182,8 +186,9 @@ export default function Distribution({
             <div
               className={'button-spec'}
               onClick={() => setWithdrawModalVisible(true)}
+              style={{ width: '330px', position: 'absolute', right: '-20px' }}
             >
-              DISTRIBUTE
+              WITHDRAW FUNDS FOR THE PROJECT
             </div>
           </Col>
         </Row>

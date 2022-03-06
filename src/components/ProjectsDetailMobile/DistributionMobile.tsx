@@ -71,19 +71,23 @@ export default function DistributionMobile({
     >
       <Row>
         <Col span={18}>
-          <h2
-            style={{
-              marginBottom: '5px',
-              marginRight: '10px',
-              display: 'inline-block',
-              fontSize: '15px',
-              fontWeight: 'bold',
-              fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
-              color: '#1D1D1D',
-            }}
-          >
-            Distribution
-          </h2>
+          <TooltipLabel
+            label={
+              <div
+                style={{
+                  display: 'inline-block',
+                  fontSize: '19px',
+                  marginRight: '10px',
+                  fontWeight: 'bold',
+                  fontFamily: 'TeXGyreAdventor-Bold, TeXGyreAdventor',
+                  color: '#1D1D1D',
+                }}
+              >
+                Funds Distribution
+              </div>
+            }
+            tip="Available funds are distributed to the owner and other payouts below"
+          />
         </Col>
         <Col span={6} style={{ textAlign: 'right' }}>
           <div
@@ -184,12 +188,13 @@ export default function DistributionMobile({
               <DetailBalance address={owner} />
             </div>
           </Col>
-          <Col span={24} style={{ marginTop: '15px' }}>
+          <Col span={24} style={{ marginTop: '15px', height: '37px' }}>
             <div
               className={'button-spec-mobile'}
               onClick={() => setWithdrawModalVisible(true)}
+              style={{ width: '330px', position: 'absolute', right: '-20px' }}
             >
-              DISTRIBUTE
+              WITHDRAW FUNDS FOR THE PROJECT
             </div>
           </Col>
         </Row>
