@@ -2,7 +2,6 @@ import { Select, Space } from 'antd'
 
 import { ProjectContext } from 'contexts/projectContext'
 import { ThemeContext } from 'contexts/themeContext'
-import EthDater from 'ethereum-block-by-date'
 import { parseProjectJson, Project } from 'models/subgraph-entities/project'
 import { parseTapEventJson } from 'models/subgraph-entities/tap-event'
 import moment from 'moment'
@@ -46,6 +45,7 @@ type EventRef = {
 }
 type BlockRef = { block: number | null; timestamp: number }
 type ShowGraph = 'volume' | 'balance'
+const EthDater = require('assets/js/GetBlockByDate')
 
 export default function BalanceTimelineMobile({ height }: { height: number }) {
   const [events, setEvents] = useState<EventRef[]>([])
